@@ -1,0 +1,203 @@
+header{
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #8c6359;
+    position: fixed;
+    z-index: 20;
+    //background-color: blue;
+    >div{
+        width: 100%;
+        max-width: 1920px;
+        height: 98px;
+        margin: 0 auto;
+        position: relative;
+        //background-color: cornflowerblue;
+        @include SCREEN_736{
+            height: 50px;
+            background-color: #191919;
+        }
+        .headerLogo{
+            background-image: url("~99_header_logo.png");
+            background-size: contain;
+            width: 245px;
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            left: 103px;
+            transition: all 0.4s;
+            @include SCREEN_900{
+                left: 0px;
+                bottom: 29px;
+            }
+            @include SCREEN_736{
+                width: 195px;
+                height: 32px;
+                left: 30px;
+                bottom: 9px;
+                &.moveMid{
+                    left: 50%;
+                    margin-left: -97.5px;
+                }
+            }
+            @include SCREEN_375{
+                width: 140px;
+                height: 23px;
+                left: 15px;
+                bottom: 13.5px;
+                &.moveMid{
+                    left: 50%;
+                    margin-left: -70px;
+                }
+            }
+            >a{
+                display: block;
+                height: 40px;
+                @include SCREEN_736{
+                    height: 32px;
+                }
+                @include SCREEN_375{
+                    height: 23px;
+                }
+            }
+        }
+        .mobileMainMenuSwitchBtn{
+            width: 40px;
+            height: 40px;
+            //background-color: blueviolet;
+            position: absolute;
+            bottom: 5px;
+            right: 30px;
+            @include SCREEN_375{
+                right: 15px;
+            }
+            >span{
+                width: 35px;
+                height: 2px;
+                background-color: #c1c1c1;
+                display: block;
+                position: absolute;
+                left: 2.5px;
+                transition: all 0.4s;
+                &.active{
+                    background-color: #3b3b3b;
+                }
+                &:first-child{
+                    top: 9px;
+                }
+                &:nth-child(2){
+                    top: 19px;
+                }
+                &:last-child{
+                    top: 29px;
+                }
+            }
+        }
+        .mainMenu{
+            width: auto;
+            height: 89px;
+            background-color: #ffffff;
+            display: inline-block;
+            float: right;
+            margin-right: 47px;
+            position: relative;
+            overflow: hidden;
+            @include SCREEN_900{
+                margin-right: 0px;
+            }
+            @include SCREEN_736{
+                width: 100%;
+                height: auto;
+                background-color: rgba($color: #0e0e0e, $alpha: 0.95);
+                float: none;
+                margin-top: 50px;
+                transition: all 0.4s ease-out;
+            }
+            >ul{
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                margin: 0 40px;
+                @include SCREEN_736{
+                    margin: 0px;
+                }
+                >li{
+                    float: left;
+                    margin-left: 30px;
+                    line-height: 89px;
+                    position: relative;
+                    &:first-child{margin-left: 0px;}
+                    >a{
+                        font-size: 22px;
+                        padding: 10px 0;
+                        color: #414141;
+                        @include SCREEN_736{
+                            font-size: 26px;
+                            padding: 0;
+                            color: #d5d5d5;
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                    >span{
+                        width: 0px;
+                        height: 6px;
+                        background-color: #ccc;
+                        transition: all 0.3s;
+                        display: block;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        @include SCREEN_736{display: none;}
+                    }
+                    &:hover > span{
+                        width: 45px;
+                    }
+                    @include SCREEN_736{
+                        float: none;
+                        margin-left: 0px;
+                        text-align: center;
+                        line-height: 70px;
+                    }
+                }
+            }
+            >span{
+                width: 54px;
+                height: 6px;
+                background-color: #8d615c;
+                display: block;
+                position: absolute;
+                bottom: 0;
+                transition: all 0.3s;
+                &.home{
+                    left: -54px;
+                }
+                &.works{
+                    left: 44px;
+                }
+                &.design{
+                    left: 143px;
+                }
+                &.news{
+                    left: 240px;
+                }
+                &.brand{
+                    left: 328px;
+                }
+                @include SCREEN_736{display: none;}
+            }
+            
+        }
+        .mainMenu.mobileHide{
+            height: 0;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+        .mainMenu.mobileShow{
+            height: 350px;
+            border-bottom-left-radius: 0%;
+            border-bottom-right-radius: 0%;
+        }
+    }
+}

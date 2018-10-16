@@ -1,0 +1,113 @@
+
+@mixin SCREEN_1366{
+	@media screen and (max-width: 1366px) {
+		@content;	
+	}
+}
+@mixin SCREEN_1280{
+	@media screen and (max-width: 1280px) {
+		@content;	
+	}
+}
+
+//ipad
+@mixin SCREEN_1024{
+	@media screen and (max-width: 1024px) {
+		@content;	
+	}
+}
+@mixin SCREEN_900{
+	@media screen and (max-width: 900px) {
+		@content;	
+	}
+}
+//mobile
+@mixin SCREEN_736{
+	@media screen and (max-width: 736px) {
+		@content;	
+	}
+}
+//iphone plus
+@mixin SCREEN_414{
+	@media screen and (max-width: 414px) {
+		@content;	
+	}
+}
+//iphone
+@mixin SCREEN_375{
+	@media screen and (max-width: 375px) {
+		@content;	
+	}
+}
+//iphone5
+@mixin SCREEN_325{
+	@media screen and (max-width: 325px) {
+		@content;	
+	}
+}
+//直接置入背景圖
+@mixin pic($name){
+  background: url("../images/#{$name}"); 
+  width: image-width("../images/#{$name}");
+  height: image-height("../images/#{$name}");
+}
+//直接隱藏文字(新版)
+@mixin text-hide { 
+  white-space: nowrap; 
+  text-indent: 100%;
+  overflow: hidden;
+}
+//----------------page----------------
+//page用寬最小及平板
+$genericWidth: 1280px;
+$genericWidth_m: 1024px;
+//box-sizing恢復成原來狀態
+@mixin boxSizingOriginal{
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+//page 每take內容頁面需要用CSS
+@mixin takeConteneNum{
+	width: 100%;
+	height: auto;
+	background-color: #f9f9f9;
+	position: relative;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+//page_常用文字
+@mixin take_h2($takeSize,$takeColor){
+	font-size: $takeSize;
+	color: $takeColor;
+}
+@mixin take_p($takeSize,$takeColor,$lineH){
+	font-size: $takeSize;
+	color: $takeColor;
+	line-height: $lineH;
+	letter-spacing: 0.14em;
+}
+//page常用文字已組合版
+@mixin take_h2Size{
+	@include take_h2(22px,#fff);
+	padding-bottom: 10px;
+	@include SCREEN_1024{
+		@include take_h2(18px,#fff);
+	}
+}
+@mixin take_pSize{
+	@include take_p(16px,#fff,30px);
+	@include SCREEN_1024{
+		@include take_p(14px,#fff,26px);
+	}
+}
+
+// @mixin filter($filterNum){
+// 	-webkit-filter: grayscale($filterNum);
+// 	-moz-filter: grayscale($filterNum);
+// 	-ms-filter: grayscale($filterNum);
+// 	-o-filter: grayscale($filterNum);
+// 	filter: grayscale($filterNum);
+// 	filter: gray;
+// }

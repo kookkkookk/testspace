@@ -1,0 +1,126 @@
+footer{
+    width: 100%;
+    height: auto;
+    background-color: aqua;
+    >div.footerDsktop{
+        width: 100%;
+        max-width: 1920px;
+        height: 224px;
+        margin: 0 auto;
+        padding-left: 143px;
+        padding-right: 125px;
+        padding-top: 60px;
+        position: relative;
+        background-color: #d3d3d3;
+        @include SCREEN_1366{
+            padding-left: 90px;
+            padding-right: 80px;
+            padding-top: 70px;
+        }
+        @include SCREEN_900{
+            height: 190px;
+            padding-left: 50px;
+            padding-right: 40px;
+            padding-top: 60px;
+        }
+        .textArea{
+            float: left;
+            >h1{
+                font-size: 22px;
+                color: #323232;
+                margin-bottom: 9px;
+                @include SCREEN_1366{
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                }
+                @include SCREEN_900{
+                    font-size: 16px;
+                    margin-bottom: 4px;
+                }
+                >span{
+                    display: inline-block;
+                    width: 180px;
+                    height: 21px;
+                    background-image: url("~99_footer_logo.png");
+                    background-size: contain;
+                    float: left;
+                    margin-top: 5px;
+                    margin-right: 10px;
+                    @include SCREEN_1366{
+                        width: 137px;
+                        height: 16px;
+                        margin-top: 4px;
+                    }
+                    @include SCREEN_900{
+                        width: 120px;
+                        height: 14px;
+                    }
+                }
+            }
+            p{
+                font-size: 23px;
+                color: #4b4b4b;
+                margin-bottom: 9px;
+                @include SCREEN_1366{
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                }
+                @include SCREEN_900{
+                    font-size: 16px;
+                    margin-bottom: 4px;
+                }
+            }
+            p:last-child{
+                font-size: 20px;
+                @include SCREEN_1366{
+                    font-size: 15px;
+                }
+                @include SCREEN_900{
+                    font-size: 13px;
+                }
+            }
+        }
+        .iconArea{
+            float: right;
+            margin-top: 10px;
+            @include SCREEN_1366{margin-top: 0px;}
+            @include SCREEN_900{margin-top: -10px;}
+            ul{
+                overflow: hidden;
+                li{
+                    float: left;
+                    margin-left: 8px;
+                    &:first-child a{
+                        background-image: url("~99_footer_fbIcon.png");
+                    }
+                    &:last-child a{
+                        background-image: url("~99_footer_emailIcon.png");
+                    }
+                    &:hover a{
+                        background-position: 0 100%;
+                    }
+                    a{
+                        width: 55px;
+                        height: 55px;
+                        background-position: 0 0;
+                        display: block;
+                    }
+                }
+            }
+        }
+        
+    }
+    >div.footerMobile{
+        width: 100%;
+        height: 55px;
+        background-color: #191919;
+        >h2{
+            font-size: 15px;
+            font-family: Arial;
+            letter-spacing: 0.04em;
+            color: #fff;
+            line-height: 55px;
+            text-align: center;
+        }
+    }
+}

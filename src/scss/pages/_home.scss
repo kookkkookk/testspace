@@ -1,0 +1,409 @@
+.homePage{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    //background-color: blueviolet;
+    @include SCREEN_736{
+        padding-top: 50px;
+    }
+    //--- Banner ---
+    .bannerArea{
+        overflow: hidden;
+        position: relative;
+        .bannerContainer{
+            width: 100%;
+            position: relative;
+            >span.braceHeight{
+                display: block;
+                font-size: 0;
+                opacity: 0;
+                >img{width: 100%;}
+            }
+            >div{
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                font-size: 0;
+                >img{
+                    width: 100%;
+                    height: auto;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    @include SCREEN_736{
+                        padding: 10px;
+                    }
+                }
+                //banner fade & slide animated
+                .fade-enter-active,
+                .fade-leave-active {
+                    transition: opacity 1s;
+                }
+                .fade-enter,
+                .fade-leave-to {
+                    opacity: 0;
+                }
+
+                .slide-enter-active,
+                .slide-leave-active {
+                    transition: transform .4s ease-out;
+                }
+                .slide-enter {
+                    transform: translateX(100%);
+                }
+                .slide-leave-to {
+                    transform: translateX(-100%);
+                }
+            }
+        }
+        .titleArea{
+            position: absolute;
+            z-index: 2;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            @include SCREEN_736{
+                position: static;
+                margin: 40px 0 60px 0;
+            }
+            >div{
+                >h1{
+                    font-size: 55px;
+                    color: #020202;
+                    font-weight: bold;
+                    @include SCREEN_1366{
+                        font-size: 45px;
+                    }
+                    @include SCREEN_900{
+                        font-size: 35px;
+                    }
+                    @include SCREEN_414{
+                        font-size: 30px;
+                    }
+                }
+                >h2{
+                    font-size: 50px;
+                    color: #020202;
+                    @include SCREEN_1366{
+                        font-size: 40px;
+                    }
+                    @include SCREEN_900{
+                        font-size: 30px;
+                    }
+                    @include SCREEN_414{
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+        .mouseIcon{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 23px;
+            z-index: 2;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include SCREEN_1366{bottom: 15px;}
+            >div{
+                width: 105px;
+                height: 105px;
+                background-image: url("~00_mouseIcon1.png");
+                background-size: contain;
+                position: relative;
+                @include SCREEN_1366{
+                    width: 75px;
+                    height: 75px;
+                }
+                >span{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-image: url("~00_mouseIcon2.png");
+                    background-size: contain;
+                    animation-name: moved;
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                    transition: all 0.3s;
+                }
+                @keyframes moved{
+                    from{
+                        transform:translateY(-2px);
+                    }
+                    to{
+                        transform:translateY(3px);
+                    }
+                }
+            }
+        }
+    }
+
+    //--- Chair ---
+    .chairArea{
+        width: 100%;
+        background-color: #fafafa;
+        position: relative;
+        @include SCREEN_736{
+            background-color: #e2e2e2;
+            padding-top: 50px;
+        }
+        .bg{
+            font-size: 0;
+            position: relative;
+            z-index: 1;
+            >img{
+                width: 100%;
+                @include SCREEN_1280{
+                    width: 120%;
+                }
+                @include SCREEN_1024{
+                    width: 135%;
+                }
+                @include SCREEN_736{
+                    width: 100%;
+                }
+            }
+        }
+        .leftChair,.rightChair,.titleArea,.description,{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: contain;
+            background-position: 50% 0%;
+            background-repeat: no-repeat;
+            @include SCREEN_1280{
+                width: 120%;
+                height: 120%;
+                left: -10%;
+            }
+            @include SCREEN_1024{
+                width: 135%;
+                height: 135%;
+                left: -17.5%;
+            }
+        }
+        .leftChair{
+            background-image: url("~01_chairLeft_desktop.png");
+            z-index: 2;
+        }
+        .rightChair{
+            background-image: url("~01_chairRight_desktop.png");
+            z-index: 3;
+        }
+        .titleArea{
+            background-image: url("~01_chairLeftText_desktop.png");
+            z-index: 5;
+        }
+        .description{
+            background-image: url("~01_chairMidText_desktop.png");
+            z-index: 4;
+            @include SCREEN_736{
+                background-image: none;
+                width: 100%;
+                height: auto;
+                position: static;
+                padding: 50px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                >p{
+                    font-size: 16px;
+                    color: #202020;
+                    line-height: 30px;
+                    @include SCREEN_414{
+                        font-size: 14px;
+                        line-height: 28px;
+                    }
+                }
+                
+            }
+        }
+        
+    }
+
+    //--- Life style ---
+    .lifeStyleArea{
+        width: 100%;
+        background-color: #f9f9f9;
+        padding-top: 10px;
+        padding-bottom: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include SCREEN_736{
+            padding-top: 50px;
+            display: block;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        >div{
+            >h1{
+                font-size: 30px;
+                color: #a7a7a7;
+                letter-spacing: 0.2em;
+                margin-bottom: 30px;
+                @include SCREEN_736{
+                    font-size: 26px;
+                    text-align: center;
+                    font-weight: bold;
+                }
+                @include SCREEN_414{
+                    font-size: 24px;
+                }
+            }
+            .pic{
+                font-size: 0;
+                width: 721px;
+                height: 413px;
+                margin-bottom: 60px;
+                @include SCREEN_736{
+                    width: 100%;
+                    height: auto;
+                }
+                >img{
+                    width: 100%;
+                }
+            }
+            >p{
+                font-size: 20px;
+                color: #2a2a2a;
+                text-align: center;
+                line-height: 34px;
+                @include SCREEN_736{
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+                @include SCREEN_414{
+                    font-size: 14px;
+                    line-height: 28px;
+                }
+                >span{
+                    font-size: 18px;
+                    font-style: italic;
+                    @include SCREEN_736{
+                        font-size: 14px;
+                    }
+                    @include SCREEN_414{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    //--- Schematically ---
+    .schematically{
+        position: relative;
+        padding-bottom: 150px;
+        @media screen and (max-width: 1480px) {
+            padding-bottom: 100px;
+        }
+        @include SCREEN_1280{
+            padding-bottom: 70px;
+        }
+        @include SCREEN_736{
+            padding: 10px;
+            padding-top: 50px;
+            background-color: #191919;
+        }
+        .picDesktop{
+            width: 100%;
+            height: 705px;
+            background-image: url("~03_schematically_desktop.jpg");
+            background-size: cover;
+            background-position: 60% 50%;
+            background-repeat: no-repeat;
+            @media screen and (max-width: 1480px) {
+                height: 650px;
+            }
+            @include SCREEN_1024{
+                height: 600px;
+            }
+        }
+        .picMobile{
+            width: 100%;
+            font-size: 0;
+            >img{width: 100%;}
+        }
+
+        .description{
+            width: 756px;
+            height: 756px;
+            background-color: rgba($color: #000000, $alpha: 0.9);
+            position: absolute;
+            top: 40px;
+            right: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s;
+            @media screen and (max-width: 1680px) {
+                width: 700px;
+                height: 700px;
+                right: 130px;
+            }
+            @media screen and (max-width: 1480px) {
+                width: 680px;
+                height: 680px;
+                right: 100px;
+            }
+            @include SCREEN_1280{
+                width: 620px;
+                height: 620px;
+                top: 50px;
+                right: 70px;
+            }
+            @include SCREEN_1024{
+                width: 550px;
+                height: 550px;
+                top: 50px;
+                right: 50px;
+            }
+            @include SCREEN_736{
+                width: 100%;
+                height: auto;
+                position: static;
+                background-color: transparent;
+                //padding: 0 60px;
+            }
+            >p{
+                font-size: 20px;
+                color: #fff;
+                line-height: 40px;
+                margin: -100px 0 0 -100px;
+                @include SCREEN_1280{
+                    font-size: 18px;
+                    line-height: 38px;
+                    margin: -70px 0 0 -70px;
+                }
+                @include SCREEN_736{
+                    font-size: 16px;
+                    line-height: 30px;
+                    margin-left: 0px;
+                    margin-top: 40px;
+                    margin-bottom: 50px;
+                }
+                @include SCREEN_414{
+                    font-size: 14px;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+}

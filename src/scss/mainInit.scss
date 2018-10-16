@@ -1,0 +1,9 @@
+//------- 固定import -------
+//通用變數與mixin函式
+@import "helpers/_mixin.scss";
+//reset
+@import "base/_reset.scss";
+//通用extend
+//@import "helpers/_extend.scss";
+//layout, compass
+@import "base/_layout.scss";

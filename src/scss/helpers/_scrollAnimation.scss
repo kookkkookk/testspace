@@ -1,0 +1,94 @@
+//共用
+@mixin animationShareOriginal{
+	opacity: 1;
+	transform: translate(0,0);
+}
+// 返回的原始點
+.movingOpacity.on, .movingLevel.on, .movingVertical.on, .movingLevelLeft.on, .movingDownFirst.on{
+	@include animationShareOriginal;
+}
+// 淡出
+.movingOpacity{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+}
+// 水平右至左
+.movingLevel{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translateX(20px);
+}
+// 水平左至右
+.movingLevelLeft{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translateX(-20px);
+}
+// 垂直上至下
+.movingVertical{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translateY(20px);
+}
+// 垂直下至上
+.movingDownFirst{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translateY(-20px);
+}
+// 垂直上至下 但準備delay用
+.take2Continuous1, .take2Continuous2, .take2Continuous3, .take2Continuous4, .take2Continuous5, .take2Continuous6{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translateY(-20px);
+}
+// 返回的原始點 但有delay
+@for $i from 1 through 6 {
+	.take2Continuous#{$i}.on{
+		transition-delay: $i*0.3s;
+		@include animationShareOriginal;
+	}
+}
+
+.movingDelay1{
+	transition-delay: 0.6s;
+}
+.movingDelay2{
+	transition-delay: 0.9s;
+}
+.movingDelay3{
+	transition-delay: 1.2s;
+}
+.movingDelay4{
+	transition-delay: 1.5s;
+}
+.movingDelay5{
+	transition-delay: 1.8s;
+}
+.movingDelay6{
+	transition-delay: 2.1s;
+}
+.movingDelay7{
+	transition-delay: 2.4s;
+}
+.movingDelay8{
+	transition-delay: 2.7s;
+}
+
+// 單元06 take2用，斜上斜下進場&有delay
+.take2SortedMove1, .take2SortedMove3, .take2SortedMove5, .take2SortedMove7{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translate(-20px, 20px);
+}
+.take2SortedMove2, .take2SortedMove4, .take2SortedMove6{
+	transition: all 0.5s ease-in-out 0.5s;
+	opacity: 0;
+	transform: translate(-20px, -20px);
+}
+@for $i from 1 through 7 {
+	.take2SortedMove#{$i}.on{
+		transition-delay: $i*0.3s;
+		@include animationShareOriginal;
+	}
+}
