@@ -10,7 +10,11 @@ export default {
         return {
             active: 0,
             homeData: homeData,
-            el_styleLife_pic: 0
+            el_styleLife_h1: 0,
+            el_styleLife_pic: 0,
+            el_styleLife_p: 0,
+            el_schematically_bg: 0,
+            el_schematically_TextBox: 0
         }
     },
     computed: {
@@ -38,17 +42,35 @@ export default {
         clearHandler() {
             clearInterval(timer)
         },
+        //Get el offsetTop
         getDomOffset() {
             setTimeout(()=>{
+                this.el_styleLife_h1 = document.querySelector('.lifeStyleArea h1').offsetTop
                 this.el_styleLife_pic = document.querySelector('.lifeStyleArea .pic').offsetTop
+                this.el_styleLife_p = document.querySelector('.lifeStyleArea p').offsetTop
+                this.el_schematically_bg = document.querySelector('.schematically').offsetTop
+                //由於該el已經被position 所以offsetTop重置，要先抓父層再相加
+                this.el_schematically_TextBox = document.querySelector('.schematically').offsetTop + document.querySelector('.schematically .description').offsetTop
             },100)
         }
     },
     watch: {
+        //Scroll > el offsetTop el animated's Fn
         getScrollTop(val) {
+            if(val >= this.el_styleLife_h1 && !document.querySelector(".lifeStyleArea h1").classList.contains("on")){
+                document.querySelector('.lifeStyleArea h1').classList.add("on")
+            }
             if(val >= this.el_styleLife_pic && !document.querySelector(".lifeStyleArea .pic").classList.contains("on")){
-                console.log("on!")
                 document.querySelector('.lifeStyleArea .pic').classList.add("on")
+            }
+            if(val >= this.el_styleLife_p && !document.querySelector(".lifeStyleArea p").classList.contains("on")){
+                document.querySelector('.lifeStyleArea p').classList.add("on")
+            }
+            if(val >= this.el_schematically_bg && !document.querySelector(".schematically .bg").classList.contains("on")){
+                document.querySelector('.schematically .bg').classList.add("on")
+            }
+            if(val >= this.el_schematically_TextBox && !document.querySelector(".schematically .description").classList.contains("on")){
+                document.querySelector('.schematically .description').classList.add("on")
             }
         }
     },
@@ -129,9 +151,9 @@ export default {
         <!-- Life style -->
         <div class="lifeStyleArea">
             <div>
-                <h1>LIFE STYLE</h1>
+                <h1 class="movingLevel">LIFE STYLE</h1>
                 <div class="pic movingVertical"><img src="~02_schematically.jpg"></div>
-                <p>
+                <p class="movingVertical">
                     「有時我很想畫風景，就好像有人很想通過長時間散步來緩解心情一樣。<br>
                     在自然當中，比如樹木中，我可以看見情感與靈魂。」<br>
                     <span>—梵谷，19世紀荷蘭後印象派畫家—</span>
@@ -141,9 +163,9 @@ export default {
 
         <!-- Schematically -->
         <div class="schematically">
-            <div v-if="!isMobile" class="picDesktop"></div>
-            <div v-else class="picMobile"><img src="~03_schematically_mobile.jpg"></div>
-            <div class="description">
+            <div v-if="!isMobile" class="bg picDesktop movingOpacity"></div>
+            <div v-else class="bg picMobile movingDownFirst"><img src="~03_schematically_mobile.jpg"></div>
+            <div class="description movingVertical">
                 <p>
                     ZITONSPACE日騰空間設計，<br>
                     空間層次的美 ，生活尺度的善意。<br>
