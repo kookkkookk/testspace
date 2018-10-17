@@ -1,4 +1,5 @@
 export default{
     visibility: 'home',
-    isMobile: false
+    isMobile: false,
+    scrollTop: 0
 }

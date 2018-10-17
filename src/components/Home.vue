@@ -9,12 +9,14 @@ export default {
     data() {
         return {
             active: 0,
-            homeData: homeData
+            homeData: homeData,
+            el_styleLife_pic: 0
         }
     },
     computed: {
         ...mapGetters([
-            'isMobile'
+            'isMobile',
+            'getScrollTop'
         ]),
         total() {
             return this.homeData[1].bannerDesktopImg.length || 0
@@ -35,10 +37,29 @@ export default {
         },
         clearHandler() {
             clearInterval(timer)
+        },
+        getDomOffset() {
+            setTimeout(()=>{
+                this.el_styleLife_pic = document.querySelector('.lifeStyleArea .pic').offsetTop
+            },100)
+        }
+    },
+    watch: {
+        getScrollTop(val) {
+            if(val >= this.el_styleLife_pic && !document.querySelector(".lifeStyleArea .pic").classList.contains("on")){
+                console.log("on!")
+                document.querySelector('.lifeStyleArea .pic').classList.add("on")
+            }
         }
     },
     created() {
         this.setHandler();
+    },
+    mounted(){
+        this.getDomOffset();
+    },
+    destroyed () {
+
     }
 }
 </script>
@@ -106,10 +127,10 @@ export default {
         </div>
 
         <!-- Life style -->
-        <div class=lifeStyleArea>
+        <div class="lifeStyleArea">
             <div>
                 <h1>LIFE STYLE</h1>
-                <div class="pic"><img src="~02_schematically.jpg"></div>
+                <div class="pic movingVertical"><img src="~02_schematically.jpg"></div>
                 <p>
                     「有時我很想畫風景，就好像有人很想通過長時間散步來緩解心情一樣。<br>
                     在自然當中，比如樹木中，我可以看見情感與靈魂。」<br>
@@ -142,5 +163,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "../scss/helpers/_mixin.scss";
+    @import "../scss/helpers/scrollAnimation.scss";
     @import "../scss/pages/_home.scss";
 </style>

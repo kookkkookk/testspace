@@ -4,5 +4,8 @@ export default{
     },
     changeisMobileVal(state, data){
         state.isMobile = data;
+    },
+    postScrollTopVal(state, data){
+        state.scrollTop = data;
     }
 }

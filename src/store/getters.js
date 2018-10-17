@@ -5,4 +5,7 @@ export default{
     pageActive: state=> {
         return state.visibility;
     },
+    getScrollTop: state=> {
+        return state.scrollTop;
+    }
 }
