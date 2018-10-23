@@ -1,0 +1,30 @@
+[
+    {
+        "title": "專訪",
+        "subTitle": "當代設計雜誌<br>陳詠婕設計總監人物專訪與作品報導",
+        "description1": "歷經人生淬鍊及各種考驗後，時間之於陳詠婕，是殘酷也是仁慈的昇華。小時候因車禍截斷了一條手臂的她，在成長過程中，未曾有任何自我放棄，反而激起她努力往前的決心，而今日，她以創意為生，與空間為伍，為自己，也為他人，揮灑出一段段豐富精彩的生活篇章。",
+        "description2": "「設計來自於生活，生活因設計而改變，讓設計物有所值，讓細節締造完美。」秉持這樣的認知，日騰空間設計創立以來，從不受風格類型所限，接案範圍包括別墅、住宅、商空、辦公空間等。以人性需求為出發，結合創新多元的設計，加上認真負責的敬業態度，讓公司穩健的邁向十五年。",
+        "description3": "",
+        "mainImgType": "mainImgType1",
+        "mainImgShowPosition": "50% 50%",
+        "img1": "src/images/News/01_pic_1-01.jpg",
+        "img2": "src/images/News/01_pic_1-02.jpg",
+        "img3": "src/images/News/01_pic_1-03.jpg",
+        "img4": "src/images/News/01_pic_1-04.jpg",
+        "img5": ""
+    },
+    {
+        "title": "獲獎",
+        "subTitle": "福樺閲門廳<br>「Skyline Library天空書院」、「觀景茶室」<br>榮獲「英國國際地產」亞太區建築，<br>混用建築類室內設計奬項",
+        "description1": "",
+        "description2": "",
+        "description3": "",
+        "mainImgType": "mainImgType2",
+        "mainImgShowPosition": "0% 40%",
+        "img1": "src/images/News/01_pic_2-01.jpg",
+        "img2": "src/images/News/01_pic_2-02.jpg",
+        "img3": "src/images/News/01_pic_2-03.jpg",
+        "img4": "",
+        "img5": ""
+    }
+]

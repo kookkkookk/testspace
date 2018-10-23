@@ -1,0 +1,82 @@
+//--- News main screen ---
+.newsMainScreenArea{
+    background-color: #ededed;
+    position: relative;
+    >div{
+        width: 100%;
+        height: 705px;
+        background-color: #444444;
+        position: relative;
+        >h1{
+            font-size: 120px;
+            color: #585858;
+            letter-spacing: 0.1em;
+            position: absolute;
+            top: 115px;
+            right: 140px;
+            z-index: 2;
+        }
+        .light{
+            position: absolute;
+            bottom: 0;
+            right: 160px;
+            z-index: 1;
+            >img{width: 100%;}
+        }
+        >h2{
+            font-size: 25px;
+            color: #fff;
+            writing-mode: vertical-lr;
+            transform: scaleX(0.9);
+            position: absolute;
+            top: 170px;
+            left: 145px;
+        }
+        >p{
+            font-size: 18px;
+            color: #ccc;
+            line-height: 32px;
+            position: absolute;
+            top: 344px;
+            left: 145px;
+        }
+    }
+    .bottomWhite{
+        display: block;
+        width: 100%;
+        height: 50px;
+        background-color: #ededed;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.IntroductionArea{
+    background-color: #ededed;
+    width: 100%;
+    >div{
+        .cover{
+            display: inline-block;
+            &.mainImgType1{
+                width: 373px;
+                height: 525px;
+            }
+            &.mainImgType2{
+                width: 525px;
+                height: 373px;
+            }
+            >a{
+                font-size: 0;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+            }
+        }
+        .rightText{
+            display: inline-block;
+        }
+    }
+}

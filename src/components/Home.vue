@@ -87,7 +87,7 @@ export default {
 </script>
 
 <template>
-    <div class="homePage">
+    <div class="homePage firstDom">
         <!-- Banner -->
         <div class="bannerArea">
             

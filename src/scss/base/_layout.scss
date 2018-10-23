@@ -18,3 +18,13 @@ body, html{
 [v-cloak] {
 	display: none;
 }
+
+.firstDom{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    //background-color: blueviolet;
+    @include SCREEN_736{
+        padding-top: 50px;
+	}
+}
