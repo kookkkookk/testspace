@@ -35,16 +35,18 @@ export default {
         <div class="IntroductionArea">
             <div v-for="(item, index) in newsData"
                  :key="index">
-                <div class="cover"
-                     :class="item.mainImgType">
+                <div class="cover">
                     <a href="javascript:;"
+                       :class="item.mainImgType"
                        :style="{backgroundImage:'url('+item.img1+')',
                                 backgroundPosition:item.mainImgShowPosition}">
                     </a>
                 </div>
                 <div class="rightText">
-                    <h1>{{item.title}}</h1>
-                    <h2 v-html="item.subTitle"></h2>
+                    <div>
+                        <h1>{{item.title}}</h1>
+                        <h2 v-html="item.subTitle"></h2>
+                    </div>
                 </div>
             </div>
         </div>

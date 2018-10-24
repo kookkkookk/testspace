@@ -7,14 +7,33 @@
         height: 705px;
         background-color: #444444;
         position: relative;
+        @include SCREEN_1366{
+            height: 610px;
+        }
+        @include SCREEN_1024{
+            height: 560px;
+        }
+        @include SCREEN_900{
+            height: 510px;
+        }
         >h1{
+            font-family: 'MyriadPro-LightSemiExt';
             font-size: 120px;
             color: #585858;
             letter-spacing: 0.1em;
             position: absolute;
-            top: 115px;
-            right: 140px;
+            top: 90px;
+            right: 75px;
             z-index: 2;
+            @include SCREEN_1366{
+                font-size: 110px;
+            }
+            @include SCREEN_1024{
+                font-size: 100px;
+            }
+            @include SCREEN_900{
+                font-size: 90px;
+            }
         }
         .light{
             position: absolute;
@@ -22,6 +41,20 @@
             right: 160px;
             z-index: 1;
             >img{width: 100%;}
+            @include SCREEN_1366{
+                width: 283px;
+                height: 600px;
+                right: 125px;
+            }
+            @include SCREEN_1024{
+                width: 259px;
+                height: 550px;
+                right: 90px;
+            }
+            @include SCREEN_900{
+                width: 235px;
+                height: 500px;
+            }
         }
         >h2{
             font-size: 25px;
@@ -31,6 +64,18 @@
             position: absolute;
             top: 170px;
             left: 145px;
+            @include SCREEN_1366{
+                top: 150px;
+            }
+            @include SCREEN_1024{
+                font-size: 23px;
+                top: 130px;
+            }
+            @include SCREEN_900{
+                font-size: 21px;
+                top: 100px;
+                left: 50px;
+            }
         }
         >p{
             font-size: 18px;
@@ -39,6 +84,19 @@
             position: absolute;
             top: 344px;
             left: 145px;
+            @include SCREEN_1366{
+                top: 324px;
+            }
+            @include SCREEN_1024{
+                font-size: 16px;
+                top: 304px;
+                line-height: 30px;
+            }
+            @include SCREEN_900{
+                font-size: 15px;
+                top: 250px;
+                left: 50px;
+            }
         }
     }
     .bottomWhite{
@@ -51,32 +109,144 @@
     }
 }
 
+//--- Introduction ---
 .IntroductionArea{
     background-color: #ededed;
     width: 100%;
+    margin: 0 auto;
+    padding-top: 30px;
     >div{
+        max-width: 1280px;
+        margin: 0 auto;
+        padding-bottom: 85px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        @include SCREEN_1366{
+            max-width: 1100px;
+        }
+        @include SCREEN_1280{
+            max-width: 1024px;
+        }
+        @include SCREEN_1024{
+            max-width: 900px;
+        }
+        @include SCREEN_900{
+            max-width: 736px;
+        }
+
         .cover{
-            display: inline-block;
-            &.mainImgType1{
-                width: 373px;
-                height: 525px;
-            }
-            &.mainImgType2{
-                width: 525px;
-                height: 373px;
-            }
+            //display: inline-block;
+            //float: left;
+            width: 50%;
             >a{
                 font-size: 0;
                 display: inline-block;
-                width: 100%;
-                height: 100%;
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: 50% 50%;
+                &.mainImgType1{
+                    width: 373px;
+                    height: 525px;
+                    @include SCREEN_1366{
+                        width: 340px;
+                        height: 479px;
+                    }
+                    @include SCREEN_1280{
+                        width: 320px;
+                        height: 450px;
+                    }
+                    @include SCREEN_1024{
+                        width: 300px;
+                        height: 422px;
+                    }
+                    @include SCREEN_900{
+                        width: 260px;
+                        height: 366px;
+                    }
+                }
+                &.mainImgType2{
+                    width: 525px;
+                    height: 373px;
+                    @include SCREEN_1366{
+                        width: 479px;
+                        height: 340px;
+                    }
+                    @include SCREEN_1280{
+                        width: 450px;
+                        height: 320px;
+                    }
+                    @include SCREEN_1024{
+                        width: 422px;
+                        height: 300px;
+                    }
+                    @include SCREEN_900{
+                        width: 366px;
+                        height: 260px;
+                    }
+                }
             }
         }
         .rightText{
-            display: inline-block;
+            //display: inline-block;
+            //float: left;
+            width: 50%;
+            display: flex;
+            align-items:flex-end;
+            >div{
+                width: 80%;
+                padding-bottom: 80px;
+                border-bottom: 1px solid#818181;
+                margin-left: 30px;
+                @include SCREEN_1280{
+                    padding-bottom: 60px;
+                }
+                @include SCREEN_900{
+                    width: 100%;
+                    padding-bottom: 40px;
+                }
+                >h1{
+                    display: inline-block;
+                    font-size: 30px;
+                    color: #1e1e1e;
+                    padding: 0 10px;
+                    border-left: 2px solid #1e1e1e;
+                    border-right: 2px solid #1e1e1e;
+                    @include SCREEN_1366{
+                        font-size: 28px;
+                    }
+                    @include SCREEN_1280{
+                        font-size: 27px;
+                    }
+                    @include SCREEN_1024{
+                        font-size: 26px;
+                    }
+                    @include SCREEN_900{
+                        font-size: 24px;
+                    }
+                }
+                >h2{
+                    font-size: 21px;
+                    color: #1e1e1e;
+                    line-height: 34px;
+                    margin-top: 40px;
+                    @include SCREEN_1366{
+                        font-size: 19px;
+                    }
+                    @include SCREEN_1280{
+                        font-size: 18px;
+                        line-height: 32px;
+                    }
+                    @include SCREEN_1024{
+                        font-size: 17px;
+                    }
+                    @include SCREEN_900{
+                        font-size: 15px;
+                        line-height: 28px;
+                        margin-top: 30px;
+                    }
+                }
+            }
         }
     }
 }
