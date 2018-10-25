@@ -109,12 +109,9 @@
     }
 }
 
-//--- Introduction ---
-.IntroductionArea{
-    background-color: #ededed;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 30px;
+
+//--- Introduction Share ---
+@mixin introductionShare {
     >div{
         max-width: 1280px;
         margin: 0 auto;
@@ -145,6 +142,11 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: 50% 50%;
+                transition: box-shadow 0.3s, transform 0.3s;
+                &:hover{
+                    box-shadow: 4px 4px 4px rgba(20%,20%,40%,0.5);
+                    transform: translate(-1px,-1px);
+                }
                 &.mainImgType1{
                     width: 373px;
                     height: 525px;
@@ -244,6 +246,108 @@
                         font-size: 15px;
                         line-height: 28px;
                         margin-top: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+//--- Introduction ---
+.IntroductionArea{
+    background-color: #ededed;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 30px;
+    @include introductionShare;
+}
+
+//--- PupPage ---
+.pupPage{
+    width: 100%;
+    min-height: 100%;
+    background-color: #ededed;
+    padding-top: 210px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    .pupContent{
+        width: 100%;;
+        max-width: 1920px;
+        height: 100%;
+        background-color: #c4c2e9;
+        margin: 0 auto;
+        @include introductionShare;
+        >div{
+            @include SCREEN_1600{
+                max-width: 1600px;
+            }
+            .cover{
+                text-align: center;
+                >a{
+                    transition: none;
+                    pointer-events: none;
+                    &.mainImgType1{
+                        @include SCREEN_1600{
+                            width: 505px!important;
+                            height: 711px!important;
+                        }
+                    }
+                    &.mainImgType2{
+                        @include SCREEN_1600{
+                            width: 711px!important;
+                            height: 505px!important;
+                        }
+                    }
+                }
+            }
+            .rightText{
+                >div{
+                    width: 100%!important;
+                    padding-bottom: 0px!important;
+                    border: none!important;
+                    >p{
+                        font-size: 21px;
+                        color: #1e1e1e;
+                        text-indent: 42px;
+                        line-height: 34px;
+                        margin-top: 40px;
+                        &:nth-child(3){
+                            margin-top: 80px;
+                        }
+                        @include SCREEN_1366{
+                            font-size: 19px;
+                        }
+                        @include SCREEN_1280{
+                            font-size: 18px;
+                            line-height: 32px;
+                        }
+                        @include SCREEN_1024{
+                            font-size: 17px;
+                        }
+                        @include SCREEN_900{
+                            font-size: 15px;
+                            line-height: 28px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        .showPic{
+            >ul{
+                >li{
+                    font-size: 0;
+                    float: left;
+                    margin: 0 10px;
+                    width: auto;
+                    >img{
+                        width: 100%;
+                        max-width: 100%;
+                        @include SCREEN_1366{
+                            width: 80%;
+                        }
                     }
                 }
             }

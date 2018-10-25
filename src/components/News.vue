@@ -1,6 +1,15 @@
 <script>
 import { mapGetters } from 'vuex';
 import newsData from '../assets/data/newsData.json';
+
+let pupPage = {
+    template: `
+    <div class="pupPage">
+        <div>pupPage</div>
+    </div>
+    `
+}
+
 export default {
     name: 'news',
     components:{
@@ -8,7 +17,12 @@ export default {
     data() {
         return {
             newsData: newsData,
+            isPupPage: false,
+            pupOpenActive: 0
         }
+    },
+    mounted() {
+        
     }
 }
 </script>
@@ -48,6 +62,37 @@ export default {
                         <h2 v-html="item.subTitle"></h2>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="pupPage" v-show="!isPupPage">
+            <div class="pupContent">
+
+                <div>
+                    <div class="cover">
+                        <a href="javascript:;"
+                        :class="newsData[pupOpenActive].mainImgType"
+                        :style="{backgroundImage:'url('+newsData[pupOpenActive].img1+')',
+                                    backgroundPosition:newsData[pupOpenActive].mainImgShowPosition}">
+                        </a>
+                    </div>
+                    <div class="rightText">
+                        <div>
+                            <h1>{{newsData[pupOpenActive].title}}</h1>
+                            <h2 v-html="newsData[pupOpenActive].subTitle"></h2>
+                            <p>{{newsData[pupOpenActive].description1}}</p>
+                            <p>{{newsData[pupOpenActive].description2}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showPic">
+                    <ul>
+                        <li><img src="~News/01_pic_1-02.jpg"></li>
+                        <li><img src="~News/01_pic_1-03.jpg"></li>
+                        <li><img src="~News/01_pic_1-04.jpg"></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
