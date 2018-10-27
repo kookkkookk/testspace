@@ -1,40 +1,8 @@
+@import "../scss/common/_pagesTopCoverArea.scss";
 //--- News main screen ---
-.newsMainScreenArea{
-    background-color: #ededed;
-    position: relative;
+.pagesTopCover{
+    @include pagesTopCover;
     >div{
-        width: 100%;
-        height: 705px;
-        background-color: #444444;
-        position: relative;
-        @include SCREEN_1366{
-            height: 610px;
-        }
-        @include SCREEN_1024{
-            height: 560px;
-        }
-        @include SCREEN_900{
-            height: 510px;
-        }
-        >h1{
-            font-family: 'MyriadPro-LightSemiExt';
-            font-size: 120px;
-            color: #585858;
-            letter-spacing: 0.1em;
-            position: absolute;
-            top: 90px;
-            right: 75px;
-            z-index: 2;
-            @include SCREEN_1366{
-                font-size: 110px;
-            }
-            @include SCREEN_1024{
-                font-size: 100px;
-            }
-            @include SCREEN_900{
-                font-size: 90px;
-            }
-        }
         .light{
             position: absolute;
             bottom: 0;
@@ -56,48 +24,6 @@
                 height: 500px;
             }
         }
-        >h2{
-            font-size: 25px;
-            color: #fff;
-            writing-mode: vertical-lr;
-            transform: scaleX(0.9);
-            position: absolute;
-            top: 170px;
-            left: 145px;
-            @include SCREEN_1366{
-                top: 150px;
-            }
-            @include SCREEN_1024{
-                font-size: 23px;
-                top: 130px;
-            }
-            @include SCREEN_900{
-                font-size: 21px;
-                top: 100px;
-                left: 50px;
-            }
-        }
-        >p{
-            font-size: 18px;
-            color: #ccc;
-            line-height: 32px;
-            position: absolute;
-            top: 344px;
-            left: 145px;
-            @include SCREEN_1366{
-                top: 324px;
-            }
-            @include SCREEN_1024{
-                font-size: 16px;
-                top: 304px;
-                line-height: 30px;
-            }
-            @include SCREEN_900{
-                font-size: 15px;
-                top: 250px;
-                left: 50px;
-            }
-        }
     }
     .bottomWhite{
         display: block;
@@ -111,7 +37,131 @@
 
 
 //--- Introduction Share ---
-@mixin introductionShare {
+@mixin cover{
+    //display: inline-block;
+    //float: left;
+    width: 50%;
+    >a{
+        font-size: 0;
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        transition: box-shadow 0.3s, transform 0.3s;
+        &:hover{
+            box-shadow: 4px 4px 4px rgba(20%,20%,40%,0.5);
+            transform: translate(-1px,-1px);
+        }
+        &.mainImgType1{
+            width: 373px;
+            height: 525px;
+            @include SCREEN_1366{
+                width: 340px;
+                height: 479px;
+            }
+            @include SCREEN_1280{
+                width: 320px;
+                height: 450px;
+            }
+            @include SCREEN_1024{
+                width: 300px;
+                height: 422px;
+            }
+            @include SCREEN_900{
+                width: 260px;
+                height: 366px;
+            }
+        }
+        &.mainImgType2{
+            width: 525px;
+            height: 373px;
+            @include SCREEN_1366{
+                width: 479px;
+                height: 340px;
+            }
+            @include SCREEN_1280{
+                width: 450px;
+                height: 320px;
+            }
+            @include SCREEN_1024{
+                width: 422px;
+                height: 300px;
+            }
+            @include SCREEN_900{
+                width: 366px;
+                height: 260px;
+            }
+        }
+    }
+}
+@mixin rightText{
+    //display: inline-block;
+    //float: left;
+    width: 50%;
+    display: flex;
+    align-items:flex-end;
+    >div{
+        width: 80%;
+        padding-bottom: 80px;
+        border-bottom: 1px solid#818181;
+        margin-left: 30px;
+        @include SCREEN_1280{
+            padding-bottom: 60px;
+        }
+        @include SCREEN_900{
+            width: 100%;
+            padding-bottom: 40px;
+        }
+        >h1{
+            display: inline-block;
+            font-size: 30px;
+            color: #1e1e1e;
+            padding: 0 10px;
+            border-left: 2px solid #1e1e1e;
+            border-right: 2px solid #1e1e1e;
+            @include SCREEN_1366{
+                font-size: 28px;
+            }
+            @include SCREEN_1280{
+                font-size: 27px;
+            }
+            @include SCREEN_1024{
+                font-size: 26px;
+            }
+            @include SCREEN_900{
+                font-size: 24px;
+            }
+        }
+        >h2{
+            font-size: 21px;
+            color: #1e1e1e;
+            line-height: 34px;
+            margin-top: 40px;
+            @include SCREEN_1366{
+                font-size: 19px;
+            }
+            @include SCREEN_1280{
+                font-size: 18px;
+                line-height: 32px;
+            }
+            @include SCREEN_1024{
+                font-size: 17px;
+            }
+            @include SCREEN_900{
+                font-size: 15px;
+                line-height: 28px;
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+//--- Introduction ---
+.introductionArea{
+    background-color: #ededed;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 30px;
     >div{
         max-width: 1280px;
         margin: 0 auto;
@@ -131,134 +181,13 @@
         @include SCREEN_900{
             max-width: 736px;
         }
-
         .cover{
-            //display: inline-block;
-            //float: left;
-            width: 50%;
-            >a{
-                font-size: 0;
-                display: inline-block;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: 50% 50%;
-                transition: box-shadow 0.3s, transform 0.3s;
-                &:hover{
-                    box-shadow: 4px 4px 4px rgba(20%,20%,40%,0.5);
-                    transform: translate(-1px,-1px);
-                }
-                &.mainImgType1{
-                    width: 373px;
-                    height: 525px;
-                    @include SCREEN_1366{
-                        width: 340px;
-                        height: 479px;
-                    }
-                    @include SCREEN_1280{
-                        width: 320px;
-                        height: 450px;
-                    }
-                    @include SCREEN_1024{
-                        width: 300px;
-                        height: 422px;
-                    }
-                    @include SCREEN_900{
-                        width: 260px;
-                        height: 366px;
-                    }
-                }
-                &.mainImgType2{
-                    width: 525px;
-                    height: 373px;
-                    @include SCREEN_1366{
-                        width: 479px;
-                        height: 340px;
-                    }
-                    @include SCREEN_1280{
-                        width: 450px;
-                        height: 320px;
-                    }
-                    @include SCREEN_1024{
-                        width: 422px;
-                        height: 300px;
-                    }
-                    @include SCREEN_900{
-                        width: 366px;
-                        height: 260px;
-                    }
-                }
-            }
+            @include cover;
         }
         .rightText{
-            //display: inline-block;
-            //float: left;
-            width: 50%;
-            display: flex;
-            align-items:flex-end;
-            >div{
-                width: 80%;
-                padding-bottom: 80px;
-                border-bottom: 1px solid#818181;
-                margin-left: 30px;
-                @include SCREEN_1280{
-                    padding-bottom: 60px;
-                }
-                @include SCREEN_900{
-                    width: 100%;
-                    padding-bottom: 40px;
-                }
-                >h1{
-                    display: inline-block;
-                    font-size: 30px;
-                    color: #1e1e1e;
-                    padding: 0 10px;
-                    border-left: 2px solid #1e1e1e;
-                    border-right: 2px solid #1e1e1e;
-                    @include SCREEN_1366{
-                        font-size: 28px;
-                    }
-                    @include SCREEN_1280{
-                        font-size: 27px;
-                    }
-                    @include SCREEN_1024{
-                        font-size: 26px;
-                    }
-                    @include SCREEN_900{
-                        font-size: 24px;
-                    }
-                }
-                >h2{
-                    font-size: 21px;
-                    color: #1e1e1e;
-                    line-height: 34px;
-                    margin-top: 40px;
-                    @include SCREEN_1366{
-                        font-size: 19px;
-                    }
-                    @include SCREEN_1280{
-                        font-size: 18px;
-                        line-height: 32px;
-                    }
-                    @include SCREEN_1024{
-                        font-size: 17px;
-                    }
-                    @include SCREEN_900{
-                        font-size: 15px;
-                        line-height: 28px;
-                        margin-top: 30px;
-                    }
-                }
-            }
+            @include rightText;
         }
     }
-}
-//--- Introduction ---
-.IntroductionArea{
-    background-color: #ededed;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 30px;
-    @include introductionShare;
 }
 
 //--- PupPage ---
@@ -266,46 +195,91 @@
     width: 100%;
     min-height: 100%;
     background-color: #ededed;
-    padding-top: 210px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    .pupContent{
+    position: relative;
+    padding-top: 220px;
+    padding-bottom: 200px;
+    @include SCREEN_1366{
+        padding-top: 200px;
+        padding-bottom: 150px;
+    }
+    @include SCREEN_900{
+        padding-top: 190px;
+        padding-bottom: 100px;
+    }
+    >h1{
+        font-family: 'MyriadPro-Light';
+        font-size: 120px;
+        color: #dcdada;
+        letter-spacing: 0.2em;
+        position: absolute;
+        top: 90px;
+        right: 60px;
+        pointer-events: none;
+        @include SCREEN_1366{
+            font-size: 110px;
+        }
+        @include SCREEN_1024{
+            font-size: 100px;
+        }
+        @include SCREEN_900{
+            font-size: 90px;
+        }
+    }
+    
+    .pupContainer{
         width: 100%;;
         max-width: 1920px;
         height: 100%;
-        background-color: #c4c2e9;
         margin: 0 auto;
-        @include introductionShare;
-        >div{
+        overflow: hidden;
+        .pupContent{
+            
+            max-width: 1600px;
+            margin: 0 auto;
+            padding-bottom: 85px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
             @include SCREEN_1600{
-                max-width: 1600px;
+                max-width: 1440px;
+            }
+            @include SCREEN_1366{
+                max-width: 1100px;
+            }
+            @include SCREEN_1280{
+                max-width: 1024px;
+            }
+            @include SCREEN_1024{
+                max-width: 900px;
+            }
+            @include SCREEN_900{
+                max-width: 736px;
             }
             .cover{
+                @include cover;
                 text-align: center;
                 >a{
                     transition: none;
                     pointer-events: none;
                     &.mainImgType1{
-                        @include SCREEN_1600{
-                            width: 505px!important;
-                            height: 711px!important;
+                        @include SCREEN_1600n{
+                            width: 505px;
+                            height: 711px;
                         }
                     }
                     &.mainImgType2{
-                        @include SCREEN_1600{
-                            width: 711px!important;
-                            height: 505px!important;
+                        @include SCREEN_1600n{
+                            width: 711px;
+                            height: 505px;
                         }
                     }
                 }
             }
             .rightText{
+                @include rightText;
                 >div{
-                    width: 100%!important;
-                    padding-bottom: 0px!important;
-                    border: none!important;
+                    padding-bottom: 0px;
+                    border: none;
                     >p{
                         font-size: 21px;
                         color: #1e1e1e;
@@ -314,6 +288,9 @@
                         margin-top: 40px;
                         &:nth-child(3){
                             margin-top: 80px;
+                            @include SCREEN_1600{
+                                margin-top: 60px;
+                            }
                         }
                         @include SCREEN_1366{
                             font-size: 19px;
@@ -334,21 +311,109 @@
             }
         }
         
-        
         .showPic{
-            >ul{
-                >li{
-                    font-size: 0;
-                    float: left;
-                    margin: 0 10px;
-                    width: auto;
-                    >img{
-                        width: 100%;
-                        max-width: 100%;
-                        @include SCREEN_1366{
-                            width: 80%;
-                        }
-                    }
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;;
+            flex-wrap: wrap;
+
+            max-width: 1600px;
+            margin: 0 auto;
+            @include SCREEN_1600{
+                max-width: 1440px;
+            }
+            @include SCREEN_1366{
+                max-width: 1100px;
+            }
+            @include SCREEN_1280{
+                max-width: 1024px;
+            }
+            @include SCREEN_1024{
+                max-width: 900px;
+            }
+            @include SCREEN_900{
+                max-width: 736px;
+            }
+            >div{
+                float: left;
+                margin: 0 10px;
+                margin-bottom: 20px;
+                height: auto;
+                font-size: 0;
+                >img{
+                    width: 100%;
+                }
+                &.two{
+                    width: calc(50% - 20px);
+                }
+                &.three{
+                    width: calc(33.3% - 20px);
+                }
+            }
+        }
+        .backBtn{
+            width: 120px;
+            text-align: right;
+            float: right;
+            margin-right: 90px;
+            margin-top: 90px;
+            @include SCREEN_1600{
+                width: 110px;
+                margin-right: 80px;
+                margin-top: 80px;
+            }
+            @include SCREEN_1366{
+                width: 100px;
+            }
+            @include SCREEN_900{
+                width: 90px;
+                margin-right: 60px;
+                margin-top: 60px;
+            }
+            &:hover>a{
+                transform: translateX(-10px);
+            }
+            >a{
+                font-size: 26px;
+                color: #303030;
+                transition: transform 0.3s;
+                display: block;
+                @include SCREEN_1600{
+                    font-size: 24px;
+                }
+                @include SCREEN_1366{
+                    font-size: 22px;
+                }
+                @include SCREEN_900{
+                    font-size: 20px;
+                }
+            }
+            >span{
+                display: block;
+                width: 120px;
+                height: 1px;
+                background-color: #000;
+                margin-top: 10px;
+                position: relative;
+                @include SCREEN_1600{
+                    width: 110px;
+                }
+                @include SCREEN_1366{
+                    width: 100px;
+                }
+                @include SCREEN_900{
+                    width: 90px;
+                }
+                &::after{
+                    content: "";
+                    width: 1px;
+                    height: 20px;
+                    background-color: #000;
+                    display: block;
+                    position: absolute;
+                    bottom: -2px;
+                    left: 7px;
+                    transform: rotate(45deg);
                 }
             }
         }

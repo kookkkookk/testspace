@@ -9,6 +9,8 @@ Vue.use(VueRouter);
 const router = new VueRouter(route);
 import App from 'App';
 import './scss/mainInit.scss';
+
+Vue.config.productionTip = false;
 new Vue({
     el: '#app',
     router,

@@ -1,11 +1,15 @@
 //min
-@mixin SCREEN_1600{
+@mixin SCREEN_1600n{
 	@media screen and (min-width: 1600px) {
 		@content;	
 	}
 }
 
-
+@mixin SCREEN_1600{
+	@media screen and (max-width: 1600px) {
+		@content;	
+	}
+}
 @mixin SCREEN_1366{
 	@media screen and (max-width: 1366px) {
 		@content;	

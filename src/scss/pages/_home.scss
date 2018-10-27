@@ -2,6 +2,9 @@
 .bannerArea{
     overflow: hidden;
     position: relative;
+    @include SCREEN_736{
+        background-color: #fff;
+    }
     .bannerContainer{
         width: 100%;
         position: relative;
@@ -38,15 +41,24 @@
                 opacity: 0;
             }
 
-            .slide-enter-active,
-            .slide-leave-active {
-                transition: transform .4s ease-out;
+            // .slide-enter-active,
+            // .slide-leave-active {
+            //     transition: transform .4s ease-out;
+            // }
+            // .slide-enter {
+            //     transform: translateX(100%);
+            // }
+            // .slide-leave-to {
+            //     transform: translateX(-100%);
+            // }
+        }
+        .mobileBanner{
+            img{
+                width: 100%;
+                padding: 10px;
             }
-            .slide-enter {
-                transform: translateX(100%);
-            }
-            .slide-leave-to {
-                transform: translateX(-100%);
+            .swiper-pagination{
+                bottom: 30px;
             }
         }
     }
@@ -68,9 +80,9 @@
         }
         >div{
             >h1{
-                font-family: 'MyriadPro-Light';
+                // font-family: 'MyriadPro-Light';
                 font-size: 55px;
-                letter-spacing: 0.05em;
+                // letter-spacing: 0.05em;
                 color: #020202;
                 font-weight: 900;
                 @include SCREEN_1366{
@@ -114,7 +126,7 @@
         >div{
             width: 105px;
             height: 105px;
-            background-image: url("~00_mouseIcon1.png");
+            background-image: url("~Home/00_mouseIcon1.png");
             background-size: contain;
             position: relative;
             @include SCREEN_1366{
@@ -128,7 +140,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-image: url("~00_mouseIcon2.png");
+                background-image: url("~Home/00_mouseIcon2.png");
                 background-size: contain;
                 animation-name: moved;
                 animation-duration: 1s;
@@ -195,19 +207,19 @@
         }
     }
     .leftChair{
-        background-image: url("~01_chairLeft_desktop.png");
+        background-image: url("~Home/01_chairLeft_desktop.png");
         z-index: 2;
     }
     .rightChair{
-        background-image: url("~01_chairRight_desktop.png");
+        background-image: url("~Home/01_chairRight_desktop.png");
         z-index: 3;
     }
     .titleArea{
-        background-image: url("~01_chairLeftText_desktop.png");
+        background-image: url("~Home/01_chairLeftText_desktop.png");
         z-index: 5;
     }
     .description{
-        background-image: url("~01_chairMidText_desktop.png");
+        background-image: url("~Home/01_chairMidText_desktop.png");
         z-index: 4;
         @include SCREEN_736{
             background-image: none;
@@ -324,7 +336,7 @@
     .picDesktop{
         width: 100%;
         height: 705px;
-        background-image: url("~03_schematically_desktop.jpg");
+        background-image: url("~Home/03_schematically_desktop.jpg");
         background-size: cover;
         background-position: 60% 50%;
         background-repeat: no-repeat;

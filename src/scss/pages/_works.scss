@@ -1,0 +1,120 @@
+@import "../scss/common/_pagesTopCoverArea.scss";
+//--- Wors main screen ---
+.pagesTopCover{
+    @include pagesTopCover;
+    >div{
+        height: 530px;
+        @include SCREEN_1366{
+            height: 500px;
+        }
+        @include SCREEN_1024{
+            height: 470px;
+        }
+        @include SCREEN_900{
+            height: 440px;
+        }
+        .classificationMenu{
+            position: absolute;
+            top: 220px;
+            right: 100px;
+            @include SCREEN_1366{
+                top: 210px;
+            }
+            @include SCREEN_900{
+                top: 190px;
+            }
+            >ul{
+                >li{
+                    text-align: right;
+                    >a{
+                        font-family: 'MyriadPro-Light';
+                        font-weight: bold;
+                        font-size: 22px;
+                        color: #dedede;
+                        line-height: 40px;
+                        @include SCREEN_1366{
+                            font-size: 20px;
+                            line-height: 38px;
+                        }
+                        @include SCREEN_900{
+                            font-size: 16px;
+                            line-height: 34px;
+                        }
+                        &.active{
+                            text-decoration: underline;
+                            pointer-events: none;
+                        }
+                        &:hover{
+                            color: #aaaaaa;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//--- works ---
+.worksArea{
+    width: 100%;
+    position: relative;
+    background-color: #ededed;
+    .topGrey{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 150px;
+        background-color: #444444;
+    }
+    .worksContent{
+        width: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
+        padding-top: 20px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        //justify-content: space-around;
+        
+        
+        >div{
+            width: calc(50% - 30px);
+            text-align: center;
+            margin: 0 15px;
+            margin-bottom: 100px;
+            transition: opacity 0.5s;
+            @include SCREEN_1280{
+                margin-bottom: 80px;
+            }
+            @include SCREEN_1024{
+                margin-bottom: 50px;
+            }
+            >a{
+                display: inline-block;
+                position: relative;
+                font-size: 0;
+                transition: box-shadow 0.3s, transform 0.3s;
+                .picOpposite{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    transition: opacity 0.3s;
+                }
+                &:hover{
+                    box-shadow: 4px 4px 4px rgba(20%,20%,40%,0.5);
+                    transform: translate(-1px,-1px);
+                }
+                &:hover .picOpposite{
+                    opacity: 0;
+                }
+                >img{
+                    max-width: 100%;
+                }
+            }
+        }
+        .hideing{opacity: 0;}
+        .showing{opacity: 1;}
+    }
+}

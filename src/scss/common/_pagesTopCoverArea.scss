@@ -1,0 +1,81 @@
+@mixin pagesTopCover{
+    background-color: #ededed;
+    position: relative;
+    >div{
+        width: 100%;
+        height: 705px;
+        background-color: #444444;
+        position: relative;
+        @include SCREEN_1366{
+            height: 610px;
+        }
+        @include SCREEN_1024{
+            height: 560px;
+        }
+        @include SCREEN_900{
+            height: 510px;
+        }
+        >h1{
+            font-family: 'MyriadPro-LightSemiExt';
+            font-size: 120px;
+            color: #585858;
+            letter-spacing: 0.1em;
+            position: absolute;
+            top: 90px;
+            right: 75px;
+            z-index: 2;
+            pointer-events: none;
+            @include SCREEN_1366{
+                font-size: 110px;
+            }
+            @include SCREEN_1024{
+                font-size: 100px;
+            }
+            @include SCREEN_900{
+                font-size: 90px;
+            }
+        }
+        >h2{
+            font-size: 25px;
+            color: #fff;
+            writing-mode: vertical-lr;
+            transform: scaleX(0.9);
+            position: absolute;
+            top: 170px;
+            left: 145px;
+            @include SCREEN_1366{
+                top: 150px;
+            }
+            @include SCREEN_1024{
+                font-size: 23px;
+                top: 130px;
+            }
+            @include SCREEN_900{
+                font-size: 21px;
+                top: 100px;
+                left: 50px;
+            }
+        }
+        >p{
+            font-size: 18px;
+            color: #ccc;
+            line-height: 32px;
+            position: absolute;
+            top: 344px;
+            left: 145px;
+            @include SCREEN_1366{
+                top: 324px;
+            }
+            @include SCREEN_1024{
+                font-size: 16px;
+                top: 304px;
+                line-height: 30px;
+            }
+            @include SCREEN_900{
+                font-size: 15px;
+                top: 250px;
+                left: 50px;
+            }
+        }
+    }
+}

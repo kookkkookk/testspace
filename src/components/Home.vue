@@ -1,13 +1,28 @@
 <script>
 import { mapGetters } from 'vuex';
 import homeData from '../assets/data/homeData.json';
+
+import 'swiper/dist/css/swiper.css';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 var timer, interval = 5000;
 export default {
     name: 'home',
-    components:{
-    },
     data() {
         return {
+            swiperOption: {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet(index, className) {
+                        return `<span class="${className} swiper-pagination-bullet-custom">${index + 1}</span>`
+                    }
+                }
+            },
             active: 0,
             homeData: homeData,
             el_styleLife_h1: 0,
@@ -54,6 +69,10 @@ export default {
             },100)
         }
     },
+    components: {
+        swiper,
+        swiperSlide
+    },
     watch: {
         //Scroll > el offsetTop el animated's Fn
         getScrollTop(val) {
@@ -93,8 +112,8 @@ export default {
             
             <div class="bannerContainer">
                 <span class="braceHeight">
-                    <img v-if="!isMobile" src="~00_banner_desktop00_braceHeight.jpg">
-                    <img v-else src="~00_banner_mobile00_braceHeight.jpg">
+                    <img v-if="!isMobile" src="~Home/00_banner_desktop00_braceHeight.jpg">
+                    <img v-else src="~Home/00_banner_mobile00_braceHeight.jpg">
                 </span>
                 <transition-group v-if="!isMobile"
                                   tag="div"
@@ -106,15 +125,15 @@ export default {
                          v-show="active===index"/>
                 </transition-group>
 
-                <transition-group v-else
-                                  tag="div"
-                                  name="slide"
-                                  @click.native="clickBanner(active+1)">
-                    <img v-for="(item, index) in homeData[1].bannerMobileImg"
-                         :key="item"
-                         :src="item"
-                         v-show="active===index"/>
-                </transition-group>
+                <swiper v-else
+                        :options="swiperOption"
+                        class="mobileBanner">
+                    <swiper-slide v-for="(item, index) in homeData[1].bannerMobileImg"
+                                  :key="index">
+                        <img :src="item">
+                    </swiper-slide>
+                    <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
+                </swiper>
             </div>
             <div class="titleArea">
                 <div>
@@ -133,8 +152,8 @@ export default {
         <!-- Chair -->
         <div class="chairArea">
             <div class="bg">
-                <img v-if="!isMobile" src="~01_chairBg_desktop.png">
-                <img v-else src="~01_chair_mobile.png">
+                <img v-if="!isMobile" src="~Home/01_chairBg_desktop.png">
+                <img v-else src="~Home/01_chair_mobile.png">
             </div>
             <div v-if="!isMobile" class="titleArea"></div>
             <div v-if="!isMobile" class="leftChair"></div>
@@ -152,7 +171,7 @@ export default {
         <div class="lifeStyleArea">
             <div>
                 <h1 class="movingLevel">LIFE STYLE</h1>
-                <div class="pic movingVertical"><img src="~02_schematically.jpg"></div>
+                <div class="pic movingVertical"><img src="~Home/02_schematically.jpg"></div>
                 <p class="movingVertical">
                     「有時我很想畫風景，就好像有人很想通過長時間散步來緩解心情一樣。<br>
                     在自然當中，比如樹木中，我可以看見情感與靈魂。」<br>
@@ -164,7 +183,7 @@ export default {
         <!-- Schematically -->
         <div class="schematically">
             <div v-if="!isMobile" class="bg picDesktop movingOpacity"></div>
-            <div v-else class="bg picMobile movingDownFirst"><img src="~03_schematically_mobile.jpg"></div>
+            <div v-else class="bg picMobile movingDownFirst"><img src="~Home/03_schematically_mobile.jpg"></div>
             <div class="description movingVertical">
                 <p>
                     ZITONSPACE日騰空間設計，<br>
@@ -187,4 +206,13 @@ export default {
     @import "../scss/helpers/_mixin.scss";
     @import "../scss/helpers/scrollAnimation.scss";
     @import "../scss/pages/_home.scss";
+</style>
+<style>
+.swiper-pagination-bullet{
+    background: #fff;
+    opacity: 0.5;
+}
+.swiper-pagination-bullet-active{
+    opacity: 1;
+}
 </style>
