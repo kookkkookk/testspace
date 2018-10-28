@@ -1,5 +1,6 @@
 import home from "../components/Home"
 import works from "../components/Works";
+import workPopup from "../components/WorkPopup";
 import design from "../components/Design";
 import news from "../components/News";
 import newsPopup from "../components/NewsPopup";
@@ -20,6 +21,7 @@ export default {
     routes: [
         { path: '/home',         name: 'home',   component: home },
         { path: '/works',        name: 'works',  component: works},
+        { path: '/work/:userId', name: 'workPopup', component: workPopup },
         { path: '/design',       name: 'design', component: design },
         { path: '/news',         name: 'news',   component: news },
         { path: '/news/:userId', name: 'newsPopup',   component: newsPopup },

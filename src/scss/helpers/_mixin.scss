@@ -56,6 +56,77 @@
 		@content;	
 	}
 }
+
+//Back Btn
+@mixin BackBtn{
+	width: 140px;
+	text-align: right;
+	float: right;
+	margin-right: 90px;
+	margin-top: 90px;
+	@include SCREEN_1600{
+		width: 130px;
+		margin-right: 80px;
+		margin-top: 80px;
+	}
+	@include SCREEN_1366{
+		width: 120px;
+	}
+	@include SCREEN_900{
+		width: 110px;
+		margin-right: 60px;
+		margin-top: 60px;
+	}
+	&:hover>a{
+		transform: translateX(-10px);
+	}
+	>a{
+		font-size: 26px;
+		color: #303030;
+		letter-spacing: 0.2em;
+		transition: transform 0.3s;
+		display: block;
+		@include SCREEN_1600{
+			font-size: 24px;
+		}
+		@include SCREEN_1366{
+			font-size: 22px;
+		}
+		@include SCREEN_900{
+			font-size: 20px;
+		}
+	}
+	>span{
+		display: block;
+		width: 140px;
+		height: 1px;
+		background-color: #000;
+		margin-top: 10px;
+		position: relative;
+		@include SCREEN_1600{
+			width: 130px;
+		}
+		@include SCREEN_1366{
+			width: 120px;
+		}
+		@include SCREEN_900{
+			width: 110px;
+		}
+		&::after{
+			content: "";
+			width: 1px;
+			height: 20px;
+			background-color: #000;
+			display: block;
+			position: absolute;
+			bottom: -2px;
+			left: 7px;
+			transform: rotate(45deg);
+		}
+	}
+}
+
+
 //直接置入背景圖
 @mixin pic($name){
   background: url("../images/#{$name}"); 
@@ -113,12 +184,3 @@ $genericWidth_m: 1024px;
 		@include take_p(14px,#fff,26px);
 	}
 }
-
-// @mixin filter($filterNum){
-// 	-webkit-filter: grayscale($filterNum);
-// 	-moz-filter: grayscale($filterNum);
-// 	-ms-filter: grayscale($filterNum);
-// 	-o-filter: grayscale($filterNum);
-// 	filter: grayscale($filterNum);
-// 	filter: gray;
-// }

@@ -119,10 +119,15 @@ export default {
                                   tag="div"
                                   name="fade"
                                   @click.native="clickBanner(active+1)">
-                    <img v-for="(item, index) in homeData[1].bannerDesktopImg"
+                    <!-- <img v-for="(item, index) in homeData[1].bannerDesktopImg"
                          :key="item"
                          :src="item"
-                         v-show="active===index"/>
+                         v-show="active===index"/> -->
+                         <div class="bannerPic"
+                              v-for="(item, index) in homeData[1].bannerDesktopImg"
+                              :key="index"
+                              :style="{backgroundImage:'url('+item+')'}"
+                              v-show="active===index"></div>
                 </transition-group>
 
                 <swiper v-else
@@ -208,7 +213,9 @@ export default {
     @import "../scss/pages/_home.scss";
 </style>
 <style>
+/* mobile Swiper banner style */
 .swiper-pagination-bullet{
+    font-size: 0;
     background: #fff;
     opacity: 0.5;
 }

@@ -70,10 +70,14 @@ export default {
                      :key="index"
                      v-show="isWorkShow==='All' || isWorkShow===item.classification"
                      :class="{hideing:isWorkSwitching==='hideing',showing:isWorkSwitching==='showing'}">
-                    <a href="javascript:;">
+                    <!-- <a href="javascript:;">
                         <img :src="item.listingPageImg2" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">
-                    </a>
+                    </a> -->
+                    <router-link :to="'work/'+index">
+                        <img :src="item.listingPageImg2" class="picOpposite">
+                        <img :src="item.listingPageImg1" class="pic">
+                    </router-link>
                 </div>
             </div>
         </div>
