@@ -5,6 +5,9 @@ export default{
     changeisMobileVal(state, data){
         state.isMobile = data;
     },
+    getDocumentHeight(state, data) {
+        state.documentHeight = data;
+    },
     postScrollTopVal(state, data){
         state.scrollTop = data;
     }

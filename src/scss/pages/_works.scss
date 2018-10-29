@@ -497,5 +497,28 @@
             
         }
     }
+
+    .topBtn{
+        width: 85px;
+        height: 85px;
+        background-color: #6c6c6c;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        line-height: 85px;
+        border-radius: 42.5px;
+        cursor: pointer;
+        position: fixed;
+        right: 20px;
+        bottom: 50px;
+        z-index: 3;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        &.topBtnShow{
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
 }
 

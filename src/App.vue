@@ -9,9 +9,12 @@ export default {
         FooterModule
     },
     computed: {
-
+        
     },
     methods: {
+        getDocumentHeight(){
+            this.$store.commit('getDocumentHeight', document.body.clientHeight)
+        },
         onResize() {
             //console.log("onResize clientWidth: ",document.body.clientWidth)
             if(document.body.clientWidth<=736){
@@ -43,6 +46,7 @@ export default {
 
         //first load init
         this.onResize()
+        this.getDocumentHeight();
 
         //scroll
         window.addEventListener('scroll', this.handleScroll)

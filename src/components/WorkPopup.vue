@@ -4,6 +4,7 @@ import worksData from '../assets/data/worksData.json';
 
 import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
 export default {
     name: 'workPopup',
     data() {
@@ -16,12 +17,34 @@ export default {
                 }
             },
             worksData: worksData,
-            popOpenActive: 0
+            popOpenActive: 0,
+            isShowTopBtn: false
         }
+    },
+    computed: {
+        ...mapGetters([
+            'isMobile',
+            'documentHeight',
+            'getScrollTop'
+        ]),
+
     },
     components: {
         swiper,
         swiperSlide
+    },
+    watch: {
+        getScrollTop(val){
+            if(val>=(this.documentHeight+200)){
+                this.isShowTopBtn = true;
+            }else{
+                this.isShowTopBtn = false
+            }
+
+            if(val>(document.querySelector("#app").offsetHeight-document.querySelector(".footerDsktop").offsetHeight)){
+                this.isShowTopBtn = false;
+            }
+        }
     },
     mounted() {
         let worksDataLength = this.worksData.length;
@@ -40,7 +63,7 @@ export default {
         <div class="page1">
             <h1>{{worksData[popOpenActive].constructionName}}</h1>
             <div class="backBtn">
-                <router-link to="/works">BACK</router-link>
+                <router-link to="/works" v-scroll-to="'body'">BACK</router-link>
                 <span></span>
             </div>
             <div class="coverTopContainer">
@@ -98,11 +121,14 @@ export default {
                 <div class="bg"></div>
             </div>
             <div class="backBtn">
-                <router-link to="/works">BACK</router-link>
+                <router-link to="/works" v-scroll-to="'body'">BACK</router-link>
                 <span></span>
             </div>
         </div>
 
+        <div class="topBtn"
+             v-scroll-to="'body'"
+             :class="{topBtnShow:isShowTopBtn}">TOP</div>
     </div>
 </template>
 

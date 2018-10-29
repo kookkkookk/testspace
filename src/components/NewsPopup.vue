@@ -53,7 +53,7 @@ export default {
             </div>
 
             <div class="backBtn">
-                <router-link to="/news">BACK</router-link>
+                <router-link to="/news" v-scroll-to="'body'">BACK</router-link>
                 <span></span>
             </div>
         </div>

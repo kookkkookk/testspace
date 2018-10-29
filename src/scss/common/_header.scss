@@ -136,6 +136,10 @@ header{
                             color: #d5d5d5;
                             display: block;
                             width: 100%;
+                            &.router-link-active{
+                                pointer-events: none;
+                                text-decoration: underline;
+                            }
                         }
                     }
                     >span{

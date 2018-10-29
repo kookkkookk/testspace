@@ -37,6 +37,7 @@ export default {
                 <div class="cover">
                     <router-link :to="'news/'+index"
                                  :class="item.mainImgType"
+                                 v-scroll-to="'body'"
                                  :style="{backgroundImage:'url('+item.mainImg+')',
                                           backgroundPosition:item.mainImgShowPosition}">
 

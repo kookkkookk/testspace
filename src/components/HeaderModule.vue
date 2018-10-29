@@ -13,7 +13,8 @@ export default {
                 { path: '/brand',  name: 'brand',  text: 'Brand'}
             ],
             isMobileMenuOpen: false,
-            mobileMenuHeight: ""
+            mobileMenuHeight: "",
+            noAnimated: false
         }
     },
     computed: {
@@ -48,13 +49,17 @@ export default {
         }
     }
 }
+//window.scrollTo(0,0);
 </script>
 
 <template>
     <header>
         <div>
             <h1 class="headerLogo" :class="{'moveMid':isMobileMenuOpen && isMobile}">
-                <router-link :to="menu[0].path"></router-link>
+                <router-link :to="menu[0].path"
+                             @click.native="mobileMenuSwitch"
+                             v-scroll-to="'body'">
+                </router-link>
             </h1>
             <div class="mobileMainMenuSwitchBtn"
                  v-if="isMobile"
@@ -64,16 +69,25 @@ export default {
                 <span :class="{'active':isMobileMenuOpen && isMobile}"></span>
             </div>
             <div class="mainMenu"
-                 :class="{'mobileHide':!isMobileMenuOpen && isMobile,'mobileShow':isMobileMenuOpen && isMobile}"
+                 :class="{'mobileHide': !isMobileMenuOpen && isMobile,
+                          'mobileShow': isMobileMenuOpen && isMobile}"
                  :style="mobileMenuHeight">
                 <ul>
                     <li v-if="isMobile">
-                        <router-link :to="menu[0].path">{{menu[0].text}}</router-link>
+                        <router-link :to="menu[0].path"
+                                    @click.native="mobileMenuSwitch"
+                                    v-scroll-to="'body'">
+                            {{menu[0].text}}
+                        </router-link>
                     </li>
                     <li v-for="item in menu"
                         :key="item.path"
                         v-if="item.name !== 'home'">
-                        <router-link :to="{ name: item.name}">{{item.text}}</router-link>
+                        <router-link :to="{ name: item.name}"
+                                     @click.native="mobileMenuSwitch"
+                                     v-scroll-to="'body'">
+                            {{item.text}}
+                        </router-link>
                         <span></span>
                     </li>
                 </ul>

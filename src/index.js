@@ -7,6 +7,8 @@ import store from './store';
 import route from './route';
 Vue.use(VueRouter);
 const router = new VueRouter(route);
+import VueScrollTo from "vue-scrollto";
+Vue.use(VueScrollTo);
 import App from 'App';
 import './scss/mainInit.scss';
 

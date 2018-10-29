@@ -74,7 +74,8 @@ export default {
                         <img :src="item.listingPageImg2" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">
                     </a> -->
-                    <router-link :to="'work/'+index">
+                    <router-link :to="'work/'+index"
+                                 v-scroll-to="'body'">
                         <img :src="item.listingPageImg2" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">
                     </router-link>
