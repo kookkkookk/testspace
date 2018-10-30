@@ -4,7 +4,7 @@ import workPopup from "../components/WorkPopup";
 import design from "../components/Design";
 import news from "../components/News";
 import newsPopup from "../components/NewsPopup";
-import brand from "../components/Brand";
+import branding from "../components/Branding";
 
 // const NewsPopPage = { template: "<div>NewsPopPage {{ $route.params.id }}</div>" };
 // import newsData from "../assets/data/newsData.json";
@@ -25,7 +25,7 @@ export default {
         { path: '/design',       name: 'design', component: design },
         { path: '/news',         name: 'news',   component: news },
         { path: '/news/:userId', name: 'newsPopup',   component: newsPopup },
-        { path: '/brand',        name: 'brand',  component: brand},
+        { path: '/branding',        name: 'branding',  component: branding},
         { path: '*',             redirect: '/home'}
     ]
 }

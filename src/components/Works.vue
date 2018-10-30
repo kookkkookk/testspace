@@ -22,6 +22,11 @@ export default {
             setTimeout(()=>{
                 this.isWorkSwitching = null
             },1050)
+        },
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 200);
         }
     }
 }
@@ -75,7 +80,7 @@ export default {
                         <img :src="item.listingPageImg1" class="pic">
                     </a> -->
                     <router-link :to="'work/'+index"
-                                 v-scroll-to="'body'">
+                                 @click.native="scrollToTop">
                         <img :src="item.listingPageImg2" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">
                     </router-link>

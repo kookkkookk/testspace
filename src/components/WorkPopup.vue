@@ -29,6 +29,13 @@ export default {
         ]),
 
     },
+    methods: {
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 200);
+        }
+    },
     components: {
         swiper,
         swiperSlide
@@ -63,7 +70,7 @@ export default {
         <div class="page1">
             <h1>{{worksData[popOpenActive].constructionName}}</h1>
             <div class="backBtn">
-                <router-link to="/works" v-scroll-to="'body'">BACK</router-link>
+                <router-link to="/works">BACK</router-link>
                 <span></span>
             </div>
             <div class="coverTopContainer">
@@ -121,7 +128,7 @@ export default {
                 <div class="bg"></div>
             </div>
             <div class="backBtn">
-                <router-link to="/works" v-scroll-to="'body'">BACK</router-link>
+                <router-link to="/works">BACK</router-link>
                 <span></span>
             </div>
         </div>

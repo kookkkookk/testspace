@@ -194,8 +194,8 @@ header{
                     left: 240px;
                     background-color: #3a76f8;
                 }
-                &.brand{
-                    left: 328px;
+                &.branding{
+                    left: 345px;
                 }
                 @include SCREEN_736{display: none;}
             }
@@ -210,6 +210,9 @@ header{
             height: 350px;
             border-bottom-left-radius: 0%;
             border-bottom-right-radius: 0%;
+        }
+        .mainMenu.noAnimated{
+            transition: none;
         }
     }
 }

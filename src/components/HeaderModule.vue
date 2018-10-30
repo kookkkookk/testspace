@@ -10,7 +10,7 @@ export default {
                 { path: '/works',  name: 'works',  text: 'Works'},
                 { path: '/design', name: 'design', text: 'Design'},
                 { path: '/news',   name: 'news',   text: 'News'},
-                { path: '/brand',  name: 'brand',  text: 'Brand'}
+                { path: '/branding',  name: 'branding',  text: 'Branding'}
             ],
             isMobileMenuOpen: false,
             mobileMenuHeight: "",
@@ -38,6 +38,21 @@ export default {
             }else{
                 this.mobileMenuHeight = "height:89px"; 
             }
+        },
+        jumpPageNoAnimatedCloseMenu(){
+            if(this.isMobile){
+                this.noAnimated = true
+                this.mobileMenuHeight = "height:0px";
+                setTimeout(() => {
+                    this.noAnimated = false
+                    this.isMobileMenuOpen = !this.isMobileMenuOpen
+                }, 500);
+            }
+        },
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 200);
         }
     },
     watch: {
@@ -49,7 +64,6 @@ export default {
         }
     }
 }
-//window.scrollTo(0,0);
 </script>
 
 <template>
@@ -57,9 +71,10 @@ export default {
         <div>
             <h1 class="headerLogo" :class="{'moveMid':isMobileMenuOpen && isMobile}">
                 <router-link :to="menu[0].path"
-                             @click.native="mobileMenuSwitch"
-                             v-scroll-to="'body'">
+                             v-if="!isMobile"
+                             @click.native="mobileMenuSwitch();scrollToTop();">
                 </router-link>
+                <a href="javascript:;" v-else style="pointer-events:none;"></a>
             </h1>
             <div class="mobileMainMenuSwitchBtn"
                  v-if="isMobile"
@@ -70,13 +85,13 @@ export default {
             </div>
             <div class="mainMenu"
                  :class="{'mobileHide': !isMobileMenuOpen && isMobile,
-                          'mobileShow': isMobileMenuOpen && isMobile}"
+                          'mobileShow': isMobileMenuOpen && isMobile,
+                          'noAnimated': noAnimated && isMobile}"
                  :style="mobileMenuHeight">
                 <ul>
                     <li v-if="isMobile">
                         <router-link :to="menu[0].path"
-                                    @click.native="mobileMenuSwitch"
-                                    v-scroll-to="'body'">
+                                    @click.native="jumpPageNoAnimatedCloseMenu();scrollToTop();">
                             {{menu[0].text}}
                         </router-link>
                     </li>
@@ -84,8 +99,7 @@ export default {
                         :key="item.path"
                         v-if="item.name !== 'home'">
                         <router-link :to="{ name: item.name}"
-                                     @click.native="mobileMenuSwitch"
-                                     v-scroll-to="'body'">
+                                     @click.native="jumpPageNoAnimatedCloseMenu();scrollToTop();">
                             {{item.text}}
                         </router-link>
                         <span></span>

@@ -9,6 +9,13 @@ export default {
             popOpenActive: 0
         }
     },
+    methods: {
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 200);
+        }
+    },
     mounted() {
         let newsDataLength = this.newsData.length;
         let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
@@ -53,7 +60,7 @@ export default {
             </div>
 
             <div class="backBtn">
-                <router-link to="/news" v-scroll-to="'body'">BACK</router-link>
+                <router-link to="/news">BACK</router-link>
                 <span></span>
             </div>
         </div>

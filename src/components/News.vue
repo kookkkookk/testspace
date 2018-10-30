@@ -8,6 +8,13 @@ export default {
         return {
             newsData: newsData
         }
+    },
+    methods: {
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 200);
+        }
     }
 }
 </script>
@@ -37,7 +44,7 @@ export default {
                 <div class="cover">
                     <router-link :to="'news/'+index"
                                  :class="item.mainImgType"
-                                 v-scroll-to="'body'"
+                                 @click.native="scrollToTop"
                                  :style="{backgroundImage:'url('+item.mainImg+')',
                                           backgroundPosition:item.mainImgShowPosition}">
 
