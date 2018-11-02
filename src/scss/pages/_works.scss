@@ -320,7 +320,7 @@
                 height: 755px;
                 float: left;
                 font-size: 0;
-                img{width: 100%;}
+                img{max-width: 100%;}
                 @include SCREEN_1366{
                     width: 974px;
                     height: 654px;
@@ -439,9 +439,9 @@
                 .coverBottomPic{
                     position: relative;
                     z-index: 2;
-                    &:first-child{
-                        margin-right: 1px;
-                    }
+                    //&:first-child{
+                    //    margin-right: 1px;
+                    //}
                     >img{
                         width: 100%;
                     }
@@ -522,3 +522,6 @@
     }
 }
 
+.swiper-slide{
+    text-align: center;
+}

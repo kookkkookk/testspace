@@ -81,7 +81,7 @@ export default {
                 </div>
             </div>
             <div class="introductionContent">
-                <div>
+                <div v-if="worksData[popOpenActive].introduction != ''">
                     <span></span>
                     <p v-html="worksData[popOpenActive].introduction"></p>
                 </div>
@@ -96,7 +96,7 @@ export default {
                 <div class="swiperContent">
                     <swiper :options="swiperOption">
                         <swiper-slide v-for="(item, index) in worksData[popOpenActive].popupBannerGroup"
-                                    :key="index">
+                                      :key="index">
                             <img :src="item">
                         </swiper-slide>
                     </swiper>
@@ -107,7 +107,7 @@ export default {
             </div>
             
             <div class="designConceptContent">
-                <div>
+                <div v-if="worksData[popOpenActive].designConcept != ''">
                     <span></span>
                     <p v-html="worksData[popOpenActive].designConcept"></p>
                 </div>
@@ -117,8 +117,11 @@ export default {
         <div class="page4">
             <div class="coverBottomContainer">
                 <div class="coverBottomContent">
-                    <div class="coverBottomPic"><img :src="worksData[popOpenActive].popupEndCoverImg1"></div>
-                    <div class="coverBottomPic"><img :src="worksData[popOpenActive].popupEndCoverImg2"></div>
+                    <div class="coverBottomPic"
+                         v-for="(item, index) in worksData[popOpenActive].popupEndCoverImgGroup"
+                         :key="index">
+                        <img :src="item">
+                    </div>
                 </div>
                 <div class="endContent">
                     <div>
