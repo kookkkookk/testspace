@@ -10,6 +10,12 @@ export default {
             isWorkSwitching: null
         }
     },
+    computed: {
+        ...mapGetters([
+            'isMobile',
+            'getScrollTop'
+        ]),
+    },
     methods: {
         changeWorksShow(val){
             this.isWorkSwitching = 'hideing'
@@ -27,8 +33,30 @@ export default {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
+        },
+        //Get el offsetTop
+        getDomOffset() {
+
         }
-    }
+    },
+    watch: {
+        getScrollTop(val) {
+            
+        }
+    },
+     mounted(){
+        this.getDomOffset();
+
+        //Banner animated (tweenMax)
+        const { title } = this.$refs
+        const { subTitle } = this.$refs
+        const { description } = this.$refs
+        const { select } = this.$refs
+        const timeline = new TimelineLite()
+        timeline.from(title, 0.5, {opacity: 0, x: -30, delay: 0.3})
+                .from([subTitle,description], 0.5, {opacity: 0, y: -10})
+                .from(select, 0.5, {opacity: 0})
+    },
 }
 </script>
 
@@ -37,15 +65,15 @@ export default {
         <!-- Works main screen -->
         <div class="worksMainScreenArea pagesTopCover">
             <div>
-                <h1>WORKS</h1>
-                <h2>型隨機能。</h2>
-                <p>
+                <h1 ref="title">WORKS</h1>
+                <h2 ref="subTitle">型隨機能。</h2>
+                <p ref="description">
                     設計是理性的； 想法是感性的。<br>
                     空間本身就是故事，無需雕琢更不用華麗語彙，<br>
                     我們的設計以人為核心，溫柔保護內在空間的舒適與安全，<br>
                     以生活場所與自然棲所，滋養豐富居住者的每一日。
                 </p>
-                <div class="classificationMenu">
+                <div class="classificationMenu" ref="select">
                     <ul>
                         <li>
                             <a href="javascript:;" 
@@ -74,7 +102,8 @@ export default {
                 <div v-for="(item,index) in worksData"
                      :key="index"
                      v-show="isWorkShow==='All' || isWorkShow===item.classification"
-                     :class="{hideing:isWorkSwitching==='hideing',showing:isWorkSwitching==='showing'}">
+                     :class="{hideing:isWorkSwitching==='hideing',showing:isWorkSwitching==='showing'}"
+                     :data-work="index">
                     <!-- <a href="javascript:;">
                         <img :src="item.listingPageImg2" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">

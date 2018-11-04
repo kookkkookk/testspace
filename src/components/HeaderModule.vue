@@ -13,6 +13,8 @@ export default {
                 { path: '/branding',  name: 'branding',  text: 'Branding'}
             ],
             isMobileMenuOpen: false,
+            isLogoHide: false,
+            showLogoN: 0,
             mobileMenuHeight: "",
             noAnimated: false
         }
@@ -20,7 +22,9 @@ export default {
     computed: {
         ...mapGetters([
             'pageActive',
-            'isMobile'
+            'isMobile',
+            'documentHeight',
+            'getScrollTop'
         ])
     },
     methods: {
@@ -36,7 +40,7 @@ export default {
                     this.mobileMenuHeight = "height:0px";
                 }
             }else{
-                this.mobileMenuHeight = "height:89px"; 
+                this.mobileMenuHeight = "height:87px"; 
             }
         },
         jumpPageNoAnimatedCloseMenu(){
@@ -53,6 +57,10 @@ export default {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
+        },
+        setPrevScrollTop(data){
+            this.showLogoN = data;
+            //console.log("this.showLogoN: ",this.showLogoN)
         }
     },
     watch: {
@@ -61,6 +69,23 @@ export default {
             handler() {
                 this.$store.commit('getRouter', this.$route.name)
             }
+        },
+        getScrollTop(val){
+            //console.log("val:",val)
+            if(val<this.showLogoN){
+                this.isLogoHide = false
+            }else if(val>=(this.documentHeight+200)){
+                this.isLogoHide = true
+            }else{
+                this.isLogoHide = false
+            }
+
+            clearTimeout(window.t1);
+            window.t1 = setTimeout(()=>{
+                this.setPrevScrollTop(val)
+            }, 200);
+            //window.t1 = setTimeout(this.desktopLogoSwitch(val), 3000);
+
         }
     }
 }
@@ -69,7 +94,8 @@ export default {
 <template>
     <header>
         <div>
-            <h1 class="headerLogo" :class="{'moveMid':isMobileMenuOpen && isMobile}">
+            <h1 class="headerLogo" :class="{'moveMid':isMobileMenuOpen && isMobile,
+                                            'hide':isLogoHide && !isMobile}">
                 <router-link :to="menu[0].path"
                              v-if="!isMobile"
                              @click.native="mobileMenuSwitch();scrollToTop();">

@@ -25,16 +25,17 @@ export default {
             },
             active: 0,
             homeData: homeData,
+            el_chair: 0,
             el_styleLife_h1: 0,
             el_styleLife_pic: 0,
             el_styleLife_p: 0,
-            el_schematically_bg: 0,
-            el_schematically_TextBox: 0
+            el_schematically_bg: 0
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
+            'documentHeight',
             'getScrollTop'
         ]),
         total() {
@@ -60,12 +61,14 @@ export default {
         //Get el offsetTop
         getDomOffset() {
             setTimeout(()=>{
+                this.el_chair = document.querySelector('.chairArea').offsetTop
                 this.el_styleLife_h1 = document.querySelector('.lifeStyleArea h1').offsetTop
                 this.el_styleLife_pic = document.querySelector('.lifeStyleArea .pic').offsetTop
                 this.el_styleLife_p = document.querySelector('.lifeStyleArea p').offsetTop
                 this.el_schematically_bg = document.querySelector('.schematically').offsetTop
+
                 //由於該el已經被position 所以offsetTop重置，要先抓父層再相加
-                this.el_schematically_TextBox = document.querySelector('.schematically').offsetTop + document.querySelector('.schematically .description').offsetTop
+                //this.el_schematically_TextBox = document.querySelector('.schematically').offsetTop + document.querySelector('.schematically .description').offsetTop
             },100)
         }
     },
@@ -76,6 +79,22 @@ export default {
     watch: {
         //Scroll > el offsetTop el animated's Fn
         getScrollTop(val) {
+            var val = val-100;
+            if(val >= this.el_chair && !document.querySelector(".chairArea").classList.contains("on")){
+                document.querySelector('.chairArea').classList.add("on")
+                console.log(this.isMobile)
+                if(!this.isMobile){
+                    document.querySelector('.left').classList.add("on")
+                    document.querySelector('.left p').classList.add("on")
+                    document.querySelector('.right').classList.add("on")
+                    document.querySelector('.right p').classList.add("on")
+                    document.querySelector('.right h2').classList.add("on")
+                }else{
+                    document.querySelector('.bg img').classList.add("on")
+                    document.querySelector('.description').classList.add("on")
+                    document.querySelector('.description p').classList.add("on")
+                }
+            }
             if(val >= this.el_styleLife_h1 && !document.querySelector(".lifeStyleArea h1").classList.contains("on")){
                 document.querySelector('.lifeStyleArea h1').classList.add("on")
             }
@@ -87,10 +106,11 @@ export default {
             }
             if(val >= this.el_schematically_bg && !document.querySelector(".schematically .bg").classList.contains("on")){
                 document.querySelector('.schematically .bg').classList.add("on")
-            }
-            if(val >= this.el_schematically_TextBox && !document.querySelector(".schematically .description").classList.contains("on")){
                 document.querySelector('.schematically .description').classList.add("on")
             }
+            //if(val >= this.el_schematically_TextBox && !document.querySelector(".schematically .description").classList.contains("on")){
+            //    document.querySelector('.schematically .description').classList.add("on")
+            //}
         }
     },
     created() {
@@ -98,6 +118,14 @@ export default {
     },
     mounted(){
         this.getDomOffset();
+
+        //Banner animated (tweenMax)
+        const { bannerDom } = this.$refs
+        const { titleArea } = this.$refs
+        const timeline = new TimelineLite()
+        timeline.from(bannerDom, 0.5, {scale:1.1, opacity: 0})
+                .from(titleArea, 0.5, {scale:1.1, opacity: 0})
+        
     },
     destroyed () {
 
@@ -110,10 +138,13 @@ export default {
         <!-- Banner -->
         <div class="bannerArea">
             
-            <div class="bannerContainer">
+            <div class="bannerContainer"
+                 :style="[!isMobile?{height:documentHeight+'px'}:{height:'auto'}]"
+                 ref="bannerDom">
                 <span class="braceHeight">
-                    <img v-if="!isMobile" src="~Home/00_banner_desktop00_braceHeight.jpg">
-                    <img v-else src="~Home/00_banner_mobile00_braceHeight.jpg">
+                    <!-- <img v-if="!isMobile" src="~Home/00_banner_desktop00_braceHeight.jpg">
+                    <img v-else src="~Home/00_banner_mobile00_braceHeight.jpg"> -->
+                    <img v-if="isMobile" src="~Home/00_banner_mobile00_braceHeight.jpg">
                 </span>
                 <transition-group v-if="!isMobile"
                                   tag="div"
@@ -140,7 +171,7 @@ export default {
                     <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
                 </swiper>
             </div>
-            <div class="titleArea">
+            <div class="titleArea" ref="titleArea">
                 <div>
                     <h1>{{homeData[0].bannerTitle}}</h1>
                     <h2>{{homeData[0].bannerSubTitle}}</h2>
@@ -158,9 +189,20 @@ export default {
         <div class="chairArea">
             <div class="bg">
                 <img v-if="!isMobile" src="~Home/01_chairBg_desktop.png">
-                <img v-else src="~Home/01_chair_mobile.png">
+                <img v-else src="~Home/01_chair_mobile.png" class="movingOpacity">
             </div>
-            <div v-if="!isMobile" class="titleArea"></div>
+            <div class="movingLevelLeft" :class="{left:!isMobile,description:isMobile}">
+                <p class="movingLevelLeft movingDelay2">
+                    風格是什麼？歲月、生活、經典...<br>
+                    空間是什麼？人的尺度，光影的彩度，空間的溫度。<br>
+                    家是什麼？ 心之所向就是家。
+                </p>
+            </div>
+            <div v-if="!isMobile" class="right movingLevel">
+                <p class="movingDownFirst movingDelay1">自在與優雅，空間意念的詮釋</p>
+                <h2 class="movingDownFirst movingDelay1">ZITONSPACE</h2>
+            </div>
+            <!-- <div v-if="!isMobile" class="titleArea"></div>
             <div v-if="!isMobile" class="leftChair"></div>
             <div v-if="!isMobile" class="rightChair"></div>
             <div class="description">
@@ -169,7 +211,7 @@ export default {
                     空間是什麼？人的尺度，光影的彩度，空間的溫度。<br>
                     家是什麼？ 心之所向就是家。
                 </p>
-            </div>
+            </div> -->
         </div>
 
         <!-- Life style -->
@@ -188,8 +230,8 @@ export default {
         <!-- Schematically -->
         <div class="schematically">
             <div v-if="!isMobile" class="bg picDesktop movingOpacity"></div>
-            <div v-else class="bg picMobile movingDownFirst"><img src="~Home/03_schematically_mobile.jpg"></div>
-            <div class="description movingVertical">
+            <div v-else class="bg picMobile movingOpacity"><img src="~Home/03_schematically_mobile.jpg"></div>
+            <div class="description movingVertical movingDelay1">
                 <p>
                     ZITONSPACE日騰空間設計，<br>
                     空間層次的美 ，生活尺度的善意。<br>

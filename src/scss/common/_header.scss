@@ -8,7 +8,7 @@ header{
     >div{
         width: 100%;
         max-width: 1920px;
-        height: 98px;
+        height: 87px;
         margin: 0 auto;
         position: relative;
         //background-color: cornflowerblue;
@@ -24,7 +24,7 @@ header{
             position: absolute;
             bottom: 0;
             left: 103px;
-            transition: all 0.4s;
+            transition: opacity 0.2s;
             @include SCREEN_900{
                 left: 0px;
                 bottom: 29px;
@@ -60,6 +60,10 @@ header{
                 }
             }
         }
+        .headerLogo.hide{
+            opacity: 0;
+            pointer-events: none;
+        }
         .mobileMainMenuSwitchBtn{
             width: 40px;
             height: 40px;
@@ -71,30 +75,30 @@ header{
                 right: 15px;
             }
             >span{
-                width: 35px;
+                width: 30px;
                 height: 2px;
                 background-color: #c1c1c1;
                 display: block;
                 position: absolute;
-                left: 2.5px;
+                left: 5px;
                 transition: all 0.4s;
                 &.active{
                     background-color: #3b3b3b;
                 }
                 &:first-child{
-                    top: 9px;
+                    top: 11px;
                 }
                 &:nth-child(2){
                     top: 19px;
                 }
                 &:last-child{
-                    top: 29px;
+                    top: 27px;
                 }
             }
         }
         .mainMenu{
             width: auto;
-            height: 89px;
+            height: 87px;
             background-color: #ffffff;
             display: inline-block;
             float: right;
@@ -116,20 +120,23 @@ header{
                 margin: 0;
                 padding: 0;
                 overflow: hidden;
-                margin: 0 40px;
+                margin: 0 75px;
                 @include SCREEN_736{
                     margin: 0px;
                 }
                 >li{
                     float: left;
-                    margin-left: 30px;
-                    line-height: 89px;
+                    margin-left: 45px;
+                    line-height: 75px;
+                    margin-top: 12px;
                     position: relative;
                     &:first-child{margin-left: 0px;}
                     >a{
                         font-size: 22px;
                         padding: 10px 0;
                         color: #414141;
+                        font-family: 'MyriadPro-Light';
+                        font-weight: bold;
                         @include SCREEN_736{
                             font-size: 26px;
                             padding: 0;
@@ -161,6 +168,7 @@ header{
                     @include SCREEN_736{
                         float: none;
                         margin-left: 0px;
+                        margin-top: 0px;
                         text-align: center;
                         line-height: 70px;
                     }
@@ -178,24 +186,24 @@ header{
                     left: -54px;
                 }
                 &.works{
-                    left: 44px;
+                    left: 74px;
                 }
                 &.workPopup{
-                    left: 44px;
+                    left: 74px;
                     background-color: #3a76f8;
                 }
                 &.design{
-                    left: 143px;
+                    left: 178px;
                 }
                 &.news{
-                    left: 240px;
+                    left: 279px;
                 }
                 &.newsPopup{
-                    left: 240px;
+                    left: 279px;
                     background-color: #3a76f8;
                 }
                 &.branding{
-                    left: 345px;
+                    left: 388px;
                 }
                 @include SCREEN_736{display: none;}
             }
