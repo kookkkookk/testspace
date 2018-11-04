@@ -27,8 +27,8 @@
                 >li{
                     text-align: right;
                     >a{
-                        font-family: 'MyriadPro-Light';
-                        font-weight: bold;
+                        font-family: 'MyriadPro-Bold';
+                        //font-weight: bold;
                         font-size: 22px;
                         color: #dedede;
                         line-height: 40px;
@@ -202,12 +202,12 @@
             }
             .descriptionBox{
                 width: 800px;
-                height: 465px;
+                height: auto;
                 background-color: rgba(#fff, 0.9);
                 position: absolute;
                 top: 120px;
                 right: 0;
-                padding: 55px 0 0 95px; 
+                padding: 55px 20px 55px 95px; 
                 @media screen and (max-width: 1701px) {
                     width: 750px;
                     height: 425px;

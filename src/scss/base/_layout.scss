@@ -28,11 +28,16 @@ body, html{
         padding-top: 50px;
 	}
 }
-@font-face {
-  font-family: 'MyriadPro-LightSemiExt';
-  src: url('/assets/MyriadPro-LightSemiExt.ttf') format("truetype");
-}
+// @font-face {
+//   font-family: 'MyriadPro-LightSemiExt';
+//   src: url('/assets/MyriadPro-LightSemiExt.ttf') format("truetype");
+// }
 @font-face {
   font-family: 'MyriadPro-Light';
   src: url('/assets/MyriadPro-Light.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'MyriadPro-Bold';
+	src: url('/assets/MyriadPro-Bold_2.ttf') format("truetype");
+	// src: url('/assets/MYRIADPRO-BOLD.ttf') format("truetype");
 }

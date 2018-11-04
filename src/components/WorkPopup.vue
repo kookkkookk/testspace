@@ -60,6 +60,16 @@ export default {
         //console.log("worksData Length: ",worksDataLength);
         if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
         this.popOpenActive = nowDesignationKey;
+
+        //descriptionBox position central
+        const { coverImg } = this.$refs
+        const { descriptionBox } = this.$refs
+        setTimeout(() => {
+            //console.log(coverImg.clientHeight + " " + descriptionBox.clientHeight)
+            let descriptionBoxTopPosition = (coverImg.clientHeight - descriptionBox.clientHeight)/2;
+            descriptionBox.style.top = descriptionBoxTopPosition+'px';
+        }, 50);
+        
     }
 }
 </script>
@@ -74,8 +84,11 @@ export default {
                 <span></span>
             </div>
             <div class="coverTopContainer">
-                <div class="coverImg" :style="{backgroundImage:'url('+worksData[popOpenActive].popupCoverImg+')'}"></div>
-                <div class="descriptionBox">
+                <div class="coverImg"
+                     :style="{backgroundImage:'url('+worksData[popOpenActive].popupCoverImg+')'}"
+                     ref="coverImg">
+                </div>
+                <div class="descriptionBox" ref="descriptionBox">
                     <h2>{{worksData[popOpenActive].descriptionTitle}}</h2>
                     <p v-html="worksData[popOpenActive].description"></p>
                 </div>
