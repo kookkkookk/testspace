@@ -15,6 +15,9 @@ export default {
             'isMobile',
             'getScrollTop'
         ]),
+        worksDataLength(){
+            return worksData.length
+        }
     },
     methods: {
         changeWorksShow(val){
@@ -34,19 +37,43 @@ export default {
                 window.scrollTo(0,0);
             }, 200);
         },
-        //Get el offsetTop
-        getDomOffset() {
+        getDomOffset(){
+            var scrollTop;
+            var windowHeight;
 
+            setTimeout(()=>{
+                //const { work1 } = this.$refs
+                //console.dir(work1[0].offsetTop)
+
+                const { worksMainScreenArea } = this.$refs
+                //console.dir(worksMainScreenArea.clientHeight)
+                for(var i=0;i<this.worksDataLength;i++){
+                    //console.dir(this.$refs['work'+i][0])
+                    //console.dir(this.$refs.work[0].dataset.work)
+                    //console.dir(worksMainScreenArea.clientHeight+this.$refs['work'+i][0].offsetTop)
+                    var supplementPrevHeightN = (this.isMobile ? 1:2)
+                    if(i>=supplementPrevHeightN){
+                        this.$refs['work'+i][0].dataset.offset = (worksMainScreenArea.clientHeight + this.$refs['work'+(i-1)][0].offsetHeight) + this.$refs['work'+i][0].offsetTop
+                    }else{
+                        this.$refs['work'+i][0].dataset.offset = worksMainScreenArea.clientHeight + this.$refs['work'+i][0].offsetTop
+                    }
+                }
+                //由於動畫時間0.5s 後才渲染至畫面，所以要0.51s後才能正確抓到offsettop
+            },510)
         }
     },
     watch: {
         getScrollTop(val) {
-            
+            val = val-100;
+
+            for(var i=0;i<this.worksDataLength;i++){
+                if(val >= this.$refs['work'+i][0].dataset.offset && !this.$refs['work'+i][0].classList.contains("on")){
+                    this.$refs['work'+i][0].classList.add("on")
+                }
+            }
         }
     },
      mounted(){
-        this.getDomOffset();
-
         //Banner animated (tweenMax)
         const { title } = this.$refs
         const { subTitle } = this.$refs
@@ -56,6 +83,9 @@ export default {
         timeline.from(title, 0.5, {opacity: 0, x: -30, delay: 0.3})
                 .from([subTitle,description], 0.5, {opacity: 0, y: -10})
                 .from(select, 0.5, {opacity: 0})
+
+        //Set v-for created work dom data-offset number
+        this.getDomOffset()
     },
 }
 </script>
@@ -63,7 +93,7 @@ export default {
 <template>
     <div class="worksPage firstDom">
         <!-- Works main screen -->
-        <div class="worksMainScreenArea pagesTopCover">
+        <div class="worksMainScreenArea pagesTopCover" ref="worksMainScreenArea">
             <div>
                 <h1 ref="title">WORKS</h1>
                 <h2 ref="subTitle">型隨機能。</h2>
@@ -78,17 +108,17 @@ export default {
                         <li>
                             <a href="javascript:;" 
                                :class="{active:isWorkShow==='All'}" 
-                               @click="changeWorksShow('All')">ALL</a>
+                               @click="changeWorksShow('All'); getDomOffset();">ALL</a>
                         </li>
                         <li>
                             <a href="javascript:;" 
                                :class="{active:isWorkShow==='Commercial'}" 
-                               @click="changeWorksShow('Commercial')">COMMERCIAL</a>
+                               @click="changeWorksShow('Commercial'); getDomOffset();">COMMERCIAL</a>
                         </li>
                         <li>
                             <a href="javascript:;" 
                                :class="{active:isWorkShow==='Interiors'}" 
-                               @click="changeWorksShow('Interiors')">INTERIORS</a>
+                               @click="changeWorksShow('Interiors'); getDomOffset();">INTERIORS</a>
                         </li>
                     </ul>
                 </div>
@@ -99,18 +129,17 @@ export default {
         <div class="worksArea">
             <div class="topGrey"></div>
             <div class="worksContent">
-                <div v-for="(item,index) in worksData"
+                <div class="movingDownFirst"
+                     v-for="(item,index) in worksData"
                      :key="index"
                      v-show="isWorkShow==='All' || isWorkShow===item.classification"
-                     :class="{hideing:isWorkSwitching==='hideing',showing:isWorkSwitching==='showing'}"
-                     :data-work="index">
-                    <!-- <a href="javascript:;">
-                        <img :src="item.listingPageImg2" class="picOpposite">
-                        <img :src="item.listingPageImg1" class="pic">
-                    </a> -->
+                     :class="{hideing:isWorkSwitching==='hideing',
+                              showing:isWorkSwitching==='showing'}"
+                     :ref="'work'+index">
                     <router-link :to="'work/'+index"
                                  @click.native="scrollToTop">
-                        <img :src="item.listingPageImg2" class="picOpposite">
+                        <!-- 目前用CSS 做成黑白照片，之後確認後 json listingPageImg2要刪掉 -->
+                        <img :src="item.listingPageImg1" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">
                     </router-link>
                 </div>

@@ -79,7 +79,7 @@ export default {
     watch: {
         //Scroll > el offsetTop el animated's Fn
         getScrollTop(val) {
-            var val = val-100;
+            val = val-100;
             if(val >= this.el_chair && !document.querySelector(".chairArea").classList.contains("on")){
                 document.querySelector('.chairArea').classList.add("on")
                 console.log(this.isMobile)
@@ -118,7 +118,7 @@ export default {
     },
     mounted(){
         this.getDomOffset();
-
+        
         //Banner animated (tweenMax)
         const { bannerDom } = this.$refs
         const { titleArea } = this.$refs
@@ -186,7 +186,7 @@ export default {
         </div>
 
         <!-- Chair -->
-        <div class="chairArea">
+        <div class="chairArea" ref="chairArea">
             <div class="bg">
                 <img v-if="!isMobile" src="~Home/01_chairBg_desktop.png">
                 <img v-else src="~Home/01_chair_mobile.png" class="movingOpacity">
