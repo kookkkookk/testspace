@@ -66,6 +66,7 @@ export default {
             </div>
         </div>
 
+        <!-- designConceptArea -->
         <div class="designConceptArea">
             <div class="designConceptContainer">
                 <div class="pic"><img src="~Branding/02_schematicDiagram.jpg"></div>
@@ -99,9 +100,11 @@ export default {
             </div>
         </div>
 
+        <!-- collectionWorksArea -->
         <div class="collectionWorksArea" :class="{addBottomPadding: brandingDataRemainder!==0}">
             <div class="collectionWorksContainer">
                 <h3>歷年<span>作品</span></h3>
+
                 <div class="collectionWorksContent">
                     <div class="workList" v-for="(item, index) in brandingDataReverse" :key="index">
                         <h1>{{item.year}}</h1>
@@ -111,7 +114,42 @@ export default {
                     </div>
                 </div>
             </div>
+
             <div class="woodBg" :class="{moveTop: brandingDataRemainder!==0}"></div>
+        </div>
+
+        <div class="stepArea">
+            <div class="stepContainer">
+                <h3>專案<span>流程</span></h3>
+                <div class="textBox">
+                    
+                    <h2>業主· 設計師 Q&amp;A</h2>
+                    <p>
+                        溝通是成就設計的起點！執行過程我們傾聽，和業主保持交流，<br>
+                        設計案每一步驟均得到業主充份的了解和認同後才執行。<br>
+                        每一件設計作品的呈現,代表著每位客戶的氣質和內在涵養，<br>
+                        我們期許能為客戶展現出不同層次的空間。<br>
+                        歡迎與我們聊聊，邀請你到更好的生活來。
+                    </p>
+                </div>
+                <div class="stepContent">
+                    <ul>
+                        <li class="cubeBlack"><h4>1</h4><p>設計師&nbsp;&nbsp;x&nbsp;&nbsp;客戶交流會談</p></li>
+                        <li class="cubeWhite"><h4>2</h4><p>現場實地丈量及平面放樣</p></li>
+                        <li class="cubeWhite"><h4>3</h4><p>提報空間區分建議</p></li>
+                        <li class="circle"><h4>4</h4><p>平面圖簡報</p></li>
+                        <li class="cubeWhite"><h4>5</h4><p>設計合約確認及成立</p></li>
+                        <li class="circle"><h4>6</h4><p>立面圖簡報</p></li>
+                        <li class="cubeWhite"><h4>7</h4><p>材料建議及家具建議</p></li>
+                        <li class="cubeWhite"><h4>8</h4><p>施工圖繪製</p></li>
+                        <li class="circle"><h4>9</h4><p>估　價</p></li>
+                        <li class="cubeWhite"><h4>10</h4><p>工程合約</p></li>
+                        <li class="cubeBlack"><h4>11</h4><p>施工執行</p></li>
+                    </ul>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="stepContentBg"></div>
         </div>
     </div>
 </template>

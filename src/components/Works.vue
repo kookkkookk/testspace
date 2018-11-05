@@ -40,7 +40,7 @@ export default {
         getDomOffset(){
             var scrollTop;
             var windowHeight;
-
+            var showFirstLoadWork = 0;
             setTimeout(()=>{
                 //const { work1 } = this.$refs
                 //console.dir(work1[0].offsetTop)
@@ -57,9 +57,24 @@ export default {
                     }else{
                         this.$refs['work'+i][0].dataset.offset = worksMainScreenArea.clientHeight + this.$refs['work'+i][0].offsetTop
                     }
+
+                    /*if(showFirstLoadWork < 2 && this.$refs['work'+i][0].classList.contains("selected")){
+                        this.$refs['work'+i][0].classList.add("on")
+                        showFirstLoadWork++
+                    }*/
                 }
                 //由於動畫時間0.5s 後才渲染至畫面，所以要0.51s後才能正確抓到offsettop
             },510)
+
+            document.querySelectorAll(".selected").forEach(element => {
+                console.log(showFirstLoadWork)
+                if(showFirstLoadWork < 2){
+                    console.log(element)
+                    element.classList.add("on")
+                    showFirstLoadWork++
+                }
+            })
+
         }
     },
     watch: {
@@ -134,7 +149,8 @@ export default {
                      :key="index"
                      v-show="isWorkShow==='All' || isWorkShow===item.classification"
                      :class="{hideing:isWorkSwitching==='hideing',
-                              showing:isWorkSwitching==='showing'}"
+                              showing:isWorkSwitching==='showing',
+                              selected:isWorkShow==='All' || isWorkShow===item.classification}"
                      :ref="'work'+index">
                     <router-link :to="'work/'+index"
                                  @click.native="scrollToTop">

@@ -55,6 +55,7 @@
     }
 }
 
+//--- Creator Area ---
 .creatorArea{
     width: 100%;
     background-color: #eee;
@@ -133,6 +134,7 @@
     }
 }
 
+//--- designConceptArea ---
 .designConceptArea{
     width: 100%;
     padding-top: 70px;
@@ -191,6 +193,7 @@
     }
 }
 
+//--- collectionWorksArea ---
 .collectionWorksArea{
     width: 100%;
     padding-top: 120px;
@@ -216,6 +219,7 @@
                 background-color: #010101;
                 margin-top: 35px;
             }
+            >span{font-weight: bold;}
         }
     }
     .collectionWorksContent{
@@ -253,5 +257,142 @@
         position: absolute;
         bottom: 0;
         right: 0;
+    }
+}
+
+//--- stepArea ---
+.stepArea{
+    width: 100%;
+    padding-top: 125px;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    .stepContainer{
+        width: 100%;
+        max-width: 1520px;
+        margin: 0 auto;
+        //background-color: pink;
+        >h3{
+            font-size: 26px;
+            color: #010101;
+            display: block;
+            &::after{
+                content: "";
+                display: block;
+                width: 50px;
+                height: 1px;
+                background-color: #010101;
+                margin-top: 35px;
+            }
+            >span{font-weight: bold;}
+        }
+        .textBox{
+            margin-top: 80px;
+            >h2{
+                font-size: 30px;
+                color: #000;
+                font-weight: bold;
+            }
+            >p{
+                margin-top: 30px;
+                font-size: 20px;
+                color: #000;
+                line-height: 32px;
+            }
+        }
+        .stepContent{
+            margin-top: 100px;
+            margin-bottom: 160px;
+            position: relative;
+            >ul{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                >li{
+                    text-align: center;
+                    position: relative;
+                    z-index: 3;
+                    >h4{
+                        font-family: 'MyriadPro-Bold';
+                        font-weight: bold;
+                        font-style: italic;
+                        font-size: 60px;
+                        margin-left: -8px;
+                    }
+                    >p{
+                        font-size: 25px;
+                    }
+                }
+                >li.cubeBlack{
+                    width: 100px;
+                    height: 460px;
+                    background-color: #2d2d2d;
+                    border-radius: 6px;
+                    >h4{
+                        color: #fff;
+                        margin-top: 43px;
+                    }
+                    >p{
+                        color: #fff;
+                        writing-mode: vertical-lr;
+                        display:inline-block;
+                        margin-top: 25px;
+                    }
+                }
+                >li.cubeWhite{
+                    width: 100px;
+                    height: 460px;
+                    background-color: #ededed;
+                    border: 1px solid #2d2d2d;
+                    border-radius: 6px;
+                    >h4{
+                        color: #000;
+                        margin-top: 43px;
+                    }
+                    >p{
+                        color: #000;
+                        writing-mode: vertical-lr;
+                        display:inline-block;
+                        margin-top: 25px;
+                    }
+                }
+                >li.circle{
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 75px;
+                    background-color: #2d2d2d;
+                    >h4{
+                        color: #fff;
+                        margin-top: 9px;
+                    }
+                    >p{
+                        color: #fff;
+                        margin-top: -9px;
+                    }
+
+                }
+            }
+            .line{
+                width: 100%;
+                height: 2px;
+                display: block;
+                background-color: #000;
+                position: absolute;
+                top: 50%;
+                margin-top: -1px;
+                z-index: 2;
+            }
+        }
+    }
+    .stepContentBg{
+        width: 100%;
+        height: 500px;
+        background-image: url("~Branding/04_schematicDiagramBg.jpg");
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
     }
 }
