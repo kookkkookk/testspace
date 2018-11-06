@@ -40,6 +40,27 @@ export default {
                 <div class="artWorkBg"></div>
             </div>
         </div>
+
+        <div class="discoveryDesignArea">
+            <div class="discoveryDesignContainer">
+                <h3>設計<span>發現</span></h3>
+                <div class="discoveryDesignContentGroup">
+                    <div class="discoveryDesignContent" data-design="0">
+                        <h1>體貼入微，<br>不只是觀察也是感受</h1>
+                        <p>
+                            建築大師庫哈斯：「建築是一種冒險 。」<br>
+                            室內設計則是整合思考，為人設計，<br>
+                            成立至今近二十年的時間，<br>
+                            我們從不定義自己的風格，更不盲從追求流行，<br>
+                            當設計師像明星一樣走進大眾生活，<br>
+                            我們依然默默耕耘每一件作品，<br>
+                            也許是我們的個性，也或許是我們習慣以作品發聲。
+                        </p>
+                        <div class="pic"><img src="~Design/01_discoveryDesignPic01.jpg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
