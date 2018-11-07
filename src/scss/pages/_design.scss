@@ -77,10 +77,11 @@
     padding-top: 80px;
     background-color: #ededed;
     position: relative;
-    overflow: hidden;
+    //overflow: hidden;
     .discoveryDesignContainer{
         width: 100%;
         max-width: 1520px;
+        height: 970px;
         margin: 0 auto;
         //background-color: pink;
         >h3{
@@ -104,6 +105,7 @@
                     font-size: 30px;
                     color: #000;
                     margin-top: 90px;
+                    font-weight: bold;
                 }
                 >p{
                     font-size: 20px;
@@ -113,10 +115,49 @@
                 }
                 .pic{
                     position: absolute;
-                    top: -155px;
-                    right: 360px;
+                    top: -305px;
+                    right: 172px;
                 }
             }
+        }
+        .nextBtn,.prevBtn{
+            width: 90px;
+            height: 90px;
+            //background-color: pink;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            &:hover >span{
+                transform: translateX(-20%);
+            }
+            >span{
+                display: block;
+                width: 90px;
+                height: 1px;
+                background-color: #212121;
+                transition: transform 0.3s;
+                &::after{
+                    content: "";
+                    width: 30%;
+                    max-width: 50px;
+                    height: 1px;
+                    background-color: #2a2a2a;
+                    display: block;
+                    transform-origin: 0% 50%;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+        .nextBtn{
+            transform: scale(-1, 1);
+            position: absolute;
+            top: 863px;
+            right: 170px;
+        }
+        .prevBtn{
+            position: absolute;
+            top: 863px;
+            left: 196px;
         }
     }
 }

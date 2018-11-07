@@ -3,6 +3,7 @@ export default {
     name: 'design',
     data() {
         return {
+            discoveryDesignContent: 1
         }
     },
     methods: {
@@ -59,6 +60,8 @@ export default {
                         <div class="pic"><img src="~Design/01_discoveryDesignPic01.jpg"></div>
                     </div>
                 </div>
+                <div class="nextBtn"><span></span></div>
+                <div class="prevBtn"><span></span></div>
             </div>
         </div>
     </div>
