@@ -1,6 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
-import worksData from '../assets/data/worksData.json';
+//import worksData from '../assets/data/worksData.json';
 
 import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -16,7 +16,23 @@ export default {
                     prevEl: '.swiper-button-prev'
                 }
             },
-            worksData: worksData,
+            //worksData: worksData,
+            worksData: [
+                {
+                    "classification": null,
+                    "listingPageImg1": null,
+                    "listingPageImg2": null,
+                    "constructionName": null,
+                    "popupCoverImg": null,
+                    "descriptionTitle": null,
+                    "description": null,
+                    "introduction": null,
+                    "popupBannerGroup": [],
+                    "designConcept": null,
+                    "popupEndCoverImgGroup": [],
+                    "endText": null
+                }
+            ],
             popOpenActive: 0,
             isShowTopBtn: false
         }
@@ -53,14 +69,24 @@ export default {
             }
         }
     },
+    created(){
+        this.$axios.get('./assets/data/worksData.json').then((response) => {
+            this.worksData = response.data;
+        })
+        .catch((error)=> {
+            console.log("!ERROR: Ajax worksData.json fail: ",error)
+        })
+        .then(()=> {
+            let worksDataLength = this.worksData.length || 0;
+            let nowDesignationKey = (this.$route.params.userId <= worksDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
+            //console.log("this.$route.params.userId: ",nowDesignationKey);
+            //console.log("worksData Length: ",worksDataLength);
+            if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
+            this.popOpenActive = nowDesignationKey
+        })
+    },
     mounted() {
-        let worksDataLength = this.worksData.length;
-        let nowDesignationKey = (this.$route.params.userId <= worksDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
-        //console.log("this.$route.params.userId: ",nowDesignationKey);
-        //console.log("worksData Length: ",worksDataLength);
-        if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
-        this.popOpenActive = nowDesignationKey;
-
+        
         //descriptionBox position central
         const { coverImg } = this.$refs
         const { descriptionBox } = this.$refs
@@ -110,7 +136,7 @@ export default {
                     <swiper :options="swiperOption">
                         <swiper-slide v-for="(item, index) in worksData[popOpenActive].popupBannerGroup"
                                       :key="index">
-                            <img :src="item">
+                            <img :src="item || ''">
                         </swiper-slide>
                     </swiper>
                 </div>

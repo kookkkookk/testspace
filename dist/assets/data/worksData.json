@@ -245,5 +245,27 @@
             "./images/Works/work11/01_workPopup_Pic11-3.jpg"
         ],
         "endText": "商空巡禮 / 內湖 ．廣告公司辦公室"
+    },
+    {
+        "classification": "Commercial",
+        "listingPageImg1": "./images/Works/work11/01_work_ListingPic11-1.jpg",
+        "listingPageImg2": "./images/Works/work11/01_work_ListingPic11-2.jpg",
+        "constructionName": "魯迅國際設計內湖辦公室",
+        "popupCoverImg": "./images/Works/work11/01_workPopup_Pic11-1.jpg",
+        "descriptionTitle": "風格軸線。",
+        "description": "知名房產企劃設計公司，公司成員不少是年輕創意人員，<br>長時間面對電腦工作，總是渴望身處自在的環境氣氛，<br>空間上的佈局，創造開闊明亮更顯重要，<br>個案格局本身為挑高夾層，設計師利用上下空間與光源，<br>創造靈活彈性的動線，拓展舒適感受。",
+        "introduction": "設計公司本身，大量的硬體設備、書籍資料更是不少，<br>簡約風格與機能收納是首要任務，集中的工作區，開放式吧檯，<br>收在牆面與四周的木製書桌櫃等，自然圍塑出機能領域，<br>既符合公司創辦人的理性思維，又散發年輕自由的創意感。",
+        "popupBannerGroup": [
+            "./images/Works/work11/01_workPopup_Switch11-1.jpg",
+            "./images/Works/work11/01_workPopup_Switch11-2.jpg",
+            "./images/Works/work11/01_workPopup_Switch11-3.jpg",
+            "./images/Works/work11/01_workPopup_Switch11-4.jpg"
+        ],
+        "designConcept": "夾層二樓，則是放進會議區與閱讀區，提供客戶開會與同仁找尋資料，<br>辦公區旁的沙發區，大片窗景與戶外景深相連，<br>光源穿透，自然綠意盎然層出迭起，<br>城市風景與豐茂綠意，自成一格，<br>偶爾，員工想要放鬆，亦或是找尋靈感，<br>看看窗外景色，一杯咖啡的時間，讓思緒暫時脫離。",
+        "popupEndCoverImgGroup": [
+            "./images/Works/work11/01_workPopup_Pic11-2.jpg",
+            "./images/Works/work11/01_workPopup_Pic11-3.jpg"
+        ],
+        "endText": "商空巡禮 / 內湖 ．廣告公司辦公室"
     }
 ]

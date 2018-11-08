@@ -7,6 +7,10 @@ import store from './store';
 import route from './route';
 Vue.use(VueRouter);
 const router = new VueRouter(route);
+import axios from 'axios'
+Vue.prototype.$axios = axios;
+//import VueAxios from 'vue-axios'
+//Vue.use(VueAxios, axios)
 import VueScrollTo from 'vue-scrollto';
 Vue.use(VueScrollTo);
 import {TweenMax, Power2, TimelineLite} from 'gsap/TweenMax';

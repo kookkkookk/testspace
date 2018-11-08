@@ -9,12 +9,33 @@ export default {
             newsData: newsData
         }
     },
+    computed: {
+        ...mapGetters([
+            'isMobile',
+            'getScrollTop'
+        ]),
+        newsDataLength(){
+            return newsData.length
+        }
+    },
     methods: {
         scrollToTop() {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
         }
+    },
+    mounted(){
+
+        //Banner animated (tweenMax)
+        const { title } = this.$refs
+        const { subTitle } = this.$refs
+        const { description } = this.$refs
+        const { ligth } = this.$refs
+        const timeline = new TimelineLite()
+        timeline.from(title, 0.5, {opacity: 0, x: -30, delay: 0.3})
+                .from([subTitle,description], 0.5, {opacity: 0, y: -10})
+                .from(ligth, 0.5, {opacity: 0})
     }
 }
 </script>
@@ -22,12 +43,12 @@ export default {
 <template>
     <div class="newsPage firstDom">
         <!-- news main screen -->
-        <div class="newsMainScreenArea pagesTopCover">
+        <div class="newsMainScreenArea pagesTopCover" ref="newsMainScreenArea">
             <div>
-                <h1>NEWS</h1>
-                <div class="light"><img src="~News/00_light_desktop.png" alt=""></div>
-                <h2>慢功細活。</h2>
-                <p>
+                <h1 ref="title">NEWS</h1>
+                <div class="light" ref="ligth"><img src="~News/00_light_desktop.png" alt=""></div>
+                <h2 ref="subTitle">慢功細活。</h2>
+                <p ref="description">
                     我們的設計，一尺一寸亦如書法裡一筆一畫，<br>
                     孕育累積，方見天地；<br>
                     內斂優雅，一分溫柔的氣質；<br>

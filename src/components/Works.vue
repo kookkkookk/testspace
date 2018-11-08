@@ -1,13 +1,30 @@
 <script>
 import { mapGetters } from 'vuex';
-import worksData from '../assets/data/worksData.json';
+//import worksData from '../assets/data/worksData.json';
 export default {
     name: 'works',
     data() {
         return {
-            worksData: worksData,
+            //worksData: worksData,
+            worksData: [
+                {
+                    "classification": null,
+                    "listingPageImg1": null,
+                    "listingPageImg2": null,
+                    "constructionName": null,
+                    "popupCoverImg": null,
+                    "descriptionTitle": null,
+                    "description": null,
+                    "introduction": null,
+                    "popupBannerGroup": [],
+                    "designConcept": null,
+                    "popupEndCoverImgGroup": [],
+                    "endText": null
+                }
+            ],
             isWorkShow: "All",
-            isWorkSwitching: null
+            isWorkSwitching: null,
+            showFirstLoadWork: 0
         }
     },
     computed: {
@@ -16,7 +33,7 @@ export default {
             'getScrollTop'
         ]),
         worksDataLength(){
-            return worksData.length
+            return this.worksData.length || 0
         }
     },
     methods: {
@@ -40,7 +57,7 @@ export default {
         getDomOffset(){
             var scrollTop;
             var windowHeight;
-            var showFirstLoadWork = 0;
+            //var showFirstLoadWork = 0;
             setTimeout(()=>{
                 //const { work1 } = this.$refs
                 //console.dir(work1[0].offsetTop)
@@ -65,16 +82,30 @@ export default {
                 }
                 //由於動畫時間0.5s 後才渲染至畫面，所以要0.51s後才能正確抓到offsettop
             },510)
-
-            document.querySelectorAll(".selected").forEach(element => {
+            setTimeout(()=>{
+                this.showFirstLoadWork = 0
+                this.postDomFirstAndSecondOn()
+            },1100)
+            
+            /*document.querySelectorAll(".selected").forEach(element => {
                 console.log(showFirstLoadWork)
+                
                 if(showFirstLoadWork < 2){
                     console.log(element)
                     element.classList.add("on")
                     showFirstLoadWork++
                 }
-            })
-
+            })*/
+        },
+        postDomFirstAndSecondOn(){
+            var showNumber = (this.isMobile ? 1:2)
+            for(var i=0;i<this.worksDataLength;i++){
+                if(this.showFirstLoadWork == showNumber) break;
+                if(this.$refs['work'+i][0].classList.contains("selected")){
+                    this.$refs['work'+i][0].classList.add("on")
+                    this.showFirstLoadWork++
+                }
+            }
         }
     },
     watch: {
@@ -88,7 +119,12 @@ export default {
             }
         }
     },
-     mounted(){
+    created(){
+        this.$axios.get('./assets/data/worksData.json').then((response) => {
+            this.worksData = response.data;
+        })
+    },
+    mounted(){
         //Banner animated (tweenMax)
         const { title } = this.$refs
         const { subTitle } = this.$refs
