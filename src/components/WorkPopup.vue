@@ -19,11 +19,11 @@ export default {
             //worksData: worksData,
             worksData: [
                 {
-                    "classification": null,
+                    /*"classification": null,
                     "listingPageImg1": null,
-                    "listingPageImg2": null,
+                    "listingPageImg2": null,*/
                     "constructionName": null,
-                    "popupCoverImg": null,
+                    "popupCoverImg": "src/images/99_default_init.jpg",
                     "descriptionTitle": null,
                     "description": null,
                     "introduction": null,

@@ -1,10 +1,16 @@
 <script>
-import brandingData from '../assets/data/brandingData.json';
+//import brandingData from '../assets/data/brandingData.json';
 export default {
     name: 'branding',
     data() {
         return {
-            brandingData: brandingData
+            //brandingData: brandingData
+            brandingData: [
+                {
+                    "year":null,
+                    "works":[]
+                }
+            ]
         }
     },
     computed: {
@@ -14,8 +20,12 @@ export default {
         brandingDataRemainder(){
             return this.brandingData.length % 3;
         }
-
-    }
+    },
+    created(){
+        this.$axios.get('./assets/data/brandingData.json').then((response) => {
+            this.brandingData = response.data;
+        })
+    },
 }
 </script>
 

@@ -72,6 +72,7 @@
     }   
 }
 
+//discovery design
 .discoveryDesignArea{
     width: 100%;
     padding-top: 80px;
@@ -80,7 +81,7 @@
     //overflow: hidden;
     .discoveryDesignContainer{
         width: 100%;
-        max-width: 1520px;
+        max-width: 1600px;
         height: 970px;
         margin: 0 auto;
         //background-color: pink;
@@ -99,12 +100,19 @@
             >span{font-weight: bold;}
         }
         .discoveryDesignContentGroup{
+            position: relative;
             .discoveryDesignContent{
-                position: relative;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                transition: opacity 1.2s;
+
+                pointer-events: none;
+                opacity: 0;
                 >h1{
                     font-size: 30px;
                     color: #000;
-                    margin-top: 90px;
                     font-weight: bold;
                 }
                 >p{
@@ -118,6 +126,10 @@
                     top: -305px;
                     right: 172px;
                 }
+            }
+            .discoveryDesignContent.active{
+                pointer-events: auto;
+                opacity: 1;
             }
         }
         .nextBtn,.prevBtn{
@@ -159,5 +171,100 @@
             top: 863px;
             left: 196px;
         }
+    }
+}
+
+//choiceArea
+.choiceArea{
+    width: 100%;
+    padding-top: 100px;
+    background-color: #ededed;
+    position: relative;
+    overflow: hidden;
+    .choiceContainer{
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        background-color: pink;
+        >h3{
+            font-size: 26px;
+            color: #010101;
+            display: block;
+            &::after{
+                content: "";
+                display: block;
+                width: 50px;
+                height: 1px;
+                background-color: #010101;
+                margin-top: 35px;
+            }
+            >span{font-weight: bold;}
+        }
+        .choiceContent{
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            .choiceContentLeft{
+                width: 50%;
+                >div{
+                    >ul{
+                        overflow: hidden;
+                        >li{
+                            width: calc(50% - 7.5px);
+                            float: left;
+                            background-repeat: no-repeat;
+                            //background-position: 100% 0%;
+                            font-size: 0;
+                            >img{
+                                max-width: 100%;
+                                visibility: hidden;
+                            }
+                            &:nth-child(1){
+                                margin: 0 7.5px 7.5px 0;
+                            }
+                            &:nth-child(2){
+                                margin: 0 0 7.5px 7.5px;
+                            }
+                            &:nth-child(3){
+                                margin: 7.5px 7.5px 0 0;
+                            }
+                            &:nth-child(4){
+                                margin: 7.5px 0 0 7.5px;
+                            }
+                        }
+                    }
+                }
+            }
+            .choiceContentRight{
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                >div{
+                    
+                    >h2{
+                        font-size: 30px;
+                        color: #000;
+                        font-weight: bold;
+                    }
+                    >p{
+                        font-size: 20px;
+                        color: #000;
+                        line-height: 32px;
+                        margin-top: 30px;
+                    }
+                }
+            }
+        }
+
+    }
+    .yellowBg{
+        width: 100%;
+        height: 650px;
+        background-color: #e0ddd7;
+        position: absolute;
+        top: 0;
     }
 }

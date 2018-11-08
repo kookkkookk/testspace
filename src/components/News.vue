@@ -1,12 +1,23 @@
 <script>
 import { mapGetters } from 'vuex';
-import newsData from '../assets/data/newsData.json';
+//import newsData from '../assets/data/newsData.json';
 
 export default {
     name: 'news',
     data() {
         return {
-            newsData: newsData
+            //newsData: newsData
+            newsData: [
+                {
+                    "title": null,
+                    "subTitle": null,
+                    //"descriptionGroup":[],
+                    "mainImg": "src/images/99_default_init.jpg",
+                    "mainImgType": null,
+                    "mainImgShowPosition": null,
+                    //"imgGroup": []
+                }
+            ]
         }
     },
     computed: {
@@ -24,6 +35,11 @@ export default {
                 window.scrollTo(0,0);
             }, 200);
         }
+    },
+    created(){
+        this.$axios.get('./assets/data/newsData.json').then((response) => {
+            this.newsData = response.data;
+        })
     },
     mounted(){
 

@@ -1,6 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
-import homeData from '../assets/data/homeData.json';
+//import homeData from '../assets/data/homeData.json';
 
 import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -24,7 +24,17 @@ export default {
                 }
             },
             active: 0,
-            homeData: homeData,
+            //homeData: homeData,
+            homeData: [
+                {
+                    "bannerTitle": null,
+                    "bannerSubTitle": null
+                },
+                {
+                    "bannerDesktopImg": [],
+                    "bannerMobileImg": []
+                }
+            ],
             el_chair: 0,
             el_styleLife_h1: 0,
             el_styleLife_pic: 0,
@@ -114,7 +124,16 @@ export default {
         }
     },
     created() {
-        this.setHandler();
+        
+        this.$axios.get('./assets/data/homeData.json').then((response) => {
+            this.homeData = response.data;
+        })
+        .catch((error)=> {
+            console.log("!ERROR: Ajax homeData.json fail: ",error)
+        })
+        .then(()=> {
+            this.setHandler()
+        })
     },
     mounted(){
         this.getDomOffset();

@@ -1,11 +1,22 @@
 <script>
 import { mapGetters } from 'vuex';
-import newsData from '../assets/data/newsData.json';
+//import newsData from '../assets/data/newsData.json';
 export default {
     name: 'newsPopup',
     data() {
         return {
-            newsData: newsData,
+            //newsData: newsData,
+            newsData: [
+                {
+                    "title": null,
+                    "subTitle": null,
+                    "descriptionGroup":[],
+                    "mainImg": "src/images/99_default_init.jpg",
+                    "mainImgType": null,
+                    "mainImgShowPosition": null,
+                    "imgGroup": []
+                }
+            ],
             popOpenActive: 0
         }
     },
@@ -16,13 +27,24 @@ export default {
             }, 200);
         }
     },
+    created(){
+        this.$axios.get('./assets/data/newsData.json').then((response) => {
+            this.newsData = response.data;
+        })
+        .catch((error)=> {
+            console.log("!ERROR: Ajax newsData.json fail: ",error)
+        })
+        .then(()=> {
+            let newsDataLength = this.newsData.length || 0;
+            let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
+            //console.log("this.$route.params.userId: ",nowDesignationKey);
+            //console.log("newsData Length: ",newsDataLength);
+            if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
+            this.popOpenActive = nowDesignationKey;
+        })
+    },
     mounted() {
-        let newsDataLength = this.newsData.length;
-        let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
-        //console.log("this.$route.params.userId: ",nowDesignationKey);
-        //console.log("newsData Length: ",newsDataLength);
-        if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
-        this.popOpenActive = nowDesignationKey;
+        
     }
 }
 </script>

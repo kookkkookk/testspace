@@ -9,8 +9,8 @@ export default {
             worksData: [
                 {
                     "classification": null,
-                    "listingPageImg1": null,
-                    "listingPageImg2": null,
+                    "listingPageImg1": null//,
+                    /*"listingPageImg2": null,
                     "constructionName": null,
                     "popupCoverImg": null,
                     "descriptionTitle": null,
@@ -19,7 +19,7 @@ export default {
                     "popupBannerGroup": [],
                     "designConcept": null,
                     "popupEndCoverImgGroup": [],
-                    "endText": null
+                    "endText": null*/
                 }
             ],
             isWorkShow: "All",
@@ -138,6 +138,9 @@ export default {
         //Set v-for created work dom data-offset number
         this.getDomOffset()
     },
+    beforeDestroy(){
+        
+    }
 }
 </script>
 
