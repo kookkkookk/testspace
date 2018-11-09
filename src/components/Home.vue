@@ -35,18 +35,18 @@ export default {
                     "bannerMobileImg": []
                 }
             ],
-            el_chair: 0,
+            /*el_chair: 0,
             el_styleLife_h1: 0,
             el_styleLife_pic: 0,
             el_styleLife_p: 0,
-            el_schematically_bg: 0
+            el_schematically_bg: 0*/
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            'getScrollTop'
+            //'getScrollTop'
         ]),
         total() {
             return this.homeData[1].bannerDesktopImg.length || 0
@@ -69,7 +69,7 @@ export default {
             clearInterval(timer)
         },
         //Get el offsetTop
-        getDomOffset() {
+        /*getDomOffset() {
             setTimeout(()=>{
                 this.el_chair = document.querySelector('.chairArea').offsetTop
                 this.el_styleLife_h1 = document.querySelector('.lifeStyleArea h1').offsetTop
@@ -80,7 +80,7 @@ export default {
                 //由於該el已經被position 所以offsetTop重置，要先抓父層再相加
                 //this.el_schematically_TextBox = document.querySelector('.schematically').offsetTop + document.querySelector('.schematically .description').offsetTop
             },100)
-        }
+        }*/
     },
     components: {
         swiper,
@@ -88,7 +88,7 @@ export default {
     },
     watch: {
         //Scroll > el offsetTop el animated's Fn
-        getScrollTop(val) {
+        /*getScrollTop(val) {
             val = val-100;
             if(val >= this.el_chair && !document.querySelector(".chairArea").classList.contains("on")){
                 document.querySelector('.chairArea').classList.add("on")
@@ -121,7 +121,7 @@ export default {
             //if(val >= this.el_schematically_TextBox && !document.querySelector(".schematically .description").classList.contains("on")){
             //    document.querySelector('.schematically .description').classList.add("on")
             //}
-        }
+        }*/
     },
     created() {
         
@@ -136,7 +136,7 @@ export default {
         })
     },
     mounted(){
-        this.getDomOffset();
+        //this.getDomOffset();
         
         //Banner animated (tweenMax)
         const { bannerDom } = this.$refs
@@ -144,6 +144,13 @@ export default {
         const timeline = new TimelineLite()
         timeline.from(bannerDom, 0.5, {scale:1.1, opacity: 0})
                 .from(titleArea, 0.5, {scale:1.1, opacity: 0})
+
+        //scroll anumated api
+        this.$aos.init()
+        this.$aos.init({
+            duration: 500,
+            once: true
+        })
         
     },
     destroyed () {
@@ -161,23 +168,17 @@ export default {
                  :style="[!isMobile?{height:documentHeight+'px'}:{height:'auto'}]"
                  ref="bannerDom">
                 <span class="braceHeight">
-                    <!-- <img v-if="!isMobile" src="~Home/00_banner_desktop00_braceHeight.jpg">
-                    <img v-else src="~Home/00_banner_mobile00_braceHeight.jpg"> -->
                     <img v-if="isMobile" src="~Home/00_banner_mobile00_braceHeight.jpg">
                 </span>
                 <transition-group v-if="!isMobile"
                                   tag="div"
                                   name="fade"
                                   @click.native="clickBanner(active+1)">
-                    <!-- <img v-for="(item, index) in homeData[1].bannerDesktopImg"
-                         :key="item"
-                         :src="item"
-                         v-show="active===index"/> -->
-                         <div class="bannerPic"
-                              v-for="(item, index) in homeData[1].bannerDesktopImg"
-                              :key="index"
-                              :style="{backgroundImage:'url('+item+')'}"
-                              v-show="active===index"></div>
+                    <div class="bannerPic"
+                        v-for="(item, index) in homeData[1].bannerDesktopImg"
+                        :key="index"
+                        :style="{backgroundImage:'url('+item+')'}"
+                        v-show="active===index"></div>
                 </transition-group>
 
                 <swiper v-else
@@ -206,51 +207,41 @@ export default {
 
         <!-- Chair -->
         <div class="chairArea" ref="chairArea">
-            <div class="bg">
+            <div class="bg" data-aos="fade">
                 <img v-if="!isMobile" src="~Home/01_chairBg_desktop.png">
-                <img v-else src="~Home/01_chair_mobile.png" class="movingOpacity">
+                <img v-else src="~Home/01_chair_mobile.png">
             </div>
-            <div class="movingLevelLeft" :class="{left:!isMobile,description:isMobile}">
-                <p class="movingLevelLeft movingDelay2">
+            <div data-aos="fade-right" :class="{left:!isMobile,description:isMobile}">
+                <p data-aos="fade-right" data-aos-delay="300">
                     風格是什麼？歲月、生活、經典...<br>
                     空間是什麼？人的尺度，光影的彩度，空間的溫度。<br>
                     家是什麼？ 心之所向就是家。
                 </p>
             </div>
-            <div v-if="!isMobile" class="right movingLevel">
-                <p class="movingDownFirst movingDelay1">自在與優雅，空間意念的詮釋</p>
-                <h2 class="movingDownFirst movingDelay1">ZITONSPACE</h2>
+            <div data-aos="fade-left" v-if="!isMobile" class="right">
+                <p data-aos="fade-down" data-aos-delay="500">自在與優雅，空間意念的詮釋</p>
+                <h2 data-aos="fade-down" data-aos-delay="300">ZITONSPACE</h2>
             </div>
-            <!-- <div v-if="!isMobile" class="titleArea"></div>
-            <div v-if="!isMobile" class="leftChair"></div>
-            <div v-if="!isMobile" class="rightChair"></div>
-            <div class="description">
-                <p v-if="isMobile">
-                    風格是什麼？歲月、生活、經典...<br>
-                    空間是什麼？人的尺度，光影的彩度，空間的溫度。<br>
-                    家是什麼？ 心之所向就是家。
-                </p>
-            </div> -->
         </div>
 
         <!-- Life style -->
         <div class="lifeStyleArea">
             <div>
-                <h1 class="movingLevel">LIFE STYLE</h1>
-                <div class="pic movingVertical"><img src="~Home/02_schematically.jpg"></div>
-                <p class="movingVertical">
+                <h1 data-aos="fade-right">LIFE STYLE</h1>
+                <div data-aos="fade-left" class="pic"><img src="~Home/02_schematically.jpg"></div>
+                <p data-aos="fade-right">
                     「有時我很想畫風景，就好像有人很想通過長時間散步來緩解心情一樣。<br>
                     在自然當中，比如樹木中，我可以看見情感與靈魂。」<br>
-                    <span>—梵谷，19世紀荷蘭後印象派畫家—</span>
+                    <span data-aos="fade" data-aos-delay="300">—梵谷，19世紀荷蘭後印象派畫家—</span>
                 </p>
             </div>
         </div>
 
         <!-- Schematically -->
         <div class="schematically">
-            <div v-if="!isMobile" class="bg picDesktop movingOpacity"></div>
-            <div v-else class="bg picMobile movingOpacity"><img src="~Home/03_schematically_mobile.jpg"></div>
-            <div class="description movingVertical movingDelay1">
+            <div data-aos="fade-down" v-if="!isMobile" class="bg picDesktop"></div>
+            <div data-aos="fade-down" v-else class="bg picMobile"><img src="~Home/03_schematically_mobile.jpg"></div>
+            <div data-aos="fade-left" data-aos-delay="300" class="description">
                 <p>
                     ZITONSPACE日騰空間設計，<br>
                     空間層次的美 ，生活尺度的善意。<br>

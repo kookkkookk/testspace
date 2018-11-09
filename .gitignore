@@ -6,3 +6,4 @@ app
 *.lnk
 /.sass-cache
 other/*
+backup_oldFn/*

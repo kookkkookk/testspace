@@ -44,18 +44,24 @@ export default {
         })
     },
     mounted() {
-        
+
+        //scroll anumated api
+        this.$aos.init()
+        this.$aos.init({
+            duration: 500,
+            once: true
+        })
     }
 }
 </script>
 
 <template>
     <div class="pupPage">
-        <h1>NEWS</h1>
+        <h1 data-aos="fade-left">NEWS</h1>
         <div class="pupContainer">
 
             <div class="pupContent">
-                <div class="cover">
+                <div data-aos="fade-right" data-aos-delay="200" class="cover">
                     <a href="javascript:;"
                         :class="newsData[popOpenActive].mainImgType"
                         :style="{backgroundImage:'url('+newsData[popOpenActive].mainImg+')',
@@ -64,10 +70,12 @@ export default {
                 </div>
                 <div class="rightText">
                     <div>
-                        <h1>{{newsData[popOpenActive].title}}</h1>
-                        <h2 v-html="newsData[popOpenActive].subTitle"></h2>
+                        <h1 data-aos="fade-left" data-aos-delay="400">{{newsData[popOpenActive].title}}</h1>
+                        <h2 data-aos="fade-left" data-aos-delay="600" v-html="newsData[popOpenActive].subTitle"></h2>
                         <p v-for="(item,index) in newsData[popOpenActive].descriptionGroup"
-                           :key="index">
+                           :key="index"
+                           data-aos="fade-left"
+                           :data-aos-delay="(index*200)+600">
                            {{item}}
                         </p>
                     </div>
@@ -81,7 +89,7 @@ export default {
                 </div>
             </div>
 
-            <div class="backBtn">
+            <div data-aos="fade-left" class="backBtn">
                 <router-link to="/news">BACK</router-link>
                 <span></span>
             </div>

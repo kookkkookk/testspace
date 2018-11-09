@@ -1,3 +1,5 @@
+import "./scss/mainInit.scss";
+
 import '@babel/polyfill';
 import 'es6-promise';
 import 'es6-object-assign';
@@ -13,10 +15,13 @@ Vue.prototype.$axios = axios;
 //Vue.use(VueAxios, axios)
 import VueScrollTo from 'vue-scrollto';
 Vue.use(VueScrollTo);
-import {TweenMax, Power2, TimelineLite} from 'gsap/TweenMax';
-
+//import {TweenMax, Power2, TimelineLite} from 'gsap/TweenMax';
+import TweenMax from "gsap/TweenMax";
+import "./scss/tools/aos2.3.4.css";
+import aos from "aos";
+Vue.prototype.$aos = aos;
 import App from 'App';
-import './scss/mainInit.scss';
+
 
 Vue.config.productionTip = false;
 new Vue({

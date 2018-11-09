@@ -95,6 +95,13 @@ export default {
             let descriptionBoxTopPosition = (coverImg.clientHeight - descriptionBox.clientHeight)/2;
             descriptionBox.style.top = descriptionBoxTopPosition+'px';
         }, 50);
+
+        //scroll anumated api
+        this.$aos.init()
+        this.$aos.init({
+            duration: 500,
+            once: true
+        })
         
     }
 }
@@ -104,22 +111,23 @@ export default {
     <div class="pupPage">
 
         <div class="page1">
-            <h1>{{worksData[popOpenActive].constructionName}}</h1>
-            <div class="backBtn">
+            <h1 data-aos="fade-down">{{worksData[popOpenActive].constructionName}}</h1>
+            <div data-aos="fade-left" class="backBtn">
                 <router-link to="/works">BACK</router-link>
                 <span></span>
             </div>
             <div class="coverTopContainer">
                 <div class="coverImg"
                      :style="{backgroundImage:'url('+worksData[popOpenActive].popupCoverImg+')'}"
-                     ref="coverImg">
+                     ref="coverImg"
+                     data-aos="fade-right">
                 </div>
-                <div class="descriptionBox" ref="descriptionBox">
+                <div class="descriptionBox" ref="descriptionBox" data-aos="fade-left">
                     <h2>{{worksData[popOpenActive].descriptionTitle}}</h2>
                     <p v-html="worksData[popOpenActive].description"></p>
                 </div>
             </div>
-            <div class="introductionContent">
+            <div data-aos="fade-down" class="introductionContent">
                 <div v-if="worksData[popOpenActive].introduction != ''">
                     <span></span>
                     <p v-html="worksData[popOpenActive].introduction"></p>
@@ -128,7 +136,7 @@ export default {
         </div>
 
         <div class="page3">
-            <div class="swiperContainer">
+            <div class="swiperContainer" data-aos="fade">
                 <div class="swiperLeftBtn swiperBtn">
                     <span class="swiper-button-prev" slot="button-prev"><span></span></span>
                 </div>
@@ -145,7 +153,7 @@ export default {
                 </div>
             </div>
             
-            <div class="designConceptContent">
+            <div class="designConceptContent" data-aos="fade-down">
                 <div v-if="worksData[popOpenActive].designConcept != ''">
                     <span></span>
                     <p v-html="worksData[popOpenActive].designConcept"></p>
@@ -158,18 +166,20 @@ export default {
                 <div class="coverBottomContent">
                     <div class="coverBottomPic"
                          v-for="(item, index) in worksData[popOpenActive].popupEndCoverImgGroup"
-                         :key="index">
+                         :key="index"
+                         data-aos="fade-down"
+                         :data-aos-delay="index*200">
                         <img :src="item">
                     </div>
                 </div>
-                <div class="endContent">
+                <div data-aos="fade-right" class="endContent">
                     <div>
                         <p>{{worksData[popOpenActive].endText}}</p>
                     </div>
                 </div>
                 <div class="bg"></div>
             </div>
-            <div class="backBtn">
+            <div data-aos="fade-left" class="backBtn">
                 <router-link to="/works">BACK</router-link>
                 <span></span>
             </div>

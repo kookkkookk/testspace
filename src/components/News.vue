@@ -52,6 +52,13 @@ export default {
         timeline.from(title, 0.5, {opacity: 0, x: -30, delay: 0.3})
                 .from([subTitle,description], 0.5, {opacity: 0, y: -10})
                 .from(ligth, 0.5, {opacity: 0})
+
+        //scroll anumated api
+        this.$aos.init()
+        this.$aos.init({
+            duration: 500,
+            once: true
+        })
     }
 }
 </script>
@@ -78,7 +85,7 @@ export default {
         <div class="introductionArea">
             <div v-for="(item, index) in newsData"
                  :key="index">
-                <div class="cover">
+                <div data-aos="fade-right" class="cover">
                     <router-link :to="'news/'+index"
                                  :class="item.mainImgType"
                                  @click.native="scrollToTop"
@@ -89,8 +96,8 @@ export default {
                 </div>
                 <div class="rightText">
                     <div>
-                        <h1>{{item.title}}</h1>
-                        <h2 v-html="item.subTitle"></h2>
+                        <h1 data-aos="fade-right" data-aos-delay="200">{{item.title}}</h1>
+                        <h2 data-aos="fade-right" data-aos-delay="400" v-html="item.subTitle"></h2>
                     </div>
                 </div>
             </div>
