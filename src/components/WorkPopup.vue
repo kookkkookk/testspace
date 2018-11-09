@@ -16,6 +16,7 @@ export default {
                     prevEl: '.swiper-button-prev'
                 }
             },
+            loading: true,
             //worksData: worksData,
             worksData: [
                 {
@@ -83,6 +84,11 @@ export default {
             //console.log("worksData Length: ",worksDataLength);
             if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
             this.popOpenActive = nowDesignationKey
+
+            const { _loading } = this.$refs
+            const timeline = new TimelineLite()
+            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                    .add(()=>{ this.loading=false })
         })
     },
     mounted() {
@@ -109,7 +115,7 @@ export default {
 
 <template>
     <div class="pupPage">
-
+        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <div class="page1">
             <h1 data-aos="fade-down">{{worksData[popOpenActive].constructionName}}</h1>
             <div data-aos="fade-left" class="backBtn">

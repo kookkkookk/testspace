@@ -6,6 +6,7 @@ export default {
     name: 'news',
     data() {
         return {
+            loading: true,
             //newsData: newsData
             newsData: [
                 {
@@ -40,9 +41,19 @@ export default {
         this.$axios.get('./assets/data/newsData.json').then((response) => {
             this.newsData = response.data;
         })
+        .catch((error)=> {
+            console.log("!ERROR: Ajax newsData.json fail: ",error)
+        })
+        .then(()=> {
+            const { _loading } = this.$refs
+            const timeline = new TimelineLite()
+            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                    .add(()=>{ this.loading=false })
+        })
+
     },
     mounted(){
-
+        
         //Banner animated (tweenMax)
         const { title } = this.$refs
         const { subTitle } = this.$refs
@@ -65,6 +76,7 @@ export default {
 
 <template>
     <div class="newsPage firstDom">
+        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- news main screen -->
         <div class="newsMainScreenArea pagesTopCover" ref="newsMainScreenArea">
             <div>

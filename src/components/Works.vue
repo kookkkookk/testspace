@@ -5,6 +5,7 @@ export default {
     name: 'works',
     data() {
         return {
+            loading: true,
             //worksData: worksData,
             worksData: [
                 {
@@ -123,6 +124,16 @@ export default {
         this.$axios.get('./assets/data/worksData.json').then((response) => {
             this.worksData = response.data;
         })
+        .catch((error)=> {
+            console.log("!ERROR: Ajax homeData.json fail: ",error)
+        })
+        .then(()=> {
+
+            const { _loading } = this.$refs
+            const timeline = new TimelineLite()
+            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                    .add(()=>{ this.loading=false })
+        })
     },
     mounted(){
         //Banner animated (tweenMax)
@@ -146,6 +157,7 @@ export default {
 
 <template>
     <div class="worksPage firstDom">
+        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- Works main screen -->
         <div class="worksMainScreenArea pagesTopCover" ref="worksMainScreenArea">
             <div>

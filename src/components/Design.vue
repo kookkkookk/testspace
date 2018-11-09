@@ -173,16 +173,16 @@ export default {
                         <div>
                             <ul>
                                 <li style="background-image: url('src/images/Design/02_choicePic01.jpg'); background-position: 100% 0%;">
-                                    <img src="src/images/Design/02_choicePic01.jpg">
+                                    <img src="~Design/02_choicePic01.jpg">
                                 </li>
                                 <li style="background-image: url('src/images/Design/02_choicePic02.jpg'); background-position: 0% 100%;">
-                                    <img src="src/images/Design/02_choicePic01.jpg">
+                                    <img src="~Design/02_choicePic01.jpg">
                                 </li>
                                 <li style="background-image: url('src/images/Design/02_choicePic03.jpg'); background-position: 100% 0%;">
-                                    <img src="src/images/Design/02_choicePic01.jpg">
+                                    <img src="~Design/02_choicePic01.jpg">
                                 </li>
                                 <li style="background-image: url('src/images/Design/02_choicePic04.jpg'); background-position: 100% 0%;">
-                                    <img src="src/images/Design/02_choicePic01.jpg">
+                                    <img src="~Design/02_choicePic01.jpg">
                                 </li>
                             </ul>
                         </div>

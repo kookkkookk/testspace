@@ -23,6 +23,7 @@ export default {
                     }
                 }
             },
+            loading: true,
             active: 0,
             //homeData: homeData,
             homeData: [
@@ -132,6 +133,12 @@ export default {
             console.log("!ERROR: Ajax homeData.json fail: ",error)
         })
         .then(()=> {
+
+            const { _loading } = this.$refs
+            const timeline = new TimelineLite()
+            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                    .add(()=>{ this.loading=false })
+
             this.setHandler()
         })
     },
@@ -161,6 +168,7 @@ export default {
 
 <template>
     <div class="homePage firstDom">
+        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- Banner -->
         <div class="bannerArea">
             

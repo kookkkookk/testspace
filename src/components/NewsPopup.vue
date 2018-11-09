@@ -5,6 +5,7 @@ export default {
     name: 'newsPopup',
     data() {
         return {
+            loading: true,
             //newsData: newsData,
             newsData: [
                 {
@@ -41,6 +42,11 @@ export default {
             //console.log("newsData Length: ",newsDataLength);
             if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
             this.popOpenActive = nowDesignationKey;
+
+            const { _loading } = this.$refs
+            const timeline = new TimelineLite()
+            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                    .add(()=>{ this.loading=false })
         })
     },
     mounted() {
@@ -57,6 +63,7 @@ export default {
 
 <template>
     <div class="pupPage">
+        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <h1 data-aos="fade-left">NEWS</h1>
         <div class="pupContainer">
 
