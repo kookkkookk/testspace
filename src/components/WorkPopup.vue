@@ -14,6 +14,13 @@ export default {
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev'
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet(index, className) {
+                        return `<span class="${className} swiper-pagination-bullet-custom">${index + 1}</span>`
+                    }
                 }
             },
             loading: true,
@@ -24,6 +31,7 @@ export default {
                     "listingPageImg1": null,
                     "listingPageImg2": null,*/
                     "constructionName": null,
+                    "constructionDescription": null,
                     "popupCoverImg": "src/images/99_default_init.jpg",
                     "descriptionTitle": null,
                     "description": null,
@@ -35,7 +43,9 @@ export default {
                 }
             ],
             popOpenActive: 0,
-            isShowTopBtn: false
+            isShowTopBtn: false,
+            isPage5jumpBtnNext: true,
+            isPage5jumpBtnPrev: true
         }
     },
     computed: {
@@ -51,6 +61,13 @@ export default {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
+        },
+        jumpWorkPop(val){
+            //this.$router.push('/work/'+val);
+            if(val==='next'){
+                this.$router.push('/work/'+(this.popOpenActive+1));
+            }
+
         }
     },
     components: {
@@ -65,9 +82,9 @@ export default {
                 this.isShowTopBtn = false
             }
 
-            if(val>(document.querySelector("#app").offsetHeight-document.querySelector(".footerDsktop").offsetHeight)){
+            /*if(val>(document.querySelector("#app").offsetHeight-document.querySelector(".footerDsktop").offsetHeight)){
                 this.isShowTopBtn = false;
-            }
+            }*/
         }
     },
     created(){
@@ -100,7 +117,18 @@ export default {
             //console.log(coverImg.clientHeight + " " + descriptionBox.clientHeight)
             let descriptionBoxTopPosition = (coverImg.clientHeight - descriptionBox.clientHeight)/2;
             descriptionBox.style.top = descriptionBoxTopPosition+'px';
+
+            //Swiper check desktop or mobile
+            if(this.isMobile){
+                this.swiperOption.spaceBetween=0
+            }
+
+            //mobile page5 next & prev Btn show & hide
+            (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
+            (this.popOpenActive===this.worksData.length ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
         }, 50);
+
+        
 
         //scroll anumated api
         this.$aos.init()
@@ -117,33 +145,36 @@ export default {
     <div class="pupPage">
         <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <div class="page1">
-            <h1 data-aos="fade-down">{{worksData[popOpenActive].constructionName}}</h1>
+            <h1 data-aos="fade-down" v-html="worksData[popOpenActive].constructionName"></h1>
+            <h2 data-aos="fade-down" data-aos-delay="200">{{worksData[popOpenActive].constructionDescription}}</h2>
             <div data-aos="fade-left" class="backBtn">
-                <router-link to="/works">BACK</router-link>
+                <router-link to="/works" v-if="!isMobile">BACK</router-link>
+                <router-link to="/works" v-else :class="{backBtnMobile:isMobile}"></router-link>
                 <span></span>
             </div>
             <div class="coverTopContainer">
                 <div class="coverImg"
                      :style="{backgroundImage:'url('+worksData[popOpenActive].popupCoverImg+')'}"
                      ref="coverImg"
-                     data-aos="fade-right">
+                     data-aos="fade-right"
+                     data-aos-delay="400">
+                     <img :src="worksData[popOpenActive].popupCoverImg" v-if="isMobile">
                 </div>
-                <div class="descriptionBox" ref="descriptionBox" data-aos="fade-left">
+                <div class="descriptionBox" ref="descriptionBox" data-aos="fade-left" data-aos-delay="400">
                     <h2>{{worksData[popOpenActive].descriptionTitle}}</h2>
                     <p v-html="worksData[popOpenActive].description"></p>
                 </div>
             </div>
-            <div data-aos="fade-down" class="introductionContent">
+            <div data-aos="fade-down" class="introductionContent" v-if="!isMobile">
                 <div v-if="worksData[popOpenActive].introduction != ''">
-                    <span></span>
-                    <p v-html="worksData[popOpenActive].introduction"></p>
+                    <p v-html="'<span class=worksPopDescriptionLine></span>'+worksData[popOpenActive].introduction"></p>
                 </div>
             </div>
         </div>
 
         <div class="page3">
             <div class="swiperContainer" data-aos="fade">
-                <div class="swiperLeftBtn swiperBtn">
+                <div class="swiperLeftBtn swiperBtn" v-if="!isMobile">
                     <span class="swiper-button-prev" slot="button-prev"><span></span></span>
                 </div>
                 <div class="swiperContent">
@@ -152,17 +183,18 @@ export default {
                                       :key="index">
                             <img :src="item || ''">
                         </swiper-slide>
+                        <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
                     </swiper>
+                    <div class="mobileBg" v-if="isMobile"></div>
                 </div>
-                <div class="swiperRightBtn swiperBtn">
+                <div class="swiperRightBtn swiperBtn" v-if="!isMobile">
                     <span class="swiper-button-next" slot="button-next"><span></span></span>
                 </div>
             </div>
             
-            <div class="designConceptContent" data-aos="fade-down">
+            <div class="designConceptContent" data-aos="fade-down" v-if="!isMobile">
                 <div v-if="worksData[popOpenActive].designConcept != ''">
-                    <span></span>
-                    <p v-html="worksData[popOpenActive].designConcept"></p>
+                    <p v-html="'<span class=worksPopDescriptionLine2></span>'+worksData[popOpenActive].designConcept"></p>
                 </div>
             </div>
         </div>
@@ -185,15 +217,52 @@ export default {
                 </div>
                 <div class="bg"></div>
             </div>
-            <div data-aos="fade-left" class="backBtn">
+            <div data-aos="fade-left" class="backBtn" v-if="!isMobile">
                 <router-link to="/works">BACK</router-link>
                 <span></span>
             </div>
         </div>
 
+        <div class="page5" v-if="isMobile">
+            <div class="page5Container">
+                <ul>
+                    <li v-show="isPage5jumpBtnPrev">
+                        <router-link :to="String(popOpenActive-1)"
+                                     @click.native="scrollToTop">
+                            PREV
+                        </router-link>
+                    </li>
+                    <li v-show="isPage5jumpBtnNext">
+                        <!-- <router-link :to="String(popOpenActive+1)"
+                                     @click.native="scrollToTop">
+                            NEXT
+                        </router-link> -->
+                        <!-- <a href="javascript:;" @click="jumpWorkPop('next'); scrollToTop();">
+                            NEXT
+                        </a> -->
+                        <!-- <a href="javascript:;" @click="$router.push('/work/'+String(popOpenActive++)); scrollToTop();">
+                            NEXT
+                        </a> -->
+                        <router-link :to="String(popOpenActive+1)"
+                                     @click.native="jumpWorkPop('next'); scrollToTop()">
+                            NEXT
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="topBtn"
              v-scroll-to="'body'"
-             :class="{topBtnShow:isShowTopBtn}">TOP</div>
+             :class="{topBtnShow:isShowTopBtn}"
+             v-if="!isMobile">TOP</div>
+
+        <div v-else
+             class="topBtnMobile"
+             v-scroll-to="'body'"
+             :class="{topBtnShow:isShowTopBtn}">
+             <span></span>
+        </div>
     </div>
 </template>
 
@@ -201,4 +270,56 @@ export default {
     @import "../scss/helpers/_mixin.scss";
     @import "../scss/helpers/scrollAnimation.scss";
     @import "../scss/pages/_works.scss";
+</style>
+
+<style>
+span.worksPopDescriptionLine{
+    width: 1px;
+    height: 100%;
+    max-height: 160px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+@media screen and (max-width: 1600px) {
+    span.worksPopDescriptionLine{
+        min-height: 150px;
+    }
+}
+@media screen and (max-width: 1366px) {
+    span.worksPopDescriptionLine{
+        min-height: 130px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    span.worksPopDescriptionLine{
+        min-height: 110px;
+    }
+}
+
+span.worksPopDescriptionLine2{
+    width: 1px;
+    height: 100%;
+    max-height: 112px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+@media screen and (max-width: 1366px) {
+    span.worksPopDescriptionLine2{
+        max-height: 112px;
+    }
+}
+
+/* mobile Swiper banner style */
+.swiperContent .swiper-pagination-bullet{
+    font-size: 0;
+    background: #5e5e5e;
+    opacity: 0.5;
+}
+.swiperContent .swiper-pagination-bullet-active{
+    opacity: 1;
+}
 </style>

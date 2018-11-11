@@ -106,10 +106,6 @@
                 top: 90px;
                 left: 0;
                 width: 100%;
-                transition: opacity 1.2s;
-
-                pointer-events: none;
-                opacity: 0;
                 >h1{
                     font-size: 30px;
                     color: #000;
@@ -127,9 +123,15 @@
                     right: 172px;
                 }
             }
-            .discoveryDesignContent.active{
-                pointer-events: auto;
-                opacity: 1;
+
+            //discovery design fade animated
+            .fade-enter-active,
+            .fade-leave-active {
+                transition: opacity 1s;
+            }
+            .fade-enter,
+            .fade-leave-to {
+                opacity: 0;
             }
         }
         .nextBtn,.prevBtn{

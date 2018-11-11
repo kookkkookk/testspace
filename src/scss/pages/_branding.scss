@@ -2,9 +2,19 @@
 //--- branding main screen ---
 .pagesTopCover{
     @include pagesTopCover;
+    background-color: #333;
     >div{
         height: 660px;
         background-color: #333;
+        @include SCREEN_1366{
+            height: 560px;
+        }
+        @include SCREEN_1024{
+            height: 510px;
+        }
+        @include SCREEN_900{
+            height: 460px;
+        }
         >h1{
             font-size: 110px;
             color: #555;
@@ -37,9 +47,29 @@
                 border-bottom: 1px solid #ccc;
                 margin-right: 25px;
             }
+            @include SCREEN_1366{
+                top: 180px;
+            }
+            @include SCREEN_1024{
+                font-size: 23px;
+                top: 160px;
+            }
+            @include SCREEN_900{
+                font-size: 21px;
+                top: 140px;
+            }
         }
         >p{
             top: 270px;
+            @include SCREEN_1366{
+                top: 250px;
+            }
+            @include SCREEN_1024{
+                top: 230px;
+            }
+            @include SCREEN_900{
+                top: 210px;
+            }
         }
         .artWorkBg{
             width: 760px;
@@ -51,6 +81,18 @@
             position: absolute;
             right: 0;
             top: 0;
+            @include SCREEN_1366{
+                width: 645px;
+                height: 560px;
+            }
+            @include SCREEN_1024{
+                width: 587px;
+                height: 510px;
+            }
+            @include SCREEN_900{
+                width: 529px;
+                height: 460px;
+            }
         }
     }
 }
@@ -67,6 +109,12 @@
         .creatorInformation{
             overflow: hidden;
             padding: 136px 0 125px 191px;
+            @include SCREEN_1366{
+                padding: 110px 0 100px 145px;
+            }
+            @include SCREEN_1280{
+                padding: 80px 0 80px 105px;
+            }
             >h3{
                 font-size: 26px;
                 color: #010101;
@@ -78,6 +126,15 @@
                     height: 1px;
                     background-color: #010101;
                     margin-top: 35px;
+                    @include SCREEN_1280{margin-top: 25px;}
+                }
+                @include SCREEN_1366{
+                    font-size: 24px;
+                    margin-bottom: 80px;
+                }
+                @include SCREEN_1280{
+                    font-size: 22px;
+                    margin-bottom: 60px;
                 }
             }
             .creator{
@@ -90,6 +147,15 @@
                 font-weight: bold;
                 margin-left: 35px;
                 display: inline-block;
+                @include SCREEN_1366{
+                    font-size: 28px;
+                    line-height: 52px;
+                    margin-left: 25px;
+                }
+                @include SCREEN_1280{
+                    font-size: 26px;
+                    line-height: 44px;
+                }
             }
             >h2{
                 font-size: 20px;
@@ -98,10 +164,28 @@
                 line-height: 32px;
                 margin-left: 210px;
                 margin-top: 55px;
+                @include SCREEN_1366{
+                    font-size: 18px;
+                    line-height: 30px;
+                    margin-left: 200px;
+                    margin-top: 40px;
+                }
+                @include SCREEN_1280{
+                    font-size: 16px;
+                    line-height: 28px;
+                    margin-top: 30px;
+                }
             }
             >ul{
                 margin-left: 210px;
                 margin-top: 55px;
+                @include SCREEN_1366{
+                    margin-left: 200px;
+                    margin-top: 40px;
+                }
+                @include SCREEN_1280{
+                    margin-top: 30px;
+                }
                 >li{
                     font-size: 16px;
                     color: #373737;
@@ -117,19 +201,43 @@
             z-index: 1;
             >img{
                 max-width: 100%;
+                @media screen and (max-width: 1800px) {
+                    max-width: 90%;
+                }
+                @include SCREEN_1280{
+                    max-width: 80%;
+                }
             }
         }
         .spacePic1{
             top: -196px;
             right: 589px;
+            @media screen and (max-width: 1800px) {
+                right: 459px;
+            }
+            @include SCREEN_1280{
+                right: 319px;
+            }
         }
         .spacePic2{
             top: -74px;
             right: 440px;
+            @media screen and (max-width: 1800px) {
+                right: 325px;
+            }
+            @include SCREEN_1280{
+                right: 205px;
+            }
         }
         .spacePic3{
             top: 10px;
             right: 291px;
+            @media screen and (max-width: 1800px) {
+                right: 191px;
+            }
+            @include SCREEN_1280{
+                right: 91px;
+            }
         }
     }
 }
@@ -148,13 +256,29 @@
         justify-content: center;
         .pic{
             font-size: 0;
+            text-align: center;
             >img{
                 max-width: 100%;
+                @include SCREEN_1366{
+                    max-width: 90%;
+                }
             }
         }
         .title{
             margin: 0 143px;
             margin-top: 100px;
+            @include SCREEN_1600{
+                margin: 0 100px;
+                margin-top: 100px;
+            }
+            @include SCREEN_1366{
+                margin: 0 80px;
+                margin-top: 70px;
+            }
+            @include SCREEN_1024{
+                margin: 0 50px;
+                margin-top: 60px;
+            }
             >h3{
                 font-size: 26px;
                 color: #010101;
@@ -166,6 +290,15 @@
                     background-color: #010101;
                     margin-top: 35px;
                 }
+                @include SCREEN_1600{
+                    font-size: 24px;
+                }
+                @include SCREEN_1366{
+                    font-size: 22px;
+                }
+                @include SCREEN_1024{
+                    font-size: 20px;
+                }
                 >span{
                     font-weight: bold;
                 }
@@ -175,6 +308,18 @@
                 color: #131313;
                 font-weight: bold;
                 margin-top: 90px;
+                white-space: nowrap;
+                @include SCREEN_1600{
+                    font-size: 26px;
+                }
+                @include SCREEN_1366{
+                    font-size: 24px;
+                    margin-top: 70px;
+                }
+                @include SCREEN_1024{
+                    font-size: 22px;
+                    margin-top: 60px;
+                }
             }
         }
         .discription{
@@ -187,6 +332,21 @@
                     margin-bottom: 45px;
                     line-height: 32px;
                     &:last-child{margin-bottom: 0;}
+                    @include SCREEN_1600{
+                        font-size: 18px;
+                        line-height: 30px;
+                        margin-bottom: 40px;
+                    }
+                    @include SCREEN_1366{
+                        font-size: 16px;
+                        line-height: 28px;
+                        margin-bottom: 35px;
+                    }
+                    @include SCREEN_1024{
+                        font-size: 14px;
+                        line-height: 26px;
+                        margin-bottom: 25px;
+                    }
                 }
             }
         }
@@ -200,13 +360,20 @@
     background-color: #eee;
     position: relative;
     overflow: hidden;
-    &.addBottomPadding{
-        padding-bottom: 120px;
-    }
+
     .collectionWorksContainer{
         width: 100%;
         max-width: 1600px;
         margin: 0 auto;
+        @include SCREEN_1600{
+            max-width: 1366px;
+        }
+        @include SCREEN_1366{
+            max-width: 1160px;
+        }
+        @media screen and (max-width: 1160px) {
+            max-width: 900px;
+        }
         >h3{
             font-size: 26px;
             color: #010101;
@@ -224,25 +391,77 @@
     }
     .collectionWorksContent{
         margin-top: 80px;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: flex-start;
         .workList{
-            width: 33.3%;
-            margin-bottom: 65px;
+            overflow: hidden;
+            margin-left: 300px;
+            //background-color: pink;
+            &:first-child{
+                margin-bottom: 120px;
+            }
+            @include SCREEN_1600{
+                margin-left: 250px;
+            }
+            @include SCREEN_1366{
+                margin-left: 200px;
+            }
             >h1{
                 font-size: 40px;
-                color: #000000;
+                color: #000;
+                margin-bottom: 20px;
+                @include SCREEN_1600{
+                    font-size: 36px;
+                }
+                @include SCREEN_1366{
+                    font-size: 34px;
+                }
             }
-            >ul{
-                margin-top: 20px;
-                >li{
+            .works{
+                //background-color: #759;
+                //width: 33.3%;
+                width: 550px;
+                float: left;
+                margin-bottom: 30px;
+                @include SCREEN_1600{
+                    width: 480px;
+                }
+                @include SCREEN_1366{
+                    width: 410px;
+                }
+                >p{
                     font-size: 20px;
                     color: #373737;
                     line-height: 32px;
+                    @include SCREEN_1600{
+                        font-size: 18px;
+                        line-height: 30px;
+                    }
+                    @include SCREEN_1366{
+                        font-size: 16px;
+                        line-height: 28px;
+                    }
                 }
             }
         }
+        // display: flex;
+        // flex-wrap: wrap;
+        // align-content: flex-start;
+
+        // .workList{
+        //     width: 33.3%;
+        //     margin-bottom: 65px;
+        //     >h1{
+        //         font-size: 40px;
+        //         color: #000000;
+        //     }
+        //     >ul{
+        //         margin-top: 20px;
+        //         >li{
+        //             font-size: 20px;
+        //             color: #373737;
+        //             line-height: 32px;
+        //         }
+        //     }
+        // }
     }
     .woodBg{
         width: 939px;
@@ -267,11 +486,26 @@
     background-color: #ffffff;
     position: relative;
     overflow: hidden;
+    @include SCREEN_1600{
+        padding-top: 105px;
+    }
+    @include SCREEN_1366{
+        padding-top: 85px;
+    }
     .stepContainer{
         width: 100%;
         max-width: 1600px;
         margin: 0 auto;
         //background-color: pink;
+        @include SCREEN_1600{
+            max-width: 1366px;
+        }
+        @include SCREEN_1366{
+            max-width: 1160px;
+        }
+        @media screen and (max-width: 1160px) {
+            max-width: 900px;
+        }
         >h3{
             font-size: 26px;
             color: #010101;
@@ -285,6 +519,12 @@
                 margin-top: 35px;
             }
             >span{font-weight: bold;}
+            @include SCREEN_1600{
+                font-size: 24px;
+            }
+            @include SCREEN_1366{
+                font-size: 22px;
+            }
         }
         .textBox{
             margin-top: 80px;
@@ -292,12 +532,33 @@
                 font-size: 30px;
                 color: #000;
                 font-weight: bold;
+                @include SCREEN_1600{
+                    font-size: 28px;
+                }
+                @include SCREEN_1366{
+                    font-size: 26px;
+                }
+                @media screen and (max-width: 1160px) {
+                    font-size: 24px;
+                }
             }
             >p{
                 margin-top: 30px;
                 font-size: 20px;
                 color: #000;
                 line-height: 32px;
+                @include SCREEN_1600{
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+                @include SCREEN_1366{
+                    font-size: 16px;
+                    line-height: 28px;
+                }
+                @media screen and (max-width: 1160px) {
+                    font-size: 14px;
+                    line-height: 26px;
+                }
             }
         }
         .stepContent{
@@ -318,9 +579,30 @@
                         font-style: italic;
                         font-size: 60px;
                         margin-left: -8px;
+                        @include SCREEN_1600{
+                            font-size: 50px;
+                            margin-left: -6px;
+                        }
+                        @include SCREEN_1366{
+                            font-size: 45px;
+                            margin-left: -5px;
+                        }
+                        @media screen and (max-width: 1160px) {
+                            font-size: 35px;
+                            margin-left: -4px;
+                        }
                     }
                     >p{
                         font-size: 25px;
+                        @include SCREEN_1600{
+                            font-size: 22px;
+                        }
+                        @include SCREEN_1366{
+                            font-size: 20px;
+                        }
+                        @media screen and (max-width: 1160px) {
+                            font-size: 18px;
+                        }
                     }
                 }
                 >li.cubeBlack{
@@ -328,15 +610,42 @@
                     height: 460px;
                     background-color: #2d2d2d;
                     border-radius: 6px;
+                    @include SCREEN_1600{
+                        width: 80px;
+                        height: 410px;
+                    }
+                    @include SCREEN_1366{
+                        width: 70px;
+                        height: 380px;
+                    }
+                    @media screen and (max-width: 1160px) {
+                        width: 60px;
+                        height: 350px;
+                    }
                     >h4{
                         color: #fff;
                         margin-top: 43px;
+                        @include SCREEN_1600{
+                            margin-top: 38px;
+                        }
+                        @include SCREEN_1366{
+                            margin-top: 30px;
+                        }
+                        @media screen and (max-width: 1160px) {
+                            margin-top: 25px;
+                        }
                     }
                     >p{
                         color: #fff;
                         writing-mode: vertical-lr;
                         display:inline-block;
                         margin-top: 25px;
+                        @include SCREEN_1600{
+                            margin-top: 20px;
+                        }
+                        @media screen and (max-width: 1160px) {
+                            margin-top: 15px;
+                        }
                     }
                 }
                 >li.cubeWhite{
@@ -345,15 +654,42 @@
                     background-color: #ededed;
                     border: 1px solid #2d2d2d;
                     border-radius: 6px;
+                    @include SCREEN_1600{
+                        width: 80px;
+                        height: 410px;
+                    }
+                    @include SCREEN_1366{
+                        width: 70px;
+                        height: 380px;
+                    }
+                    @media screen and (max-width: 1160px) {
+                        width: 60px;
+                        height: 350px;
+                    }
                     >h4{
                         color: #000;
                         margin-top: 43px;
+                        @include SCREEN_1600{
+                            margin-top: 38px;
+                        }
+                        @include SCREEN_1366{
+                            margin-top: 30px;
+                        }
+                        @media screen and (max-width: 1160px) {
+                            margin-top: 25px;
+                        }
                     }
                     >p{
                         color: #000;
                         writing-mode: vertical-lr;
                         display:inline-block;
                         margin-top: 25px;
+                        @include SCREEN_1600{
+                            margin-top: 20px;
+                        }
+                        @media screen and (max-width: 1160px) {
+                            margin-top: 15px;
+                        }
                     }
                 }
                 >li.circle{
@@ -361,6 +697,21 @@
                     height: 150px;
                     border-radius: 75px;
                     background-color: #2d2d2d;
+                    @include SCREEN_1600{
+                        width: 130px;
+                        height: 130px;
+                        border-radius: 65px;
+                    }
+                    @include SCREEN_1600{
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 60px;
+                    }
+                    @media screen and (max-width: 1160px) {
+                        width: 110px;
+                        height: 110px;
+                        border-radius: 55px;
+                    }
                     >h4{
                         color: #fff;
                         margin-top: 9px;
@@ -368,6 +719,9 @@
                     >p{
                         color: #fff;
                         margin-top: -9px;
+                        @media screen and (max-width: 1160px) {
+                            margin-top: -4px;
+                        }
                     }
 
                 }
@@ -381,6 +735,9 @@
                 top: 50%;
                 margin-top: -1px;
                 z-index: 2;
+                @include SCREEN_1366{
+                    height: 1px;
+                }
             }
         }
     }
@@ -394,5 +751,14 @@
         position: absolute;
         bottom: 0;
         z-index: 1;
+        @include SCREEN_1600{
+            height: 460px;
+        }
+        @include SCREEN_1366{
+            height: 450px;
+        }
+        @media screen and (max-width: 1160px) {
+            height: 420px;
+        }
     }
 }

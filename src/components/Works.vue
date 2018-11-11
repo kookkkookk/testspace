@@ -25,12 +25,14 @@ export default {
             ],
             isWorkShow: "All",
             isWorkSwitching: null,
-            showFirstLoadWork: 0
+            showFirstLoadWork: 0,
+            isShowTopBtn: false
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
+            'documentHeight',
             'getScrollTop'
         ]),
         worksDataLength(){
@@ -118,7 +120,13 @@ export default {
                     this.$refs['work'+i][0].classList.add("on")
                 }
             }
-        }
+
+            if(val>=(this.documentHeight+200)){
+                this.isShowTopBtn = true;
+            }else{
+                this.isShowTopBtn = false
+            }
+        },
     },
     created(){
         this.$axios.get('./assets/data/worksData.json').then((response) => {
@@ -162,8 +170,9 @@ export default {
         <div class="worksMainScreenArea pagesTopCover" ref="worksMainScreenArea">
             <div>
                 <h1 ref="title">WORKS</h1>
-                <h2 ref="subTitle">型隨機能。</h2>
-                <p ref="description">
+                <h2 ref="subTitle" v-if="!isMobile">型隨機能。</h2>
+                <h2 ref="subTitle" v-else>型隨機能</h2>
+                <p ref="description" v-if="!isMobile">
                     設計是理性的； 想法是感性的。<br>
                     空間本身就是故事，無需雕琢更不用華麗語彙，<br>
                     我們的設計以人為核心，溫柔保護內在空間的舒適與安全，<br>
@@ -201,7 +210,8 @@ export default {
                      v-show="isWorkShow==='All' || isWorkShow===item.classification"
                      :class="{hideing:isWorkSwitching==='hideing',
                               showing:isWorkSwitching==='showing',
-                              selected:isWorkShow==='All' || isWorkShow===item.classification}"
+                              selected:isWorkShow==='All' || isWorkShow===item.classification,
+                              long:item.listingLong}"
                      :ref="'work'+index">
                     <router-link :to="'work/'+index"
                                  @click.native="scrollToTop">
@@ -211,6 +221,12 @@ export default {
                     </router-link>
                 </div>
             </div>
+        </div>
+
+        <div class="topBtnMobile"
+             v-scroll-to="'body'"
+             :class="{topBtnShow:isShowTopBtn}">
+             <span></span>
         </div>
     </div>
 </template>

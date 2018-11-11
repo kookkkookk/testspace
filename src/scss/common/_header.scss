@@ -121,6 +121,9 @@ header{
                 padding: 0;
                 overflow: hidden;
                 margin: 0 75px;
+                @include SCREEN_1280{
+                    margin: 0 50px;
+                }
                 @include SCREEN_736{
                     margin: 0px;
                 }
@@ -187,23 +190,29 @@ header{
                 }
                 &.works{
                     left: 74px;
+                    @include SCREEN_1280{left: 50px;}
                 }
                 &.workPopup{
                     left: 74px;
-                    background-color: #3a76f8;
+                    //background-color: #3a76f8;
+                    @include SCREEN_1280{left: 50px;}
                 }
                 &.design{
                     left: 178px;
+                    @include SCREEN_1280{left: 150px;}
                 }
                 &.news{
                     left: 279px;
+                    @include SCREEN_1280{left: 252px;}
                 }
                 &.newsPopup{
                     left: 279px;
-                    background-color: #3a76f8;
+                    //background-color: #3a76f8;
+                    @include SCREEN_1280{left: 252px;}
                 }
                 &.branding{
                     left: 388px;
+                    @include SCREEN_1280{left: 361px;}
                 }
                 @include SCREEN_736{display: none;}
             }

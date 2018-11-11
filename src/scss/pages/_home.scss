@@ -49,7 +49,7 @@
                 }
             }
 
-            //banner fade & slide animated
+            //banner fade animated
             .fade-enter-active,
             .fade-leave-active {
                 transition: opacity 1s;
@@ -127,7 +127,7 @@
         right: 0;
         bottom: 23px;
         z-index: 2;
-        pointer-events: none;
+        //pointer-events: none;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -138,6 +138,7 @@
             background-image: url("~Home/00_mouseIcon1.png");
             background-size: contain;
             position: relative;
+            cursor: pointer;
             @include SCREEN_1366{
                 width: 75px;
                 height: 75px;

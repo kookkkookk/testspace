@@ -1,4 +1,5 @@
 <script>
+import { mapGetters } from 'vuex';
 //import brandingData from '../assets/data/brandingData.json';
 export default {
     name: 'branding',
@@ -8,16 +9,25 @@ export default {
             //brandingData: brandingData
             brandingData: [
                 {
-                    "year":null,
-                    "works":[]
+                    "type":null,
+                    "worksList":[]
+                },
+                {
+                    "type":null,
+                    "worksList":[]
                 }
             ]
         }
     },
     computed: {
-        brandingDataReverse(){
+        ...mapGetters([
+            'isMobile',
+            'documentHeight',
+            'getScrollTop'
+        ]),
+        /*brandingDataReverse(){
             return this.brandingData.reverse()
-        },
+        },*/
         brandingDataRemainder(){
             return this.brandingData.length % 3;
         }
@@ -141,21 +151,57 @@ export default {
         </div>
 
         <!-- collectionWorksArea -->
-        <div class="collectionWorksArea" :class="{addBottomPadding: brandingDataRemainder!==0}">
+        <div class="collectionWorksArea">
             <div class="collectionWorksContainer">
                 <h3>歷年<span>作品</span></h3>
 
                 <div class="collectionWorksContent">
-                    <div class="workList" v-for="(item, index) in brandingDataReverse" :key="index">
-                        <h1>{{item.year}}</h1>
-                        <ul>
-                            <li v-for="(list, n) in item.works" :key="n">{{list}}</li>
-                        </ul>
+
+                    <div class="workList">
+                        <h1>{{brandingData[0].type+' >'}}</h1>
+                        <div class="works commercialList"
+                             v-for="(item, index) in brandingData[0].workList"
+                             :key="index"
+                             v-if="index % 6 == 0 && !isMobile">
+                            <p v-if="brandingData[0].workList[index]">{{brandingData[0].workList[index]}}</p>
+                            <p v-if="brandingData[0].workList[index+1]">{{brandingData[0].workList[index+1]}}</p>
+                            <p v-if="brandingData[0].workList[index+2]">{{brandingData[0].workList[index+2]}}</p>
+                            <p v-if="brandingData[0].workList[index+3]">{{brandingData[0].workList[index+3]}}</p>
+                            <p v-if="brandingData[0].workList[index+4]">{{brandingData[0].workList[index+4]}}</p>
+                            <p v-if="brandingData[0].workList[index+5]">{{brandingData[0].workList[index+5]}}</p>
+                        </div>
+                        
+                        <p v-if="isMobile"
+                           v-for="(item, index) in brandingData[0].workList"
+                           :key="index">
+                           {{item}}
+                        </p>
+                    </div>
+                    
+                    <div class="workList">
+                        <h1>{{brandingData[1].type+' >'}}</h1>
+                        <div class="works interioreList"
+                             v-for="(item, index) in brandingData[1].workList"
+                             :key="index"
+                             v-if="index % 6 == 0 && !isMobile">
+                            <p v-if="brandingData[1].workList[index]">{{brandingData[1].workList[index]}}</p>
+                            <p v-if="brandingData[1].workList[index+1]">{{brandingData[1].workList[index+1]}}</p>
+                            <p v-if="brandingData[1].workList[index+2]">{{brandingData[1].workList[index+2]}}</p>
+                            <p v-if="brandingData[1].workList[index+3]">{{brandingData[1].workList[index+3]}}</p>
+                            <p v-if="brandingData[1].workList[index+4]">{{brandingData[1].workList[index+4]}}</p>
+                            <p v-if="brandingData[1].workList[index+5]">{{brandingData[1].workList[index+5]}}</p>
+                        </div>
+                        
+                        <p v-if="isMobile"
+                           v-for="(item, index) in brandingData[1].workList"
+                           :key="index">
+                           {{item}}
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="woodBg" :class="{moveTop: brandingDataRemainder!==0}"></div>
+            <div class="woodBg"></div>
         </div>
 
         <div class="stepArea">

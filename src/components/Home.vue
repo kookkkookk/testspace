@@ -80,6 +80,7 @@ export default {
 
                 //由於該el已經被position 所以offsetTop重置，要先抓父層再相加
                 //this.el_schematically_TextBox = document.querySelector('.schematically').offsetTop + document.querySelector('.schematically .description').offsetTop
+                
             },100)
         }*/
     },
@@ -143,8 +144,6 @@ export default {
         })
     },
     mounted(){
-        //this.getDomOffset();
-        
         //Banner animated (tweenMax)
         const { bannerDom } = this.$refs
         const { titleArea } = this.$refs
@@ -158,6 +157,8 @@ export default {
             duration: 500,
             once: true
         })
+
+        //this.getDomOffset()
         
     },
     destroyed () {
@@ -181,7 +182,8 @@ export default {
                 <transition-group v-if="!isMobile"
                                   tag="div"
                                   name="fade"
-                                  @click.native="clickBanner(active+1)">
+                                  >
+                                  <!-- @click.native="clickBanner(active+1)" -->
                     <div class="bannerPic"
                         v-for="(item, index) in homeData[1].bannerDesktopImg"
                         :key="index"
@@ -206,7 +208,7 @@ export default {
                 </div>
             </div>
             <div v-if="!isMobile" class="mouseIcon">
-                <div>
+                <div v-scroll-to="'.chairArea'">
                     <span></span>
                 </div>
             </div>
@@ -274,12 +276,12 @@ export default {
 </style>
 <style>
 /* mobile Swiper banner style */
-.swiper-pagination-bullet{
+.mobileBanner .swiper-pagination-bullet{
     font-size: 0;
     background: #fff;
     opacity: 0.5;
 }
-.swiper-pagination-bullet-active{
+.mobileBanner .swiper-pagination-bullet-active{
     opacity: 1;
 }
 </style>

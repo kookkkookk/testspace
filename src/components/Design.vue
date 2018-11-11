@@ -1,4 +1,5 @@
 <script>
+import { mapGetters } from 'vuex';
 export default {
     name: 'design',
     data() {
@@ -6,16 +7,38 @@ export default {
             discoveryDesignActive: 0,
             isDiscoveryDesignPrev: false,
             isDiscoveryDesignNext: true,
-            discoveryDesign:[
+            discoveryDesignContent:[
                 {
-                    //將discovery Design 改用data方式，不然太白癡了
+                    "title": "體貼入微，<br>不只是觀察也是感受",
+                    "description": "建築大師庫哈斯：「建築是一種冒險 。」<br>室內設計則是整合思考，為人設計，<br>成立至今近二十年的時間，<br>我們從不定義自己的風格，更不盲從追求流行，<br>當設計師像明星一樣走進大眾生活，<br>我們依然默默耕耘每一件作品，<br>也許是我們的個性，也或許是我們習慣以作品發聲。",
+                    "pic": "src/images/Design/01_discoveryDesignPic01.jpg"
+                },
+                {
+                    "title": "體貼入微，<br>不只是觀察也是感受",
+                    "description": "跨足商業與住宅空間，我們著眼在於生活機能與方便使用，<br>而不是空間的華麗與獨特風格，或是材質的特殊難得，<br>如果留心觀察，<br>生活中被大家長期使用、慣用的每一個穿著物件，背後都有其原因。<br>不論是對自身個性、喜好的瞭解，<br>或者深受物件的機能、美感、態度所吸引，<br>每個選擇都值得仔細探究。<br>接受設計委託案，我們習慣同步請客戶分享日常習慣與愛好，<br>作為未來設計參考與主人風格的演繹。",
+                    "pic": "src/images/Design/01_discoveryDesignPic02.jpg"
+                },
+                {
+                    "title": "生活者的樣貌，<br>比風格更重要",
+                    "description": "與素材對話：<br>面對預算，不代表設計與想法就要被犧牲，<br>學習挖掘材質的替代性與變化性，只要用心入微，<br>一塊石材的紋理和豐富面貌，一塊木料，就可琢磨數十種組合方式。<br>設計師對品鑑眼光與核心價值，需要長期觀察與累積，<br>不要輕易被名牌物件牽引，空間不是物件的堆疊，<br>而是再現事物真隨中的美。<br>文藝復興藝術家米開朗基羅曾說：<br>「其實這型體本來就存在於大理石中，我只是把不需要的部分去掉而已。」",
+                    "pic": "src/images/Design/01_discoveryDesignPic03.jpg"
+                },
+                {
+                    "title": "生活者的樣貌，<br>比風格更重要",
+                    "description": "給未來的創作者與居住者：<br>常常提醒公司同事，不排除任何可能與創意，<br>閱讀、看展、旅行....，訓練眼界與累積內涵，<br>不斷尋求自己的想法，才能敏銳感受世界，<br>不拘泥於創造好作品的執著，<br>全心誠意做好每件事，<br>再努力一點，那甘苦甜美與客戶肯定是忠實的。",
+                    "pic": "src/images/Design/01_discoveryDesignPic04.jpg"
                 }
             ]
         }
     },
     computed: {
+        ...mapGetters([
+            'isMobile',
+            'documentHeight',
+            //'getScrollTop'
+        ]),
         discoveryDesignLength(){
-            return 4;
+            return this.discoveryDesignContent.length
         }
     },
     methods: {
@@ -68,8 +91,8 @@ export default {
                 </p>
                 <div class="classificationMenu" ref="select">
                     <ul>
-                        <li><a href="javascript:;">CHOICE</a></li>
-                        <li><a href="javascript:;">ARTWORK</a></li>
+                        <li><a href="javascript:;">CROSSOVER</a></li>
+                        <li><a href="javascript:;">ART COLLECTION</a></li>
                     </ul>
                 </div>
                 <div class="artWorkBg" ref="artWorkBg"></div>
@@ -81,76 +104,19 @@ export default {
             <div class="discoveryDesignContainer">
                 <h3>設計<span>發現</span></h3>
 
-                <div class="discoveryDesignContentGroup">
-                    <!-- 0 -->
-                    <div class="discoveryDesignContent"
-                         :class="{active:discoveryDesignActive===0}">
-                        <h1>體貼入微，<br>不只是觀察也是感受</h1>
-                        <p>
-                            建築大師庫哈斯：「建築是一種冒險 。」<br>
-                            室內設計則是整合思考，為人設計，<br>
-                            成立至今近二十年的時間，<br>
-                            我們從不定義自己的風格，更不盲從追求流行，<br>
-                            當設計師像明星一樣走進大眾生活，<br>
-                            我們依然默默耕耘每一件作品，<br>
-                            也許是我們的個性，也或許是我們習慣以作品發聲。
-                        </p>
-                        <div class="pic"><img src="~Design/01_discoveryDesignPic01.jpg"></div>
-                    </div>
-
-                    <!-- 1 -->
-                    <div class="discoveryDesignContent"
-                         :class="{active:discoveryDesignActive===1}">
-                        <h1>體貼入微，<br>不只是觀察也是感受</h1>
-                        <p>
-                            跨足商業與住宅空間，我們著眼在於生活機能與方便使用，<br>
-                            而不是空間的華麗與獨特風格，或是材質的特殊難得，<br>
-                            如果留心觀察，<br>
-                            生活中被大家長期使用、慣用的每一個穿著物件，背後都有其原因。<br>
-                            不論是對自身個性、喜好的瞭解，<br>
-                            或者深受物件的機能、美感、態度所吸引，<br>
-                            每個選擇都值得仔細探究。<br>
-                            接受設計委託案，我們習慣同步請客戶分享日常習慣與愛好，<br>
-                            作為未來設計參考與主人風格的演繹。
-                        </p>
-                        <div class="pic"><img src="~Design/01_discoveryDesignPic02.jpg"></div>
-                    </div>
-
-                    <!-- 2 -->
-                    <div class="discoveryDesignContent"
-                         :class="{active:discoveryDesignActive===2}">
-                        <h1>生活者的樣貌，<br>比風格更重要</h1>
-                        <p>
-                            與素材對話：<br>
-                            面對預算，不代表設計與想法就要被犧牲，<br>
-                            學習挖掘材質的替代性與變化性，只要用心入微，<br>
-                            一塊石材的紋理和豐富面貌，一塊木料，就可琢磨數十種組合方式。<br>
-                            設計師對品鑑眼光與核心價值，需要長期觀察與累積，<br>
-                            不要輕易被名牌物件牽引，空間不是物件的堆疊，<br>
-                            而是再現事物真隨中的美。<br>
-                            文藝復興藝術家米開朗基羅曾說：<br>
-                            「其實這型體本來就存在於大理石中，我只是把不需要的部分去掉而已。」
-                        </p>
-                        <div class="pic"><img src="~Design/01_discoveryDesignPic03.jpg"></div>
-                    </div>
-
-                    <!-- 3 -->
-                    <div class="discoveryDesignContent"
-                         :class="{active:discoveryDesignActive===3}">
-                        <h1>生活者的樣貌，<br>比風格更重要</h1>
-                        <p>
-                            給未來的創作者與居住者：<br>
-                            常常提醒公司同事，不排除任何可能與創意，<br>
-                            閱讀、看展、旅行....，訓練眼界與累積內涵，<br>
-                            不斷尋求自己的想法，才能敏銳感受世界，<br>
-                            不拘泥於創造好作品的執著，<br>
-                            全心誠意做好每件事，<br>
-                            再努力一點，那甘苦甜美與客戶肯定是忠實的。
-                        </p>
-                        <div class="pic"><img src="~Design/01_discoveryDesignPic04.jpg"></div>
-                    </div>
-
-                </div>
+                <transition-group v-if="!isMobile"
+                                  tag="div"
+                                  name="fade"
+                                  class="discoveryDesignContentGroup">
+                    <div v-for="(item,index) in discoveryDesignContent"
+                         :key="index"
+                         class="discoveryDesignContent"
+                         v-show="discoveryDesignActive===index">
+                        <h1 v-html="item.title"></h1>
+                        <p v-html="item.description"></p>
+                        <div class="pic"><img :src="item.pic"></div>
+                    </div> 
+                </transition-group>
 
                 <div class="nextBtn"
                      @click="changeDiscoveryDesign(discoveryDesignActive+1)"
