@@ -48,12 +48,6 @@ export default {
             isPage5jumpBtnPrev: true
         }
     },
-    beforeRouteEnter (to, from, next) {
-        next()
-    },
-    beforeRouteUpdate (to, from, next) {
-        next()
-    },
     computed: {
         ...mapGetters([
             'isMobile',
@@ -81,6 +75,11 @@ export default {
                     history.go(0);
                 }
             }, 500)
+        },
+        aaaaa(){
+            console.log("aaaaa")
+            this.$router.push('/work/3')
+            this.popOpenActive = 3
         }
     },
     components: {
@@ -200,7 +199,7 @@ export default {
                         </swiper-slide>
                         
                     </swiper>
-                    <img src="~Works/work01/01_work_ListingPic01-1.jpg" v-if="isMobile" style="width: 100%;visibility: hidden;">
+                    <img src="~Works/99_work_ListingPicDefault.jpg" v-if="isMobile" style="width: 100%;visibility: hidden;">
                     <div class="mobileBg" v-if="isMobile"></div>
                     
                 </div>
@@ -250,10 +249,11 @@ export default {
                         </a>
                     </li>
                     <li v-show="isPage5jumpBtnNext">
-                        <a href="javascript:;" @click="jumpWorkPop('next')">
+                        <!-- <a href="javascript:;" @click="jumpWorkPop('next')">
                             NEXT
-                        </a>
+                        </a> -->
                         <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
+                        <a href="javascript:;" @click="aaaaa">nexxxxxt</a>
                     </li>
                 </ul>
             </div>

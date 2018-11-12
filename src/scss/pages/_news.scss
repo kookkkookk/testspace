@@ -3,6 +3,9 @@
 .pagesTopCover{
     @include pagesTopCover;
     >div{
+        @include SCREEN_736{
+            height: auto;
+        }
         .light{
             position: absolute;
             bottom: 0;
@@ -23,6 +26,16 @@
                 width: 235px;
                 height: 500px;
             }
+            @include SCREEN_736{
+                width: 217px;
+                height: 460px;
+                right: -76px;
+            }
+        }
+        >h2{
+            @include SCREEN_736{
+                padding-bottom: 130px;
+            }
         }
     }
     .bottomWhite{
@@ -32,126 +45,8 @@
         background-color: #ededed;
         position: absolute;
         bottom: 0;
-    }
-}
-
-
-//--- Introduction Share ---
-@mixin cover{
-    //display: inline-block;
-    //float: left;
-    width: 50%;
-    >a{
-        font-size: 0;
-        display: inline-block;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        transition: box-shadow 0.3s, transform 0.3s;
-        &:hover{
-            box-shadow: 4px 4px 4px rgba(20%,20%,40%,0.5);
-            transform: translate(-1px,-1px);
-        }
-        &.mainImgType1{
-            width: 373px;
-            height: 525px;
-            @include SCREEN_1366{
-                width: 340px;
-                height: 479px;
-            }
-            @include SCREEN_1280{
-                width: 320px;
-                height: 450px;
-            }
-            @include SCREEN_1024{
-                width: 300px;
-                height: 422px;
-            }
-            @include SCREEN_900{
-                width: 260px;
-                height: 366px;
-            }
-        }
-        &.mainImgType2{
-            width: 525px;
-            height: 373px;
-            @include SCREEN_1366{
-                width: 479px;
-                height: 340px;
-            }
-            @include SCREEN_1280{
-                width: 450px;
-                height: 320px;
-            }
-            @include SCREEN_1024{
-                width: 422px;
-                height: 300px;
-            }
-            @include SCREEN_900{
-                width: 366px;
-                height: 260px;
-            }
-        }
-    }
-}
-@mixin rightText{
-    //display: inline-block;
-    //float: left;
-    width: 50%;
-    display: flex;
-    align-items:flex-end;
-    >div{
-        width: 80%;
-        padding-bottom: 80px;
-        border-bottom: 1px solid#818181;
-        margin-left: 30px;
-        @include SCREEN_1280{
-            padding-bottom: 60px;
-        }
-        @include SCREEN_900{
-            width: 100%;
-            padding-bottom: 40px;
-        }
-        >h1{
-            display: inline-block;
-            font-size: 30px;
-            color: #1e1e1e;
-            padding: 0 10px;
-            border-left: 2px solid #1e1e1e;
-            border-right: 2px solid #1e1e1e;
-            @include SCREEN_1366{
-                font-size: 28px;
-            }
-            @include SCREEN_1280{
-                font-size: 27px;
-            }
-            @include SCREEN_1024{
-                font-size: 26px;
-            }
-            @include SCREEN_900{
-                font-size: 24px;
-            }
-        }
-        >h2{
-            font-size: 21px;
-            color: #1e1e1e;
-            line-height: 34px;
-            margin-top: 40px;
-            @include SCREEN_1366{
-                font-size: 19px;
-            }
-            @include SCREEN_1280{
-                font-size: 18px;
-                line-height: 32px;
-            }
-            @include SCREEN_1024{
-                font-size: 17px;
-            }
-            @include SCREEN_900{
-                font-size: 15px;
-                line-height: 28px;
-                margin-top: 30px;
-            }
+        @include SCREEN_736{
+            height: 30px;
         }
     }
 }
@@ -162,31 +57,224 @@
     width: 100%;
     min-height: 400px;
     margin: 0 auto;
-    padding-top: 30px;
-    >div{
+    padding-top: 100px;
+    padding-bottom: 350px;
+    @include SCREEN_1366{
+        padding-top: 80px;
+        padding-bottom: 200px;
+    }
+    @include SCREEN_1024{
+        padding-top: 50px;
+        padding-bottom: 120px;
+    }
+    @include SCREEN_736{
+        padding-top: 80px;
+    }
+    .introductionContainer{
+        width: 100%;
         max-width: 1280px;
+        //background-color: pink;
         margin: 0 auto;
-        padding-bottom: 85px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
         @include SCREEN_1366{
-            max-width: 1100px;
-        }
-        @include SCREEN_1280{
             max-width: 1024px;
         }
         @include SCREEN_1024{
-            max-width: 900px;
-        }
-        @include SCREEN_900{
             max-width: 736px;
         }
-        .cover{
-            @include cover;
-        }
-        .rightText{
-            @include rightText;
+        .newsItem{
+            //overflow: hidden;
+            margin-bottom: 170px;
+            display: flex;
+            justify-content: center;
+            &:last-child{
+                margin-bottom: 0px;
+            }
+            @include SCREEN_1366{
+                margin-bottom: 130px;
+            }
+            @include SCREEN_1024{
+                margin-bottom: 90px;
+            }
+            @include SCREEN_736{
+                display: block;
+            }
+            .left{
+                width: 50%;
+                // float: left;
+                @include SCREEN_736{
+                    width: 100%;
+                }
+                .cover{
+                    >h2{
+                        @include SCREEN_736{
+                            font-family: 'MyriadPro-Light';
+                            font-size: 26px;
+                            line-height: 40px;
+                            color: #1e1e1e;
+                            text-align: center;
+                        }
+                    }
+                    >a{
+                        display: block;
+                        background-repeat: no-repeat;
+                        background-position: 50%;
+                        background-size: contain;
+                        transition: box-shadow 0.3s, transform 0.3s;
+                        &.straight{
+                            width: 382px;
+                            height: 475px;
+                            @include SCREEN_1366{
+                                width: 342px;
+                                height: 425px;
+                            }
+                            @include SCREEN_1024{
+                                width: 278px;
+                                height: 345px;
+                            }
+                            @include SCREEN_736{
+                                margin: 0 auto;
+                            }
+                        }
+                        &.horizontal{
+                            width: 519px;
+                            height: 374px;
+                            @include SCREEN_1366{
+                                width: 450px;
+                                height: 324px;
+                            }
+                            @include SCREEN_1024{
+                                width: 339px;
+                                height: 244px;
+                            }
+                            @include SCREEN_736{
+                                margin: 0 auto;
+                            }
+                        }
+                        &:hover{
+                            box-shadow: 4px 4px 4px rgba(20%,20%,40%,0.5);
+                            transform: translate(-1px,-1px);
+                        }
+                    }
+                }
+            }
+            .right{
+                width: 50%;
+                // float: left;
+                display: flex;
+                align-items: center;
+                margin-left: 8%;
+                @include SCREEN_1366{
+                    margin-left: 5%;
+                }
+                @include SCREEN_1024{
+                    margin-left: 2.5%;
+                }
+                @include SCREEN_736{
+                    width: 100%;
+                }
+                >div{
+                    width: 80%;
+                    overflow: hidden;
+                    padding-bottom: 30px;
+                    border-bottom: 1px solid #818181;
+                    @include SCREEN_1366{
+                        width: 90%;
+                    }
+                    @include SCREEN_1024{
+                        width: 100%;
+                        padding-bottom: 20px;
+                    }
+                    @include SCREEN_736{
+                        width: 80%;
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+                    >h1{
+                        font-size: 36px;
+                        color: #1e1e1e;
+                        font-weight: bold;
+                        line-height: 80px;
+                        float: left;
+                        border-bottom: 2px solid #1e1e1e;
+                        @include SCREEN_1366{
+                            font-size: 32px;
+                            line-height: 70px;
+                        }
+                        @include SCREEN_1024{
+                            font-size: 26px;
+                            line-height: 50px;
+                        }
+                        @include SCREEN_736{
+                            float: none;
+                            display: inline-block;
+                        }
+                    }
+                    >h2{
+                        font-family: 'MyriadPro-Light';
+                        font-size: 30px;
+                        color: #1e1e1e;
+                        line-height: 80px;
+                        float: left;
+                        margin-left: 25px;
+                        @include SCREEN_1366{
+                            font-size: 26px;
+                            line-height: 70px;
+                            margin-left: 20px;
+                        }
+                        @include SCREEN_1024{
+                            font-size: 26px;
+                            line-height: 50px;
+                            margin-left: 15px;
+                        }
+                    }
+                    >h3{
+                        font-size: 30px;
+                        color: #1e1e1e;
+                        clear: both;
+                        padding-top: 20px;
+                        @include SCREEN_1366{
+                            font-size: 26px;
+                            padding-top: 15px;
+                        }
+                        @include SCREEN_1024{
+                            font-size: 20px;
+                            padding-top: 10px;
+                        }
+                    }
+                    >h4{
+                        font-size: 26px;
+                        color: #1e1e1e;
+                        line-height: 40px;
+                        margin-top: 20px;
+                        @include SCREEN_1366{
+                            font-size: 22px;
+                            line-height: 32px;
+                            margin-top: 15px;
+                        }
+                        @include SCREEN_1024{
+                            font-size: 16px;
+                            line-height: 26px;
+                            margin-top: 10px;
+                        }
+                    }
+                    >h5{
+                        font-size: 26px;
+                        color: #1e1e1e;
+                        line-height: 40px;
+                        margin-top: 25px;
+                        @include SCREEN_1366{
+                            font-size: 22px;
+                            line-height: 32px;
+                            margin-top: 15px;
+                        }
+                        @include SCREEN_1024{
+                            font-size: 16px;
+                            line-height: 26px;
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -194,166 +282,48 @@
 //--- PupPage ---
 .pupPage{
     width: 100%;
-    min-height: 100%;
-    background-color: #ededed;
-    position: relative;
     padding-top: 220px;
-    padding-bottom: 200px;
+    background-color: #ededed;
     @include SCREEN_1366{
-        padding-top: 200px;
-        padding-bottom: 150px;
-    }
-    @include SCREEN_900{
         padding-top: 190px;
-        padding-bottom: 100px;
     }
-    >h1{
-        font-family: 'MyriadPro-Light';
-        font-size: 120px;
-        color: #dcdada;
-        letter-spacing: 0.2em;
+    @include SCREEN_736{
+        padding-top: 110px;
+    }
+    .backBtn{
+        @include BackBtn;
         position: absolute;
-        top: 90px;
-        right: 60px;
-        pointer-events: none;
-        @include SCREEN_1366{
-            font-size: 110px;
+        top: 20px;
+        right: 50px;
+        margin-top: 0px;
+        @include SCREEN_1600{
+            margin-top: 0px;
+            right: 30px;
         }
-        @include SCREEN_1024{
-            font-size: 100px;
+        @include SCREEN_1366{
+            right: 0px;
+            margin-right: 20px;
         }
         @include SCREEN_900{
-            font-size: 90px;
+            margin-top: 0px;
+        }
+        @include SCREEN_736{
+            margin-top: -80px;
         }
     }
-    
-    .pupContainer{
-        width: 100%;;
-        max-width: 1920px;
-        height: 100%;
+    .page1{
+        width: 100%;
+        max-width: 1440px;
         margin: 0 auto;
-        overflow: hidden;
-        .pupContent{
-            
-            max-width: 1600px;
-            margin: 0 auto;
-            padding-bottom: 85px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            @include SCREEN_1600{
-                max-width: 1440px;
-            }
-            @include SCREEN_1366{
-                max-width: 1100px;
-            }
-            @include SCREEN_1280{
-                max-width: 1024px;
-            }
-            @include SCREEN_1024{
-                max-width: 900px;
-            }
-            @include SCREEN_900{
-                max-width: 736px;
-            }
-            .cover{
-                @include cover;
-                text-align: center;
-                >a{
-                    transition: none;
-                    pointer-events: none;
-                    &.mainImgType1{
-                        @include SCREEN_1600n{
-                            width: 505px;
-                            height: 711px;
-                        }
-                    }
-                    &.mainImgType2{
-                        @include SCREEN_1600n{
-                            width: 711px;
-                            height: 505px;
-                        }
-                    }
-                }
-            }
-            .rightText{
-                @include rightText;
-                >div{
-                    padding-bottom: 0px;
-                    border: none;
-                    >p{
-                        font-size: 21px;
-                        color: #1e1e1e;
-                        text-indent: 42px;
-                        line-height: 34px;
-                        margin-top: 40px;
-                        &:nth-child(3){
-                            margin-top: 80px;
-                            @include SCREEN_1600{
-                                margin-top: 60px;
-                            }
-                        }
-                        @include SCREEN_1366{
-                            font-size: 19px;
-                        }
-                        @include SCREEN_1280{
-                            font-size: 18px;
-                            line-height: 32px;
-                        }
-                        @include SCREEN_1024{
-                            font-size: 17px;
-                        }
-                        @include SCREEN_900{
-                            font-size: 15px;
-                            line-height: 28px;
-                        }
-                    }
-                }
-            }
+        position: relative;
+        background-color: pink;
+        display: flex;
+        justify-content: center;
+        .left{
+            width: 50%;
         }
-        
-        .showPic{
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;;
-            flex-wrap: wrap;
-
-            max-width: 1600px;
-            margin: 0 auto;
-            @include SCREEN_1600{
-                max-width: 1440px;
-            }
-            @include SCREEN_1366{
-                max-width: 1100px;
-            }
-            @include SCREEN_1280{
-                max-width: 1024px;
-            }
-            @include SCREEN_1024{
-                max-width: 900px;
-            }
-            @include SCREEN_900{
-                max-width: 736px;
-            }
-            >div{
-                float: left;
-                margin: 0 10px;
-                margin-bottom: 20px;
-                height: auto;
-                font-size: 0;
-                >img{
-                    width: 100%;
-                }
-                &.two{
-                    width: calc(50% - 20px);
-                }
-                &.three{
-                    width: calc(33.3% - 20px);
-                }
-            }
-        }
-        .backBtn{
-            @include BackBtn;
+        .right{
+            width: 50%;
         }
     }
 }

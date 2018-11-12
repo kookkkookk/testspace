@@ -10,13 +10,12 @@ export default {
             //newsData: newsData
             newsData: [
                 {
+                    "typeName": null,
+                    "subTypeName": null,
                     "title": null,
                     "subTitle": null,
-                    //"descriptionGroup":[],
-                    "mainImg": "src/images/99_default_init.jpg",
-                    "mainImgType": null,
-                    "mainImgShowPosition": null,
-                    //"imgGroup": []
+                    "subTitleTwo": null,
+                    "mainImg": "src/images/99_default_init.jpg"
                 }
             ]
         }
@@ -82,8 +81,9 @@ export default {
             <div>
                 <h1 ref="title">NEWS</h1>
                 <div class="light" ref="ligth"><img src="~News/00_light_desktop.png" alt=""></div>
-                <h2 ref="subTitle">慢功細活。</h2>
-                <p ref="description">
+                <h2 ref="subTitle" v-if="!isMobile">慢功細活。</h2>
+                <h2 ref="subTitle" v-else>慢功細活</h2>
+                <p ref="description" v-if="!isMobile">
                     我們的設計，一尺一寸亦如書法裡一筆一畫，<br>
                     孕育累積，方見天地；<br>
                     內斂優雅，一分溫柔的氣質；<br>
@@ -95,21 +95,32 @@ export default {
 
         <!-- Introduction -->
         <div class="introductionArea">
-            <div v-for="(item, index) in newsData"
-                 :key="index">
-                <div data-aos="fade-right" class="cover">
-                    <router-link :to="'news/'+index"
-                                 :class="item.mainImgType"
-                                 @click.native="scrollToTop"
-                                 :style="{backgroundImage:'url('+item.mainImg+')',
-                                          backgroundPosition:item.mainImgShowPosition}">
 
-                    </router-link>
-                </div>
-                <div class="rightText">
-                    <div>
-                        <h1 data-aos="fade-right" data-aos-delay="200">{{item.title}}</h1>
-                        <h2 data-aos="fade-right" data-aos-delay="400" v-html="item.subTitle"></h2>
+            <div class="introductionContainer">
+                <div class="newsItem"
+                     v-for="(item, index) in newsData"
+                     :key="index">
+                    <div class="left">
+                        <div class="cover">
+                            <h2 v-if="isMobile" data-aos="fade-right">{{item.subTypeName}}</h2>
+                            <router-link :to="'news/'+index"
+                                        :class="item.mainImgDirection"
+                                        @click.native="scrollToTop"
+                                        :style="{backgroundImage:'url('+item.mainImg+')'}"
+                                        data-aos="fade-right"
+                                        data-aos-delay="200">
+
+                            </router-link>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <h1 data-aos="fade-right">{{item.typeName}}</h1>
+                            <h2 v-if="!isMobile" data-aos="fade-right">{{item.subTypeName}}</h2>
+                            <h3 data-aos="fade-right">{{item.title}}</h3>
+                            <h4 v-html="item.subTitle" data-aos="fade-right"></h4>
+                            <h5 v-if="item.subTitleTwo" v-html="item.subTitleTwo" data-aos="fade-right"></h5>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,17 +9,33 @@ export default {
             //newsData: newsData,
             newsData: [
                 {
+                    "typeName": null,
+                    "subTypeName": null,
                     "title": null,
                     "subTitle": null,
-                    "descriptionGroup":[],
+                    "subTitleTwo": null,
+                    "description": [],
                     "mainImg": "src/images/99_default_init.jpg",
-                    "mainImgType": null,
-                    "mainImgShowPosition": null,
-                    "imgGroup": []
+                    "mainImgDirection": "straight",
+                    "switchPic": [],
+                    "displayAreaGroup": [
+                        {
+                            "title": null,
+                            "displayPic": []
+                        }
+                    ]
                 }
             ],
             popOpenActive: 0
         }
+    },
+    computed: {
+        ...mapGetters([
+            'isMobile',
+            'documentHeight',
+            'getScrollTop'
+        ]),
+
     },
     methods: {
         scrollToTop() {
@@ -64,41 +80,27 @@ export default {
 <template>
     <div class="pupPage">
         <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
-        <h1 data-aos="fade-left">NEWS</h1>
-        <div class="pupContainer">
+        <div data-aos="fade-left" class="backBtn">
+            <router-link to="/works" v-if="!isMobile">BACK</router-link>
+            <router-link to="/works" v-else :class="{backBtnMobile:isMobile}"></router-link>
+            <span></span>
+        </div>
+        <div class="page1">
 
-            <div class="pupContent">
-                <div data-aos="fade-right" data-aos-delay="200" class="cover">
-                    <a href="javascript:;"
-                        :class="newsData[popOpenActive].mainImgType"
-                        :style="{backgroundImage:'url('+newsData[popOpenActive].mainImg+')',
-                                backgroundPosition:newsData[popOpenActive].mainImgShowPosition}">
-                    </a>
-                </div>
-                <div class="rightText">
-                    <div>
-                        <h1 data-aos="fade-left" data-aos-delay="400">{{newsData[popOpenActive].title}}</h1>
-                        <h2 data-aos="fade-left" data-aos-delay="600" v-html="newsData[popOpenActive].subTitle"></h2>
-                        <p v-for="(item,index) in newsData[popOpenActive].descriptionGroup"
-                           :key="index"
-                           data-aos="fade-left"
-                           :data-aos-delay="(index*200)+600">
-                           {{item}}
-                        </p>
-                    </div>
+            <div class="left">
+                <div class="cover">
+                    <img :src="newsData[popOpenActive].mainImg">
                 </div>
             </div>
-            <div class="showPic">
-                <div v-for="(item,index) in newsData[popOpenActive].imgGroup"
-                     :key="index"
-                     :class="{three:newsData[popOpenActive].imgGroup.length>=3,two:newsData[popOpenActive].imgGroup.length<=2}">
-                    <img :src="item">
+            <div class="right">
+                <div>
+                    <h3>{{newsData[popOpenActive].title}}</h3>
+                    <h4 v-html="newsData[popOpenActive].subTitle"></h4>
+                    <div class="line"></div>
+                    <h5 v-if="newsData[popOpenActive].subTitleTwo" v-html="newsData[popOpenActive].subTitleTwo"></h5>
+                    <p v-for="(item, index) in newsData[popOpenActive].description"
+                       :key="index">{{item}}</p>
                 </div>
-            </div>
-
-            <div data-aos="fade-left" class="backBtn">
-                <router-link to="/news">BACK</router-link>
-                <span></span>
             </div>
         </div>
     </div>
