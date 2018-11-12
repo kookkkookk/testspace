@@ -48,6 +48,12 @@ export default {
             isPage5jumpBtnPrev: true
         }
     },
+    beforeRouteEnter (to, from, next) {
+        next()
+    },
+    beforeRouteUpdate (to, from, next) {
+        next()
+    },
     computed: {
         ...mapGetters([
             'isMobile',
@@ -64,10 +70,17 @@ export default {
         },
         jumpWorkPop(val){
             //this.$router.push('/work/'+val);
-            if(val==='next'){
-                this.$router.push('/work/'+(this.popOpenActive+1));
-            }
-
+            //this.scrollToTop()
+            this.$scrollTo('body')
+            setTimeout(() => {
+                if(val==='next'){
+                    this.$router.push({ name: 'workPopup', params: {userId: (this.popOpenActive+1)} })
+                    history.go(0);
+                }else if(val==='prev'){
+                    this.$router.push({ name: 'workPopup', params: {userId: (this.popOpenActive-1)} })
+                    history.go(0);
+                }
+            }, 500)
         }
     },
     components: {
@@ -85,7 +98,8 @@ export default {
             /*if(val>(document.querySelector("#app").offsetHeight-document.querySelector(".footerDsktop").offsetHeight)){
                 this.isShowTopBtn = false;
             }*/
-        }
+        },
+        
     },
     created(){
         this.$axios.get('./assets/data/worksData.json').then((response) => {
@@ -125,7 +139,7 @@ export default {
 
             //mobile page5 next & prev Btn show & hide
             (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
-            (this.popOpenActive===this.worksData.length ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
+            (this.popOpenActive===(this.worksData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
         }, 50);
 
         
@@ -137,7 +151,7 @@ export default {
             once: true
         })
         
-    }
+    },
 }
 </script>
 
@@ -181,16 +195,20 @@ export default {
                     <swiper :options="swiperOption">
                         <swiper-slide v-for="(item, index) in worksData[popOpenActive].popupBannerGroup"
                                       :key="index">
-                            <img :src="item || ''">
+                            <!-- <img :src="item || ''"> -->
+                            <div class="pic" :style="{backgroundImage:'url('+item+')'}"></div>
                         </swiper-slide>
-                        <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
+                        
                     </swiper>
+                    <img src="~Works/work01/01_work_ListingPic01-1.jpg" v-if="isMobile" style="width: 100%;visibility: hidden;">
                     <div class="mobileBg" v-if="isMobile"></div>
+                    
                 </div>
                 <div class="swiperRightBtn swiperBtn" v-if="!isMobile">
                     <span class="swiper-button-next" slot="button-next"><span></span></span>
                 </div>
             </div>
+            <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
             
             <div class="designConceptContent" data-aos="fade-down" v-if="!isMobile">
                 <div v-if="worksData[popOpenActive].designConcept != ''">
@@ -227,26 +245,15 @@ export default {
             <div class="page5Container">
                 <ul>
                     <li v-show="isPage5jumpBtnPrev">
-                        <router-link :to="String(popOpenActive-1)"
-                                     @click.native="scrollToTop">
+                        <a href="javascript:;" @click="jumpWorkPop('prev')">
                             PREV
-                        </router-link>
+                        </a>
                     </li>
                     <li v-show="isPage5jumpBtnNext">
-                        <!-- <router-link :to="String(popOpenActive+1)"
-                                     @click.native="scrollToTop">
+                        <a href="javascript:;" @click="jumpWorkPop('next')">
                             NEXT
-                        </router-link> -->
-                        <!-- <a href="javascript:;" @click="jumpWorkPop('next'); scrollToTop();">
-                            NEXT
-                        </a> -->
-                        <!-- <a href="javascript:;" @click="$router.push('/work/'+String(popOpenActive++)); scrollToTop();">
-                            NEXT
-                        </a> -->
-                        <router-link :to="String(popOpenActive+1)"
-                                     @click.native="jumpWorkPop('next'); scrollToTop()">
-                            NEXT
-                        </router-link>
+                        </a>
+                        <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
                     </li>
                 </ul>
             </div>
@@ -314,12 +321,13 @@ span.worksPopDescriptionLine2{
 }
 
 /* mobile Swiper banner style */
-.swiperContent .swiper-pagination-bullet{
+.page3 .swiper-pagination-bullet{
     font-size: 0;
+    margin: 0 4px;
     background: #5e5e5e;
     opacity: 0.5;
 }
-.swiperContent .swiper-pagination-bullet-active{
+.page3 .swiper-pagination-bullet-active{
     opacity: 1;
 }
 </style>
