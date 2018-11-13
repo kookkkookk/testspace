@@ -21,6 +21,7 @@ import "./scss/tools/aos2.3.4.css";
 import aos from "aos";
 Vue.prototype.$aos = aos;
 import App from 'App';
+import 'swiper/dist/css/swiper.css';
 
 
 Vue.config.productionTip = false;

@@ -2,7 +2,7 @@
 import { mapGetters } from 'vuex';
 //import worksData from '../assets/data/worksData.json';
 
-import 'swiper/dist/css/swiper.css';
+//import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
@@ -65,7 +65,7 @@ export default {
         jumpWorkPop(val){
             //this.$router.push('/work/'+val);
             //this.scrollToTop()
-            this.$scrollTo('body')
+            /*this.$scrollTo('body')
             setTimeout(() => {
                 if(val==='next'){
                     this.$router.push({ name: 'workPopup', params: {userId: (this.popOpenActive+1)} })
@@ -74,12 +74,26 @@ export default {
                     this.$router.push({ name: 'workPopup', params: {userId: (this.popOpenActive-1)} })
                     history.go(0);
                 }
-            }, 500)
+            }, 500)*/
+            this.loading = true;
+            setTimeout(() => {
+                const { _loading } = this.$refs;
+                const timeline = new TimelineLite();
+                timeline.to(_loading, 0.3, {autoAlpha: 1})
+                        .add(()=>{
+                            window.scrollTo(0,0);
+                            this.$router.push('/work/'+val);
+                            this.popOpenActive = val;
+                            this.$aos.refreshHard();
+                            this.mobileJumpBtnisShow();
+                            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                                    .add(()=>{this.loading = false});
+                        });
+            }, 50)
         },
-        aaaaa(){
-            console.log("aaaaa")
-            this.$router.push('/work/3')
-            this.popOpenActive = 3
+        mobileJumpBtnisShow(){
+            (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
+            (this.popOpenActive===(this.worksData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
         }
     },
     components: {
@@ -118,7 +132,7 @@ export default {
             const { _loading } = this.$refs
             const timeline = new TimelineLite()
             timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
+                    .add(()=>{ this.loading = false });
         })
     },
     mounted() {
@@ -137,14 +151,12 @@ export default {
             }
 
             //mobile page5 next & prev Btn show & hide
-            (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
-            (this.popOpenActive===(this.worksData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
+            this.mobileJumpBtnisShow();
         }, 50);
 
         
 
         //scroll anumated api
-        this.$aos.init()
         this.$aos.init({
             duration: 500,
             once: true
@@ -156,7 +168,7 @@ export default {
 
 <template>
     <div class="pupPage">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+        <div class="_loading" ref="_loading" v-show="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <div class="page1">
             <h1 data-aos="fade-down" v-html="worksData[popOpenActive].constructionName"></h1>
             <h2 data-aos="fade-down" data-aos-delay="200">{{worksData[popOpenActive].constructionDescription}}</h2>
@@ -244,16 +256,17 @@ export default {
             <div class="page5Container">
                 <ul>
                     <li v-show="isPage5jumpBtnPrev">
-                        <a href="javascript:;" @click="jumpWorkPop('prev')">
+                        <!-- <a href="javascript:;" @click="jumpWorkPop('prev')">
                             PREV
-                        </a>
+                        </a> -->
+                        <a href="javascript:;" @click="jumpWorkPop(Number($route.params.userId)-1)">PREV</a>
                     </li>
                     <li v-show="isPage5jumpBtnNext">
                         <!-- <a href="javascript:;" @click="jumpWorkPop('next')">
                             NEXT
                         </a> -->
                         <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
-                        <a href="javascript:;" @click="aaaaa">nexxxxxt</a>
+                        <a href="javascript:;" @click="jumpWorkPop(Number($route.params.userId)+1)">NEXT</a>
                     </li>
                 </ul>
             </div>

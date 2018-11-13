@@ -174,7 +174,6 @@
                 }
                 >div{
                     width: 80%;
-                    overflow: hidden;
                     padding-bottom: 30px;
                     border-bottom: 1px solid #818181;
                     @include SCREEN_1366{
@@ -311,19 +310,248 @@
             margin-top: -80px;
         }
     }
-    .page1{
+    .mainScreen{
         width: 100%;
         max-width: 1440px;
         margin: 0 auto;
+        padding-bottom: 90px;
         position: relative;
-        background-color: pink;
+        //background-color: pink;
         display: flex;
         justify-content: center;
         .left{
-            width: 50%;
+            width: 40%;
+            .cover{
+                background-repeat: no-repeat;
+                background-position: 50%;
+                background-size: contain;
+                >img{
+                    max-width: 100%;
+                    visibility: hidden;
+                }
+            }
         }
         .right{
-            width: 50%;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            >div{
+                padding-left: 10%;
+                >h3{
+                    font-size: 30px;
+                    color: #1e1e1e;
+                    margin-bottom: 30px;
+                }
+                >h4{
+                    font-size: 26px;
+                    color: #1e1e1e;
+                    margin-bottom: 50px;
+                }
+                .line{
+                    width: 80px;
+                    height: 2px;
+                    background-color: #1e1e1e;
+                    margin-bottom: 50px;
+                }
+                >h5{
+                    font-size: 26px;
+                    color: #1e1e1e;
+                }
+                >p{
+                    font-size: 21px;
+                    color: #1e1e1e;
+                    text-indent: 21px;
+                    line-height: 34px;
+                    margin-bottom: 50px;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .anOtherScreen{
+        width: 100%;
+        margin: 0 auto;
+        >div{
+            width: 100%;
+            &:nth-child(odd) {
+                background-color: #fff;
+            }
+            &:nth-child(even) {
+                background-color: #ededed;
+            }
+        }
+        .swiperArea{
+            width: 100%;
+            .swiperContainer{
+                width: 100%;
+                max-width: 1920px;
+                margin: 0 auto;
+                overflow: hidden;
+                @include SCREEN_736{
+                    background-color: #fff;
+                }
+                .swiperContent{
+                    width: 1124px;
+                    height: 755px;
+                    float: left;
+                    font-size: 0;
+                    position: relative;
+                    img{max-width: 100%;}
+                    .pic{
+                        height: 100%;
+                        background-repeat: no-repeat;
+                        background-position: 50%;
+                        background-size: contain;
+                    }
+                    .swiper-container{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    @include SCREEN_1366{
+                        width: 974px;
+                        height: 654px;
+                    }
+                    @include SCREEN_1280{
+                        width: 761px;
+                        height: 553px;
+                    }
+                    @include SCREEN_736{
+                        width: 100%;
+                        height: auto;
+                        padding: 0 10px;
+                    }
+                }
+                .swiperBtn{
+                    width: calc(50% - 562px);
+                    height: 755px;
+                    float: left;
+                    display: flex;
+                    align-items: center;
+                    @include SCREEN_1366{
+                        width: calc(50% - 487px);
+                        height: 654px;
+                    }
+                    @include SCREEN_1280{
+                        width: calc(50% - 380.5px);
+                        height: 553px;
+                    }
+                    >span{
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        height: 150px;
+                        //background-color: #759;
+                        cursor: pointer;
+                        &:hover >span{
+                            transform: translateX(45%);
+                        }
+    
+                        position: static;
+                        background-image: url('');
+                        >span{
+                            width: 65%;
+                            transform: translateX(50%);
+                            transition: transform 0.3s;
+                            &::before{
+                                content: "";
+                                width: 100%;
+                                max-width: 50px;
+                                height: 1px;
+                                background-color: #2a2a2a;
+                                display: block;
+                                transform-origin: 0% 50%;
+                                border-radius: 2px;
+                                transform: rotate(45deg);
+                            }
+                            &::after{
+                                content: "";
+                                width: 100%;
+                                max-width: 50px;
+                                height: 1px;
+                                background-color: #2a2a2a;
+                                display: block;
+                                transform-origin: 0% 50%;
+                                transform: rotate(-45deg);
+                            }
+                        }
+                    }
+                }
+                .mobileBg{
+                    width: 100%;
+                    padding-top: 32%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    background-color: #e5e5e5;
+                }
+            }
+            .swiperRightBtn{
+                transform: scale(-1, 1);
+            }
+            .swiper-pagination{
+                display: none;
+                @include SCREEN_736{
+                    display: block;
+                    position: static;
+                    margin-top: 10px;
+                    margin-bottom: 60px;
+                }
+            }
+        }
+        .showcaseArea{
+            position: relative;
+            padding-top: 90px;
+            padding-bottom: 90px;
+            &:last-child{
+                padding-bottom: 0;
+            }
+            >h1{
+                font-size: 26px;
+                color: #1e1e1e;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .coverBottomContent{
+                display: flex;
+                justify-content: center;
+                &.alignmentDirectionTop{
+                    align-items: flex-start;
+                }
+                &.alignmentDirectionBottom{
+                    align-items: flex-end;
+                }
+                @include SCREEN_736{
+                    padding: 0 10px;
+                }
+                .coverBottomPic{
+                    font-size: 0;
+                    position: relative;
+                    z-index: 2;
+                    margin-right: 15px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    >img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .lastArea{
+        width: 100%;
+        height: 240px;
+        &.bgWhite{
+            background-color: #fff;
+        }
+        &.bgGrey{
+            background-color: #ededed;
         }
     }
 }
