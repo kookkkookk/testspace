@@ -40,12 +40,20 @@ export default {
                         {
                             "title": null,
                             "alignmentDirection": "top",
-                            "displayPic": []
+                            "displayPic": [
+                                {
+                                    "img": "src/images/99_default_init.jpg",
+                                    "imgDirection": "horizontal"
+                                }
+                            ]
                         }
                     ]
                 }
             ],
-            popOpenActive: 0
+            popOpenActive: 0,
+            isShowTopBtn: false,
+            isPage5jumpBtnNext: true,
+            isPage5jumpBtnPrev: true
         }
     },
     computed: {
@@ -61,11 +69,41 @@ export default {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
+        },
+        jumpNewsPop(val){
+            this.loading = true;
+            setTimeout(() => {
+                const { _loading } = this.$refs;
+                const timeline = new TimelineLite();
+                timeline.to(_loading, 0.3, {autoAlpha: 1})
+                        .add(()=>{
+                            window.scrollTo(0,0);
+                            this.$router.push('/news/'+val);
+                            this.popOpenActive = val;
+                            this.$aos.refreshHard();
+                            this.mobileJumpBtnisShow();
+                            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                                    .add(()=>{this.loading = false});
+                        });
+            }, 50)
+        },
+        mobileJumpBtnisShow(){
+            (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
+            (this.popOpenActive===(this.newsData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
         }
     },
     components: {
         swiper,
         swiperSlide
+    },
+    watch: {
+        getScrollTop(val){
+            if(val>=(this.documentHeight+200)){
+                this.isShowTopBtn = true;
+            }else{
+                this.isShowTopBtn = false
+            }
+        }
     },
     created(){
         this.$axios.get('./assets/data/newsData.json').then((response) => {
@@ -90,6 +128,11 @@ export default {
     },
     mounted() {
 
+        setTimeout(() => {
+            //mobile page5 next & prev Btn show & hide
+            this.mobileJumpBtnisShow();
+        }, 50);
+
         //scroll anumated api
         this.$aos.init()
         this.$aos.init({
@@ -103,17 +146,27 @@ export default {
 <template>
     <div class="pupPage">
         <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
-        <div data-aos="fade-left" class="backBtn">
-            <router-link to="/works" v-if="!isMobile">BACK</router-link>
-            <router-link to="/works" v-else :class="{backBtnMobile:isMobile}"></router-link>
-            <span></span>
+
+        <div class="mobileCover" v-if="isMobile">
+            <div class="newsMainScreenArea pagesTopCover" ref="newsMainScreenArea">
+                <div>
+                    <h1 data-aos="fade-left" ref="title">NEWS</h1>
+                    <div data-aos="fade" data-aos-delay="400" class="light" ref="ligth"><img src="~News/00_light_desktop.png" alt=""></div>
+                    <h2 data-aos="fade-right" data-aos-delay="200" ref="subTitle">慢功細活</h2>
+                </div>
+                <span class="bottomWhite"></span>
+            </div>
         </div>
 
-        <div class="mobileCover" v-if="isMobile"></div>
+        <div class="backBtn">
+            <router-link to="/news" v-if="!isMobile" data-aos="fade-left">BACK</router-link>
+            <router-link to="/news" v-else :class="{backBtnMobile:isMobile}"></router-link>
+            <span data-aos="fade-left"></span>
+        </div>
 
         <div class="mainScreen">
 
-            <div class="left">
+            <div class="left" data-aos="fade-left">
                 <div class="cover" :style="{backgroundImage:'url('+newsData[popOpenActive].mainImg+')'}">
                     <img v-if="newsData[popOpenActive].mainImgDirection==='straight'" src="~News/99_popupCoverDefult_straight.jpg">
                     <img v-else src="~News/99_popupCoverDefult_horizontal.jpg">
@@ -121,12 +174,14 @@ export default {
             </div>
             <div class="right">
                 <div>
-                    <h3>{{newsData[popOpenActive].title}}</h3>
-                    <h4 v-html="newsData[popOpenActive].subTitle"></h4>
-                    <div class="line"></div>
-                    <h5 v-if="newsData[popOpenActive].subTitleTwo" v-html="newsData[popOpenActive].subTitleTwo"></h5>
+                    <h3 data-aos="fade-left" data-aos-delay="200">{{newsData[popOpenActive].title}}</h3>
+                    <h4 data-aos="fade-left" data-aos-delay="300" v-html="newsData[popOpenActive].subTitle"></h4>
+                    <div data-aos="fade-left" data-aos-delay="400" class="line"></div>
+                    <h5 data-aos="fade-left" data-aos-delay="500" v-if="newsData[popOpenActive].subTitleTwo" v-html="newsData[popOpenActive].subTitleTwo"></h5>
                     <p v-for="(item, index) in newsData[popOpenActive].description"
-                       :key="index">{{item}}</p>
+                       :key="index"
+                       data-aos="fade-left"
+                       :data-aos-delay="(index+5)*100">{{item}}</p>
                 </div>
             </div>
         </div>
@@ -134,7 +189,8 @@ export default {
         <div class="anOtherScreen">
 
             <div v-if="newsData[popOpenActive].switchPic.length>0"
-                 class="swiperArea">
+                 class="swiperArea"
+                 data-aos="fade-left">
 
                 <div class="swiperContainer" data-aos="fade">
                     <div class="swiperLeftBtn swiperBtn" v-if="!isMobile">
@@ -163,6 +219,7 @@ export default {
                  v-for="(item,index) in newsData[popOpenActive].displayAreaGroup"
                  :key="index"
                  class="showcaseArea">
+                <div v-if="isMobile" class="showcaseLine"></div>
                 <h1 v-if="item.title">{{item.title}}</h1>
                 <div class="coverBottomContent"
                      :class="{alignmentDirectionTop:item.alignmentDirection==='top',
@@ -170,17 +227,49 @@ export default {
                     <div class="coverBottomPic"
                          v-for="(picItem, n) in item.displayPic"
                          :key="n"
+                         :class="{horizontal:picItem.imgDirection==='horizontal',
+                                  straight:picItem.imgDirection==='straight'}"
                          data-aos="fade-down"
                          :data-aos-delay="n*200">
-                        <img :src="picItem">
+                        <img :src="picItem.img">
                     </div>
                 </div>
+                <div v-if="isMobile" class="lastBg"></div>
             </div>
         </div>
         <div class="lastArea"
              :class="{bgWhite: Math.abs((newsData[popOpenActive].displayAreaGroup.length + (newsData[popOpenActive].switchPic.length>0? 1:0)) % 2)===1,
                        bgGrey: (newsData[popOpenActive].displayAreaGroup.length + (newsData[popOpenActive].switchPic.length>0? 1:0)) % 2 === 0}">
-            <!-- backbtn -->
+
+            <div data-aos="fade-left" class="backBtn" v-if="!isMobile">
+                <router-link to="/news">BACK</router-link>
+                <span></span>
+            </div>
+
+            <div class="page5Container" v-else>
+                <ul>
+                    <li v-show="isPage5jumpBtnPrev">
+                        <!-- <a href="javascript:;" @click="jumpWorkPop('prev')">
+                            PREV
+                        </a> -->
+                        <a href="javascript:;" @click="jumpNewsPop(Number($route.params.userId)-1)">PREV</a>
+                    </li>
+                    <li v-show="isPage5jumpBtnNext">
+                        <!-- <a href="javascript:;" @click="jumpWorkPop('next')">
+                            NEXT
+                        </a> -->
+                        <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
+                        <a href="javascript:;" @click="jumpNewsPop(Number($route.params.userId)+1)">NEXT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div v-if="isMobile"
+             class="topBtnMobile"
+             v-scroll-to="'body'"
+             :class="{topBtnShow:isShowTopBtn}">
+             <span></span>
         </div>
 
     </div>
@@ -190,4 +279,16 @@ export default {
     @import "../scss/helpers/_mixin.scss";
     @import "../scss/helpers/scrollAnimation.scss";
     @import "../scss/pages/_news.scss";
+</style>
+<style>
+/* mobile Swiper banner style */
+.swiperArea .swiper-pagination-bullet{
+    font-size: 0;
+    margin: 0 4px;
+    background: #5e5e5e;
+    opacity: 0.5;
+}
+.swiperArea .swiper-pagination-bullet-active{
+    opacity: 1;
+}
 </style>
