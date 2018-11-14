@@ -3,7 +3,9 @@
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work01/01_work_ListingPic01-1.jpg",
         "listingPageImg2": "./images/Works/work01/01_work_ListingPic01-2.jpg",
-        "constructionName": "Gontran Cherrier 松山店",
+        "listingLong": false,
+        "constructionName": "台北市．法國品牌<br>GONTRAN CHERRIER 松山店",
+        "constructionDescription": "商空巡禮",
         "popupCoverImg": "./images/Works/work01/01_workPopup_Pic01-1.jpg",
         "descriptionTitle": "小步舞曲。",
         "description": "法國知名可頌品牌 Gontran Cherrier，<br>成功打響品牌與旗艦店任務後，<br>大舉擄獲台灣消費者，站上一席之地，我們再次協助業主拓點設計，<br>如何維持間風格，全店的陳列不互相衝突，<br>對設計師與經營者來說，是考驗也是磨合，<br>有了前次成功經驗，分店規劃我們更想創造與眾不同，<br>而不是複製既有風格，每家店都穿上同一套制服，<br>因應區域生活圈與客層不同，恰如其分的呈現分店風格，<br>又不失品牌印象。",
@@ -19,13 +21,15 @@
             "./images/Works/work01/01_workPopup_Pic01-2.jpg",
             "./images/Works/work01/01_workPopup_Pic01-3.jpg"
         ],
-        "endText": "商空巡禮 / 台北市．法國品牌GONTRAN CHERRIER 松山店"
+        "endText": "台北市．法國品牌GONTRAN CHERRIER 松山店"
     },
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work02/01_work_ListingPic02-1.jpg",
         "listingPageImg2": "./images/Works/work02/01_work_ListingPic02-2.jpg",
-        "constructionName": "玉成街 徐公館",
+        "listingLong": false,
+        "constructionName": "台北市．玉成街私宅",
+        "constructionDescription": "住宅巡禮",
         "popupCoverImg": "./images/Works/work02/01_workPopup_Pic02-1.jpg",
         "descriptionTitle": "白色聚場。",
         "description": "「簡單生活，理想時光。」是我們對本案的詮釋。<br>白色空間的魅力，或說白色本身的純粹就是無限想像，<br>設計從減法概念出發，捨棄繁複的裝飾與色彩，<br>透過光影穿透與動線序列，加強空間輪廓，回歸東方美學的留白，<br>開放式廚房與客廳，大窗戶引入自然光，<br>讓灑入的陽光能無所阻礙得串接，<br>接風，創造出氣流的通道與視覺延伸，豐富空間的層次感，<br>留白中灌注思想，以及主人品味個性。",
@@ -43,13 +47,15 @@
             "./images/Works/work02/01_workPopup_Pic02-2.jpg",
             "./images/Works/work02/01_workPopup_Pic02-3.jpg"
         ],
-        "endText": "住宅巡禮 / 台北市玉成街私宅"
+        "endText": "台北市．玉成街私宅"
     },
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work03/01_work_ListingPic03-1.jpg",
         "listingPageImg2": "./images/Works/work03/01_work_ListingPic03-2.jpg",
-        "constructionName": "日鼎大直辦公室",
+        "listingLong": false,
+        "constructionName": "大直．企業總部辦公室",
+        "constructionDescription": "商空巡禮",
         "popupCoverImg": "./images/Works/work03/01_workPopup_Pic03-1.jpg",
         "descriptionTitle": "空間劇本。",
         "description": "創造友善空間，柔和曲線、色彩美學、設計單椅，讓空間增溫，<br>著手辦公室設計案，我們一直思考企業價值與員工互動，<br>期許空間設計，有個性也有溫度，<br>打造所謂的空間劇本，運用空間虛實的變化，設計人的使用行為。",
@@ -66,13 +72,15 @@
             "./images/Works/work03/01_workPopup_Pic03-2.jpg",
             "./images/Works/work03/01_workPopup_Pic03-3.jpg"
         ],
-        "endText": "商空巡禮 / 大直．企業總部辦公室"
+        "endText": "大直．企業總部辦公室"
     },
     {
-        "classification": "Interiors",
+        "classification": "Commercial",
         "listingPageImg1": "./images/Works/work04/01_work_ListingPic04-1.jpg",
         "listingPageImg2": "./images/Works/work04/01_work_ListingPic04-2.jpg",
-        "constructionName": "Gontran Cherrier 忠孝旗艦店",
+        "listingLong": true,
+        "constructionName": "台北市．法國品牌<br>GONTRAN CHERRIER 忠孝旗艦店",
+        "constructionDescription": "商空巡禮",
         "popupCoverImg": "./images/Works/work04/01_workPopup_Pic04-1.jpg",
         "descriptionTitle": "浪漫樂章。",
         "description": "法國知名可頌品牌 Gontran Cherrier代理首度登台，<br>風格與空間的呈現是重要門面印象，新品牌面對消費市場，<br>呼應在地喜好還是維持法式原汁原味？<br>設計初始，與業主不斷溝通，參考Gontran Cherrier其他國家分店，<br>最後以現代風格定調，簡潔俐落的店面外觀，<br>香榭大道精品的亮麗感，充滿法式氛圍，<br>更深獲法國總部肯定，評為全球分店最棒的設計之一。",
@@ -87,13 +95,15 @@
             "./images/Works/work04/01_workPopup_Pic04-3.jpg",
             "./images/Works/work04/01_workPopup_Pic04-4.jpg"
         ],
-        "endText": "商空巡禮 / 台北市．法國品牌GONTRAN CHERRIER 忠孝旗艦店"
+        "endText": "台北市．法國品牌 GONTRAN CHERRIER 忠孝旗艦店"
     },
     {
-        "classification": "Interiors",
+        "classification": "Commercial",
         "listingPageImg1": "./images/Works/work05/01_work_ListingPic05-1.jpg",
         "listingPageImg2": "./images/Works/work05/01_work_ListingPic05-2.jpg",
-        "constructionName": "福樺建設 林口辦公室",
+        "listingLong": false,
+        "constructionName": "林口．建設公司<br>企業總部與藝文中心",
+        "constructionDescription": "商空巡禮",
         "popupCoverImg": "./images/Works/work05/01_workPopup_Pic05-1.jpg",
         "descriptionTitle": "小美術館。",
         "description": "非凡品味，卓越進化。<br>一個好理念，如一股活水，讓企業上下同心，常立於業界之林。<br>福樺建設企業總部，結合辦公區、圖書區、會客交誼外，<br>喜愛藝術的業主，在空間定義上希望把藝文與品味注入，<br>讓所謂的「辦公室」，傾向定為人與人相聚場所，<br>一座美學人文的場欲，一起創作、交流，共同成就一次又一次任務。",
@@ -110,13 +120,15 @@
             "./images/Works/work05/01_workPopup_Pic05-2.jpg",
             "./images/Works/work05/01_workPopup_Pic05-3.jpg"
         ],
-        "endText": "商空巡禮 / 林口．建設公司企業總部與藝文中心"
+        "endText": "林口．建設公司 企業總部與藝文中心"
     },
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work06/01_work_ListingPic06-1.jpg",
         "listingPageImg2": "./images/Works/work06/01_work_ListingPic06-2.jpg",
-        "constructionName": "福華閱 門廳公設",
+        "listingLong": false,
+        "constructionName": "林口．建案<br>共門廳及設施設計案",
+        "constructionDescription": "住宅巡禮",
         "popupCoverImg": "./images/Works/work06/01_workPopup_Pic06-1.jpg",
         "descriptionTitle": "靜定感知。",
         "description": "禪語：「閑坐聴松風。」<br>意即「靜聞松風鳴，心躁則不聞，心靜則耳清，自聞松風響。」<br>本案為住宅公設門廳，提供社區住戶交流、轉換心境的心靈秘境，<br>個案本身坐落林口鬧區，在喧囂中，渴望一座心靈綠洲，<br>以庭園藝術空間，讓水景、石頭與綠意植栽，詩畫般交錯，<br>落下，流動，清淨心靈與塵囂，<br>從室內交誼廳到戶外庭園，構築人文美感，<br>為空間增添清爽宜人的空氣感，拓展空間的開闊。",
@@ -133,13 +145,15 @@
             "./images/Works/work06/01_workPopup_Pic06-2.jpg",
             "./images/Works/work06/01_workPopup_Pic06-3.jpg"
         ],
-        "endText": "住宅巡禮 / 林口．建案公共門廳及設施設計案"
+        "endText": "林口．建案 公共門廳及設施設計案"
     },
     {
-        "classification": "Commercial",
+        "classification": "Interiors",
         "listingPageImg1": "./images/Works/work07/01_work_ListingPic07-1.jpg",
         "listingPageImg2": "./images/Works/work07/01_work_ListingPic07-2.jpg",
-        "constructionName": "臨沂街 曾公館",
+        "listingLong": true,
+        "constructionName": "台北市．臨沂街私宅",
+        "constructionDescription": "住宅巡禮",
         "popupCoverImg": "./images/Works/work07/01_workPopup_Pic07-1.jpg",
         "descriptionTitle": "時空旅人。",
         "description": "物件坐落北市臨沂街，這裡巷弄街闊向來富含濃厚的人文情懷，<br>早年更是文人、官舍的集中地，至今不少日式老房的身影，<br>為了讓在地氣息與室內環境有所串聯輝映，<br>老巷裡的留白與天光，減法設計書寫質感層次，<br>日系質樸空間，文人巷裡的隱居哲人，<br>棲身臨沂街的美感角落，自然而然不張揚。",
@@ -155,13 +169,15 @@
             "./images/Works/work07/01_workPopup_Pic07-2.jpg",
             "./images/Works/work07/01_workPopup_Pic07-3.jpg"
         ],
-        "endText": "住宅巡禮 / 台北市臨沂街私宅"
+        "endText": "台北市．臨沂街私宅"
     },
     {
-        "classification": "Interiors",
+        "classification": "Commercial",
         "listingPageImg1": "./images/Works/work08/01_work_ListingPic08-1.jpg",
         "listingPageImg2": "./images/Works/work08/01_work_ListingPic08-2.jpg",
-        "constructionName": "全昌益 回建築接待中心",
+        "listingLong": false,
+        "constructionName": "新竹．建案接待會館",
+        "constructionDescription": "商空巡禮",
         "popupCoverImg": "./images/Works/work08/01_workPopup_Pic08-1.jpg",
         "descriptionTitle": "閒逸藏峰。",
         "description": "「回」建築，接待中心以回字設計延伸貫穿，<br>門廳飲迎賓，以著名藝術家徐永旭雕塑作品為視覺焦點，<br>引進戶外光源，與室內外相互輝映，<br>一方天地，一瞬觀照，顯現空間的深邃。<br>猶如五星飯店的會館，沈穩格局與材質凸顯尊貴大器，<br>光線佈局刻意營造明暗落差，引領觀者心境上的轉移，<br>整體空間以金屬色、大地色主要色系，呼應客層的身份，<br>讓參觀客戶感受頂級款待與獨一無二。",
@@ -177,13 +193,15 @@
             "./images/Works/work08/01_workPopup_Pic08-2.jpg",
             "./images/Works/work08/01_workPopup_Pic08-3.jpg"
         ],
-        "endText": "商空巡禮 / 新竹 ．建案接待會館"
+        "endText": "新竹．建案接待會館"
     },
     {
-        "classification": "Commercial",
+        "classification": "Interiors",
         "listingPageImg1": "./images/Works/work09/01_work_ListingPic09-1.jpg",
         "listingPageImg2": "./images/Works/work09/01_work_ListingPic09-2.jpg",
-        "constructionName": "全昌益 樣品屋",
+        "listingLong": false,
+        "constructionName": "新竹．建案樣品屋",
+        "constructionDescription": "住宅巡禮",
         "popupCoverImg": "./images/Works/work09/01_workPopup_Pic09-1.jpg",
         "descriptionTitle": "行雲流水。",
         "description": "家，是空間容器，更是包容人心的居所。<br>空間格局、規劃配置與設計品味，定義一個家的想像，<br>建案的樣品屋，協助銷售任務、空間運用規劃外，<br>激盪觀者對未來的渴望，為生活提供感性的想像，<br>作為現場銷售的重要一環，理性與感性的計算，<br>透過設計精心安排在各個細節表現中，<br>一個轉身走進這個空間，從數字與物理需求中脫離。",
@@ -200,13 +218,15 @@
             "./images/Works/work09/01_workPopup_Pic09-2.jpg",
             "./images/Works/work09/01_workPopup_Pic09-3.jpg"
         ],
-        "endText": "住宅巡禮 / 新竹．建案樣品屋"
+        "endText": "新竹．建案樣品屋"
     },
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work10/01_work_ListingPic10-1.jpg",
         "listingPageImg2": "./images/Works/work10/01_work_ListingPic10-2.jpg",
-        "constructionName": "天母富邦777 吳公館",
+        "listingLong": true,
+        "constructionName": "台北市．天母私宅",
+        "constructionDescription": "住宅巡禮",
         "popupCoverImg": "./images/Works/work10/01_workPopup_Pic10-1.jpg",
         "descriptionTitle": "靜寬悅樂。",
         "description": "生活家的時代，理想的生活樂章。<br>家的想像？幸福的顏色是什麼？<br>住宅案的設計，家人才是主角，走入心頭的往往不是名貴傢俱，<br>不是設計風格，而是讓人捨不得出門的依戀感。<br>我們深信唯有業主與設計師彼此信任，<br>才能掌握任務，打造獨一無二的家，<br>凝聚家人情感，並非著重形式，重點在精神層面與空間感受性，<br>設計規劃前，我們會試圖走進屋主的舊家，<br>了解每個家庭的價值觀，成員組成與需求，<br>想像生活在屋內的家族圖像，再著手設計。",
@@ -222,13 +242,15 @@
             "./images/Works/work10/01_workPopup_Pic10-2.jpg",
             "./images/Works/work10/01_workPopup_Pic10-3.jpg"
         ],
-        "endText": "住宅巡禮 / 台北市天母私宅"
+        "endText": "台北市．天母私宅"
     },
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work11/01_work_ListingPic11-1.jpg",
         "listingPageImg2": "./images/Works/work11/01_work_ListingPic11-2.jpg",
-        "constructionName": "魯迅國際設計內湖辦公室",
+        "listingLong": false,
+        "constructionName": "內湖．廣告公司辦公室",
+        "constructionDescription": "商空巡禮",
         "popupCoverImg": "./images/Works/work11/01_workPopup_Pic11-1.jpg",
         "descriptionTitle": "風格軸線。",
         "description": "知名房產企劃設計公司，公司成員不少是年輕創意人員，<br>長時間面對電腦工作，總是渴望身處自在的環境氣氛，<br>空間上的佈局，創造開闊明亮更顯重要，<br>個案格局本身為挑高夾層，設計師利用上下空間與光源，<br>創造靈活彈性的動線，拓展舒適感受。",
@@ -244,6 +266,6 @@
             "./images/Works/work11/01_workPopup_Pic11-2.jpg",
             "./images/Works/work11/01_workPopup_Pic11-3.jpg"
         ],
-        "endText": "商空巡禮 / 內湖 ．廣告公司辦公室"
+        "endText": "內湖．廣告公司辦公室"
     }
 ]

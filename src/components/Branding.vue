@@ -76,7 +76,7 @@ export default {
                 <h1 ref="title">BRANDING</h1>
                 <h2 ref="subTitle" v-if="!isMobile">看不見的設計。</h2>
                 <h2 ref="subTitle" v-else>純粹共生</h2>
-                <p ref="description" v-if="!isMobile">
+                <p ref="description" v-show="!isMobile">
                     當你把宇宙放在心上，宇宙才會存在。<br>
                     動見場域的優缺點，<br>
                     避免先入為主的設計，<br>
@@ -84,7 +84,7 @@ export default {
                     空間的向度，生活的溫度 ，人文的尺度，<br>
                     設計師是小我，空間才是大宇宙。 
                 </p>
-                <div class="artWorkBg" ref="artWorkBg" v-if="!isMobile"></div>
+                <div class="artWorkBg" ref="artWorkBg" v-show="!isMobile"></div>
             </div>
         </div>
 
@@ -109,10 +109,11 @@ export default {
                     </ul>
                 </div>
                 
-                
-                <div class="spacePic spacePic1" data-aos="fade-up"><img src="~Branding/01_space_1.jpg"></div>
-                <div class="spacePic spacePic2" data-aos="fade-up" data-aos-delay="200"><img src="~Branding/01_space_2.jpg"></div>
-                <div class="spacePic spacePic3" data-aos="fade-up" data-aos-delay="400"><img src="~Branding/01_space_3.jpg"></div>
+                <div class="spacePicGroup">
+                    <div class="spacePic spacePic1" data-aos="fade-up"><img src="~Branding/01_space_1.jpg"></div>
+                    <div class="spacePic spacePic2" data-aos="fade-up" data-aos-delay="200"><img src="~Branding/01_space_2.jpg"></div>
+                    <div class="spacePic spacePic3" data-aos="fade-up" data-aos-delay="400"><img src="~Branding/01_space_3.jpg"></div>
+                </div>
                 
             </div>
         </div>
@@ -120,7 +121,8 @@ export default {
         <!-- designConceptArea -->
         <div class="designConceptArea">
             <div class="designConceptContainer">
-                <div class="pic" data-aos="fade"><img src="~Branding/02_schematicDiagram.jpg"></div>
+                <div class="pic" data-aos="fade" v-if="!isMobile"><img src="~Branding/02_schematicDiagram.jpg"></div>
+                <div class="pic" data-aos="fade" v-else><img src="~Branding/02_schematicDiagram_mobile.jpg"></div>
                 <div class="title">
                     <h3 data-aos="fade-left">設計<span>理念</span></h3>
                     <h1 data-aos="fade-left">生活與設計對話</h1>
@@ -159,50 +161,53 @@ export default {
                 <div class="collectionWorksContent">
 
                     <div class="workList">
-                        <h1>{{brandingData[0].type+' >'}}</h1>
+                        <h1 data-aos="fade-right">{{brandingData[0].type+' >'}}</h1>
                         <div class="works commercialList"
                              v-for="(item, index) in brandingData[0].workList"
                              :key="index"
                              v-if="index % 6 == 0 && !isMobile">
-                            <p v-if="brandingData[0].workList[index]">{{brandingData[0].workList[index]}}</p>
-                            <p v-if="brandingData[0].workList[index+1]">{{brandingData[0].workList[index+1]}}</p>
-                            <p v-if="brandingData[0].workList[index+2]">{{brandingData[0].workList[index+2]}}</p>
-                            <p v-if="brandingData[0].workList[index+3]">{{brandingData[0].workList[index+3]}}</p>
-                            <p v-if="brandingData[0].workList[index+4]">{{brandingData[0].workList[index+4]}}</p>
-                            <p v-if="brandingData[0].workList[index+5]">{{brandingData[0].workList[index+5]}}</p>
+                            <p v-if="brandingData[0].workList[index]" data-aos="fade-left">{{brandingData[0].workList[index]}}</p>
+                            <p v-if="brandingData[0].workList[index+1]" data-aos="fade-left">{{brandingData[0].workList[index+1]}}</p>
+                            <p v-if="brandingData[0].workList[index+2]" data-aos="fade-left">{{brandingData[0].workList[index+2]}}</p>
+                            <p v-if="brandingData[0].workList[index+3]" data-aos="fade-left">{{brandingData[0].workList[index+3]}}</p>
+                            <p v-if="brandingData[0].workList[index+4]" data-aos="fade-left">{{brandingData[0].workList[index+4]}}</p>
+                            <p v-if="brandingData[0].workList[index+5]" data-aos="fade-left">{{brandingData[0].workList[index+5]}}</p>
                         </div>
                         
                         <p v-if="isMobile"
                            v-for="(item, index) in brandingData[0].workList"
-                           :key="index">
+                           :key="index"
+                           data-aos="fade-left">
                            {{item}}
                         </p>
                     </div>
                     
                     <div class="workList">
-                        <h1>{{brandingData[1].type+' >'}}</h1>
+                        <h1 data-aos="fade-right">{{brandingData[1].type+' >'}}</h1>
                         <div class="works interioreList"
                              v-for="(item, index) in brandingData[1].workList"
                              :key="index"
                              v-if="index % 6 == 0 && !isMobile">
-                            <p v-if="brandingData[1].workList[index]">{{brandingData[1].workList[index]}}</p>
-                            <p v-if="brandingData[1].workList[index+1]">{{brandingData[1].workList[index+1]}}</p>
-                            <p v-if="brandingData[1].workList[index+2]">{{brandingData[1].workList[index+2]}}</p>
-                            <p v-if="brandingData[1].workList[index+3]">{{brandingData[1].workList[index+3]}}</p>
-                            <p v-if="brandingData[1].workList[index+4]">{{brandingData[1].workList[index+4]}}</p>
-                            <p v-if="brandingData[1].workList[index+5]">{{brandingData[1].workList[index+5]}}</p>
+                            <p v-if="brandingData[1].workList[index]" data-aos="fade-left">{{brandingData[1].workList[index]}}</p>
+                            <p v-if="brandingData[1].workList[index+1]" data-aos="fade-left">{{brandingData[1].workList[index+1]}}</p>
+                            <p v-if="brandingData[1].workList[index+2]" data-aos="fade-left">{{brandingData[1].workList[index+2]}}</p>
+                            <p v-if="brandingData[1].workList[index+3]" data-aos="fade-left">{{brandingData[1].workList[index+3]}}</p>
+                            <p v-if="brandingData[1].workList[index+4]" data-aos="fade-left">{{brandingData[1].workList[index+4]}}</p>
+                            <p v-if="brandingData[1].workList[index+5]" data-aos="fade-left">{{brandingData[1].workList[index+5]}}</p>
                         </div>
                         
                         <p v-if="isMobile"
                            v-for="(item, index) in brandingData[1].workList"
-                           :key="index">
+                           :key="index"
+                           data-aos="fade-left">
                            {{item}}
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="woodBg"></div>
+            <div class="woodBg" v-if="!isMobile"></div>
+            <div class="woodBg" v-else><img src="~Branding/03_wood.png"></div>
         </div>
 
         <div class="stepArea">
@@ -220,22 +225,34 @@ export default {
                 </div>
                 <div class="stepContent">
                     <ul>
-                        <li data-aos="fade-up" data-aos-delay="100" class="cubeBlack"><h4>1</h4><p>設計師&nbsp;&nbsp;x&nbsp;&nbsp;客戶交流會談</p></li>
-                        <li data-aos="fade-up" data-aos-delay="200" class="cubeWhite"><h4>2</h4><p>現場實地丈量及平面放樣</p></li>
-                        <li data-aos="fade-up" data-aos-delay="300" class="cubeWhite"><h4>3</h4><p>提報空間區分建議</p></li>
-                        <li data-aos="fade-up" data-aos-delay="400" class="circle"><h4>4</h4><p>平面圖簡報</p></li>
-                        <li data-aos="fade-up" data-aos-delay="500" class="cubeWhite"><h4>5</h4><p>設計合約確認及成立</p></li>
-                        <li data-aos="fade-up" data-aos-delay="600" class="circle"><h4>6</h4><p>立面圖簡報</p></li>
-                        <li data-aos="fade-up" data-aos-delay="700" class="cubeWhite"><h4>7</h4><p>材料建議及家具建議</p></li>
-                        <li data-aos="fade-up" data-aos-delay="800" class="cubeWhite"><h4>8</h4><p>施工圖繪製</p></li>
-                        <li data-aos="fade-up" data-aos-delay="900" class="circle"><h4>9</h4><p>估　價</p></li>
-                        <li data-aos="fade-up" data-aos-delay="1000" class="cubeWhite"><h4>10</h4><p>工程合約</p></li>
-                        <li data-aos="fade-up" data-aos-delay="1100" class="cubeBlack"><h4>11</h4><p>施工執行</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="100" class="cubeBlack"><h4>1</h4><p>設計師&nbsp;&nbsp;x&nbsp;&nbsp;客戶交流會談</p></li>
+                        <li v-else data-aos="fade-up" class="cubeBlack"><h4>1</h4><p>設計師&nbsp;&nbsp;x&nbsp;&nbsp;客戶交流會談</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="200" class="cubeWhite"><h4>2</h4><p>現場實地丈量及平面放樣</p></li>
+                        <li v-else data-aos="fade-up" class="cubeWhite"><h4>2</h4><p>現場實地丈量及平面放樣</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="300" class="cubeWhite"><h4>3</h4><p>提報空間區分建議</p></li>
+                        <li v-else data-aos="fade-up" class="cubeWhite"><h4>3</h4><p>提報空間區分建議</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="400" class="circle"><h4>4</h4><p>平面圖簡報</p></li>
+                        <li v-else data-aos="fade-up" class="circle"><h4>4</h4><p>平面圖簡報</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="500" class="cubeWhite"><h4>5</h4><p>設計合約確認及成立</p></li>
+                        <li v-else data-aos="fade-up" class="cubeWhite"><h4>5</h4><p>設計合約確認及成立</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="600" class="circle"><h4>6</h4><p>立面圖簡報</p></li>
+                        <li v-else data-aos="fade-up" class="circle"><h4>6</h4><p>立面圖簡報</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="700" class="cubeWhite"><h4>7</h4><p>材料建議及家具建議</p></li>
+                        <li v-else data-aos="fade-up" class="cubeWhite"><h4>7</h4><p>材料建議及家具建議</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="800" class="cubeWhite"><h4>8</h4><p>施工圖繪製</p></li>
+                        <li v-else data-aos="fade-up" class="cubeWhite"><h4>8</h4><p>施工圖繪製</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="900" class="circle"><h4>9</h4><p>估　價</p></li>
+                        <li v-else data-aos="fade-up" class="circle"><h4>9</h4><p>估　價</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="1000" class="cubeWhite"><h4>10</h4><p>工程合約</p></li>
+                        <li v-else data-aos="fade-up" class="cubeWhite"><h4>10</h4><p>工程合約</p></li>
+                        <li v-if="!isMobile" data-aos="fade-up" data-aos-delay="1100" class="cubeBlack"><h4>11</h4><p>施工執行</p></li>
+                        <li v-else data-aos="fade-up" class="cubeBlack"><h4>11</h4><p>施工執行</p></li>
+                        <li v-if="isMobile" class="lineMobile" data-aos-delay="1200"></li>
                     </ul>
-                    <span class="line" data-aos="fade" data-aos-delay="1200"></span>
+                    <span v-if="!isMobile" class="line" data-aos="fade" data-aos-delay="1200"></span>
                 </div>
             </div>
-            <div class="stepContentBg"></div>
+            <div v-if="!isMobile" class="stepContentBg"></div>
         </div>
     </div>
 </template>

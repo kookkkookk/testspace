@@ -10,7 +10,7 @@ export default {
             worksData: [
                 {
                     "classification": null,
-                    "listingPageImg1": null//,
+                    "listingPageImg1": "src/images/99_default_init.jpg"//,
                     /*"listingPageImg2": null,
                     "constructionName": null,
                     "popupCoverImg": null,

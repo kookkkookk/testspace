@@ -128,9 +128,6 @@
         max-width: 1920px;
         margin: 0 auto;
         position: relative;
-        @include SCREEN_1024{
-            overflow: hidden;
-        }
         .creatorInformation{
             overflow: hidden;
             padding: 136px 0 125px 191px;
@@ -142,6 +139,10 @@
             }
             @include SCREEN_1024{
                 padding: 50px 0 50px 12%;
+            }
+            @include SCREEN_736{
+                padding: 0;
+                text-align: center;
             }
             >h3{
                 font-size: 26px;
@@ -155,6 +156,10 @@
                     background-color: #010101;
                     margin-top: 35px;
                     @include SCREEN_1280{margin-top: 25px;}
+                    @include SCREEN_736{
+                        margin: 0 auto;
+                        margin-top: 20px;
+                    }
                 }
                 @include SCREEN_1366{
                     font-size: 24px;
@@ -167,9 +172,20 @@
                 @include SCREEN_1024{
                     font-size: 22px;
                 }
+                @include SCREEN_736{
+                    margin-top: 50px;
+                    text-align: center;
+                }
+                
             }
             .creator{
                 display: inline-block;
+                font-size: 0;
+                >img{
+                    @include SCREEN_736{
+                        max-width: 70%;
+                    }
+                }
             }
             >h1{
                 font-size: 30px;
@@ -191,6 +207,12 @@
                     font-size: 24px;
                     margin-left: 40px;
                     line-height: 40px;
+                }
+                @include SCREEN_736{
+                    font-size: 18px;
+                    line-height: 26px;
+                    margin-left: 0;
+                    text-align: left;
                 }
             }
             >h2{
@@ -217,6 +239,13 @@
                     margin-left: 215px;
                     margin-top: 25px;
                 }
+                @include SCREEN_736{
+                    text-align: left;
+                    margin-left: 0;
+                    padding: 0 40px;
+                    font-size: 16px;
+                    margin-top: 30px;
+                }
             }
             >ul{
                 margin-left: 210px;
@@ -232,6 +261,11 @@
                     margin-top: 25px;
                     margin-left: 215px;
                 }
+                @include SCREEN_736{
+                    text-align: left;
+                    margin-left: 0;
+                    padding: 0 40px;
+                }
                 >li{
                     font-size: 16px;
                     color: #373737;
@@ -241,63 +275,101 @@
                         font-size: 14px;
                         line-height: 24px;
                     }
+                    @include SCREEN_736{
+                        margin-top: 20px;
+                    }
                 }
             }
         }
-        
-        .spacePic{
-            font-size: 0;
-            position: absolute;
-            z-index: 1;
+
+        .spacePicGroup{
             @include SCREEN_1024{
-                position: static;
-                float: left;
-                margin-right: 25px;
-                &:last-child{
-                    margin-right: 0;
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+                padding-bottom: 80px;
+            }
+            @include SCREEN_736{
+                margin-top: 40px;
+                padding-bottom: 50px;
+            }
+            .spacePic{
+                font-size: 0;
+                position: absolute;
+                z-index: 1;
+                @include SCREEN_1024{
+                    position: static;
+                    float: left;
+                    margin-right: 25px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                }
+                @include SCREEN_736{
+                    margin-right: 10px;
+                }
+                >img{
+                    max-width: 100%;
+                    @media screen and (max-width: 1800px) {
+                        max-width: 90%;
+                    }
+                    @include SCREEN_1280{
+                        max-width: 80%;
+                    }
+                    @include SCREEN_1024{
+                        max-width: 100%;
+                    }
                 }
             }
-            >img{
-                max-width: 100%;
+            .spacePic1{
+                top: -196px;
+                right: 589px;
                 @media screen and (max-width: 1800px) {
-                    max-width: 90%;
+                    right: 459px;
                 }
                 @include SCREEN_1280{
-                    max-width: 80%;
+                    right: 319px;
+                }
+                @include SCREEN_736{
+                    width: 84px;
+                    height: 355px;
+                }
+            }
+            .spacePic2{
+                top: -74px;
+                right: 440px;
+                @media screen and (max-width: 1800px) {
+                    right: 325px;
+                }
+                @include SCREEN_1280{
+                    right: 205px;
                 }
                 @include SCREEN_1024{
-                    max-width: 100%;
+                    margin-top: 122px;
+                }
+                @include SCREEN_736{
+                    width: 74px;
+                    height: 355px;
+                    margin-top: 53px;
                 }
             }
-        }
-        .spacePic1{
-            top: -196px;
-            right: 589px;
-            @media screen and (max-width: 1800px) {
-                right: 459px;
-            }
-            @include SCREEN_1280{
-                right: 319px;
-            }
-        }
-        .spacePic2{
-            top: -74px;
-            right: 440px;
-            @media screen and (max-width: 1800px) {
-                right: 325px;
-            }
-            @include SCREEN_1280{
-                right: 205px;
-            }
-        }
-        .spacePic3{
-            top: 10px;
-            right: 291px;
-            @media screen and (max-width: 1800px) {
-                right: 191px;
-            }
-            @include SCREEN_1280{
-                right: 91px;
+            .spacePic3{
+                top: 10px;
+                right: 291px;
+                @media screen and (max-width: 1800px) {
+                    right: 191px;
+                }
+                @include SCREEN_1280{
+                    right: 91px;
+                }
+                @include SCREEN_1024{
+                    margin-top: 206px;
+                }
+                @include SCREEN_736{
+                    width: 74px;
+                    height: 355px;
+                    margin-top: 98px;
+                }
             }
         }
     }
@@ -309,22 +381,42 @@
     padding-top: 70px;
     padding-bottom: 70px;
     background-color: #fbfbfb;
+    @include SCREEN_736{
+        padding: 0 10px;
+        padding-top: 60px;
+        padding-bottom: 0;
+        background-color: #ededed;
+    }
     .designConceptContainer{
         width: 100%;
         max-width: 1920px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
+        @include SCREEN_736{
+            justify-content: flex-start;
+            flex-direction: column;
+        }
         .pic{
             font-size: 0;
             text-align: center;
             @include SCREEN_1024{
                 text-align: right;
             }
+            @include SCREEN_736{
+                order: 3;
+                background-color: #f8f8f8;
+                width: 100%;
+                padding-top: 40px;
+            }
             >img{
                 max-width: 100%;
                 @include SCREEN_1366{
                     max-width: 90%;
+                }
+                @include SCREEN_736{
+                    max-width: 107%;
+                    transform: translateX(-10px);
                 }
             }
         }
@@ -343,6 +435,12 @@
                 margin: 0 40px;
                 margin-top: 60px;
             }
+            @include SCREEN_736{
+                order: 1;
+                margin: 0px;
+                background-color: #f8f8f8;
+                width: 100%
+            }
             >h3{
                 font-size: 26px;
                 color: #010101;
@@ -353,6 +451,10 @@
                     height: 1px;
                     background-color: #010101;
                     margin-top: 35px;
+                    @include SCREEN_736{
+                        margin: 0 auto;
+                        margin-top: 15px;
+                    }
                 }
                 @include SCREEN_1600{
                     font-size: 24px;
@@ -362,6 +464,10 @@
                 }
                 @include SCREEN_1024{
                     font-size: 18px;
+                }
+                @include SCREEN_736{
+                    text-align: center;
+                    margin-top: 40px;
                 }
                 >span{
                     font-weight: bold;
@@ -384,12 +490,27 @@
                     font-size: 20px;
                     margin-top: 40px;
                 }
+                @include SCREEN_736{
+                    text-align: center;
+                    margin-top: 30px;
+                }
             }
         }
         .discription{
             display: flex;
             align-items: center;
+            @include SCREEN_736{
+                order: 2;
+                background-color: #f8f8f8;
+                width: 100%;
+                padding-top: 30px;
+            }
             >ul{
+                @include SCREEN_736{
+                    width: 100%;
+                    text-align: center;
+                    padding: 0 50px;
+                }
                 >li{
                     font-size: 20px;
                     color: #373737;
@@ -411,6 +532,10 @@
                         line-height: 24px;
                         margin-bottom: 25px;
                     }
+                    @include SCREEN_736{
+                        text-align: left;
+                        margin-bottom: 15px;
+                    }
                 }
             }
         }
@@ -424,6 +549,10 @@
     background-color: #eee;
     position: relative;
     overflow: hidden;
+    @include SCREEN_736{
+        background-color: #ededed;
+        padding-top: 60px;
+    }
 
     .collectionWorksContainer{
         width: 100%;
@@ -449,6 +578,10 @@
                 height: 1px;
                 background-color: #010101;
                 margin-top: 35px;
+                @include SCREEN_736{
+                    margin: 0 auto;
+                    margin-top: 15px;
+                }
             }
             @include SCREEN_1366{
                 font-size: 24px;
@@ -459,26 +592,40 @@
                 //margin-left: 60px;
             }
             @include SCREEN_1024{
-                font-size: 22px;
+                font-size: 18px;
                 //margin-left: 90px;
+            }
+            @include SCREEN_736{
+                text-align: center;
             }
             >span{font-weight: bold;}
         }
     }
     .collectionWorksContent{
         margin-top: 80px;
+        @include SCREEN_736{
+            margin-top: 40px;
+        }
         .workList{
             overflow: hidden;
             margin-left: 300px;
             //background-color: pink;
             &:first-child{
                 margin-bottom: 120px;
+                @include SCREEN_736{
+                    margin-bottom: 40px;
+                }
             }
             @include SCREEN_1600{
                 margin-left: 250px;
             }
             @include SCREEN_1366{
                 margin-left: 200px;
+            }
+            @include SCREEN_736{
+                margin: 0;
+                padding: 0 60px;
+                margin-bottom: 40px;
             }
             >h1{
                 font-size: 40px;
@@ -488,7 +635,11 @@
                     font-size: 36px;
                 }
                 @include SCREEN_1366{
-                    font-size: 34px;
+                    font-size: 32px;
+                }
+                @include SCREEN_736{
+                    font-size: 20px;
+                    margin-bottom: 10px;
                 }
             }
             .works{
@@ -502,6 +653,9 @@
                 }
                 @include SCREEN_1366{
                     width: 410px;
+                }
+                @include SCREEN_736{
+                    width: 100%;
                 }
                 >p{
                     font-size: 20px;
@@ -517,27 +671,14 @@
                     }
                 }
             }
+            >p{
+                @include SCREEN_736{
+                    font-size: 12px;
+                    line-height: 16px;
+                    margin-top: 10px;
+                }
+            }
         }
-        // display: flex;
-        // flex-wrap: wrap;
-        // align-content: flex-start;
-
-        // .workList{
-        //     width: 33.3%;
-        //     margin-bottom: 65px;
-        //     >h1{
-        //         font-size: 40px;
-        //         color: #000000;
-        //     }
-        //     >ul{
-        //         margin-top: 20px;
-        //         >li{
-        //             font-size: 20px;
-        //             color: #373737;
-        //             line-height: 32px;
-        //         }
-        //     }
-        // }
     }
     .woodBg{
         width: 939px;
@@ -547,6 +688,15 @@
         background-position: 100% 100%;
         background-repeat: no-repeat;
         float: right;
+        @include SCREEN_736{
+            width: 100%;
+            height: auto;
+            background-image: url("");
+            padding: 0 10px;
+            >img{
+                max-width: 100%;
+            }
+        }
     }
     .woodBg.moveTop{
         position: absolute;
@@ -567,6 +717,9 @@
     }
     @include SCREEN_1366{
         padding-top: 85px;
+    }
+    @include SCREEN_736{
+        padding-top: 60px;
     }
     .stepContainer{
         width: 100%;
@@ -596,6 +749,11 @@
                 height: 1px;
                 background-color: #010101;
                 margin-top: 35px;
+                @include SCREEN_736{
+                    display: block;
+                    margin: 0 auto;
+                    margin-top: 15px;
+                }
             }
             >span{font-weight: bold;}
             @include SCREEN_1600{
@@ -605,11 +763,17 @@
                 font-size: 22px;
             }
             @include SCREEN_900{
-                font-size: 20px;
+                font-size: 18px;
+            }
+            @include SCREEN_736{
+                text-align: center;
             }
         }
         .textBox{
             margin-top: 80px;
+            @include SCREEN_736{
+                margin-top: 20px;
+            }
             >h2{
                 font-size: 30px;
                 color: #000;
@@ -624,7 +788,11 @@
                     font-size: 24px;
                 }
                 @include SCREEN_900{
-                    font-size: 22px;
+                    font-size: 20px;
+                }
+                @include SCREEN_736{
+                    font-size: 18px;
+                    text-align: center;
                 }
             }
             >p{
@@ -644,20 +812,42 @@
                     font-size: 14px;
                     line-height: 26px;
                 }
+                @include SCREEN_736{
+                    padding: 0 40px;
+                }
             }
         }
         .stepContent{
             margin-top: 100px;
             margin-bottom: 160px;
             position: relative;
+            @include SCREEN_736{
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
             >ul{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                @include SCREEN_736{
+                    display: block;
+                    position: relative;
+                    background-image: url("~Branding/04_schematicDiagramBg_mobile.jpg");
+                    background-repeat: no-repeat;
+                    background-position: 50% 60%;
+                    background-size: 120%;
+                }
                 >li{
                     text-align: center;
                     position: relative;
                     z-index: 3;
+                    @include SCREEN_736{
+                        margin: 0 auto;
+                        margin-bottom: 20px;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                    }
                     >h4{
                         font-family: 'MyriadPro-Bold';
                         font-weight: bold;
@@ -718,6 +908,10 @@
                         width: 45px;
                         height: 320px;
                     }
+                    @include SCREEN_736{
+                        width: 80%;
+                        height: 50px;
+                    }
                     >h4{
                         color: #fff;
                         margin-top: 43px;
@@ -733,6 +927,11 @@
                         @include SCREEN_900{
                             margin-top: 20px;
                         }
+                        @include SCREEN_736{
+                            display: inline-block;
+                            margin-top: 0;
+                            line-height: 50px;
+                        }
                     }
                     >p{
                         color: #fff;
@@ -747,6 +946,15 @@
                         }
                         @include SCREEN_900{
                             margin-top: 10px;
+                        }
+                        @include SCREEN_736{
+                            writing-mode: horizontal-tb;
+                        }
+                        @include SCREEN_736{
+                            display: inline-block;
+                            margin-top: 0;
+                            line-height: 50px;
+                            margin-left: 10px;
                         }
                     }
                 }
@@ -772,6 +980,10 @@
                         width: 45px;
                         height: 320px;
                     }
+                    @include SCREEN_736{
+                        width: 80%;
+                        height: 50px;
+                    }
                     >h4{
                         color: #000;
                         margin-top: 43px;
@@ -787,6 +999,11 @@
                         @include SCREEN_900{
                             margin-top: 25px;
                         }
+                        @include SCREEN_736{
+                            display: inline-block;
+                            margin-top: 0;
+                            line-height: 50px;
+                        }
                     }
                     >p{
                         color: #000;
@@ -801,6 +1018,15 @@
                         }
                         @include SCREEN_900{
                             margin-top: 10px;
+                        }
+                        @include SCREEN_736{
+                            writing-mode: horizontal-tb;
+                        }
+                        @include SCREEN_736{
+                            display: inline-block;
+                            margin-top: 0;
+                            line-height: 50px;
+                            margin-left: 15px;
                         }
                     }
                 }
@@ -829,9 +1055,15 @@
                         height: 95px;
                         border-radius: 47.5px;
                     }
+                    @include SCREEN_736{
+                        padding-top: 8px;
+                    }
                     >h4{
                         color: #fff;
                         margin-top: 9px;
+                        @include SCREEN_736{
+                            margin-top: 0;
+                        }
                     }
                     >p{
                         color: #fff;
@@ -844,6 +1076,16 @@
                         }
                     }
 
+                }
+                .lineMobile{
+                    position: absolute;
+                    width: 1px;
+                    height: 100%;
+                    background-color: #000;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 1;
                 }
             }
             .line{
