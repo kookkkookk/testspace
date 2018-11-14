@@ -74,8 +74,9 @@ export default {
         <div class="brandingMainScreenArea pagesTopCover">
             <div>
                 <h1 ref="title">BRANDING</h1>
-                <h2 ref="subTitle">看不見的設計。</h2>
-                <p ref="description">
+                <h2 ref="subTitle" v-if="!isMobile">看不見的設計。</h2>
+                <h2 ref="subTitle" v-else>純粹共生</h2>
+                <p ref="description" v-if="!isMobile">
                     當你把宇宙放在心上，宇宙才會存在。<br>
                     動見場域的優缺點，<br>
                     避免先入為主的設計，<br>
@@ -83,7 +84,7 @@ export default {
                     空間的向度，生活的溫度 ，人文的尺度，<br>
                     設計師是小我，空間才是大宇宙。 
                 </p>
-                <div class="artWorkBg" ref="artWorkBg"></div>
+                <div class="artWorkBg" ref="artWorkBg" v-if="!isMobile"></div>
             </div>
         </div>
 

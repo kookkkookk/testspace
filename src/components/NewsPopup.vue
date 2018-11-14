@@ -77,13 +77,20 @@ export default {
                 const timeline = new TimelineLite();
                 timeline.to(_loading, 0.3, {autoAlpha: 1})
                         .add(()=>{
-                            window.scrollTo(0,0);
+                            //window.scrollTo(0,0);
+                            this.$scrollTo('body');
                             this.$router.push('/news/'+val);
                             this.popOpenActive = val;
-                            this.$aos.refreshHard();
-                            this.mobileJumpBtnisShow();
-                            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                                    .add(()=>{this.loading = false});
+                            setTimeout(() => {
+                                document.querySelectorAll(".aos-animate").forEach((el)=>{
+                                    el.classList.remove("aos-init");
+                                    el.classList.remove("aos-animate");
+                                });
+                                this.$aos.refreshHard();
+                                this.mobileJumpBtnisShow();
+                                timeline.to(_loading, 0.3, {autoAlpha: 0})
+                                        .add(()=>{this.loading = false});
+                            },300)
                         });
             }, 50)
         },
@@ -219,8 +226,8 @@ export default {
                  v-for="(item,index) in newsData[popOpenActive].displayAreaGroup"
                  :key="index"
                  class="showcaseArea">
-                <div v-if="isMobile" class="showcaseLine"></div>
-                <h1 v-if="item.title">{{item.title}}</h1>
+                <div v-if="isMobile" class="showcaseLine" data-aos="fade-left"></div>
+                <h1 v-if="item.title" data-aos="fade-left">{{item.title}}</h1>
                 <div class="coverBottomContent"
                      :class="{alignmentDirectionTop:item.alignmentDirection==='top',
                               alignmentDirectionBottom:item.alignmentDirection==='bottom'}">

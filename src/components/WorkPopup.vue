@@ -81,13 +81,20 @@ export default {
                 const timeline = new TimelineLite();
                 timeline.to(_loading, 0.3, {autoAlpha: 1})
                         .add(()=>{
-                            window.scrollTo(0,0);
+                            //window.scrollTo(0,0);
+                            this.$scrollTo('body');
                             this.$router.push('/work/'+val);
                             this.popOpenActive = val;
-                            this.$aos.refreshHard();
-                            this.mobileJumpBtnisShow();
-                            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                                    .add(()=>{this.loading = false});
+                            setTimeout(() => {
+                                document.querySelectorAll(".aos-animate").forEach((el)=>{
+                                    el.classList.remove("aos-init");
+                                    el.classList.remove("aos-animate");
+                                });
+                                this.$aos.refreshHard();
+                                this.mobileJumpBtnisShow();
+                                timeline.to(_loading, 0.3, {autoAlpha: 0})
+                                        .add(()=>{this.loading = false});
+                            },300)
                         });
             }, 50)
         },
