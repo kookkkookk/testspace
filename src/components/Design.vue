@@ -30,6 +30,18 @@ export default {
                     "pic": "src/images/Design/01_discoveryDesignPic04.jpg"
                 }
             ],
+            discoveryDesignContentMobile:[
+                {
+                    "mobileTitle1": "體貼入微，不只是觀察也是感受",
+                    "mobileDescription1": "建築大師庫哈斯：「建築是一種冒險 。」<br>室內設計則是整合思考，為人設計，成立至今近二十年的時間，我們從不定義自己的風格，更不盲從追求流行，當設計師像明星一樣走進大眾生活，我們依然默默耕耘每一件作品，也許是我們的個性，也或許是我們習慣以作品發聲。",
+                    "mobileImg1": "src/images/Design/01_discoveryDesignPic_mobile_01.jpg",
+                    "mobileTitle2": "生活者的樣貌，比風格更重要",
+                    "mobileDescription2": "與素材對話：<br>面對預算，不代表設計與想法就要被犧牲，學習挖掘材質的替代性與變化性，只要用心入微，一塊石材的紋理和豐富面貌，一塊木料，就可琢磨數十種組合方式。",
+                    "mobileImg2": "src/images/Design/01_discoveryDesignPic_mobile_02.jpg",
+                    "mobileImg3": "src/images/Design/01_discoveryDesignPic_mobile_03.jpg",
+                    "mobileImg4": "src/images/Design/01_discoveryDesignPic_mobile_04.jpg"
+                }
+            ],
             designData: [
                 {
                     "title": null,
@@ -92,6 +104,13 @@ export default {
                 .from([subTitle,description], 0.5, {opacity: 0, y: -10})
                 .from(artWorkBg, 0.5, {opacity: 0})
                 .from(select, 0.5, {opacity: 0})
+
+        //scroll anumated api
+        this.$aos.init()
+        this.$aos.init({
+            duration: 500,
+            once: true
+        })
     }
 }
 </script>
@@ -104,8 +123,9 @@ export default {
             <div>
                 <h1 ref="title">DESIGN</h1>
                 <!-- <div class="light"><img src="~News/00_light_desktop.png" alt=""></div> -->
-                <h2 ref="subTitle">空間育人。</h2>
-                <p ref="description">
+                <h2 ref="subTitle" v-if="!isMobile">空間育人。</h2>
+                <h2 ref="subTitle" v-else>空間育人</h2>
+                <p ref="description" v-show="!isMobile">
                     一心一意，無比考究的用心，<br>
                     我們的設計是謙虛的，生活是內斂的。<br>
                     以空間構築現場的人際關係與心性感受， <br>
@@ -119,14 +139,14 @@ export default {
                         <li><a href="javascript:;">ART COLLECTION</a></li>
                     </ul>
                 </div>
-                <div class="artWorkBg" ref="artWorkBg"></div>
+                <div class="artWorkBg" ref="artWorkBg" v-show="!isMobile"></div>
             </div>
         </div>
 
         <!-- discoveryDesignArea -->
         <div class="discoveryDesignArea">
             <div class="discoveryDesignContainer">
-                <h3>設計<span>發現</span></h3>
+                <h3 data-aos="fade-right">設計<span>發現</span></h3>
 
                 <transition-group v-if="!isMobile"
                                   tag="div"
@@ -136,35 +156,53 @@ export default {
                          :key="index"
                          class="discoveryDesignContent"
                          v-show="discoveryDesignActive===index">
-                        <h1 v-html="item.title"></h1>
-                        <p v-html="item.description"></p>
-                        <div class="pic"><img :src="item.pic"></div>
+                        <h1 v-html="item.title" data-aos="fade-right"></h1>
+                        <p v-html="item.description" data-aos="fade-right"></p>
+                        <div class="pic" data-aos="fade"><img :src="item.pic"></div>
                     </div> 
                 </transition-group>
 
                 <div class="nextBtn"
                      @click="changeDiscoveryDesign(discoveryDesignActive+1)"
-                     v-show="isDiscoveryDesignNext">
+                     v-show="isDiscoveryDesignNext"
+                     v-if="!isMobile">
                     <span></span>
                 </div>
                 <div class="prevBtn"
                      @click="changeDiscoveryDesign(discoveryDesignActive-1)"
-                     v-show="isDiscoveryDesignPrev">
+                     v-show="isDiscoveryDesignPrev"
+                     v-if="!isMobile">
                     <span></span>
+                </div>
+
+                <div v-if="isMobile" class="discoveryDesignContentMobile">
+                    <div>
+                        <h1 data-aos="fade-right">{{discoveryDesignContentMobile[0].mobileTitle1}}</h1>
+                        <p data-aos="fade-right" v-html="discoveryDesignContentMobile[0].mobileDescription1"></p>
+                        <img data-aos="fade-down" :src="discoveryDesignContentMobile[0].mobileImg1">
+                        <h1 data-aos="fade-right" class="h1_2">{{discoveryDesignContentMobile[0].mobileTitle2}}</h1>
+                        <p data-aos="fade-right" v-html="discoveryDesignContentMobile[0].mobileDescription2"></p>
+                        <img data-aos="fade-down" :src="discoveryDesignContentMobile[0].mobileImg2">
+                        <div class="discoveryDesignMobilePic2Group">
+                            <img data-aos="fade-right" :src="discoveryDesignContentMobile[0].mobileImg3">
+                            <img data-aos="fade-left" :src="discoveryDesignContentMobile[0].mobileImg4">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="choiceArea">
             <div class="choiceContainer">
-                <h3>跨界<span>選品</span></h3>
+                <h3 data-aos="fade-right">跨界<span>選品</span></h3>
                 <div class="choiceContent">
                     <div class="choiceContentLeft">
                         <div>
                             <ul>
                                 <li v-for="(item, index) in designData[0].designPicGroup"
                                     :key="index"
-                                    :style="{backgroundImage:'url('+item+')'}">
+                                    :style="{backgroundImage:'url('+item+')'}"
+                                    data-aos="fade-right">
                                     <img :src="item">
                                 </li>
                             </ul>
@@ -173,8 +211,8 @@ export default {
                     </div>
                     <div class="choiceContentRight">
                         <div>
-                            <h2>跨界創作。</h2>
-                            <p>
+                            <h2 data-aos="fade-right">跨界創作。</h2>
+                            <p data-aos="fade-right">
                                 我們熱愛並且相信自己做的事，<br>
                                 設計案之餘，夥伴們喜歡旅行、看展、動手創作，<br>
                                 從中汲取美學與生活養分，轉化為創意靈感。<br>
