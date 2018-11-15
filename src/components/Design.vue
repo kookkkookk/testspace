@@ -4,6 +4,7 @@ export default {
     name: 'design',
     data() {
         return {
+            loading: true,
             discoveryDesignActive: 0,
             isDiscoveryDesignPrev: false,
             isDiscoveryDesignNext: true,
@@ -27,6 +28,13 @@ export default {
                     "title": "生活者的樣貌，<br>比風格更重要",
                     "description": "給未來的創作者與居住者：<br>常常提醒公司同事，不排除任何可能與創意，<br>閱讀、看展、旅行....，訓練眼界與累積內涵，<br>不斷尋求自己的想法，才能敏銳感受世界，<br>不拘泥於創造好作品的執著，<br>全心誠意做好每件事，<br>再努力一點，那甘苦甜美與客戶肯定是忠實的。",
                     "pic": "src/images/Design/01_discoveryDesignPic04.jpg"
+                }
+            ],
+            designData: [
+                {
+                    "title": null,
+                    "description": null,
+                    "designPicGroup": []
                 }
             ]
         }
@@ -56,6 +64,21 @@ export default {
             (this.discoveryDesignActive==(this.discoveryDesignLength-1) ? this.isDiscoveryDesignNext=false : this.isDiscoveryDesignNext=true)
         }
     },
+    created(){
+        this.$axios.get('./assets/data/designData.json').then((response) => {
+            this.designData = response.data;
+        })
+        .catch((error)=> {
+            console.log("!ERROR: Ajax designData.json fail: ",error)
+        })
+        .then(()=> {
+            const { _loading } = this.$refs
+            const timeline = new TimelineLite()
+            timeline.to(_loading, 0.3, {autoAlpha: 0})
+                    .add(()=>{ this.loading=false })
+        })
+
+    },
     mounted(){
 
         //Banner animated (tweenMax)
@@ -75,6 +98,7 @@ export default {
 
 <template>
     <div class="designPage firstDom">
+        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- news main screen -->
         <div class="designMainScreenArea pagesTopCover">
             <div>
@@ -138,19 +162,13 @@ export default {
                     <div class="choiceContentLeft">
                         <div>
                             <ul>
-                                <li style="background-image: url('src/images/Design/02_choicePic01.jpg'); background-position: 100% 0%;">
-                                    <img src="~Design/02_choicePic01.jpg">
-                                </li>
-                                <li style="background-image: url('src/images/Design/02_choicePic02.jpg'); background-position: 0% 100%;">
-                                    <img src="~Design/02_choicePic01.jpg">
-                                </li>
-                                <li style="background-image: url('src/images/Design/02_choicePic03.jpg'); background-position: 100% 0%;">
-                                    <img src="~Design/02_choicePic01.jpg">
-                                </li>
-                                <li style="background-image: url('src/images/Design/02_choicePic04.jpg'); background-position: 100% 0%;">
-                                    <img src="~Design/02_choicePic01.jpg">
+                                <li v-for="(item, index) in designData[0].designPicGroup"
+                                    :key="index"
+                                    :style="{backgroundImage:'url('+item+')'}">
+                                    <img :src="item">
                                 </li>
                             </ul>
+                            
                         </div>
                     </div>
                     <div class="choiceContentRight">

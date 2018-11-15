@@ -68,6 +68,18 @@
             position: absolute;
             right: 0;
             top: 0;
+            @include SCREEN_1366{
+                width: 626px;
+                height: 630px;
+            }
+            @include SCREEN_1024{
+                width: 596px;
+                height: 600px;
+            }
+            @include SCREEN_900{
+                width: 566px;
+                height: 570px;
+            }
         }
     }   
 }
@@ -79,12 +91,28 @@
     background-color: #ededed;
     position: relative;
     //overflow: hidden;
+    @include SCREEN_1366{
+        padding-top: 50px;
+    }
     .discoveryDesignContainer{
         width: 100%;
         max-width: 1600px;
         height: 970px;
         margin: 0 auto;
         //background-color: pink;
+        @include SCREEN_1600{
+            max-width: 1366px;
+            height: 900px;
+        }
+        @include SCREEN_1366{
+            max-width: 1124px;
+            height: 740px;
+            position: relative;
+        }
+        @media screen and (max-width: 1124px) {
+            max-width: 900px;
+            height: 670px;
+        }
         >h3{
             font-size: 26px;
             color: #010101;
@@ -96,6 +124,24 @@
                 height: 1px;
                 background-color: #010101;
                 margin-top: 35px;
+                @include SCREEN_1280{margin-top: 25px;}
+                @include SCREEN_736{
+                    margin: 0 auto;
+                    margin-top: 20px;
+                }
+            }
+            @include SCREEN_1366{
+                font-size: 24px;
+            }
+            @include SCREEN_1280{
+                font-size: 22px;
+            }
+            @include SCREEN_1024{
+                font-size: 22px;
+            }
+            @include SCREEN_736{
+                margin-top: 50px;
+                text-align: center;
             }
             >span{font-weight: bold;}
         }
@@ -106,21 +152,74 @@
                 top: 90px;
                 left: 0;
                 width: 100%;
+                @include SCREEN_1600{
+                    top: 70px;
+                }
+                @include SCREEN_1366{
+                    top: 50px;
+                }
                 >h1{
                     font-size: 30px;
                     color: #000;
                     font-weight: bold;
+                    @include SCREEN_1600{
+                        font-size: 26px;
+                    }
+                    @include SCREEN_1366{
+                        font-size: 22px;
+                    }
+                    @media screen and (max-width: 1124px) {
+                        font-size: 20px;
+                    }
                 }
                 >p{
                     font-size: 20px;
                     color: #000;
                     line-height: 32px;
                     margin-top: 110px;
+                    @include SCREEN_1600{
+                        font-size: 18px;
+                        line-height: 30px;
+                        margin-top: 90px;
+                    }
+                    @include SCREEN_1366{
+                        font-size: 16px;
+                        line-height: 28px;
+                        margin-top: 60px;
+                    }
+                    @media screen and (max-width: 1124px) {
+                        font-size: 14px;
+                        line-height: 26px;
+                    }
                 }
                 .pic{
                     position: absolute;
                     top: -305px;
                     right: 172px;
+                    @include SCREEN_1600{
+                        top: -285px;
+                        right: 50px;
+                    }
+                    @include SCREEN_1366{
+                        top: -235px;
+                        right: -120px;
+                    }
+                    @media screen and (max-width: 1124px) {
+                        top: -102px;
+                        right: -250px;
+                    }
+                    >img{
+                        max-width: 100%;
+                        @include SCREEN_1600{
+                            max-width: 90%;
+                        }
+                        @include SCREEN_1366{
+                            max-width: 75%;
+                        }
+                        @media screen and (max-width: 1124px) {
+                            max-width: 60%;
+                        }
+                    }
                 }
             }
 
@@ -144,12 +243,24 @@
             &:hover >span{
                 transform: translateX(-20%);
             }
+            @include SCREEN_1600{
+                width: 70px;
+            }
+            @include SCREEN_1366{
+                width: 60px;
+            }
             >span{
                 display: block;
                 width: 90px;
                 height: 1px;
                 background-color: #212121;
                 transition: transform 0.3s;
+                @include SCREEN_1600{
+                    width: 70px;
+                }
+                @include SCREEN_1366{
+                    width: 60px;
+                }
                 &::after{
                     content: "";
                     width: 30%;
@@ -166,12 +277,35 @@
             transform: scale(-1, 1);
             position: absolute;
             top: 863px;
-            right: 170px;
+            right: 4%;
+            @include SCREEN_1600{
+                top: 767px;
+                right: 3%;
+            }
+            @include SCREEN_1366{
+                top: auto;
+                bottom: 36px;
+                right: 15px;
+            }
+            @media screen and (max-width: 1124px) {
+                bottom: 0;
+            }
         }
         .prevBtn{
             position: absolute;
             top: 863px;
-            left: 196px;
+            left: 5%;
+            @include SCREEN_1600{
+                top: 767px;
+            }
+            @include SCREEN_1366{
+                top: auto;
+                bottom: 36px;
+                left: 15px;
+            }
+            @media screen and (max-width: 1124px) {
+                bottom: 0;
+            }
         }
     }
 }
@@ -212,7 +346,9 @@
             .choiceContentLeft{
                 width: 50%;
                 >div{
-                    >ul{
+                    position: relative;
+                    font-size: 0;
+                    /*>ul{
                         overflow: hidden;
                         >li{
                             width: calc(50% - 7.5px);
@@ -235,6 +371,24 @@
                             }
                             &:nth-child(4){
                                 margin: 7.5px 0 0 7.5px;
+                            }
+                        }
+                    }*/
+                    >ul{
+                        overflow: hidden;
+                        position: relative;
+                        z-index: 1;
+                        >li{
+                            width: calc(50% - 15px);
+                            float: left;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: 50%;
+                            font-size: 0;
+                            margin: 7.5px;
+                            >img{
+                                max-width: 100%;
+                                visibility: hidden;
                             }
                         }
                     }
@@ -260,11 +414,10 @@
                 }
             }
         }
-
     }
     .yellowBg{
         width: 100%;
-        height: 650px;
+        height: 577px;
         background-color: #e0ddd7;
         position: absolute;
         top: 0;
