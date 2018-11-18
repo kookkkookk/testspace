@@ -10,17 +10,7 @@ export default {
             worksData: [
                 {
                     "classification": null,
-                    "listingPageImg1": "src/images/99_default_init.jpg"//,
-                    /*"listingPageImg2": null,
-                    "constructionName": null,
-                    "popupCoverImg": null,
-                    "descriptionTitle": null,
-                    "description": null,
-                    "introduction": null,
-                    "popupBannerGroup": [],
-                    "designConcept": null,
-                    "popupEndCoverImgGroup": [],
-                    "endText": null*/
+                    "listingPageImg1": "src/images/99_default_init.jpg"
                 }
             ],
             isWorkShow: "All",
