@@ -33,14 +33,18 @@
                 left: 0;
                 z-index: 1;
 
-                animation-name: bannerCycling;
-                animation-duration: 4.9s;
+                animation-duration: 4.8s;
                 //animation-iteration-count: infinite;
                 //animation-direction: alternate;
                 animation-fill-mode: forwards;
                 
             }
-            @keyframes bannerCycling{
+            .bannerPic.bannerCyclingA{animation-name: bannerCyclingA;}
+            .bannerPic.bannerCyclingB{animation-name: bannerCyclingB;}
+            .bannerPic.bannerCyclingC{animation-name: bannerCyclingC;}
+            .bannerPic.bannerCyclingD{animation-name: bannerCyclingD;}
+
+            @keyframes bannerCyclingA{
                 from{
                     transform: scale(1.05) translateX(30px);
                 }
@@ -48,11 +52,35 @@
                     transform: scale(1.05) translateX(-30px);
                 }
             }
+            @keyframes bannerCyclingB{
+                from{
+                    transform: scale(1.05) translateX(-30px);
+                }
+                to{
+                    transform: scale(1.05) translateX(30px);
+                }
+            }
+            @keyframes bannerCyclingC{
+                from{
+                    transform: scale(1.05) translateY(-20px);
+                }
+                to{
+                    transform: scale(1.05) translateY(20px);
+                }
+            }
+            @keyframes bannerCyclingD{
+                from{
+                    transform: scale(1.05) translateY(20px);
+                }
+                to{
+                    transform: scale(1.05) translateY(-20px);
+                }
+            }
 
             //banner fade animated
             .fade-enter-active,
             .fade-leave-active {
-                transition: opacity 1s;
+                transition: opacity 1.2s;
             }
             .fade-enter,
             .fade-leave-to {

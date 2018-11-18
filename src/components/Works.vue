@@ -113,7 +113,8 @@ export default {
     },
     watch: {
         getScrollTop(val) {
-            val = val-100;
+            //val = val-100;
+            //console.log(val)
 
             for(var i=0;i<this.worksDataLength;i++){
                 if(val >= this.$refs['work'+i][0].dataset.offset && !this.$refs['work'+i][0].classList.contains("on")){

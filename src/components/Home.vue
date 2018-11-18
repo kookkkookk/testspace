@@ -188,7 +188,11 @@ export default {
                         v-for="(item, index) in homeData[1].bannerDesktopImg"
                         :key="index"
                         :style="{backgroundImage:'url('+item+')'}"
-                        v-show="active===index"></div>
+                        v-show="active===index"
+                        :class="{bannerCyclingA:(index+1)%4 === 1,
+                                 bannerCyclingB:(index+1)%4 === 2,
+                                 bannerCyclingC:(index+1)%4 === 3,
+                                 bannerCyclingD:(index+1)%4 === 0}"></div>
                 </transition-group>
 
                 <swiper v-else
