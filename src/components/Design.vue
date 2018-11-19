@@ -212,7 +212,7 @@ export default {
                     <div class="choiceContentRight">
                         <div>
                             <h2 data-aos="fade-right">跨界創作。</h2>
-                            <p data-aos="fade-right">
+                            <p data-aos="fade-right" v-if="!isMobile">
                                 我們熱愛並且相信自己做的事，<br>
                                 設計案之餘，夥伴們喜歡旅行、看展、動手創作，<br>
                                 從中汲取美學與生活養分，轉化為創意靈感。<br>
@@ -221,6 +221,10 @@ export default {
                                 從選材到搭配，甚至重新設計包材，<br>
                                 每年絞盡腦汁，求新求變，<br>
                                 藉由轉用與重新組合，傳達心意的重量，Only ZITON。
+                            </p>
+                            <p data-aos="fade-right" v-else>
+                                我們熱愛並且相信自己做的事，設計案之餘，夥伴們喜歡旅行、看展、動手創作，從中汲取美學與生活養分，轉化為創意靈感。備受客戶喜愛的三大節的年禮，就是大家一起玩出來！<br><br>
+                                對日騰來說，每個祝福都是獨一無二，從選材到搭配，甚至重新設計包材，每年絞盡腦汁，求新求變，藉由轉用與重新組合，傳達心意的重量 -- Only ZITON。
                             </p>
                         </div>
                     </div>

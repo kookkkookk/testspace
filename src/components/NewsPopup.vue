@@ -30,8 +30,8 @@ export default {
                     "typeName": null,
                     "subTypeName": null,
                     "title": null,
-                    "subTitle": null,
-                    "subTitleTwo": null,
+                    "subTitle": "null",
+                    "subTitleTwo": "null",
                     "description": [],
                     "mainImg": "src/images/99_default_init.jpg",
                     "mainImgDirection": "straight",
@@ -182,13 +182,14 @@ export default {
             <div class="right">
                 <div>
                     <h3 data-aos="fade-left" data-aos-delay="200">{{newsData[popOpenActive].title}}</h3>
-                    <h4 data-aos="fade-left" data-aos-delay="300" v-html="newsData[popOpenActive].subTitle"></h4>
+                    <h4 data-aos="fade-left" data-aos-delay="300" v-html="(!isMobile ? newsData[popOpenActive].subTitle.replace(/\^/g,'') : newsData[popOpenActive].subTitle.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></h4>
                     <div data-aos="fade-left" data-aos-delay="400" class="line"></div>
-                    <h5 data-aos="fade-left" data-aos-delay="500" v-if="newsData[popOpenActive].subTitleTwo" v-html="newsData[popOpenActive].subTitleTwo"></h5>
+                    <h5 data-aos="fade-left" data-aos-delay="500" v-if="newsData[popOpenActive].subTitleTwo" v-html="(!isMobile ? newsData[popOpenActive].subTitleTwo.replace(/\^/g,'') : newsData[popOpenActive].subTitleTwo.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></h5>
                     <p v-for="(item, index) in newsData[popOpenActive].description"
                        :key="index"
                        data-aos="fade-left"
-                       :data-aos-delay="(index+5)*100">{{item}}</p>
+                       :data-aos-delay="(index+5)*100"
+                       v-html="(!isMobile ? item.replace(/\^/g,''):item.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
                 </div>
             </div>
         </div>

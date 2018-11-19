@@ -78,7 +78,7 @@ export default {
                 <h2 ref="subTitle" v-else>純粹共生</h2>
                 <p ref="description" v-show="!isMobile">
                     當你把宇宙放在心上，宇宙才會存在。<br>
-                    動見場域的優缺點，<br>
+                    洞見場域的優缺點，<br>
                     避免先入為主的設計，<br>
                     傾聽需求，尋找使用的平衡美學<br>
                     空間的向度，生活的溫度 ，人文的尺度，<br>
@@ -95,12 +95,16 @@ export default {
                     <h3 data-aos="fade-right">創辦人</h3>
                     <div class="creator" data-aos="fade"><img src="~Branding/01_creator.jpg"></div>
                     <h1 data-aos="fade-right">創辦人暨設計總監<br>陳 詠婕</h1>
-                    <h2 data-aos="fade-right">
+                    <h2 data-aos="fade-right" v-if="!isMobile">
                         「設計來自生活，生活因設計改變，<br>
                         回歸設計需求，以細節成就完美，彰顯本質。」<br>
                         從大型設計公司、大元建築事務所洗禮，到創辦個人公司，<br>
                         三十年設計路，紮實耕耘始終如一，<br>
                         從住宅到商業，一件件精彩作品，造就多種形式的空間表情。
+                    </h2>
+                    <h2 data-aos="fade-right" v-else>
+                        「設計來自生活，生活因設計改變，回歸設計需求，以細節成就完美，彰顯本質。」<br>
+                        從大型設計公司、大元建築事務所洗禮，到創辦個人公司，三十年設計路，紮實耕耘始終如一，從住宅到商業，一件件精彩作品，造就多種形式的空間表情。
                     </h2>
                     <ul>
                         <li data-aos="fade-right">1989~1991 年曾任職 優騰國際室內設計有限公司 iDA Workplace + Strategy</li>
@@ -129,24 +133,34 @@ export default {
                 </div>
                 <div class="discription">
                     <ul>
-                        <li data-aos="fade-left">
+                        <li data-aos="fade-left" v-if="!isMobile">
                             「設計的細節可以看出設計師的意圖。」<br>
                             面對客戶與空間，我們堅持的只是一種價值觀，<br>
                             型隨機能、與時俱進，盡力改善優化，<br>
                             堅持自己的價值觀，相信美的感召力。
                         </li>
-                        <li data-aos="fade-left">
+                        <li data-aos="fade-left" v-else>
+                            「設計的細節可以看出設計師的意圖。」<br><br>
+                            面對客戶與空間，我們堅持的只是一種價值觀，型隨機能、與時俱進，盡力改善優化，堅持自己的價值觀，相信美的感召力。
+                        </li>
+                        <li data-aos="fade-left" v-if="!isMobile">
                             日騰空間設計創辦人，陳總監，以美感為軸，<br>
                             空間為伍，喜愛白色系的她，在設計世界也有<br>
                             自己的白色美學，反映在設計或公司空間上，<br>
                             可見單一與多元，包容與調和，<br>
                             純粹與共生，內斂與優雅。
                         </li>
-                        <li data-aos="fade-left">
+                        <li data-aos="fade-left" v-else>
+                            日騰空間設計創辦人，陳總監，以美感為軸，空間為伍，喜愛白色系的她，在設計世界也有自己的白色美學，反映在設計或公司空間上，可見單一與多元，包容與調和，純粹與共生，內斂與優雅。
+                        </li>
+                        <li data-aos="fade-left" v-if="!isMobile">
                             如果說創作是天份，還有不斷的學習，<br>
                             才能累積豐沛的創造力，儘管泰半人生<br>
                             在設計領域裡，日夜追尋靈感與創意拉拔，<br>
                             然而堅韌的柔情與對設計熱情，精進淬煉無限可能。
+                        </li>
+                        <li data-aos="fade-left" v-else>
+                            如果說創作是天份，還有不斷的學習，才能累積豐沛的創造力，儘管泰半人生在設計領域裡，日夜追尋靈感與創意拉拔，然而堅韌的柔情與對設計熱情，精進淬煉無限可能。
                         </li>
                     </ul>
                 </div>
@@ -215,11 +229,16 @@ export default {
                 <h3 data-aos="fade-right">專案<span>流程</span></h3>
                 <div class="textBox">
                     <h2 data-aos="fade-right">業主· 設計師 Q&amp;A</h2>
-                    <p data-aos="fade-right">
+                    <p data-aos="fade-right" v-if="!isMobile">
                         溝通是成就設計的起點！執行過程我們傾聽，和業主保持交流，<br>
                         設計案每一步驟均得到業主充份的了解和認同後才執行。<br>
                         每一件設計作品的呈現,代表著每位客戶的氣質和內在涵養，<br>
                         我們期許能為客戶展現出不同層次的空間。<br>
+                        歡迎與我們聊聊，邀請你到更好的生活來。
+                    </p>
+                    <p data-aos="fade-right" v-else>
+                        溝通是成就設計的起點！執行過程我們傾聽，和業主保持交流，設計案每一步驟均得到業主充份的了解和認同後才執行。<br>
+                        每一件設計作品的呈現,代表著每位客戶的氣質和內在涵養，我們期許能為客戶展現出不同層次的空間。<br>
                         歡迎與我們聊聊，邀請你到更好的生活來。
                     </p>
                 </div>

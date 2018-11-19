@@ -31,12 +31,12 @@ export default {
                     "constructionDescription": null,
                     "popupCoverImg": "src/images/99_default_init.jpg",
                     "descriptionTitle": null,
-                    "description": null,
+                    "description": "null",
                     "introduction": null,
                     "popupBannerGroup": [],
                     "designConcept": null,
                     "popupEndCoverImgGroup": [],
-                    "endText": null
+                    "endText": "null"
                 }
             ],
             popOpenActive: 0,
@@ -191,7 +191,7 @@ export default {
                 </div>
                 <div class="descriptionBox" ref="descriptionBox" data-aos="fade-left" data-aos-delay="400">
                     <h2>{{worksData[popOpenActive].descriptionTitle}}</h2>
-                    <p v-html="worksData[popOpenActive].description"></p>
+                    <p v-html="(!isMobile ? worksData[popOpenActive].description.replace(/\^/g,'') : worksData[popOpenActive].description.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
                 </div>
             </div>
             <div data-aos="fade-down" class="introductionContent" v-if="!isMobile">
@@ -245,7 +245,7 @@ export default {
                 </div>
                 <div data-aos="fade-right" class="endContent">
                     <div>
-                        <p>{{worksData[popOpenActive].endText}}</p>
+                        <p v-html="(!isMobile ? worksData[popOpenActive].endText.replace(/\^/g,'') : worksData[popOpenActive].endText.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
                     </div>
                 </div>
                 <div class="bg"></div>
