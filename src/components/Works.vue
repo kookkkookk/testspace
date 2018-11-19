@@ -39,7 +39,8 @@ export default {
                 this.isWorkSwitching = 'showing'
             },550)
             setTimeout(()=>{
-                this.isWorkSwitching = null
+                //this.isWorkSwitching = null
+                this.$aos.refreshHard();
             },1050)
         },
         scrollToTop() {
@@ -47,7 +48,7 @@ export default {
                 window.scrollTo(0,0);
             }, 200);
         },
-        getDomOffset(){
+        /*getDomOffset(){
             var scrollTop;
             var windowHeight;
             //var showFirstLoadWork = 0;
@@ -68,10 +69,10 @@ export default {
                         this.$refs['work'+i][0].dataset.offset = worksMainScreenArea.clientHeight + this.$refs['work'+i][0].offsetTop
                     }
 
-                    /*if(showFirstLoadWork < 2 && this.$refs['work'+i][0].classList.contains("selected")){
-                        this.$refs['work'+i][0].classList.add("on")
-                        showFirstLoadWork++
-                    }*/
+                    //if(showFirstLoadWork < 2 && this.$refs['work'+i][0].classList.contains("selected")){
+                    //    this.$refs['work'+i][0].classList.add("on")
+                    //    showFirstLoadWork++
+                    //}
                 }
                 //由於動畫時間0.5s 後才渲染至畫面，所以要0.51s後才能正確抓到offsettop
             },510)
@@ -80,15 +81,6 @@ export default {
                 this.postDomFirstAndSecondOn()
             },1100)
             
-            /*document.querySelectorAll(".selected").forEach(element => {
-                console.log(showFirstLoadWork)
-                
-                if(showFirstLoadWork < 2){
-                    console.log(element)
-                    element.classList.add("on")
-                    showFirstLoadWork++
-                }
-            })*/
         },
         postDomFirstAndSecondOn(){
             var showNumber = (this.isMobile ? 1:2)
@@ -99,18 +91,18 @@ export default {
                     this.showFirstLoadWork++
                 }
             }
-        }
+        }*/
     },
     watch: {
         getScrollTop(val) {
             //val = val-100;
             //console.log(val)
 
-            for(var i=0;i<this.worksDataLength;i++){
+            /*for(var i=0;i<this.worksDataLength;i++){
                 if(val >= this.$refs['work'+i][0].dataset.offset && !this.$refs['work'+i][0].classList.contains("on")){
                     this.$refs['work'+i][0].classList.add("on")
                 }
-            }
+            }*/
 
             if(val>=(this.documentHeight+200)){
                 this.isShowTopBtn = true;
@@ -146,7 +138,14 @@ export default {
                 .from(select, 0.5, {opacity: 0})
 
         //Set v-for created work dom data-offset number
-        this.getDomOffset()
+        //this.getDomOffset()
+
+        //scroll anumated api
+        this.$aos.init()
+        this.$aos.init({
+            duration: 500,
+            once: true
+        })
     },
     beforeDestroy(){
         
@@ -174,17 +173,17 @@ export default {
                         <li>
                             <a href="javascript:;" 
                                :class="{active:isWorkShow==='All'}" 
-                               @click="changeWorksShow('All'); getDomOffset();">ALL</a>
+                               @click="changeWorksShow('All')">ALL</a>
                         </li>
                         <li>
                             <a href="javascript:;" 
                                :class="{active:isWorkShow==='Commercial'}" 
-                               @click="changeWorksShow('Commercial'); getDomOffset();">COMMERCIAL</a>
+                               @click="changeWorksShow('Commercial')">COMMERCIAL</a>
                         </li>
                         <li>
                             <a href="javascript:;" 
                                :class="{active:isWorkShow==='Interiors'}" 
-                               @click="changeWorksShow('Interiors'); getDomOffset();">INTERIORS</a>
+                               @click="changeWorksShow('Interiors')">INTERIORS</a>
                         </li>
                     </ul>
                 </div>
@@ -195,7 +194,7 @@ export default {
         <div class="worksArea">
             <div class="topGrey"></div>
             <div class="worksContent">
-                <div class="movingDownFirst"
+                <div data-aos="fade-down"
                      v-for="(item,index) in worksData"
                      :key="index"
                      v-show="isWorkShow==='All' || isWorkShow===item.classification"
