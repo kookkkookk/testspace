@@ -204,6 +204,7 @@
                             line-height: 50px;
                         }
                         @include SCREEN_736{
+                            font-size: $contentText;
                             float: none;
                             display: inline-block;
                         }
@@ -225,6 +226,10 @@
                             line-height: 50px;
                             margin-left: 15px;
                         }
+                        @include SCREEN_736{
+                            font-size: $generalText;
+                            line-height: $generalTextLineHeight;
+                        }
                     }
                     >h3{
                         font-size: 30px;
@@ -238,6 +243,10 @@
                         @include SCREEN_1024{
                             font-size: 20px;
                             padding-top: 10px;
+                        }
+                        @include SCREEN_736{
+                            font-size: $generalText;
+                            line-height: $generalTextLineHeight;
                         }
                     }
                     >h4{
@@ -254,6 +263,10 @@
                             font-size: 16px;
                             line-height: 26px;
                             margin-top: 10px;
+                        }
+                        @include SCREEN_736{
+                            font-size: $generalText;
+                            line-height: $generalTextLineHeight;
                         }
                     }
                     >h5{
@@ -418,6 +431,9 @@
                         margin-bottom: 15px;
                         margin-top: 15px;
                     }
+                    @include SCREEN_736{
+                        font-size: $contentText;
+                    }
                 }
                 >h4{
                     font-size: 26px;
@@ -434,6 +450,9 @@
                     @include SCREEN_1024{
                         font-size: 18px;
                         margin-bottom: 30px;
+                    }
+                    @include SCREEN_736{
+                        font-size: $contentText;
                     }
                 }
                 .line{
@@ -471,8 +490,9 @@
                     @include SCREEN_1024{
                         font-size: 18px;
                     }
-                    @include SCREEN_1024{
-                        font-size: 18px;
+                    @include SCREEN_736{
+                        font-size: $generalText;
+                        line-height: $generalTextLineHeight;
                     }
                 }
                 >p{
@@ -503,6 +523,8 @@
                         margin-bottom: 30px;
                     }
                     @include SCREEN_736{
+                        font-size: $generalText;
+                        line-height: $generalTextLineHeight;
                         padding: 0 40px;
                         text-align: justify;
                     }
@@ -717,6 +739,9 @@
                 @include SCREEN_1024{
                     font-size: 20px;
                     margin-bottom: 20px;
+                }
+                @include SCREEN_736{
+                    font-size: $contentText;
                 }
             }
             .coverBottomContent{

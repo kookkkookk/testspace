@@ -225,7 +225,6 @@
                 font-size: 16px;
             }
             @include SCREEN_736{
-                font-size: 14px;
                 margin-top: 15px;
             }
         }
@@ -354,6 +353,10 @@
                         font-size: 24px;
                         margin-bottom: 15px;
                     }
+                    @include SCREEN_736{
+                        font-size: $contentText;
+                        font-weight: bold;
+                    }
                 }
                 >p{
                     font-size: 20px;
@@ -375,6 +378,10 @@
                         font-size: 12px;
                         line-height: 24px;
                         text-align: justify;
+                    }
+                    @include SCREEN_736{
+                        font-size: $generalText;
+                        line-height: $generalTextLineHeight;
                     }
                 }
             }
@@ -637,7 +644,8 @@
                             font-size: 16px;
                         }
                         @include SCREEN_736{
-                            font-size: 14px;
+                            font-size: $generalText;
+                            line-height: $generalTextLineHeight;
                         }
                     }
                 }

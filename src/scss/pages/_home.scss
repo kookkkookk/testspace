@@ -322,91 +322,16 @@
         align-items: center;
         justify-content: center;
         >p{
-            font-size: 16px;
+            font-size: $smallText;
             color: #202020;
-            line-height: 30px;
-            @include SCREEN_414{
-                font-size: 14px;
-                line-height: 28px;
-            }
+            line-height: $smallTextLineHeight;
+            padding: 0 10px;
+            // @include SCREEN_414{
+            //     font-size: 14px;
+            //     line-height: 28px;
+            // }
         } 
-    }
-
-    //Old
-    /*.bg{
-        font-size: 0;
-        position: relative;
-        z-index: 1;
-        // >img{
-        //     width: 100%;
-        //     @include SCREEN_1280{
-        //         width: 120%;
-        //     }
-        //     @include SCREEN_1024{
-        //         width: 135%;
-        //     }
-        //     @include SCREEN_736{
-        //         width: 100%;
-        //     }
-        // }
-    }
-    .leftChair,.rightChair,.titleArea,.description,{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-size: contain;
-        background-position: 50% 0%;
-        background-repeat: no-repeat;
-        @include SCREEN_1280{
-            width: 120%;
-            height: 120%;
-            left: -10%;
-        }
-        @include SCREEN_1024{
-            width: 135%;
-            height: 135%;
-            left: -17.5%;
-        }
-    }
-    .leftChair{
-        background-image: url("~Home/01_chairLeft_desktop.png");
-        z-index: 2;
-    }
-    .rightChair{
-        background-image: url("~Home/01_chairRight_desktop.png");
-        z-index: 3;
-    }
-    .titleArea{
-        background-image: url("~Home/01_chairLeftText_desktop.png");
-        z-index: 5;
-    }
-    .description{
-        background-image: url("~Home/01_chairMidText_desktop.png");
-        z-index: 4;
-        @include SCREEN_736{
-            background-image: none;
-            width: 100%;
-            height: auto;
-            position: static;
-            padding: 50px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            >p{
-                font-size: 16px;
-                color: #202020;
-                line-height: 30px;
-                @include SCREEN_414{
-                    font-size: 14px;
-                    line-height: 28px;
-                }
-            }
-            
-        }
-    }*/
-    
+    } 
 }
 
 //--- Life style ---
@@ -433,13 +358,13 @@
             letter-spacing: 0.2em;
             margin-bottom: 30px;
             @include SCREEN_736{
-                font-size: 26px;
+                font-size: $largeText;
                 text-align: center;
                 font-weight: bold;
             }
-            @include SCREEN_414{
-                font-size: 24px;
-            }
+            // @include SCREEN_414{
+            //     font-size: 24px;
+            // }
         }
         .pic{
             font-size: 0;
@@ -459,23 +384,24 @@
             color: #2a2a2a;
             text-align: center;
             line-height: 34px;
+            padding: 0 10px;
             @include SCREEN_736{
-                font-size: 16px;
-                line-height: 30px;
+                font-size: $generalText;
+                line-height: $generalTextLineHeight;
             }
-            @include SCREEN_414{
-                font-size: 14px;
-                line-height: 28px;
-            }
+            // @include SCREEN_414{
+            //     font-size: 14px;
+            //     line-height: 28px;
+            // }
             >span{
                 font-size: 18px;
                 font-style: italic;
                 @include SCREEN_736{
-                    font-size: 14px;
+                    font-size: $smallText;
                 }
-                @include SCREEN_414{
-                    font-size: 12px;
-                }
+                // @include SCREEN_414{
+                //     font-size: 12px;
+                // }
             }
         }
     }
@@ -568,16 +494,17 @@
                 margin: -70px 0 0 -70px;
             }
             @include SCREEN_736{
-                font-size: 16px;
-                line-height: 30px;
+                font-size: $generalText;
+                line-height: $generalTextLineHeight;
                 margin-left: 0px;
                 margin-top: 40px;
                 margin-bottom: 50px;
+                padding: 0 10px;
             }
-            @include SCREEN_414{
-                font-size: 14px;
-                line-height: 28px;
-            }
+            // @include SCREEN_414{
+            //     font-size: 14px;
+            //     line-height: 28px;
+            // }
         }
     }
 }

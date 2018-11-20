@@ -58,6 +58,7 @@ const config = {
             path.resolve('src'),
             path.resolve('src/images'),
             path.resolve('src/component'),
+            path.resolve('src/assets'),
             path.resolve('node_modules')
         ],
         extensions: ['.js', '.vue']
@@ -72,6 +73,13 @@ const config = {
                     'postcss-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(woff|woff2|ttf|eot)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]?[hash:8]'
+                }
             },
             {
                 test: /\.(vue)$/,

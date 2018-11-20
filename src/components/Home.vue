@@ -128,6 +128,16 @@ export default {
     created() {
         
         this.$axios.get('./assets/data/homeData.json').then((response) => {
+            /*if(location.hostname === "localhost"){
+                this.homeData = response.data;
+
+                this.homeData[1].bannerMobileImg.forEach((item, idx)=>{
+                    let str = this.homeData[1].bannerMobileImg[idx].replace("./", "src/");
+                    this.homeData[1].bannerMobileImg[idx] = str;
+                })
+            }else{
+                this.homeData = response.data;
+            }*/
             this.homeData = response.data;
         })
         .catch((error)=> {

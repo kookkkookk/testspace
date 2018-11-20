@@ -177,6 +177,17 @@
 	}
 }
 
+//mobile text size
+$largeText: 22px;
+$contentText: 18px;
+$generalText: 16px;
+$smallText: 14px;
+
+$largeTextLineHeight: 32px;
+$contentTextLineHeight: 28px;
+$generalTextLineHeight: 26px;
+$smallTextLineHeight: 20px;
+
 
 //直接置入背景圖
 @mixin pic($name){

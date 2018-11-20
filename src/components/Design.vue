@@ -133,7 +133,7 @@ export default {
                     型隨機能，風格不受限，<br>
                     偶爾留白，比多更能展現美的力度。
                 </p>
-                <div class="classificationMenu" ref="select">
+                <div class="classificationMenu" ref="select" v-show="!isMobile">
                     <ul>
                         <li><a href="javascript:;">CROSSOVER</a></li>
                         <li><a href="javascript:;">ART COLLECTION</a></li>

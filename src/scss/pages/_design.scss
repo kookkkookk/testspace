@@ -19,7 +19,7 @@
             background-position: 100% 50%;
             background-repeat: no-repeat;
             background-size: contain;
-            padding-bottom: 60px;
+            padding-bottom: 100px;
         }
         >h2{
             top: 170px;
@@ -164,6 +164,7 @@
                 font-size: 22px;
             }
             @include SCREEN_736{
+                font-size: $largeText;
                 margin-top: 0;
                 margin-left: 30px;
                 text-align: left;
@@ -340,13 +341,13 @@
             >div{
                 font-size: 0;
                 >h1{
-                    font-size: 20px;
+                    font-size: $contentText;
                     font-weight: bold;
                     padding: 0 30px;
                 }
                 >p{
-                    font-size: 14px;
-                    line-height: 20px;
+                    font-size: $generalText;
+                    line-height: $generalTextLineHeight;
                     margin-top: 15px;
                     padding: 0 30px;
                     text-align: justify;
@@ -439,6 +440,7 @@
                 font-size: 22px;
             }
             @include SCREEN_736{
+                font-size: $largeText;
                 margin-top: 0;
                 margin-left: 30px;
                 text-align: left;
@@ -523,6 +525,9 @@
                         @include SCREEN_1024{
                             font-size: 20px;
                         }
+                        @include SCREEN_736{
+                            font-size: $contentText;
+                        }
                     }
                     >p{
                         font-size: 20px;
@@ -544,6 +549,10 @@
                             line-height: 20px;
                             margin-top: 15px;
                             text-align: justify;
+                        }
+                        @include SCREEN_736{
+                            font-size: $generalText;
+                            line-height: $generalTextLineHeight;
                         }
                         
                     }

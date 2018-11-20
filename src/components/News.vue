@@ -13,8 +13,8 @@ export default {
                     "typeName": null,
                     "subTypeName": null,
                     "title": null,
-                    "subTitle": null,
-                    "subTitleTwo": null,
+                    "subTitle": "null",
+                    "subTitleTwo": "null",
                     "mainImg": "src/images/99_default_init.jpg"
                 }
             ]
@@ -109,7 +109,6 @@ export default {
                                         :style="{backgroundImage:'url('+item.mainImg+')'}"
                                         data-aos="fade-right"
                                         data-aos-delay="200">
-
                             </router-link>
                         </div>
                     </div>
@@ -118,8 +117,8 @@ export default {
                             <h1 data-aos="fade-right">{{item.typeName}}</h1>
                             <h2 v-if="!isMobile" data-aos="fade-right">{{item.subTypeName}}</h2>
                             <h3 data-aos="fade-right">{{item.title}}</h3>
-                            <h4 v-html="item.subTitle" data-aos="fade-right"></h4>
-                            <h5 v-if="item.subTitleTwo" v-html="item.subTitleTwo" data-aos="fade-right"></h5>
+                            <h4 v-html="(!isMobile ? item.subTitle.replace(/\^/g,'') : item.subTitle.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))" data-aos="fade-right"></h4>
+                            <h5 v-if="item.subTitleTwo" v-html="(!isMobile ? item.subTitleTwo.replace(/\^/g,'') : item.subTitleTwo.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))" data-aos="fade-right"></h5>
                         </div>
                     </div>
                 </div>
