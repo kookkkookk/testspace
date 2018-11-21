@@ -9,12 +9,12 @@
             "歷經人生淬鍊及各種考驗後，時間之於陳詠婕，是殘酷也是仁慈的昇華。小時候因車禍截斷了一條手臂的她，在成長過程中，未曾有任何自我放棄，反而激起她努力往前的決心，而今日，她以創意為生，與空間為伍，為自己，也為他人，揮灑出一段段豐富精彩的生活篇章。",
             "「設計來自於生活，生活因設計而改變，讓設計物有所值，讓細節締造完美。」秉持這樣的認知，日騰空間設計創立以來，從不受風格類型所限，接案範圍包括別墅、住宅、商空、辦公空間等。以人性需求為出發，結合創新多元的設計，加上認真負責的敬業態度，讓公司穩健的邁向十五年。"
         ],
-        "mainImg": "src/images/News/news01/01_mainPic01.jpg",
+        "mainImg": "./images/News/news01/01_mainPic01.jpg",
         "mainImgDirection": "straight",
         "switchPic": [
-            "src/images/News/news01/01_switchPic01.jpg",
-            "src/images/News/news01/01_switchPic02.jpg",
-            "src/images/News/news01/01_switchPic03.jpg"
+            "./images/News/news01/01_switchPic01.jpg",
+            "./images/News/news01/01_switchPic02.jpg",
+            "./images/News/news01/01_switchPic03.jpg"
         ],
         "displayAreaGroup": [
             {
@@ -22,15 +22,15 @@
                 "alignmentDirection": "bottom",
                 "displayPic": [
                     {
-                        "img": "src/images/News/news01/01_showcase01-1.jpg",
+                        "img": "./images/News/news01/01_showcase01-1.jpg",
                         "imgDirection": "horizontal"
                     },
                     {
-                        "img": "src/images/News/news01/01_showcase01-2.jpg",
+                        "img": "./images/News/news01/01_showcase01-2.jpg",
                         "imgDirection": "horizontal"
                     },
                     {
-                        "img": "src/images/News/news01/01_showcase01-3.jpg",
+                        "img": "./images/News/news01/01_showcase01-3.jpg",
                         "imgDirection": "straight"
                     }
                 ]
@@ -44,7 +44,7 @@
         "subTitle": "Skyline Library 天空書院<br>^觀景茶室",
         "subTitleTwo": "榮獲「英國國際地產」亞太區建築<br>^混用建築類室內設計奬項",
         "description": [],
-        "mainImg": "src/images/News/news02/01_mainPic01.jpg",
+        "mainImg": "./images/News/news02/01_mainPic01.jpg",
         "mainImgDirection": "horizontal",
         "switchPic": [],
         "displayAreaGroup": [
@@ -53,15 +53,15 @@
                 "alignmentDirection": "top",
                 "displayPic": [
                     {
-                        "img": "src/images/News/news02/01_showcase01-1.jpg",
+                        "img": "./images/News/news02/01_showcase01-1.jpg",
                         "imgDirection": "horizontal"
                     },
                     {
-                        "img": "src/images/News/news02/01_showcase01-2.jpg",
+                        "img": "./images/News/news02/01_showcase01-2.jpg",
                         "imgDirection": "straight"
                     },
                     {
-                        "img": "src/images/News/news02/01_showcase01-3.jpg",
+                        "img": "./images/News/news02/01_showcase01-3.jpg",
                         "imgDirection": "straight"
                     }
                 ]
@@ -71,15 +71,15 @@
                 "alignmentDirection": "top",
                 "displayPic": [
                     {
-                        "img": "src/images/News/news02/01_showcase02-1.jpg",
+                        "img": "./images/News/news02/01_showcase02-1.jpg",
                         "imgDirection": "straight"
                     },
                     {
-                        "img": "src/images/News/news02/01_showcase02-2.jpg",
+                        "img": "./images/News/news02/01_showcase02-2.jpg",
                         "imgDirection": "horizontal"
                     },
                     {
-                        "img": "src/images/News/news02/01_showcase02-3.jpg",
+                        "img": "./images/News/news02/01_showcase02-3.jpg",
                         "imgDirection": "horizontal"
                     }
                 ]

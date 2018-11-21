@@ -10,7 +10,7 @@ export default {
             worksData: [
                 {
                     "classification": null,
-                    "listingPageImg1": "src/images/99_default_init.jpg"
+                    "listingPageImg1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                 }
             ],
             isWorkShow: "All",
@@ -113,7 +113,11 @@ export default {
     },
     created(){
         this.$axios.get('./assets/data/worksData.json').then((response) => {
-            this.worksData = response.data;
+            if(location.hostname === "localhost"){
+                this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+            }else{
+                this.worksData = response.data;
+            }
         })
         .catch((error)=> {
             console.log("!ERROR: Ajax homeData.json fail: ",error)

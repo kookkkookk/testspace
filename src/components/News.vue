@@ -15,7 +15,7 @@ export default {
                     "title": null,
                     "subTitle": "null",
                     "subTitleTwo": "null",
-                    "mainImg": "src/images/99_default_init.jpg"
+                    "mainImg": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                 }
             ]
         }
@@ -38,7 +38,11 @@ export default {
     },
     created(){
         this.$axios.get('./assets/data/newsData.json').then((response) => {
-            this.newsData = response.data;
+            if(location.hostname === "localhost"){
+                this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+            }else{
+                this.newsData = response.data;
+            }
         })
         .catch((error)=> {
             console.log("!ERROR: Ajax newsData.json fail: ",error)

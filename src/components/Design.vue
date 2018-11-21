@@ -12,34 +12,34 @@ export default {
                 {
                     "title": "體貼入微，<br>不只是觀察也是感受",
                     "description": "建築大師庫哈斯：「建築是一種冒險 。」<br>室內設計則是整合思考，為人設計，<br>成立至今近二十年的時間，<br>我們從不定義自己的風格，更不盲從追求流行，<br>當設計師像明星一樣走進大眾生活，<br>我們依然默默耕耘每一件作品，<br>也許是我們的個性，也或許是我們習慣以作品發聲。",
-                    "pic": "src/images/Design/01_discoveryDesignPic01.jpg"
+                    "pic": "./images/Design/01_discoveryDesignPic01.jpg"
                 },
                 {
                     "title": "體貼入微，<br>不只是觀察也是感受",
                     "description": "跨足商業與住宅空間，我們著眼在於生活機能與方便使用，<br>而不是空間的華麗與獨特風格，或是材質的特殊難得，<br>如果留心觀察，<br>生活中被大家長期使用、慣用的每一個穿著物件，背後都有其原因。<br>不論是對自身個性、喜好的瞭解，<br>或者深受物件的機能、美感、態度所吸引，<br>每個選擇都值得仔細探究。<br>接受設計委託案，我們習慣同步請客戶分享日常習慣與愛好，<br>作為未來設計參考與主人風格的演繹。",
-                    "pic": "src/images/Design/01_discoveryDesignPic02.jpg"
+                    "pic": "./images/Design/01_discoveryDesignPic02.jpg"
                 },
                 {
                     "title": "生活者的樣貌，<br>比風格更重要",
                     "description": "與素材對話：<br>面對預算，不代表設計與想法就要被犧牲，<br>學習挖掘材質的替代性與變化性，只要用心入微，<br>一塊石材的紋理和豐富面貌，一塊木料，就可琢磨數十種組合方式。<br>設計師對品鑑眼光與核心價值，需要長期觀察與累積，<br>不要輕易被名牌物件牽引，空間不是物件的堆疊，<br>而是再現事物真隨中的美。<br>文藝復興藝術家米開朗基羅曾說：<br>「其實這型體本來就存在於大理石中，我只是把不需要的部分去掉而已。」",
-                    "pic": "src/images/Design/01_discoveryDesignPic03.jpg"
+                    "pic": "./images/Design/01_discoveryDesignPic03.jpg"
                 },
                 {
                     "title": "生活者的樣貌，<br>比風格更重要",
                     "description": "給未來的創作者與居住者：<br>常常提醒公司同事，不排除任何可能與創意，<br>閱讀、看展、旅行....，訓練眼界與累積內涵，<br>不斷尋求自己的想法，才能敏銳感受世界，<br>不拘泥於創造好作品的執著，<br>全心誠意做好每件事，<br>再努力一點，那甘苦甜美與客戶肯定是忠實的。",
-                    "pic": "src/images/Design/01_discoveryDesignPic04.jpg"
+                    "pic": "./images/Design/01_discoveryDesignPic04.jpg"
                 }
             ],
             discoveryDesignContentMobile:[
                 {
                     "mobileTitle1": "體貼入微，不只是觀察也是感受",
                     "mobileDescription1": "建築大師庫哈斯：「建築是一種冒險 。」<br>室內設計則是整合思考，為人設計，成立至今近二十年的時間，我們從不定義自己的風格，更不盲從追求流行，當設計師像明星一樣走進大眾生活，我們依然默默耕耘每一件作品，也許是我們的個性，也或許是我們習慣以作品發聲。",
-                    "mobileImg1": "src/images/Design/01_discoveryDesignPic_mobile_01.jpg",
+                    "mobileImg1": "./images/Design/01_discoveryDesignPic_mobile_01.jpg",
                     "mobileTitle2": "生活者的樣貌，比風格更重要",
                     "mobileDescription2": "與素材對話：<br>面對預算，不代表設計與想法就要被犧牲，學習挖掘材質的替代性與變化性，只要用心入微，一塊石材的紋理和豐富面貌，一塊木料，就可琢磨數十種組合方式。",
-                    "mobileImg2": "src/images/Design/01_discoveryDesignPic_mobile_02.jpg",
-                    "mobileImg3": "src/images/Design/01_discoveryDesignPic_mobile_03.jpg",
-                    "mobileImg4": "src/images/Design/01_discoveryDesignPic_mobile_04.jpg"
+                    "mobileImg2": "./images/Design/01_discoveryDesignPic_mobile_02.jpg",
+                    "mobileImg3": "./images/Design/01_discoveryDesignPic_mobile_03.jpg",
+                    "mobileImg4": "./images/Design/01_discoveryDesignPic_mobile_04.jpg"
                 }
             ],
             designData: [
@@ -77,8 +77,18 @@ export default {
         }
     },
     created(){
+
+        if(location.hostname === "localhost"){
+            this.discoveryDesignContent = JSON.parse(JSON.stringify(this.discoveryDesignContent).replace(/.\/images\//g, "src/images/"));
+            this.discoveryDesignContentMobile = JSON.parse(JSON.stringify(this.discoveryDesignContentMobile).replace(/.\/images\//g, "src/images/"));
+        }
+
         this.$axios.get('./assets/data/designData.json').then((response) => {
-            this.designData = response.data;
+            if(location.hostname === "localhost"){
+                this.designData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+            }else{
+                this.designData = response.data;
+            }
         })
         .catch((error)=> {
             console.log("!ERROR: Ajax designData.json fail: ",error)

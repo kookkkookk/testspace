@@ -138,7 +138,14 @@ export default {
             }else{
                 this.homeData = response.data;
             }*/
-            this.homeData = response.data;
+            if(location.hostname === "localhost"){
+                //let old = JSON.stringify(response.data).replace(/@\//g, "src/");
+                //let newArray = JSON.parse(old);
+                this.homeData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+            }else{
+                this.homeData = response.data;
+            }
+            
         })
         .catch((error)=> {
             console.log("!ERROR: Ajax homeData.json fail: ",error)
