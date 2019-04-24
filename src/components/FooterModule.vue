@@ -13,9 +13,9 @@ export default {
     <footer>
         <div class="footerDsktop" v-if="!isMobile">
             <div class="textArea">
-                <h1><span></span>日騰空間設計有限公司</h1>
-                <p>T　886 2 2751 6406　　F　886 2 2751 6315</p>
-                <P>16F-1, No.137, Sec. 1, Fuxing S. Rd., Ta-An Dist., Taipei City 106, Taiwan (R.O.C.)</P>
+                <h1><span></span>空間設計有限公司</h1>
+                <p>T　<a href="tel:+886227316282">886 2 2731 6282</a>　　F　886 2 2731 6287</p>
+                <p>16F-1, No.137, Sec. 1, Fuxing S. Rd., Ta-An Dist., Taipei City 106, Taiwan (R.O.C.)</p>
             </div>
             <div class="iconArea">
                 <ul>

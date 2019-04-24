@@ -274,7 +274,7 @@ export default {
             <div data-aos="fade-down" v-else class="bg picMobile"><img src="~Home/03_schematically_mobile.jpg"></div>
             <div data-aos="fade-left" data-aos-delay="300" class="description">
                 <p>
-                    ZITONSPACE日騰空間設計，<br>
+                    ZITONSPACE 空間設計，<br>
                     空間層次的美 ，生活尺度的善意。<br>
                     那些細微的觀察與習慣，<br>
                     堆砌了我們最重要的日常。<br>
