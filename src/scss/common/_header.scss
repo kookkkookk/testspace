@@ -120,20 +120,22 @@ header{
                 margin: 0;
                 padding: 0;
                 overflow: hidden;
-                margin: 0 75px;
-                @include SCREEN_1280{
-                    margin: 0 50px;
-                }
+                margin: 0 45px;
+                // @include SCREEN_1280{
+                //     margin: 0 50px;
+                // }
                 @include SCREEN_736{
                     margin: 0px;
                 }
                 >li{
                     float: left;
-                    margin-left: 45px;
+                    width: 100px;
+                    text-align: center;
+                    // margin-left: 45px;
                     line-height: 75px;
                     margin-top: 12px;
                     position: relative;
-                    &:first-child{margin-left: 0px;}
+                    // &:first-child{margin-left: 0px;}
                     >a{
                         font-size: 22px;
                         padding: 10px 0;
@@ -174,6 +176,7 @@ header{
                         margin-top: 0px;
                         text-align: center;
                         line-height: 70px;
+                        width: auto;
                     }
                 }
             }
@@ -184,35 +187,41 @@ header{
                 display: block;
                 position: absolute;
                 bottom: 0;
-                transition: all 0.3s;
+                transition: left 0.3s;
                 &.home{
                     left: -54px;
                 }
                 &.works{
-                    left: 74px;
-                    @include SCREEN_1280{left: 50px;}
+                    // left: 74px;
+                    // @include SCREEN_1280{left: 50px;}
+                    left: calc(5% + 45px);
                 }
                 &.workPopup{
-                    left: 74px;
+                    // left: 74px;
                     //background-color: #3a76f8;
-                    @include SCREEN_1280{left: 50px;}
+                    // @include SCREEN_1280{left: 50px;}
+                    left: calc(5% + 45px);
                 }
                 &.design{
-                    left: 178px;
-                    @include SCREEN_1280{left: 150px;}
+                    // left: 178px;
+                    // @include SCREEN_1280{left: 150px;}
+                    left: calc(25% + 45px);
                 }
                 &.news{
-                    left: 279px;
-                    @include SCREEN_1280{left: 252px;}
+                    // left: 279px;
+                    // @include SCREEN_1280{left: 252px;}
+                    left: calc(45% + 45px);
                 }
                 &.newsPopup{
-                    left: 279px;
+                    // left: 279px;
                     //background-color: #3a76f8;
-                    @include SCREEN_1280{left: 252px;}
+                    // @include SCREEN_1280{left: 252px;}
+                    left: calc(45% + 45px);
                 }
                 &.branding{
-                    left: 388px;
-                    @include SCREEN_1280{left: 361px;}
+                    // left: 388px;
+                    // @include SCREEN_1280{left: 361px;}
+                    left: calc(65% + 45px);
                 }
                 @include SCREEN_736{display: none;}
             }
