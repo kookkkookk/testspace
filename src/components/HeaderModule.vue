@@ -6,11 +6,11 @@ export default {
     data() {
         return {
             menu: [
-                { path: '/home',   name: 'home',   text: 'Home'},
-                { path: '/works',  name: 'works',  text: 'Works'},
-                { path: '/design', name: 'design', text: 'Design'},
-                { path: '/news',   name: 'news',   text: 'News'},
-                { path: '/branding',  name: 'branding',  text: 'Branding'}
+                { path: '/home',     name: 'home',     text: 'Home'},
+                { path: '/works',    name: 'works',    text: 'Works'},
+                { path: '/design',   name: 'design',   text: 'Design'},
+                { path: '/news',     name: 'news',     text: 'News'},
+                { path: '/branding', name: 'branding', text: 'Branding'}
             ],
             isMobileMenuOpen: false,
             isLogoHide: false,
@@ -124,7 +124,7 @@ export default {
                     <li v-for="item in menu"
                         :key="item.path"
                         v-if="item.name !== 'home'">
-                        <router-link :to="{ name: item.name}"
+                        <router-link :to="{name: item.name}"
                                      @click.native="jumpPageNoAnimatedCloseMenu();scrollToTop();">
                             {{item.text}}
                         </router-link>

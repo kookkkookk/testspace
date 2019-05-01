@@ -126,6 +126,10 @@
             max-width: 1366px;
             height: 900px;
         }
+        @include SCREEN_1440{
+            max-width: 1224px;
+            height: 820px;
+        }
         @include SCREEN_1366{
             max-width: 1124px;
             height: 740px;
@@ -225,6 +229,9 @@
                     @include SCREEN_1600{
                         top: -285px;
                         right: 50px;
+                    }
+                    @include SCREEN_1440{
+                        right: 0px;
                     }
                     @include SCREEN_1366{
                         top: -235px;
@@ -407,6 +414,9 @@
         //background-color: rgba($color: pink, $alpha: 0.4);
         @include SCREEN_1600{
             max-width: 1366px;
+        }
+        @include SCREEN_1440{
+            max-width: 1224px;
         }
         @include SCREEN_1366{
             max-width: 1024px;

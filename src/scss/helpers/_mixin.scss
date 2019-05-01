@@ -10,6 +10,11 @@
 		@content;	
 	}
 }
+@mixin SCREEN_1440{
+	@media screen and (max-width: 1440px) {
+		@content;	
+	}
+}
 @mixin SCREEN_1366{
 	@media screen and (max-width: 1366px) {
 		@content;	

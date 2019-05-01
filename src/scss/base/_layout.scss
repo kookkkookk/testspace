@@ -83,11 +83,19 @@ body, html{
 //   src: url('/assets/MyriadPro-LightSemiExt.ttf') format("truetype");
 // }
 @font-face {
-  font-family: 'MyriadPro-Light';
-  src: url('~MyriadPro-Light.ttf') format("truetype");
+  font-family: "MyriadPro-Light";
+	// src: url('~MyriadPro-Light.ttf') format("truetype");
+	src: local("MyriadPro-Light"),
+         url('~MyriadPro-Light.woff') format("woff"),
+         url('~MyriadPro-Light.ttf') format("truetype"),
+         url('~MyriadPro-Light.eot') format("embedded-opentype");
 }
 @font-face {
-  font-family: 'MyriadPro-Bold';
-	src: url('~MyriadPro-Bold_2.ttf') format("truetype");
+  font-family: "MyriadPro-Bold";
+	// src: url('~MyriadPro-Bold_2.ttf') format("truetype");
 	// src: url('/assets/MYRIADPRO-BOLD.ttf') format("truetype");
+	src: local("MyriadPro-Bold"),
+         url('~MyriadPro-Bold_2.woff') format("woff"),
+         url('~MyriadPro-Bold_2.ttf') format("truetype"),
+         url('~MyriadPro-Bold_2.eot') format("embedded-opentype");
 }

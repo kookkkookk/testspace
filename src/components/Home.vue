@@ -198,18 +198,17 @@ export default {
                 </span>
                 <transition-group v-if="!isMobile"
                                   tag="div"
-                                  name="fade"
-                                  >
+                                  name="fade">
                                   <!-- @click.native="clickBanner(active+1)" -->
                     <div class="bannerPic"
-                        v-for="(item, index) in homeData[1].bannerDesktopImg"
-                        :key="index"
-                        :style="{backgroundImage:'url('+item+')'}"
-                        v-show="active===index"
-                        :class="{bannerCyclingA:(index+1)%4 === 1,
-                                 bannerCyclingB:(index+1)%4 === 2,
-                                 bannerCyclingC:(index+1)%4 === 3,
-                                 bannerCyclingD:(index+1)%4 === 0}"></div>
+                         v-for="(item, index) in homeData[1].bannerDesktopImg"
+                         :key="index"
+                         :style="{backgroundImage:'url('+item+')'}"
+                         v-show="active===index"
+                         :class="{bannerCyclingA:(index+1)%4 === 1,
+                                  bannerCyclingB:(index+1)%4 === 2,
+                                  bannerCyclingC:(index+1)%4 === 3,
+                                  bannerCyclingD:(index+1)%4 === 0}"></div>
                 </transition-group>
 
                 <swiper v-else
