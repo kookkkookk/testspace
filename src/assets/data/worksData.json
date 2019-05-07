@@ -2,7 +2,6 @@
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work01/01_work_ListingPic01-1.jpg",
-        "listingPageImg2": "./images/Works/work01/01_work_ListingPic01-2.jpg",
         "listingLong": false,
         "constructionName": "台北市．法國品牌<br>GONTRAN CHERRIER 松山店",
         "constructionDescription": "商空巡禮",
@@ -27,7 +26,6 @@
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work02/01_work_ListingPic02-1.jpg",
-        "listingPageImg2": "./images/Works/work02/01_work_ListingPic02-2.jpg",
         "listingLong": false,
         "constructionName": "台北市．玉成街私宅",
         "constructionDescription": "住宅巡禮",
@@ -54,7 +52,6 @@
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work03/01_work_ListingPic03-1.jpg",
-        "listingPageImg2": "./images/Works/work03/01_work_ListingPic03-2.jpg",
         "listingLong": false,
         "constructionName": "大直．企業總部辦公室",
         "constructionDescription": "商空巡禮",
@@ -79,7 +76,6 @@
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work04/01_work_ListingPic04-1.jpg",
-        "listingPageImg2": "./images/Works/work04/01_work_ListingPic04-2.jpg",
         "listingLong": true,
         "constructionName": "台北市．法國品牌<br>GONTRAN CHERRIER 忠孝旗艦店",
         "constructionDescription": "商空巡禮",
@@ -104,7 +100,6 @@
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work05/01_work_ListingPic05-1.jpg",
-        "listingPageImg2": "./images/Works/work05/01_work_ListingPic05-2.jpg",
         "listingLong": false,
         "constructionName": "林口．建設公司<br>企業總部與藝文中心",
         "constructionDescription": "商空巡禮",
@@ -129,7 +124,6 @@
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work06/01_work_ListingPic06-1.jpg",
-        "listingPageImg2": "./images/Works/work06/01_work_ListingPic06-2.jpg",
         "listingLong": false,
         "constructionName": "林口．建案<br>共門廳及設施設計案",
         "constructionDescription": "住宅巡禮",
@@ -154,7 +148,6 @@
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work07/01_work_ListingPic07-1.jpg",
-        "listingPageImg2": "./images/Works/work07/01_work_ListingPic07-2.jpg",
         "listingLong": true,
         "constructionName": "台北市．臨沂街私宅",
         "constructionDescription": "住宅巡禮",
@@ -182,7 +175,6 @@
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work08/01_work_ListingPic08-1.jpg",
-        "listingPageImg2": "./images/Works/work08/01_work_ListingPic08-2.jpg",
         "listingLong": false,
         "constructionName": "新竹．建案接待會館",
         "constructionDescription": "商空巡禮",
@@ -206,7 +198,6 @@
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work09/01_work_ListingPic09-1.jpg",
-        "listingPageImg2": "./images/Works/work09/01_work_ListingPic09-2.jpg",
         "listingLong": false,
         "constructionName": "新竹．建案樣品屋",
         "constructionDescription": "住宅巡禮",
@@ -231,7 +222,6 @@
     {
         "classification": "Interiors",
         "listingPageImg1": "./images/Works/work10/01_work_ListingPic10-1.jpg",
-        "listingPageImg2": "./images/Works/work10/01_work_ListingPic10-2.jpg",
         "listingLong": true,
         "constructionName": "台北市．天母私宅",
         "constructionDescription": "住宅巡禮",
@@ -255,7 +245,6 @@
     {
         "classification": "Commercial",
         "listingPageImg1": "./images/Works/work11/01_work_ListingPic11-1.jpg",
-        "listingPageImg2": "./images/Works/work11/01_work_ListingPic11-2.jpg",
         "listingLong": false,
         "constructionName": "內湖．廣告公司辦公室",
         "constructionDescription": "商空巡禮",

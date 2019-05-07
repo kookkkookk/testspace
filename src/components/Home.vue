@@ -1,5 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 //import homeData from '../assets/data/homeData.json';
 
 import 'swiper/dist/css/swiper.css';
@@ -9,6 +10,7 @@ export default {
     name: 'home',
     data() {
         return {
+            testData: null,
             swiperOption: {
                 loop: true,
                 autoplay: {
@@ -23,7 +25,6 @@ export default {
                     }
                 }
             },
-            loading: true,
             active: 0,
             //homeData: homeData,
             homeData: [
@@ -126,39 +127,52 @@ export default {
         }*/
     },
     created() {
-        
-        this.$axios.get('./assets/data/homeData.json').then((response) => {
-            /*if(location.hostname === "localhost"){
-                this.homeData = response.data;
 
-                this.homeData[1].bannerMobileImg.forEach((item, idx)=>{
-                    let str = this.homeData[1].bannerMobileImg[idx].replace("./", "src/");
-                    this.homeData[1].bannerMobileImg[idx] = str;
-                })
-            }else{
-                this.homeData = response.data;
-            }*/
-            if(location.hostname === "localhost"){
-                //let old = JSON.stringify(response.data).replace(/@\//g, "src/");
-                //let newArray = JSON.parse(old);
-                this.homeData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-            }else{
-                this.homeData = response.data;
-            }
-            
+        getPagesDatas('./assets/data/homeData.json')
+        .then((response)=>{
+            this.homeData = response;
         })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax homeData.json fail: ",error)
-        })
-        .then(()=> {
-
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
-
+        .then(()=>{
+            this.$store.dispatch('runFadeOutLoading', true);
             this.setHandler()
         })
+        .catch((response)=>{
+            console.log(response);
+        })
+
+        // this.$axios.get('./assets/data/homeData.json').then((response) => {
+        //     /*if(location.hostname === "localhost"){
+        //         this.homeData = response.data;
+
+        //         this.homeData[1].bannerMobileImg.forEach((item, idx)=>{
+        //             let str = this.homeData[1].bannerMobileImg[idx].replace("./", "src/");
+        //             this.homeData[1].bannerMobileImg[idx] = str;
+        //         })
+        //     }else{
+        //         this.homeData = response.data;
+        //     }*/
+        //     if(location.hostname === "localhost"){
+        //         //let old = JSON.stringify(response.data).replace(/@\//g, "src/");
+        //         //let newArray = JSON.parse(old);
+        //         this.homeData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+        //     }else{
+        //         this.homeData = response.data;
+        //     }
+            
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax homeData.json fail: ",error)
+        // })
+        // .then(()=> {
+
+        //     /*const { _loading } = this.$refs
+        //     const timeline = new TimelineLite()
+        //     timeline.to(_loading, 0.3, {autoAlpha: 0})
+        //             .add(()=>{ this.loading=false })*/
+        //     this.$store.dispatch('runFadeOutLoading', true);
+
+        //     this.setHandler()
+        // })
     },
     mounted(){
         //Banner animated (tweenMax)
@@ -186,7 +200,6 @@ export default {
 
 <template>
     <div class="homePage firstDom">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- Banner -->
         <div class="bannerArea">
             
@@ -290,9 +303,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_home.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_home.scss";
 </style>
 <style>
 /* mobile Swiper banner style */

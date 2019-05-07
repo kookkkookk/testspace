@@ -123,7 +123,7 @@ export default {
                     </li>
                     <li v-for="item in menu"
                         :key="item.path"
-                        v-if="item.name !== 'home'">
+                        v-show="item.name !== 'home'">
                         <router-link :to="{name: item.name}"
                                      @click.native="jumpPageNoAnimatedCloseMenu();scrollToTop();">
                             {{item.text}}
@@ -138,6 +138,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/common/_header.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/common/_header.scss";
 </style>

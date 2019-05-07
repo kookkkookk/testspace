@@ -1,10 +1,10 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 export default {
     name: 'design',
     data() {
         return {
-            loading: true,
             discoveryDesignActive: 0,
             isDiscoveryDesignPrev: false,
             isDiscoveryDesignNext: true,
@@ -83,21 +83,29 @@ export default {
             this.discoveryDesignContentMobile = JSON.parse(JSON.stringify(this.discoveryDesignContentMobile).replace(/.\/images\//g, "src/images/"));
         }
 
-        this.$axios.get('./assets/data/designData.json').then((response) => {
-            if(location.hostname === "localhost"){
-                this.designData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-            }else{
-                this.designData = response.data;
-            }
+        // this.$axios.get('./assets/data/designData.json').then((response) => {
+        //     if(location.hostname === "localhost"){
+        //         this.designData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+        //     }else{
+        //         this.designData = response.data;
+        //     }
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax designData.json fail: ",error)
+        // })
+        // .then(()=> {
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
+
+        getPagesDatas('./assets/data/designData.json')
+        .then((response)=>{
+            this.designData = response;
         })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax designData.json fail: ",error)
+        .then(()=>{
+            this.$store.dispatch('runFadeOutLoading', true);
         })
-        .then(()=> {
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
+        .catch((response)=>{
+            console.log(response);
         })
 
     },
@@ -127,7 +135,6 @@ export default {
 
 <template>
     <div class="designPage firstDom">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- news main screen -->
         <div class="designMainScreenArea pagesTopCover">
             <div>
@@ -246,7 +253,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_design.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_design.scss";
 </style>

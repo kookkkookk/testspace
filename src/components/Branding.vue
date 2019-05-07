@@ -1,11 +1,11 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 //import brandingData from '../assets/data/brandingData.json';
 export default {
     name: 'branding',
     data() {
         return {
-            loading: true,
             //brandingData: brandingData
             brandingData: [
                 {
@@ -33,18 +33,25 @@ export default {
         }
     },
     created(){
-        this.$axios.get('./assets/data/brandingData.json').then((response) => {
-            this.brandingData = response.data;
-        })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax brandingData.json fail: ",error)
-        })
-        .then(()=> {
+        // this.$axios.get('./assets/data/brandingData.json').then((response) => {
+        //     this.brandingData = response.data;
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax brandingData.json fail: ",error)
+        // })
+        // .then(()=> {
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
 
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
+        getPagesDatas('./assets/data/brandingData.json')
+        .then((response)=>{
+            this.brandingData = response;
+        })
+        .then(()=>{
+            this.$store.dispatch('runFadeOutLoading', true);
+        })
+        .catch((response)=>{
+            console.log(response);
         })
     },
     mounted(){
@@ -70,7 +77,6 @@ export default {
 
 <template>
     <div class="brandingPage firstDom">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <div class="brandingMainScreenArea pagesTopCover">
             <div>
                 <h1 ref="title">BRANDING</h1>
@@ -277,7 +283,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_branding.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_branding.scss";
 </style>

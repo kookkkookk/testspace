@@ -1,11 +1,11 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 //import worksData from '../assets/data/worksData.json';
 export default {
     name: 'works',
     data() {
         return {
-            loading: true,
             //worksData: worksData,
             worksData: [
                 {
@@ -110,25 +110,41 @@ export default {
                 this.isShowTopBtn = false
             }
         },
+        worksData(){
+            this.$store.dispatch('runFadeOutLoading', true);
+        }
     },
-    created(){
-        this.$axios.get('./assets/data/worksData.json').then((response) => {
-            if(location.hostname === "localhost"){
-                this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-            }else{
-                this.worksData = response.data;
-            }
-        })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax homeData.json fail: ",error)
-        })
-        .then(()=> {
+    async created(){
+        // this.$axios.get('./assets/data/worksData.json').then((response) => {
+        //     if(location.hostname === "localhost"){
+        //         this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+        //     }else{
+        //         this.worksData = response.data;
+        //     }
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax homeData.json fail: ",error)
+        // })
+        // .then(()=> {
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
+        try {
+            const res = await getPagesDatas('./assets/data/worksData.json');
+            this.worksData = res;
+        } catch (error) {
+            console.log(response);
+        }
 
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
-        })
+        // getPagesDatas('./assets/data/worksData.json')
+        // .then((response)=>{
+        //     this.worksData = response;
+        // })
+        // .then(()=>{
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
+        // .catch((response)=>{
+        //     console.log(response);
+        // })
     },
     mounted(){
         //Banner animated (tweenMax)
@@ -159,7 +175,6 @@ export default {
 
 <template>
     <div class="worksPage firstDom">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- Works main screen -->
         <div class="worksMainScreenArea pagesTopCover" ref="worksMainScreenArea">
             <div>
@@ -226,7 +241,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_works.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_works.scss";
 </style>

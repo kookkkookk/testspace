@@ -30,6 +30,6 @@ export default {
     </footer>
 </template>
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/common/_footer.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/common/_footer.scss";
 </style>

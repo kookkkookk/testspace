@@ -57,7 +57,7 @@ const config = {
         modules: [
             path.resolve('src'),
             path.resolve('src/images'),
-            path.resolve('src/component'),
+            path.resolve('src/components'),
             path.resolve('src/assets'),
             path.resolve('node_modules')
         ],
@@ -135,8 +135,8 @@ const config = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: 'Zitonspace',
-            description: 'Zitonspace',
-            keywords: 'Zitonspace',
+            description: 'Zitonspace, zitonspace, ziton, ziton space, 日騰空間設計, 日騰, 室內設計, 空間設計, 陳詠婕, Fion Chen, 886-2-27316282, GONTRAN CHERRIER',
+            keywords: 'Zitonspace, zitonspace, ziton, ziton space, 日騰空間設計, 日騰, 室內設計, 空間設計, 陳詠婕, Fion Chen, 886-2-27316282, GONTRAN CHERRIER',
             filename: 'index.html',
             template: 'template/template.html'
         }),

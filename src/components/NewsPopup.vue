@@ -1,5 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 //import newsData from '../assets/data/newsData.json';
 
 //import 'swiper/dist/css/swiper.css';
@@ -23,7 +24,6 @@ export default {
                     }
                 }
             },
-            loading: true,
             //newsData: newsData,
             newsData: [
                 {
@@ -71,7 +71,7 @@ export default {
             }, 200);
         },
         jumpNewsPop(val){
-            this.loading = true;
+            /*this.loading = true;
             setTimeout(() => {
                 const { _loading } = this.$refs;
                 const timeline = new TimelineLite();
@@ -92,7 +92,21 @@ export default {
                                         .add(()=>{this.loading = false});
                             },300)
                         });
-            }, 50)
+            }, 50)*/
+            this.$store.dispatch('runFadeOutLoading', false);
+            setTimeout(() => {
+                this.$scrollTo('body');
+                this.$router.push('/news/'+val);
+                this.popOpenActive = val;
+                setTimeout(() => {
+                    document.querySelectorAll(".aos-animate").forEach((el)=>{
+                        el.classList.remove("aos-init");
+                        el.classList.remove("aos-animate");
+                    });
+                    this.$aos.refreshHard();
+                    this.mobileJumpBtnisShow();
+                },300)
+            }, 300);
         },
         mobileJumpBtnisShow(){
             (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
@@ -113,17 +127,32 @@ export default {
         }
     },
     created(){
-        this.$axios.get('./assets/data/newsData.json').then((response) => {
-            if(location.hostname === "localhost"){
-                this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-            }else{
-                this.newsData = response.data;
-            }
+        // this.$axios.get('./assets/data/newsData.json').then((response) => {
+        //     if(location.hostname === "localhost"){
+        //         this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+        //     }else{
+        //         this.newsData = response.data;
+        //     }
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax newsData.json fail: ",error)
+        // })
+        // .then(()=> {
+        //     let newsDataLength = this.newsData.length || 0;
+        //     let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
+        //     //console.log("this.$route.params.userId: ",nowDesignationKey);
+        //     //console.log("newsData Length: ",newsDataLength);
+        //     if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
+        //     this.popOpenActive = nowDesignationKey;
+
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
+
+        getPagesDatas('./assets/data/newsData.json')
+        .then((response)=>{
+            this.newsData = response;
         })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax newsData.json fail: ",error)
-        })
-        .then(()=> {
+        .then(()=>{
             let newsDataLength = this.newsData.length || 0;
             let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
             //console.log("this.$route.params.userId: ",nowDesignationKey);
@@ -131,11 +160,12 @@ export default {
             if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
             this.popOpenActive = nowDesignationKey;
 
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
+            this.$store.dispatch('runFadeOutLoading', true);
         })
+        .catch((response)=>{
+            console.log(response);
+        })
+
     },
     mounted() {
 
@@ -156,8 +186,6 @@ export default {
 
 <template>
     <div class="pupPage">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
-
         <div class="mobileCover" v-if="isMobile">
             <div class="newsMainScreenArea pagesTopCover" ref="newsMainScreenArea">
                 <div>
@@ -227,7 +255,7 @@ export default {
                 <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
             </div>
 
-            <div v-if="newsData[popOpenActive].displayAreaGroup.length>0"
+            <div v-if="newsData[popOpenActive].displayAreaGroup.length > 0"
                  v-for="(item,index) in newsData[popOpenActive].displayAreaGroup"
                  :key="index"
                  class="showcaseArea">
@@ -288,9 +316,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_news.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_news.scss";
 </style>
 <style>
 /* mobile Swiper banner style */

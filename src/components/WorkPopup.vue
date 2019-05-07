@@ -1,5 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 //import worksData from '../assets/data/worksData.json';
 
 //import 'swiper/dist/css/swiper.css';
@@ -23,7 +24,6 @@ export default {
                     }
                 }
             },
-            loading: true,
             //worksData: worksData,
             worksData: [
                 {
@@ -72,28 +72,43 @@ export default {
                     history.go(0);
                 }
             }, 500)*/
-            this.loading = true;
+            // this.loading = true;
+            // setTimeout(() => {
+            //     const { _loading } = this.$refs;
+            //     const timeline = new TimelineLite();
+            //     timeline.to(_loading, 0.3, {autoAlpha: 1})
+            //             .add(()=>{
+            //                 //window.scrollTo(0,0);
+            //                 this.$scrollTo('body');
+            //                 this.$router.push('/work/'+val);
+            //                 this.popOpenActive = val;
+            //                 setTimeout(() => {
+            //                     document.querySelectorAll(".aos-animate").forEach((el)=>{
+            //                         el.classList.remove("aos-init");
+            //                         el.classList.remove("aos-animate");
+            //                     });
+            //                     this.$aos.refreshHard();
+            //                     this.mobileJumpBtnisShow();
+            //                     timeline.to(_loading, 0.3, {autoAlpha: 0})
+            //                             .add(()=>{this.loading = false});
+            //                 },300)
+            //             });
+            // }, 50)
+            this.$store.dispatch('runFadeOutLoading', false);
+
             setTimeout(() => {
-                const { _loading } = this.$refs;
-                const timeline = new TimelineLite();
-                timeline.to(_loading, 0.3, {autoAlpha: 1})
-                        .add(()=>{
-                            //window.scrollTo(0,0);
-                            this.$scrollTo('body');
-                            this.$router.push('/work/'+val);
-                            this.popOpenActive = val;
-                            setTimeout(() => {
-                                document.querySelectorAll(".aos-animate").forEach((el)=>{
-                                    el.classList.remove("aos-init");
-                                    el.classList.remove("aos-animate");
-                                });
-                                this.$aos.refreshHard();
-                                this.mobileJumpBtnisShow();
-                                timeline.to(_loading, 0.3, {autoAlpha: 0})
-                                        .add(()=>{this.loading = false});
-                            },300)
-                        });
-            }, 50)
+                this.$scrollTo('body');
+                this.$router.push('/work/'+val);
+                this.popOpenActive = val;
+                setTimeout(() => {
+                    document.querySelectorAll(".aos-animate").forEach((el)=>{
+                        el.classList.remove("aos-init");
+                        el.classList.remove("aos-animate");
+                    });
+                    this.$aos.refreshHard();
+                    this.mobileJumpBtnisShow();
+                },300)
+            }, 300);
         },
         mobileJumpBtnisShow(){
             (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
@@ -119,17 +134,32 @@ export default {
         
     },
     created(){
-        this.$axios.get('./assets/data/worksData.json').then((response) => {
-            if(location.hostname === "localhost"){
-                this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-            }else{
-                this.worksData = response.data;
-            }
+        // this.$axios.get('./assets/data/worksData.json').then((response) => {
+        //     if(location.hostname === "localhost"){
+        //         this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+        //     }else{
+        //         this.worksData = response.data;
+        //     }
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax worksData.json fail: ",error)
+        // })
+        // .then(()=> {
+        //     let worksDataLength = this.worksData.length || 0;
+        //     let nowDesignationKey = (this.$route.params.userId <= worksDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
+        //     //console.log("this.$route.params.userId: ",nowDesignationKey);
+        //     //console.log("worksData Length: ",worksDataLength);
+        //     if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
+        //     this.popOpenActive = nowDesignationKey
+
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
+
+        getPagesDatas('./assets/data/worksData.json')
+        .then((response)=>{
+            this.worksData = response;
         })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax worksData.json fail: ",error)
-        })
-        .then(()=> {
+        .then(()=>{
             let worksDataLength = this.worksData.length || 0;
             let nowDesignationKey = (this.$route.params.userId <= worksDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
             //console.log("this.$route.params.userId: ",nowDesignationKey);
@@ -137,10 +167,10 @@ export default {
             if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
             this.popOpenActive = nowDesignationKey
 
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading = false });
+            this.$store.dispatch('runFadeOutLoading', true);
+        })
+        .catch((response)=>{
+            console.log(response);
         })
     },
     mounted() {
@@ -176,7 +206,6 @@ export default {
 
 <template>
     <div class="pupPage">
-        <div class="_loading" ref="_loading" v-show="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <div class="page1">
             <h1 data-aos="fade-down" v-html="worksData[popOpenActive].constructionName"></h1>
             <h2 data-aos="fade-down" data-aos-delay="200">{{worksData[popOpenActive].constructionDescription}}</h2>
@@ -295,9 +324,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_works.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_works.scss";
 </style>
 
 <style>

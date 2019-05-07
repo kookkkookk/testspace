@@ -100,7 +100,6 @@ header{
             width: auto;
             height: 87px;
             background-color: #ffffff;
-            display: inline-block;
             float: right;
             margin-right: 47px;
             position: relative;
@@ -112,6 +111,7 @@ header{
                 width: 100%;
                 height: auto;
                 background-color: rgba($color: #0e0e0e, $alpha: 0.95);
+                display: inline-block;
                 float: none;
                 margin-top: 50px;
                 transition: all 0.4s ease-out;

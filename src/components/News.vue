@@ -1,12 +1,12 @@
 <script>
 import { mapGetters } from 'vuex';
+import getPagesDatas from 'api/getPagesData';
 //import newsData from '../assets/data/newsData.json';
 
 export default {
     name: 'news',
     data() {
         return {
-            loading: true,
             //newsData: newsData
             newsData: [
                 {
@@ -37,21 +37,29 @@ export default {
         }
     },
     created(){
-        this.$axios.get('./assets/data/newsData.json').then((response) => {
-            if(location.hostname === "localhost"){
-                this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-            }else{
-                this.newsData = response.data;
-            }
+        // this.$axios.get('./assets/data/newsData.json').then((response) => {
+        //     if(location.hostname === "localhost"){
+        //         this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
+        //     }else{
+        //         this.newsData = response.data;
+        //     }
+        // })
+        // .catch((error)=> {
+        //     console.log("!ERROR: Ajax newsData.json fail: ",error)
+        // })
+        // .then(()=> {
+        //     this.$store.dispatch('runFadeOutLoading', true);
+        // })
+
+        getPagesDatas('./assets/data/newsData.json')
+        .then((response)=>{
+            this.newsData = response;
         })
-        .catch((error)=> {
-            console.log("!ERROR: Ajax newsData.json fail: ",error)
+        .then(()=>{
+            this.$store.dispatch('runFadeOutLoading', true);
         })
-        .then(()=> {
-            const { _loading } = this.$refs
-            const timeline = new TimelineLite()
-            timeline.to(_loading, 0.3, {autoAlpha: 0})
-                    .add(()=>{ this.loading=false })
+        .catch((response)=>{
+            console.log(response);
         })
 
     },
@@ -79,7 +87,6 @@ export default {
 
 <template>
     <div class="newsPage firstDom">
-        <div class="_loading" ref="_loading" v-if="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
         <!-- news main screen -->
         <div class="newsMainScreenArea pagesTopCover" ref="newsMainScreenArea">
             <div>
@@ -133,7 +140,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/helpers/_mixin.scss";
-    @import "../scss/helpers/scrollAnimation.scss";
-    @import "../scss/pages/_news.scss";
+    @import "scss/helpers/_mixin.scss";
+    @import "scss/helpers/_scrollAnimation.scss";
+    @import "scss/pages/_news.scss";
 </style>
