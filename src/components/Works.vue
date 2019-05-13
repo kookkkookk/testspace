@@ -13,7 +13,7 @@ export default {
                     "listingPageImg1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                 }
             ],
-            isWorkShow: "All",
+            //isWorkShow: "All",
             isWorkSwitching: null,
             showFirstLoadWork: 0,
             isShowTopBtn: false
@@ -23,7 +23,8 @@ export default {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            'getScrollTop'
+            'getScrollTop',
+            'getWork_isWorkShow'
         ]),
         worksDataLength(){
             return this.worksData.length || 0
@@ -33,7 +34,8 @@ export default {
         changeWorksShow(val){
             this.isWorkSwitching = 'hideing'
             setTimeout(()=>{
-                this.isWorkShow = val
+                //this.isWorkShow = val
+                this.$store.dispatch('postWork_isWorkShowVal', val);
             },500)
             setTimeout(()=>{
                 this.isWorkSwitching = 'showing'
@@ -191,17 +193,17 @@ export default {
                     <ul>
                         <li>
                             <a href="javascript:;" 
-                               :class="{active:isWorkShow==='All'}" 
+                               :class="{active:getWork_isWorkShow==='All'}" 
                                @click="changeWorksShow('All')">ALL</a>
                         </li>
                         <li>
                             <a href="javascript:;" 
-                               :class="{active:isWorkShow==='Commercial'}" 
+                               :class="{active:getWork_isWorkShow==='Commercial'}" 
                                @click="changeWorksShow('Commercial')">COMMERCIAL</a>
                         </li>
                         <li>
                             <a href="javascript:;" 
-                               :class="{active:isWorkShow==='Interiors'}" 
+                               :class="{active:getWork_isWorkShow==='Interiors'}" 
                                @click="changeWorksShow('Interiors')">INTERIORS</a>
                         </li>
                     </ul>
@@ -216,10 +218,10 @@ export default {
                 <div data-aos="fade-down"
                      v-for="(item,index) in worksData"
                      :key="index"
-                     v-show="isWorkShow==='All' || isWorkShow===item.classification"
+                     v-show="getWork_isWorkShow==='All' || getWork_isWorkShow===item.classification"
                      :class="{hideing:isWorkSwitching==='hideing',
                               showing:isWorkSwitching==='showing',
-                              selected:isWorkShow==='All' || isWorkShow===item.classification,
+                              selected:getWork_isWorkShow==='All' || getWork_isWorkShow===item.classification,
                               long:item.listingLong}"
                      :ref="'work'+index">
                     <router-link :to="'work/'+index"

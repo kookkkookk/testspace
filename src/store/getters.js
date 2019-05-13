@@ -13,5 +13,8 @@ export default {
     },
     getIsRunFadeOutLoadIcon: state => {
         return state.isRunFadeOutLoadIcon;
+    },
+    getWork_isWorkShow: state => {
+        return state.workPage_isWorkShow;
     }
 }

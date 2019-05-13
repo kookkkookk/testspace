@@ -42,14 +42,17 @@ export default {
             popOpenActive: 0,
             isShowTopBtn: false,
             isPage5jumpBtnNext: true,
-            isPage5jumpBtnPrev: true
+            isPage5jumpBtnPrev: true,
+            classification_commercial: [],
+            classification_interiors: []
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            'getScrollTop'
+            'getScrollTop',
+            'getWork_isWorkShow'
         ]),
 
     },
@@ -59,41 +62,16 @@ export default {
                 window.scrollTo(0,0);
             }, 200);
         },
-        jumpWorkPop(val){
-            //this.$router.push('/work/'+val);
-            //this.scrollToTop()
-            /*this.$scrollTo('body')
-            setTimeout(() => {
-                if(val==='next'){
-                    this.$router.push({ name: 'workPopup', params: {userId: (this.popOpenActive+1)} })
-                    history.go(0);
-                }else if(val==='prev'){
-                    this.$router.push({ name: 'workPopup', params: {userId: (this.popOpenActive-1)} })
-                    history.go(0);
-                }
-            }, 500)*/
-            // this.loading = true;
-            // setTimeout(() => {
-            //     const { _loading } = this.$refs;
-            //     const timeline = new TimelineLite();
-            //     timeline.to(_loading, 0.3, {autoAlpha: 1})
-            //             .add(()=>{
-            //                 //window.scrollTo(0,0);
-            //                 this.$scrollTo('body');
-            //                 this.$router.push('/work/'+val);
-            //                 this.popOpenActive = val;
-            //                 setTimeout(() => {
-            //                     document.querySelectorAll(".aos-animate").forEach((el)=>{
-            //                         el.classList.remove("aos-init");
-            //                         el.classList.remove("aos-animate");
-            //                     });
-            //                     this.$aos.refreshHard();
-            //                     this.mobileJumpBtnisShow();
-            //                     timeline.to(_loading, 0.3, {autoAlpha: 0})
-            //                             .add(()=>{this.loading = false});
-            //                 },300)
-            //             });
-            // }, 50)
+        jumpWorkNum(direction){
+            if(this.getWork_isWorkShow === 'All'){
+                return Number(this.$route.params.userId) + direction;
+            }else if(this.getWork_isWorkShow === 'Commercial'){
+                return this.classification_commercial[ this.classification_commercial.indexOf(Number(this.$route.params.userId)) + direction ];
+            }else if(this.getWork_isWorkShow === 'Interiors'){
+                return this.classification_interiors[ this.classification_interiors.indexOf(Number(this.$route.params.userId)) + direction ];
+            }
+        },
+        jumpWorkGo(val){
             this.$store.dispatch('runFadeOutLoading', false);
 
             setTimeout(() => {
@@ -106,13 +84,21 @@ export default {
                         el.classList.remove("aos-animate");
                     });
                     this.$aos.refreshHard();
-                    this.mobileJumpBtnisShow();
+                    this.jumpWorkBtnShowFn();
                 },300)
             }, 300);
         },
-        mobileJumpBtnisShow(){
-            (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
-            (this.popOpenActive===(this.worksData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
+        jumpWorkBtnShowFn(){
+            if(this.getWork_isWorkShow === 'All'){
+                (this.popOpenActive === 0 ? this.isPage5jumpBtnPrev = false : this.isPage5jumpBtnPrev = true);
+                (this.popOpenActive === (this.worksData.length-1) ? this.isPage5jumpBtnNext = false : this.isPage5jumpBtnNext = true);
+            }else if(this.getWork_isWorkShow === 'Commercial'){
+                (this.popOpenActive === this.classification_commercial[0] ? this.isPage5jumpBtnPrev = false : this.isPage5jumpBtnPrev = true);
+                (this.popOpenActive === (this.classification_commercial[this.classification_commercial.length-1]) ? this.isPage5jumpBtnNext = false : this.isPage5jumpBtnNext = true);
+            }else if(this.getWork_isWorkShow === 'Interiors'){
+                (this.popOpenActive === this.classification_interiors[0] ? this.isPage5jumpBtnPrev = false : this.isPage5jumpBtnPrev = true);
+                (this.popOpenActive === (this.classification_interiors[this.classification_interiors.length-1]) ? this.isPage5jumpBtnNext = false : this.isPage5jumpBtnNext = true);
+            }
         }
     },
     components: {
@@ -134,26 +120,6 @@ export default {
         
     },
     created(){
-        // this.$axios.get('./assets/data/worksData.json').then((response) => {
-        //     if(location.hostname === "localhost"){
-        //         this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-        //     }else{
-        //         this.worksData = response.data;
-        //     }
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax worksData.json fail: ",error)
-        // })
-        // .then(()=> {
-        //     let worksDataLength = this.worksData.length || 0;
-        //     let nowDesignationKey = (this.$route.params.userId <= worksDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
-        //     //console.log("this.$route.params.userId: ",nowDesignationKey);
-        //     //console.log("worksData Length: ",worksDataLength);
-        //     if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
-        //     this.popOpenActive = nowDesignationKey
-
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
 
         getPagesDatas('./assets/data/worksData.json')
         .then((response)=>{
@@ -168,6 +134,16 @@ export default {
             this.popOpenActive = nowDesignationKey
 
             this.$store.dispatch('runFadeOutLoading', true);
+
+            this.worksData.forEach((item, i)=>{
+                if(item.classification === 'Commercial'){
+                    this.classification_commercial.push(i)
+                }else if(item.classification === 'Interiors'){
+                    this.classification_interiors.push(i)
+                }
+            })
+            //console.log("classification_commercial: ",this.classification_commercial);
+            //console.log("classification_interiors: ",this.classification_interiors);
         })
         .catch((response)=>{
             console.log(response);
@@ -189,18 +165,15 @@ export default {
             }
 
             //mobile page5 next & prev Btn show & hide
-            this.mobileJumpBtnisShow();
+            this.jumpWorkBtnShowFn();
         }, 50);
-
-        
 
         //scroll anumated api
         this.$aos.init({
             duration: 500,
             once: true
         })
-        
-    },
+    }
 }
 </script>
 
@@ -293,17 +266,11 @@ export default {
             <div class="page5Container">
                 <ul>
                     <li v-show="isPage5jumpBtnPrev">
-                        <!-- <a href="javascript:;" @click="jumpWorkPop('prev')">
-                            PREV
-                        </a> -->
-                        <a href="javascript:;" @click="jumpWorkPop(Number($route.params.userId)-1)">PREV</a>
+                        <a href="javascript:;" @click="jumpWorkGo(jumpWorkNum(-1))">PREV</a>
                     </li>
                     <li v-show="isPage5jumpBtnNext">
-                        <!-- <a href="javascript:;" @click="jumpWorkPop('next')">
-                            NEXT
-                        </a> -->
                         <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
-                        <a href="javascript:;" @click="jumpWorkPop(Number($route.params.userId)+1)">NEXT</a>
+                        <a href="javascript:;" @click="jumpWorkGo(jumpWorkNum(+1))">NEXT</a>
                     </li>
                 </ul>
             </div>

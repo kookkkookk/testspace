@@ -11,7 +11,10 @@ export default {
     postScrollTopVal(state, data) {
         state.scrollTop = data;
     },
-    runFadeOutLoading(state, data){
+    runFadeOutLoading(state, data) {
         state.isRunFadeOutLoadIcon = data;
+    },
+    postWork_isWorkShowVal(state, data) {
+        state.workPage_isWorkShow = data;
     }
 }

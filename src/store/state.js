@@ -3,5 +3,6 @@ export default {
     isMobile: false,
     documentHeight: 0,
     scrollTop: 0,
-    isRunFadeOutLoadIcon: false
+    isRunFadeOutLoadIcon: false,
+    workPage_isWorkShow:'All'
 }
