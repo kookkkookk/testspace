@@ -307,14 +307,3 @@ export default {
     @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_home.scss";
 </style>
-<style>
-/* mobile Swiper banner style */
-.mobileBanner .swiper-pagination-bullet{
-    font-size: 0;
-    background: #fff;
-    opacity: 0.5;
-}
-.mobileBanner .swiper-pagination-bullet-active{
-    opacity: 1;
-}
-</style>

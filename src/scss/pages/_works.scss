@@ -386,7 +386,7 @@
                 }
             }
         }
-        .introductionContent{
+        /deep/ .introductionContent{
             margin-top: 85px;
             text-align: center;
             @include SCREEN_1600{
@@ -421,14 +421,29 @@
                         font-size: 14px;
                         line-height: 24px;
                     }
-                    //由於即時渲染關係,會吃不到css 直接寫在workspop.vue上
-                    //>span.worksPopDescriptionLine{
-                    //}
+                    span.worksPopDescriptionLine{
+                        width: 1px;
+                        height: 100%;
+                        max-height: 160px;
+                        background-color: #000;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        @include SCREEN_1600{
+                            min-height: 150px;
+                        }
+                        @include SCREEN_1366{
+                            min-height: 130px;
+                        }
+                        @include SCREEN_1024{
+                            min-height: 110px;
+                        }
+                    }
                 }
             }
         }
     }
-    .page3{
+    /deep/ .page3{
         width: 100%;
         
         .swiperContainer{
@@ -550,8 +565,16 @@
                 margin-bottom: 60px;
             }
         }
-
-        .designConceptContent{
+        .swiper-pagination-bullet{
+            font-size: 0;
+            margin: 0 4px;
+            background: #5e5e5e;
+            opacity: 0.5;
+        }
+        .swiper-pagination-bullet-active{
+            opacity: 1;
+        }
+        /deep/ .designConceptContent{
             clear: both;
             margin-top: 85px;
             text-align: center;
@@ -583,6 +606,18 @@
                     @include SCREEN_1024{
                         font-size: 14px;
                         line-height: 24px;
+                    }
+                    span.worksPopDescriptionLine2{
+                        width: 1px;
+                        height: 100%;
+                        max-height: 112px;
+                        background-color: #000;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        @include SCREEN_1366{
+                            max-height: 112px;
+                        }
                     }
                 }
             }

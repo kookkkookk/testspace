@@ -320,15 +320,3 @@ export default {
     @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_news.scss";
 </style>
-<style>
-/* mobile Swiper banner style */
-.swiperArea .swiper-pagination-bullet{
-    font-size: 0;
-    margin: 0 4px;
-    background: #5e5e5e;
-    opacity: 0.5;
-}
-.swiperArea .swiper-pagination-bullet-active{
-    opacity: 1;
-}
-</style>

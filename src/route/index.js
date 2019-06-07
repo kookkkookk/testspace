@@ -6,6 +6,7 @@ import news from "News";
 import newsPopup from "NewsPopup";
 import branding from "Branding";
 
+//異步載入頁面，不用使一開始進網頁時因為要load全部資料而太久。作用是進到該頁才載入該頁資料
 // const home = resolve => require(['Home'], resolve);
 // const works = resolve => require(['Works'], resolve);
 // const workPopup = resolve => require(['WorkPopup'], resolve);

@@ -552,7 +552,8 @@
                 }
             }
         }
-        .swiperArea{
+        // /deep/ 為不使用scoped 命名, 那麼一些js產生或是API引入的html tag就能接吃到
+        /deep/ .swiperArea{
             width: 100%;
             padding: 90px 0;
             @include SCREEN_736{
@@ -689,6 +690,15 @@
                     margin-top: 10px;
                     padding-bottom: 60px;
                 }
+            }
+            .swiper-pagination-bullet{
+                font-size: 0;
+                margin: 0 4px;
+                background: #5e5e5e;
+                opacity: 0.5;
+            }
+            .swiper-pagination-bullet-active{
+                opacity: 1;
             }
         }
         .showcaseArea{
