@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import getPagesDatas from 'api/getPagesData';
 export default {
     name: 'design',
@@ -41,13 +41,6 @@ export default {
                     "mobileImg3": "./images/Design/01_discoveryDesignPic_mobile_03.jpg",
                     "mobileImg4": "./images/Design/01_discoveryDesignPic_mobile_04.jpg"
                 }
-            ],
-            designData: [
-                {
-                    "title": null,
-                    "description": null,
-                    "designPicGroup": []
-                }
             ]
         }
     },
@@ -55,59 +48,36 @@ export default {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            //'getScrollTop'
+            'stateDesignPageData'
         ]),
         discoveryDesignLength(){
             return this.discoveryDesignContent.length
         }
     },
     methods: {
+        ...mapActions([
+            'getDesignPageData'
+        ]),
         scrollToTop() {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
         },
         changeDiscoveryDesign(active){
-            //this.discoveryDesignActive = (active + this.discoveryDesignLength) % this.discoveryDesignLength
-            //console.log("active: ",active)
-            //console.log("this.discoveryDesignActive: ",this.discoveryDesignActive)
             if(active<=this.discoveryDesignLength && active>-1) this.discoveryDesignActive=active;
             (this.discoveryDesignActive==0 ? this.isDiscoveryDesignPrev=false : this.isDiscoveryDesignPrev=true);
             (this.discoveryDesignActive==(this.discoveryDesignLength-1) ? this.isDiscoveryDesignNext=false : this.isDiscoveryDesignNext=true)
         }
     },
     created(){
-
         if(location.hostname === "localhost"){
             this.discoveryDesignContent = JSON.parse(JSON.stringify(this.discoveryDesignContent).replace(/.\/images\//g, "src/images/"));
             this.discoveryDesignContentMobile = JSON.parse(JSON.stringify(this.discoveryDesignContentMobile).replace(/.\/images\//g, "src/images/"));
         }
 
-        // this.$axios.get('./assets/data/designData.json').then((response) => {
-        //     if(location.hostname === "localhost"){
-        //         this.designData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-        //     }else{
-        //         this.designData = response.data;
-        //     }
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax designData.json fail: ",error)
-        // })
-        // .then(()=> {
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
-
-        getPagesDatas('./assets/data/designData.json')
-        .then((response)=>{
-            this.designData = response;
-        })
-        .then(()=>{
+        this.getDesignPageData().then(()=>{
             this.$store.dispatch('runFadeOutLoading', true);
-        })
-        .catch((response)=>{
-            console.log(response);
-        })
-
+        });
     },
     mounted(){
 
@@ -139,7 +109,6 @@ export default {
         <div class="designMainScreenArea pagesTopCover">
             <div>
                 <h1 ref="title">DESIGN</h1>
-                <!-- <div class="light"><img src="~News/00_light_desktop.png" alt=""></div> -->
                 <h2 ref="subTitle" v-if="!isMobile">空間育人。</h2>
                 <h2 ref="subTitle" v-else>空間育人</h2>
                 <p ref="description" v-show="!isMobile">
@@ -216,7 +185,7 @@ export default {
                     <div class="choiceContentLeft">
                         <div>
                             <ul>
-                                <li v-for="(item, index) in designData[0].designPicGroup"
+                                <li v-for="(item, index) in stateDesignPageData[0].designPicGroup"
                                     :key="index"
                                     :style="{backgroundImage:'url('+item+')'}"
                                     data-aos="fade-right">
@@ -254,6 +223,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_design.scss";
 </style>

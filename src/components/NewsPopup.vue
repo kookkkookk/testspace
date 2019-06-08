@@ -1,9 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
-import getPagesDatas from 'api/getPagesData';
-//import newsData from '../assets/data/newsData.json';
-
-//import 'swiper/dist/css/swiper.css';
+import { mapGetters, mapActions } from 'vuex';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
@@ -24,32 +20,6 @@ export default {
                     }
                 }
             },
-            //newsData: newsData,
-            newsData: [
-                {
-                    "typeName": null,
-                    "subTypeName": null,
-                    "title": null,
-                    "subTitle": "null",
-                    "subTitleTwo": "null",
-                    "description": [],
-                    "mainImg": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-                    "mainImgDirection": "straight",
-                    "switchPic": [],
-                    "displayAreaGroup": [
-                        {
-                            "title": null,
-                            "alignmentDirection": "top",
-                            "displayPic": [
-                                {
-                                    "img": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-                                    "imgDirection": "horizontal"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
             popOpenActive: 0,
             isShowTopBtn: false,
             isPage5jumpBtnNext: true,
@@ -60,39 +30,21 @@ export default {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            'getScrollTop'
+            'getScrollTop',
+            'stateNewsPageData'
         ]),
 
     },
     methods: {
+        ...mapActions([
+            'getNewsPageData'
+        ]),
         scrollToTop() {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
         },
         jumpNewsPop(val){
-            /*this.loading = true;
-            setTimeout(() => {
-                const { _loading } = this.$refs;
-                const timeline = new TimelineLite();
-                timeline.to(_loading, 0.3, {autoAlpha: 1})
-                        .add(()=>{
-                            //window.scrollTo(0,0);
-                            this.$scrollTo('body');
-                            this.$router.push('/news/'+val);
-                            this.popOpenActive = val;
-                            setTimeout(() => {
-                                document.querySelectorAll(".aos-animate").forEach((el)=>{
-                                    el.classList.remove("aos-init");
-                                    el.classList.remove("aos-animate");
-                                });
-                                this.$aos.refreshHard();
-                                this.mobileJumpBtnisShow();
-                                timeline.to(_loading, 0.3, {autoAlpha: 0})
-                                        .add(()=>{this.loading = false});
-                            },300)
-                        });
-            }, 50)*/
             this.$store.dispatch('runFadeOutLoading', false);
             setTimeout(() => {
                 this.$scrollTo('body');
@@ -110,7 +62,7 @@ export default {
         },
         mobileJumpBtnisShow(){
             (this.popOpenActive===0 ? this.isPage5jumpBtnPrev=false:this.isPage5jumpBtnPrev=true);
-            (this.popOpenActive===(this.newsData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
+            (this.popOpenActive===(this.stateNewsPageData.length-1) ? this.isPage5jumpBtnNext=false:this.isPage5jumpBtnNext=true);
         }
     },
     components: {
@@ -127,45 +79,15 @@ export default {
         }
     },
     created(){
-        // this.$axios.get('./assets/data/newsData.json').then((response) => {
-        //     if(location.hostname === "localhost"){
-        //         this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-        //     }else{
-        //         this.newsData = response.data;
-        //     }
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax newsData.json fail: ",error)
-        // })
-        // .then(()=> {
-        //     let newsDataLength = this.newsData.length || 0;
-        //     let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
-        //     //console.log("this.$route.params.userId: ",nowDesignationKey);
-        //     //console.log("newsData Length: ",newsDataLength);
-        //     if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
-        //     this.popOpenActive = nowDesignationKey;
-
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
-
-        getPagesDatas('./assets/data/newsData.json')
-        .then((response)=>{
-            this.newsData = response;
-        })
-        .then(()=>{
-            let newsDataLength = this.newsData.length || 0;
+        this.getNewsPageData().then(()=>{
+            let newsDataLength = this.stateNewsPageData.length || 0;
             let nowDesignationKey = (this.$route.params.userId <= newsDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
-            //console.log("this.$route.params.userId: ",nowDesignationKey);
-            //console.log("newsData Length: ",newsDataLength);
+
             if(this.$route.params.userId>=newsDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
             this.popOpenActive = nowDesignationKey;
 
             this.$store.dispatch('runFadeOutLoading', true);
-        })
-        .catch((response)=>{
-            console.log(response);
-        })
-
+        });
     },
     mounted() {
 
@@ -206,18 +128,18 @@ export default {
         <div class="mainScreen">
 
             <div class="left" data-aos="fade-left">
-                <div class="cover" :style="{backgroundImage:'url('+newsData[popOpenActive].mainImg+')'}">
-                    <img v-if="newsData[popOpenActive].mainImgDirection==='straight'" src="~News/99_popupCoverDefult_straight.jpg">
+                <div class="cover" :style="{backgroundImage:'url('+stateNewsPageData[popOpenActive].mainImg+')'}">
+                    <img v-if="stateNewsPageData[popOpenActive].mainImgDirection==='straight'" src="~News/99_popupCoverDefult_straight.jpg">
                     <img v-else src="~News/99_popupCoverDefult_horizontal.jpg">
                 </div>
             </div>
             <div class="right">
                 <div>
-                    <h3 data-aos="fade-left" data-aos-delay="200">{{newsData[popOpenActive].title}}</h3>
-                    <h4 data-aos="fade-left" data-aos-delay="300" v-html="(!isMobile ? newsData[popOpenActive].subTitle.replace(/\^/g,'') : newsData[popOpenActive].subTitle.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></h4>
+                    <h3 data-aos="fade-left" data-aos-delay="200">{{stateNewsPageData[popOpenActive].title}}</h3>
+                    <h4 data-aos="fade-left" data-aos-delay="300" v-html="(!isMobile ? stateNewsPageData[popOpenActive].subTitle.replace(/\^/g,'') : stateNewsPageData[popOpenActive].subTitle.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></h4>
                     <div data-aos="fade-left" data-aos-delay="400" class="line"></div>
-                    <h5 data-aos="fade-left" data-aos-delay="500" v-if="newsData[popOpenActive].subTitleTwo" v-html="(!isMobile ? newsData[popOpenActive].subTitleTwo.replace(/\^/g,'') : newsData[popOpenActive].subTitleTwo.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></h5>
-                    <p v-for="(item, index) in newsData[popOpenActive].description"
+                    <h5 data-aos="fade-left" data-aos-delay="500" v-if="stateNewsPageData[popOpenActive].subTitleTwo" v-html="(!isMobile ? stateNewsPageData[popOpenActive].subTitleTwo.replace(/\^/g,'') : stateNewsPageData[popOpenActive].subTitleTwo.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></h5>
+                    <p v-for="(item, index) in stateNewsPageData[popOpenActive].description"
                        :key="index"
                        data-aos="fade-left"
                        :data-aos-delay="(index+5)*100"
@@ -228,7 +150,7 @@ export default {
 
         <div class="anOtherScreen">
 
-            <div v-if="newsData[popOpenActive].switchPic.length>0"
+            <div v-if="stateNewsPageData[popOpenActive].switchPic.length>0"
                  class="swiperArea"
                  data-aos="fade-left">
 
@@ -238,7 +160,7 @@ export default {
                     </div>
                     <div class="swiperContent">
                         <swiper :options="swiperOption">
-                            <swiper-slide v-for="(item, index) in newsData[popOpenActive].switchPic"
+                            <swiper-slide v-for="(item, index) in stateNewsPageData[popOpenActive].switchPic"
                                           :key="index">
                                 <!-- <img :src="item || ''"> -->
                                 <div class="pic" :style="{backgroundImage:'url('+item+')'}"></div>
@@ -255,8 +177,8 @@ export default {
                 <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
             </div>
 
-            <div v-if="newsData[popOpenActive].displayAreaGroup.length > 0"
-                 v-for="(item,index) in newsData[popOpenActive].displayAreaGroup"
+            <div v-if="stateNewsPageData[popOpenActive].displayAreaGroup.length > 0"
+                 v-for="(item,index) in stateNewsPageData[popOpenActive].displayAreaGroup"
                  :key="index"
                  class="showcaseArea">
                 <div v-if="isMobile" class="showcaseLine" data-aos="fade-left"></div>
@@ -278,8 +200,8 @@ export default {
             </div>
         </div>
         <div class="lastArea"
-             :class="{bgWhite: Math.abs((newsData[popOpenActive].displayAreaGroup.length + (newsData[popOpenActive].switchPic.length>0? 1:0)) % 2)===1,
-                       bgGrey: (newsData[popOpenActive].displayAreaGroup.length + (newsData[popOpenActive].switchPic.length>0? 1:0)) % 2 === 0}">
+             :class="{bgWhite: Math.abs((stateNewsPageData[popOpenActive].displayAreaGroup.length + (stateNewsPageData[popOpenActive].switchPic.length>0? 1:0)) % 2)===1,
+                       bgGrey: (stateNewsPageData[popOpenActive].displayAreaGroup.length + (stateNewsPageData[popOpenActive].switchPic.length>0? 1:0)) % 2 === 0}">
 
             <div data-aos="fade-left" class="backBtn" v-if="!isMobile">
                 <router-link to="/news">BACK</router-link>
@@ -289,15 +211,9 @@ export default {
             <div class="page5Container" v-else>
                 <ul>
                     <li v-show="isPage5jumpBtnPrev">
-                        <!-- <a href="javascript:;" @click="jumpWorkPop('prev')">
-                            PREV
-                        </a> -->
                         <a href="javascript:;" @click="jumpNewsPop(Number($route.params.userId)-1)">PREV</a>
                     </li>
                     <li v-show="isPage5jumpBtnNext">
-                        <!-- <a href="javascript:;" @click="jumpWorkPop('next')">
-                            NEXT
-                        </a> -->
                         <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
                         <a href="javascript:;" @click="jumpNewsPop(Number($route.params.userId)+1)">NEXT</a>
                     </li>
@@ -317,6 +233,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_news.scss";
 </style>

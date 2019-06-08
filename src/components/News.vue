@@ -1,35 +1,26 @@
 <script>
-import { mapGetters } from 'vuex';
-import getPagesDatas from 'api/getPagesData';
-//import newsData from '../assets/data/newsData.json';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     name: 'news',
     data() {
         return {
-            //newsData: newsData
-            newsData: [
-                {
-                    "typeName": null,
-                    "subTypeName": null,
-                    "title": null,
-                    "subTitle": "null",
-                    "subTitleTwo": "null",
-                    "mainImg": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                }
-            ]
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
-            'getScrollTop'
+            'getScrollTop',
+            'stateNewsPageData'
         ]),
         newsDataLength(){
-            return newsData.length
+            return this.stateNewsPageData.length
         }
     },
     methods: {
+        ...mapActions([
+            'getNewsPageData'
+        ]),
         scrollToTop() {
             setTimeout(() => {
                 window.scrollTo(0,0);
@@ -37,31 +28,9 @@ export default {
         }
     },
     created(){
-        // this.$axios.get('./assets/data/newsData.json').then((response) => {
-        //     if(location.hostname === "localhost"){
-        //         this.newsData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-        //     }else{
-        //         this.newsData = response.data;
-        //     }
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax newsData.json fail: ",error)
-        // })
-        // .then(()=> {
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
-
-        getPagesDatas('./assets/data/newsData.json')
-        .then((response)=>{
-            this.newsData = response;
-        })
-        .then(()=>{
+        this.getNewsPageData().then(()=>{
             this.$store.dispatch('runFadeOutLoading', true);
-        })
-        .catch((response)=>{
-            console.log(response);
-        })
-
+        });
     },
     mounted(){
         
@@ -109,7 +78,7 @@ export default {
 
             <div class="introductionContainer">
                 <div class="newsItem"
-                     v-for="(item, index) in newsData"
+                     v-for="(item, index) in stateNewsPageData"
                      :key="index">
                     <div class="left">
                         <div class="cover">
@@ -141,6 +110,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_news.scss";
 </style>

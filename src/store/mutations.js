@@ -16,5 +16,21 @@ export default {
     },
     postWork_isWorkShowVal(state, data) {
         state.workPage_isWorkShow = data;
-    }
+    },
+
+    saveHomePageData(state, data) {
+        state.homeData = data;
+    },
+    saveWorkPageData(state, data) {
+        state.worksData = data;
+    },
+    saveDesignPageData(state, data) {
+        state.designData = data;
+    },
+    saveNewsPageData(state, data) {
+        state.newsData = data;
+    },
+    saveBrandingPageData(state, data) {
+        state.brandingData = data;
+    },
 }

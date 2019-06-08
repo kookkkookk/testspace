@@ -1,58 +1,32 @@
 <script>
-import { mapGetters } from 'vuex';
-import getPagesDatas from 'api/getPagesData';
-//import brandingData from '../assets/data/brandingData.json';
+import { mapGetters, mapActions } from 'vuex';
 export default {
     name: 'branding',
     data() {
         return {
-            //brandingData: brandingData
-            brandingData: [
-                {
-                    "type":null,
-                    "worksList":[]
-                },
-                {
-                    "type":null,
-                    "worksList":[]
-                }
-            ]
+
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            'getScrollTop'
+            'getScrollTop',
+            'stateBrandingPageData'
         ]),
-        /*brandingDataReverse(){
-            return this.brandingData.reverse()
-        },*/
         brandingDataRemainder(){
-            return this.brandingData.length % 3;
+            return this.stateBrandingPageData.length % 3;
         }
     },
+    methods: {
+        ...mapActions([
+            'getBrandingPageData'
+        ]),
+    },
     created(){
-        // this.$axios.get('./assets/data/brandingData.json').then((response) => {
-        //     this.brandingData = response.data;
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax brandingData.json fail: ",error)
-        // })
-        // .then(()=> {
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
-
-        getPagesDatas('./assets/data/brandingData.json')
-        .then((response)=>{
-            this.brandingData = response;
-        })
-        .then(()=>{
+        this.getBrandingPageData().then(()=>{
             this.$store.dispatch('runFadeOutLoading', true);
-        })
-        .catch((response)=>{
-            console.log(response);
-        })
+        });
     },
     mounted(){
         //Banner animated (tweenMax)
@@ -181,21 +155,21 @@ export default {
                 <div class="collectionWorksContent">
 
                     <div class="workList">
-                        <h1 data-aos="fade-right">{{brandingData[0].type+' >'}}</h1>
+                        <h1 data-aos="fade-right">{{stateBrandingPageData[0].type+' >'}}</h1>
                         <div class="works commercialList"
-                             v-for="(item, index) in brandingData[0].workList"
+                             v-for="(item, index) in stateBrandingPageData[0].workList"
                              :key="index"
                              v-if="index % 6 == 0 && !isMobile">
-                            <p v-if="brandingData[0].workList[index]" data-aos="fade-left">{{brandingData[0].workList[index]}}</p>
-                            <p v-if="brandingData[0].workList[index+1]" data-aos="fade-left">{{brandingData[0].workList[index+1]}}</p>
-                            <p v-if="brandingData[0].workList[index+2]" data-aos="fade-left">{{brandingData[0].workList[index+2]}}</p>
-                            <p v-if="brandingData[0].workList[index+3]" data-aos="fade-left">{{brandingData[0].workList[index+3]}}</p>
-                            <p v-if="brandingData[0].workList[index+4]" data-aos="fade-left">{{brandingData[0].workList[index+4]}}</p>
-                            <p v-if="brandingData[0].workList[index+5]" data-aos="fade-left">{{brandingData[0].workList[index+5]}}</p>
+                            <p v-if="stateBrandingPageData[0].workList[index]" data-aos="fade-left">{{stateBrandingPageData[0].workList[index]}}</p>
+                            <p v-if="stateBrandingPageData[0].workList[index+1]" data-aos="fade-left">{{stateBrandingPageData[0].workList[index+1]}}</p>
+                            <p v-if="stateBrandingPageData[0].workList[index+2]" data-aos="fade-left">{{stateBrandingPageData[0].workList[index+2]}}</p>
+                            <p v-if="stateBrandingPageData[0].workList[index+3]" data-aos="fade-left">{{stateBrandingPageData[0].workList[index+3]}}</p>
+                            <p v-if="stateBrandingPageData[0].workList[index+4]" data-aos="fade-left">{{stateBrandingPageData[0].workList[index+4]}}</p>
+                            <p v-if="stateBrandingPageData[0].workList[index+5]" data-aos="fade-left">{{stateBrandingPageData[0].workList[index+5]}}</p>
                         </div>
                         
                         <p v-if="isMobile"
-                           v-for="(item, index) in brandingData[0].workList"
+                           v-for="(item, index) in stateBrandingPageData[0].workList"
                            :key="index"
                            data-aos="fade-left">
                            {{item}}
@@ -203,21 +177,21 @@ export default {
                     </div>
                     
                     <div class="workList">
-                        <h1 data-aos="fade-right">{{brandingData[1].type+' >'}}</h1>
+                        <h1 data-aos="fade-right">{{stateBrandingPageData[1].type+' >'}}</h1>
                         <div class="works interioreList"
-                             v-for="(item, index) in brandingData[1].workList"
+                             v-for="(item, index) in stateBrandingPageData[1].workList"
                              :key="index"
                              v-if="index % 6 == 0 && !isMobile">
-                            <p v-if="brandingData[1].workList[index]" data-aos="fade-left">{{brandingData[1].workList[index]}}</p>
-                            <p v-if="brandingData[1].workList[index+1]" data-aos="fade-left">{{brandingData[1].workList[index+1]}}</p>
-                            <p v-if="brandingData[1].workList[index+2]" data-aos="fade-left">{{brandingData[1].workList[index+2]}}</p>
-                            <p v-if="brandingData[1].workList[index+3]" data-aos="fade-left">{{brandingData[1].workList[index+3]}}</p>
-                            <p v-if="brandingData[1].workList[index+4]" data-aos="fade-left">{{brandingData[1].workList[index+4]}}</p>
-                            <p v-if="brandingData[1].workList[index+5]" data-aos="fade-left">{{brandingData[1].workList[index+5]}}</p>
+                            <p v-if="stateBrandingPageData[1].workList[index]" data-aos="fade-left">{{stateBrandingPageData[1].workList[index]}}</p>
+                            <p v-if="stateBrandingPageData[1].workList[index+1]" data-aos="fade-left">{{stateBrandingPageData[1].workList[index+1]}}</p>
+                            <p v-if="stateBrandingPageData[1].workList[index+2]" data-aos="fade-left">{{stateBrandingPageData[1].workList[index+2]}}</p>
+                            <p v-if="stateBrandingPageData[1].workList[index+3]" data-aos="fade-left">{{stateBrandingPageData[1].workList[index+3]}}</p>
+                            <p v-if="stateBrandingPageData[1].workList[index+4]" data-aos="fade-left">{{stateBrandingPageData[1].workList[index+4]}}</p>
+                            <p v-if="stateBrandingPageData[1].workList[index+5]" data-aos="fade-left">{{stateBrandingPageData[1].workList[index+5]}}</p>
                         </div>
                         
                         <p v-if="isMobile"
-                           v-for="(item, index) in brandingData[1].workList"
+                           v-for="(item, index) in stateBrandingPageData[1].workList"
                            :key="index"
                            data-aos="fade-left">
                            {{item}}
@@ -284,6 +258,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_branding.scss";
 </style>
