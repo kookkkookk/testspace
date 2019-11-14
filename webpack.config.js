@@ -134,9 +134,9 @@ const config = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Zitonspace',
-            description: 'ZITONSPACE，空間層次的美，生活尺度的善意。ZITONSPACE',
-            keywords: 'Zitonspace, zitonspace, ziton, ziton space, 日騰空間設計, 日騰, 室內設計, 空間設計, 陳詠婕, Fion Chen, 886-2-27316282, GONTRAN CHERRIER',
+            title: 'IDE space studio',
+            description: 'IDE space studio，空間層次的美，生活尺度的善意。IDE space studio',
+            keywords: 'IDE space studio, IDE, IDE space, 德易空間設計, 德易, 室內設計, 空間設計, Fion Chen, 886-2-27316282, GONTRAN CHERRIER',
             filename: 'index.html',
             template: 'template/template.html'
         }),
