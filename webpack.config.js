@@ -134,11 +134,12 @@ const config = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            title: 'IDE space studio',
-            description: 'IDE space studio，空間層次的美，生活尺度的善意。IDE space studio',
-            keywords: 'IDE space studio, IDE, IDE space, 德易空間設計, 德易, 室內設計, 空間設計, Fion Chen, 886-2-27316282, GONTRAN CHERRIER',
+            title: 'IDE SPACE 德易空間設計',
+            description: 'IDE space 空間層次的美，生活尺度的善意。Life starts with good - 德易空間設計',
+            keywords: 'IDE SPACE, IDE SPACE STUDIO, 德易, 德易設計, 德易空間設計',
             filename: 'index.html',
-            template: 'template/template.html'
+            template: 'template/template.html',
+            googleVerification: 'hH0bpRbrrTfUl1npUUnckCbf0mVk-Gm_QOV2iYF5qyE'
         }),
         new CopyWebpackPlugin([
             { from: 'assets', to: 'assets' },
