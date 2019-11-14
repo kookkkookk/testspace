@@ -1,19 +1,9 @@
 <script>
-import { mapGetters } from 'vuex';
-import getPagesDatas from 'api/getPagesData';
-//import worksData from '../assets/data/worksData.json';
+import { mapGetters, mapActions } from 'vuex';
 export default {
     name: 'works',
     data() {
         return {
-            //worksData: worksData,
-            worksData: [
-                {
-                    "classification": null,
-                    "listingPageImg1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                }
-            ],
-            //isWorkShow: "All",
             isWorkSwitching: null,
             showFirstLoadWork: 0,
             isShowTopBtn: false
@@ -24,24 +14,26 @@ export default {
             'isMobile',
             'documentHeight',
             'getScrollTop',
-            'getWork_isWorkShow'
+            'getWork_isWorkShow',
+            'stateWorkPageData'
         ]),
         worksDataLength(){
-            return this.worksData.length || 0
+            return this.stateWorkPageData.length || 0
         }
     },
     methods: {
+        ...mapActions([
+            'getWorkPageData'
+        ]),
         changeWorksShow(val){
             this.isWorkSwitching = 'hideing'
             setTimeout(()=>{
-                //this.isWorkShow = val
                 this.$store.dispatch('postWork_isWorkShowVal', val);
             },500)
             setTimeout(()=>{
                 this.isWorkSwitching = 'showing'
             },550)
             setTimeout(()=>{
-                //this.isWorkSwitching = null
                 this.$aos.refreshHard();
             },1050)
         },
@@ -49,104 +41,21 @@ export default {
             setTimeout(() => {
                 window.scrollTo(0,0);
             }, 200);
-        },
-        /*getDomOffset(){
-            var scrollTop;
-            var windowHeight;
-            //var showFirstLoadWork = 0;
-            setTimeout(()=>{
-                //const { work1 } = this.$refs
-                //console.dir(work1[0].offsetTop)
-
-                const { worksMainScreenArea } = this.$refs
-                //console.dir(worksMainScreenArea.clientHeight)
-                for(var i=0;i<this.worksDataLength;i++){
-                    //console.dir(this.$refs['work'+i][0])
-                    //console.dir(this.$refs.work[0].dataset.work)
-                    //console.dir(worksMainScreenArea.clientHeight+this.$refs['work'+i][0].offsetTop)
-                    var supplementPrevHeightN = (this.isMobile ? 1:2)
-                    if(i>=supplementPrevHeightN){
-                        this.$refs['work'+i][0].dataset.offset = (worksMainScreenArea.clientHeight + this.$refs['work'+(i-1)][0].offsetHeight) + this.$refs['work'+i][0].offsetTop
-                    }else{
-                        this.$refs['work'+i][0].dataset.offset = worksMainScreenArea.clientHeight + this.$refs['work'+i][0].offsetTop
-                    }
-
-                    //if(showFirstLoadWork < 2 && this.$refs['work'+i][0].classList.contains("selected")){
-                    //    this.$refs['work'+i][0].classList.add("on")
-                    //    showFirstLoadWork++
-                    //}
-                }
-                //由於動畫時間0.5s 後才渲染至畫面，所以要0.51s後才能正確抓到offsettop
-            },510)
-            setTimeout(()=>{
-                this.showFirstLoadWork = 0
-                this.postDomFirstAndSecondOn()
-            },1100)
-            
-        },
-        postDomFirstAndSecondOn(){
-            var showNumber = (this.isMobile ? 1:2)
-            for(var i=0;i<this.worksDataLength;i++){
-                if(this.showFirstLoadWork == showNumber) break;
-                if(this.$refs['work'+i][0].classList.contains("selected")){
-                    this.$refs['work'+i][0].classList.add("on")
-                    this.showFirstLoadWork++
-                }
-            }
-        }*/
+        }
     },
     watch: {
         getScrollTop(val) {
-            //val = val-100;
-            //console.log(val)
-
-            /*for(var i=0;i<this.worksDataLength;i++){
-                if(val >= this.$refs['work'+i][0].dataset.offset && !this.$refs['work'+i][0].classList.contains("on")){
-                    this.$refs['work'+i][0].classList.add("on")
-                }
-            }*/
-
             if(val>=(this.documentHeight+200)){
                 this.isShowTopBtn = true;
             }else{
                 this.isShowTopBtn = false
             }
-        },
-        worksData(){
-            this.$store.dispatch('runFadeOutLoading', true);
         }
     },
-    async created(){
-        // this.$axios.get('./assets/data/worksData.json').then((response) => {
-        //     if(location.hostname === "localhost"){
-        //         this.worksData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-        //     }else{
-        //         this.worksData = response.data;
-        //     }
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax homeData.json fail: ",error)
-        // })
-        // .then(()=> {
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
-        try {
-            const res = await getPagesDatas('./assets/data/worksData.json');
-            this.worksData = res;
-        } catch (error) {
-            console.log(response);
-        }
-
-        // getPagesDatas('./assets/data/worksData.json')
-        // .then((response)=>{
-        //     this.worksData = response;
-        // })
-        // .then(()=>{
-        //     this.$store.dispatch('runFadeOutLoading', true);
-        // })
-        // .catch((response)=>{
-        //     console.log(response);
-        // })
+    created(){
+        this.getWorkPageData().then(()=>{
+            this.$store.dispatch('runFadeOutLoading', true);
+        });
     },
     mounted(){
         //Banner animated (tweenMax)
@@ -159,9 +68,6 @@ export default {
                 .from([subTitle,description], 0.5, {opacity: 0, y: -10})
                 .from(select, 0.5, {opacity: 0})
 
-        //Set v-for created work dom data-offset number
-        //this.getDomOffset()
-
         //scroll anumated api
         this.$aos.init()
         this.$aos.init({
@@ -170,7 +76,6 @@ export default {
         })
     },
     beforeDestroy(){
-        
     }
 }
 </script>
@@ -216,7 +121,7 @@ export default {
             <div class="topGrey"></div>
             <div class="worksContent">
                 <div data-aos="fade-down"
-                     v-for="(item,index) in worksData"
+                     v-for="(item,index) in stateWorkPageData"
                      :key="index"
                      v-show="getWork_isWorkShow==='All' || getWork_isWorkShow===item.classification"
                      :class="{hideing:isWorkSwitching==='hideing',
@@ -226,7 +131,6 @@ export default {
                      :ref="'work'+index">
                     <router-link :to="'work/'+index"
                                  @click.native="scrollToTop">
-                        <!-- 目前用CSS 做成黑白照片，之後確認後 json listingPageImg2要刪掉 -->
                         <img :src="item.listingPageImg1" class="picOpposite">
                         <img :src="item.listingPageImg1" class="pic">
                     </router-link>
@@ -244,6 +148,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_works.scss";
 </style>

@@ -1,9 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
-import getPagesDatas from 'api/getPagesData';
-//import homeData from '../assets/data/homeData.json';
-
-import 'swiper/dist/css/swiper.css';
+import { mapGetters, mapActions } from 'vuex';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 var timer, interval = 5000;
 export default {
@@ -26,42 +22,29 @@ export default {
                 }
             },
             active: 0,
-            //homeData: homeData,
-            homeData: [
-                {
-                    "bannerTitle": null,
-                    "bannerSubTitle": null
-                },
-                {
-                    "bannerDesktopImg": [],
-                    "bannerMobileImg": []
-                }
-            ],
-            /*el_chair: 0,
-            el_styleLife_h1: 0,
-            el_styleLife_pic: 0,
-            el_styleLife_p: 0,
-            el_schematically_bg: 0*/
         }
     },
     computed: {
         ...mapGetters([
             'isMobile',
             'documentHeight',
-            //'getScrollTop'
+            'stateHomePageData'
         ]),
         total() {
-            return this.homeData[1].bannerDesktopImg.length || 0
+            return this.stateHomePageData[1].bannerDesktopImg.length || 0
         }
     },
     methods: {
+        ...mapActions([
+            'getHomePageData'
+        ]),
         clickBanner(active){
             this.active = (active + this.total) % this.total
             this.clearHandler()
             this.setHandler();
         },
         nextHandler() {
-            this.active = (this.active + 1) % this.homeData[1].bannerDesktopImg.length
+            this.active = (this.active + 1) % this.stateHomePageData[1].bannerDesktopImg.length
         },
         setHandler() {
             this.clearHandler()
@@ -69,110 +52,19 @@ export default {
         },
         clearHandler() {
             clearInterval(timer)
-        },
-        //Get el offsetTop
-        /*getDomOffset() {
-            setTimeout(()=>{
-                this.el_chair = document.querySelector('.chairArea').offsetTop
-                this.el_styleLife_h1 = document.querySelector('.lifeStyleArea h1').offsetTop
-                this.el_styleLife_pic = document.querySelector('.lifeStyleArea .pic').offsetTop
-                this.el_styleLife_p = document.querySelector('.lifeStyleArea p').offsetTop
-                this.el_schematically_bg = document.querySelector('.schematically').offsetTop
-
-                //由於該el已經被position 所以offsetTop重置，要先抓父層再相加
-                //this.el_schematically_TextBox = document.querySelector('.schematically').offsetTop + document.querySelector('.schematically .description').offsetTop
-                
-            },100)
-        }*/
+        }
     },
     components: {
         swiper,
         swiperSlide
     },
     watch: {
-        //Scroll > el offsetTop el animated's Fn
-        /*getScrollTop(val) {
-            val = val-100;
-            if(val >= this.el_chair && !document.querySelector(".chairArea").classList.contains("on")){
-                document.querySelector('.chairArea').classList.add("on")
-                console.log(this.isMobile)
-                if(!this.isMobile){
-                    document.querySelector('.left').classList.add("on")
-                    document.querySelector('.left p').classList.add("on")
-                    document.querySelector('.right').classList.add("on")
-                    document.querySelector('.right p').classList.add("on")
-                    document.querySelector('.right h2').classList.add("on")
-                }else{
-                    document.querySelector('.bg img').classList.add("on")
-                    document.querySelector('.description').classList.add("on")
-                    document.querySelector('.description p').classList.add("on")
-                }
-            }
-            if(val >= this.el_styleLife_h1 && !document.querySelector(".lifeStyleArea h1").classList.contains("on")){
-                document.querySelector('.lifeStyleArea h1').classList.add("on")
-            }
-            if(val >= this.el_styleLife_pic && !document.querySelector(".lifeStyleArea .pic").classList.contains("on")){
-                document.querySelector('.lifeStyleArea .pic').classList.add("on")
-            }
-            if(val >= this.el_styleLife_p && !document.querySelector(".lifeStyleArea p").classList.contains("on")){
-                document.querySelector('.lifeStyleArea p').classList.add("on")
-            }
-            if(val >= this.el_schematically_bg && !document.querySelector(".schematically .bg").classList.contains("on")){
-                document.querySelector('.schematically .bg').classList.add("on")
-                document.querySelector('.schematically .description').classList.add("on")
-            }
-            //if(val >= this.el_schematically_TextBox && !document.querySelector(".schematically .description").classList.contains("on")){
-            //    document.querySelector('.schematically .description').classList.add("on")
-            //}
-        }*/
     },
     created() {
-
-        getPagesDatas('./assets/data/homeData.json')
-        .then((response)=>{
-            this.homeData = response;
-        })
-        .then(()=>{
+        this.getHomePageData().then(()=>{
             this.$store.dispatch('runFadeOutLoading', true);
             this.setHandler()
-        })
-        .catch((response)=>{
-            console.log(response);
-        })
-
-        // this.$axios.get('./assets/data/homeData.json').then((response) => {
-        //     /*if(location.hostname === "localhost"){
-        //         this.homeData = response.data;
-
-        //         this.homeData[1].bannerMobileImg.forEach((item, idx)=>{
-        //             let str = this.homeData[1].bannerMobileImg[idx].replace("./", "src/");
-        //             this.homeData[1].bannerMobileImg[idx] = str;
-        //         })
-        //     }else{
-        //         this.homeData = response.data;
-        //     }*/
-        //     if(location.hostname === "localhost"){
-        //         //let old = JSON.stringify(response.data).replace(/@\//g, "src/");
-        //         //let newArray = JSON.parse(old);
-        //         this.homeData = JSON.parse(JSON.stringify(response.data).replace(/.\/images\//g, "src/images/"));
-        //     }else{
-        //         this.homeData = response.data;
-        //     }
-            
-        // })
-        // .catch((error)=> {
-        //     console.log("!ERROR: Ajax homeData.json fail: ",error)
-        // })
-        // .then(()=> {
-
-        //     /*const { _loading } = this.$refs
-        //     const timeline = new TimelineLite()
-        //     timeline.to(_loading, 0.3, {autoAlpha: 0})
-        //             .add(()=>{ this.loading=false })*/
-        //     this.$store.dispatch('runFadeOutLoading', true);
-
-        //     this.setHandler()
-        // })
+        });
     },
     mounted(){
         //Banner animated (tweenMax)
@@ -188,12 +80,9 @@ export default {
             duration: 500,
             once: true
         })
-
-        //this.getDomOffset()
         
     },
     destroyed () {
-
     }
 }
 </script>
@@ -212,9 +101,8 @@ export default {
                 <transition-group v-if="!isMobile"
                                   tag="div"
                                   name="fade">
-                                  <!-- @click.native="clickBanner(active+1)" -->
                     <div class="bannerPic"
-                         v-for="(item, index) in homeData[1].bannerDesktopImg"
+                         v-for="(item, index) in stateHomePageData[1].bannerDesktopImg"
                          :key="index"
                          :style="{backgroundImage:'url('+item+')'}"
                          v-show="active===index"
@@ -227,7 +115,7 @@ export default {
                 <swiper v-else
                         :options="swiperOption"
                         class="mobileBanner">
-                    <swiper-slide v-for="(item, index) in homeData[1].bannerMobileImg"
+                    <swiper-slide v-for="(item, index) in stateHomePageData[1].bannerMobileImg"
                                   :key="index">
                         <img :src="item">
                     </swiper-slide>
@@ -236,8 +124,8 @@ export default {
             </div>
             <div class="titleArea" ref="titleArea">
                 <div>
-                    <h1>{{homeData[0].bannerTitle}}</h1>
-                    <h2>{{homeData[0].bannerSubTitle}}</h2>
+                    <h1>{{stateHomePageData[0].bannerTitle}}</h1>
+                    <h2>{{stateHomePageData[0].bannerSubTitle}}</h2>
                 </div>
             </div>
             <div v-if="!isMobile" class="mouseIcon">
@@ -304,6 +192,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_home.scss";
 </style>

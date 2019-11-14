@@ -1,9 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
-import getPagesDatas from 'api/getPagesData';
-//import worksData from '../assets/data/worksData.json';
-
-//import 'swiper/dist/css/swiper.css';
+import { mapGetters, mapActions } from 'vuex';
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
@@ -24,21 +20,6 @@ export default {
                     }
                 }
             },
-            //worksData: worksData,
-            worksData: [
-                {
-                    "constructionName": null,
-                    "constructionDescription": null,
-                    "popupCoverImg": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
-                    "descriptionTitle": null,
-                    "description": "null",
-                    "introduction": null,
-                    "popupBannerGroup": [],
-                    "designConcept": null,
-                    "popupEndCoverImgGroup": [],
-                    "endText": "null"
-                }
-            ],
             popOpenActive: 0,
             isShowTopBtn: false,
             isPage5jumpBtnNext: true,
@@ -52,11 +33,15 @@ export default {
             'isMobile',
             'documentHeight',
             'getScrollTop',
-            'getWork_isWorkShow'
+            'getWork_isWorkShow',
+            'stateWorkPageData'
         ]),
 
     },
     methods: {
+        ...mapActions([
+            'getWorkPageData'
+        ]),
         scrollToTop() {
             setTimeout(() => {
                 window.scrollTo(0,0);
@@ -91,7 +76,7 @@ export default {
         jumpWorkBtnShowFn(){
             if(this.getWork_isWorkShow === 'All'){
                 (this.popOpenActive === 0 ? this.isPage5jumpBtnPrev = false : this.isPage5jumpBtnPrev = true);
-                (this.popOpenActive === (this.worksData.length-1) ? this.isPage5jumpBtnNext = false : this.isPage5jumpBtnNext = true);
+                (this.popOpenActive === (this.stateWorkPageData.length-1) ? this.isPage5jumpBtnNext = false : this.isPage5jumpBtnNext = true);
             }else if(this.getWork_isWorkShow === 'Commercial'){
                 (this.popOpenActive === this.classification_commercial[0] ? this.isPage5jumpBtnPrev = false : this.isPage5jumpBtnPrev = true);
                 (this.popOpenActive === (this.classification_commercial[this.classification_commercial.length-1]) ? this.isPage5jumpBtnNext = false : this.isPage5jumpBtnNext = true);
@@ -112,42 +97,28 @@ export default {
             }else{
                 this.isShowTopBtn = false
             }
-
-            /*if(val>(document.querySelector("#app").offsetHeight-document.querySelector(".footerDsktop").offsetHeight)){
-                this.isShowTopBtn = false;
-            }*/
         },
         
     },
     created(){
 
-        getPagesDatas('./assets/data/worksData.json')
-        .then((response)=>{
-            this.worksData = response;
-        })
-        .then(()=>{
-            let worksDataLength = this.worksData.length || 0;
+        this.getWorkPageData().then(()=>{
+            let worksDataLength = this.stateWorkPageData.length || 0;
+
             let nowDesignationKey = (this.$route.params.userId <= worksDataLength ? Number(Math.abs(this.$route.params.userId)) : 0);
-            //console.log("this.$route.params.userId: ",nowDesignationKey);
-            //console.log("worksData Length: ",worksDataLength);
             if(this.$route.params.userId>=worksDataLength || isNaN(Number(Math.abs(this.$route.params.userId)))) this.$router.push('/home');
             this.popOpenActive = nowDesignationKey
 
             this.$store.dispatch('runFadeOutLoading', true);
 
-            this.worksData.forEach((item, i)=>{
+            this.stateWorkPageData.forEach((item, i)=>{
                 if(item.classification === 'Commercial'){
                     this.classification_commercial.push(i)
                 }else if(item.classification === 'Interiors'){
                     this.classification_interiors.push(i)
                 }
             })
-            //console.log("classification_commercial: ",this.classification_commercial);
-            //console.log("classification_interiors: ",this.classification_interiors);
-        })
-        .catch((response)=>{
-            console.log(response);
-        })
+        });
     },
     mounted() {
         
@@ -180,8 +151,8 @@ export default {
 <template>
     <div class="pupPage">
         <div class="page1">
-            <h1 data-aos="fade-down" v-html="worksData[popOpenActive].constructionName"></h1>
-            <h2 data-aos="fade-down" data-aos-delay="200">{{worksData[popOpenActive].constructionDescription}}</h2>
+            <h1 data-aos="fade-down" v-html="stateWorkPageData[popOpenActive].constructionName"></h1>
+            <h2 data-aos="fade-down" data-aos-delay="200">{{stateWorkPageData[popOpenActive].constructionDescription}}</h2>
             <div data-aos="fade-left" class="backBtn">
                 <router-link to="/works" v-if="!isMobile">BACK</router-link>
                 <router-link to="/works" v-else :class="{backBtnMobile:isMobile}"></router-link>
@@ -189,20 +160,20 @@ export default {
             </div>
             <div class="coverTopContainer">
                 <div class="coverImg"
-                     :style="{backgroundImage:'url('+worksData[popOpenActive].popupCoverImg+')'}"
+                     :style="{backgroundImage:'url('+stateWorkPageData[popOpenActive].popupCoverImg+')'}"
                      ref="coverImg"
                      data-aos="fade-right"
                      data-aos-delay="400">
-                     <img :src="worksData[popOpenActive].popupCoverImg" v-if="isMobile">
+                     <img :src="stateWorkPageData[popOpenActive].popupCoverImg" v-if="isMobile">
                 </div>
                 <div class="descriptionBox" ref="descriptionBox" data-aos="fade-left" data-aos-delay="400">
-                    <h2>{{worksData[popOpenActive].descriptionTitle}}</h2>
-                    <p v-html="(!isMobile ? worksData[popOpenActive].description.replace(/\^/g,'') : worksData[popOpenActive].description.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
+                    <h2>{{stateWorkPageData[popOpenActive].descriptionTitle}}</h2>
+                    <p v-html="(!isMobile ? stateWorkPageData[popOpenActive].description.replace(/\^/g,'') : stateWorkPageData[popOpenActive].description.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
                 </div>
             </div>
             <div data-aos="fade-down" class="introductionContent" v-if="!isMobile">
-                <div v-if="worksData[popOpenActive].introduction != ''">
-                    <p v-html="'<span class=worksPopDescriptionLine></span>'+worksData[popOpenActive].introduction"></p>
+                <div v-if="stateWorkPageData[popOpenActive].introduction != ''">
+                    <p v-html="'<span class=worksPopDescriptionLine></span>'+stateWorkPageData[popOpenActive].introduction"></p>
                 </div>
             </div>
         </div>
@@ -214,7 +185,7 @@ export default {
                 </div>
                 <div class="swiperContent">
                     <swiper :options="swiperOption">
-                        <swiper-slide v-for="(item, index) in worksData[popOpenActive].popupBannerGroup"
+                        <swiper-slide v-for="(item, index) in stateWorkPageData[popOpenActive].popupBannerGroup"
                                       :key="index">
                             <!-- <img :src="item || ''"> -->
                             <div class="pic" :style="{backgroundImage:'url('+item+')'}"></div>
@@ -232,8 +203,8 @@ export default {
             <div class="swiper-pagination swiper-pagination-bullets" slot="pagination"></div>
             
             <div class="designConceptContent" data-aos="fade-down" v-if="!isMobile">
-                <div v-if="worksData[popOpenActive].designConcept != ''">
-                    <p v-html="'<span class=worksPopDescriptionLine2></span>'+worksData[popOpenActive].designConcept"></p>
+                <div v-if="stateWorkPageData[popOpenActive].designConcept != ''">
+                    <p v-html="'<span class=worksPopDescriptionLine2></span>'+stateWorkPageData[popOpenActive].designConcept"></p>
                 </div>
             </div>
         </div>
@@ -242,7 +213,7 @@ export default {
             <div class="coverBottomContainer">
                 <div class="coverBottomContent">
                     <div class="coverBottomPic"
-                         v-for="(item, index) in worksData[popOpenActive].popupEndCoverImgGroup"
+                         v-for="(item, index) in stateWorkPageData[popOpenActive].popupEndCoverImgGroup"
                          :key="index"
                          data-aos="fade-down"
                          :data-aos-delay="index*200">
@@ -251,7 +222,7 @@ export default {
                 </div>
                 <div data-aos="fade-right" class="endContent">
                     <div>
-                        <p v-html="(!isMobile ? worksData[popOpenActive].endText.replace(/\^/g,'') : worksData[popOpenActive].endText.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
+                        <p v-html="(!isMobile ? stateWorkPageData[popOpenActive].endText.replace(/\^/g,'') : stateWorkPageData[popOpenActive].endText.replace(/\<br\>/g,'').replace(/\^/g,'<br\>'))"></p>
                     </div>
                 </div>
                 <div class="bg"></div>
@@ -269,7 +240,6 @@ export default {
                         <a href="javascript:;" @click="jumpWorkGo(jumpWorkNum(-1))">PREV</a>
                     </li>
                     <li v-show="isPage5jumpBtnNext">
-                        <!-- <router-link :to="{ name: 'workPopup', params: { userId: Number($route.params.userId)+1 } }">NEXTNEXT</router-link> -->
                         <a href="javascript:;" @click="jumpWorkGo(jumpWorkNum(+1))">NEXT</a>
                     </li>
                 </ul>
@@ -292,6 +262,6 @@ export default {
 
 <style lang="scss" scoped>
     @import "scss/helpers/_mixin.scss";
-    @import "scss/helpers/_scrollAnimation.scss";
+    // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_works.scss";
 </style>
