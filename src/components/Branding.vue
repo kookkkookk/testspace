@@ -72,9 +72,9 @@ export default {
         <div class="creatorArea">
             <div class="creatorContainer">
                 <div class="creatorInformation">
-                    <h3 data-aos="fade-right">創辦人</h3>
-                    <div class="creator" data-aos="fade"><img src="~Branding/01_creator.jpg"></div>
-                    <h1 data-aos="fade-right">創辦人暨設計總監<br>陳 詠婕</h1>
+                    <h3 data-aos="fade-right">品牌<span>創立</span></h3>
+                    <!-- <div class="creator" data-aos="fade"><img src="~Branding/01_creator.jpg"></div> -->
+                    <h1 data-aos="fade-right">IDE SPACE STUDIO<br>德易空間設計</h1>
                     <h2 data-aos="fade-right" v-if="!isMobile">
                         「設計來自生活，生活因設計改變，<br>
                         回歸設計需求，以細節成就完美，彰顯本質。」<br>
@@ -86,11 +86,11 @@ export default {
                         「設計來自生活，生活因設計改變，回歸設計需求，以細節成就完美，彰顯本質。」<br>
                         從大型設計公司、大元建築事務所洗禮，到創辦個人公司，三十年設計路，紮實耕耘始終如一，從住宅到商業，一件件精彩作品，造就多種形式的空間表情。
                     </h2>
-                    <ul>
+                    <!-- <ul>
                         <li data-aos="fade-right">1989~1991 年曾任職 優騰國際室內設計有限公司 iDA Workplace + Strategy</li>
                         <li data-aos="fade-right" data-aos-delay="200">1991~1998 年曾任職 大元聯合建築師事務所 KRIS YAO∣ARTECH</li>
                         <li data-aos="fade-right" data-aos-delay="400">1999 年成立 日騰空間設計有限公司</li>
-                    </ul>
+                    </ul> -->
                 </div>
                 
                 <div class="spacePicGroup">
@@ -124,14 +124,14 @@ export default {
                             面對客戶與空間，我們堅持的只是一種價值觀，型隨機能、與時俱進，盡力改善優化，堅持自己的價值觀，相信美的感召力。
                         </li>
                         <li data-aos="fade-left" v-if="!isMobile">
-                            日騰空間設計創辦人，陳總監，以美感為軸，<br>
+                            德易空間設計，以美感為軸，<br>
                             空間為伍，喜愛白色系的她，在設計世界也有<br>
                             自己的白色美學，反映在設計或公司空間上，<br>
                             可見單一與多元，包容與調和，<br>
                             純粹與共生，內斂與優雅。
                         </li>
                         <li data-aos="fade-left" v-else>
-                            日騰空間設計創辦人，陳總監，以美感為軸，空間為伍，喜愛白色系的她，在設計世界也有自己的白色美學，反映在設計或公司空間上，可見單一與多元，包容與調和，純粹與共生，內斂與優雅。
+                            德易空間設計，以美感為軸，空間為伍，喜愛白色系的她，在設計世界也有自己的白色美學，反映在設計或公司空間上，可見單一與多元，包容與調和，純粹與共生，內斂與優雅。
                         </li>
                         <li data-aos="fade-left" v-if="!isMobile">
                             如果說創作是天份，還有不斷的學習，<br>
