@@ -14,18 +14,18 @@ export default {
         <div class="footerDsktop" v-if="!isMobile">
             <div class="textArea">
                 <h1><span></span></h1>
-                <p>T <a href="tel:+886227316282">886 2 2731 6282</a>　F 886 2 2731 6287</p>
-                <p>16F-1, No.137, Sec. 1, Fuxing S. Rd., Ta-An Dist., Taipei City 106, Taiwan (R.O.C.)</p>
+                <h2>德易空間設計有限公司</h2>
+                <a href="mailto:idespacestudio@gmail.com">idespacestudio@gmail.com</a>
             </div>
             <div class="iconArea">
                 <ul>
                     <li><a href="javascript:;"></a></li>
-                    <li><a href="mailto:hello@zitonspace.com"></a></li>
+                    <li><a href="mailto:idespacestudio@gmail.com"></a></li>
                 </ul>
             </div>
         </div>
         <div class="footerMobile" v-else>
-            <h2>COPYRIGHT © 2018 ZITONSPACE</h2>
+            <h2>COPYRIGHT ©　IDE SPACE STUDIO</h2>
         </div>
     </footer>
 </template>

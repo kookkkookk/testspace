@@ -176,7 +176,9 @@
                     margin-top: 50px;
                     text-align: center;
                 }
-                
+                >span{
+                    font-weight: bold;
+                }
             }
             .creator{
                 display: inline-block;
@@ -192,8 +194,9 @@
                 line-height: 55px;
                 color: #131313;
                 font-weight: bold;
-                margin-left: 35px;
+                margin-left: 210px;
                 display: inline-block;
+                letter-spacing: 0.04em;
                 @include SCREEN_1366{
                     font-size: 28px;
                     line-height: 52px;

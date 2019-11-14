@@ -2,6 +2,7 @@ footer{
     width: 100%;
     height: auto;
     background-color: #d3d3d3;
+    overflow: hidden;
     >div.footerDsktop{
         width: 100%;
         max-width: 1920px;
@@ -9,26 +10,26 @@ footer{
         margin: 0 auto;
         padding-left: 143px;
         padding-right: 125px;
-        padding-top: 60px;
+        padding-top: 75px;
         position: relative;
         background-color: #d3d3d3;
         @include SCREEN_1366{
             padding-left: 90px;
             padding-right: 80px;
-            padding-top: 70px;
+            padding-top: 85px;
         }
         @include SCREEN_900{
             height: 190px;
             padding-left: 50px;
             padding-right: 40px;
-            padding-top: 60px;
+            padding-top: 75px;
         }
         .textArea{
             float: left;
             >h1{
+                display: inline-block;
                 font-size: 22px;
                 color: #323232;
-                margin-bottom: 9px;
                 overflow: hidden;
                 @include SCREEN_1366{
                     font-size: 18px;
@@ -44,7 +45,6 @@ footer{
                     height: 21px;
                     background-image: url("~99_footer_logo.png");
                     background-size: contain;
-                    float: left;
                     margin-top: 5px;
                     margin-right: 10px;
                     @include SCREEN_1366{
@@ -58,31 +58,29 @@ footer{
                     }
                 }
             }
-            p{
-                font-size: 21px;
+            >h2{
+                display: inline-block;
+                font-size: 22px;
+                vertical-align: super;
+            }
+            >a{
+                font-family: 'MyriadPro-Light';
+                display: block;
+                font-weight: bold;
+                font-size: 23px;
                 color: #4b4b4b;
-                margin-bottom: 9px;
-                @include SCREEN_1366{
+                margin-top: 5px;
+                @include SCREEN_1366 {
                     font-size: 16px;
-                    margin-bottom: 6px;
                 }
-                @include SCREEN_900{
+                @include SCREEN_900 {
                     font-size: 14px;
-                    margin-bottom: 4px;
+                    margin-top: 4px;
                 }
-                >a{
-                    color: #4b4b4b;
+                &:hover{
+                    text-decoration: underline;
                 }
             }
-            // p:last-child{
-            //     font-size: 20px;
-            //     @include SCREEN_1366{
-            //         font-size: 15px;
-            //     }
-            //     @include SCREEN_900{
-            //         font-size: 13px;
-            //     }
-            // }
         }
         .iconArea{
             float: right;
