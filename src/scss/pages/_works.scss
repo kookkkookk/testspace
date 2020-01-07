@@ -96,23 +96,66 @@
         align-items: center;
         flex-wrap: wrap;
         //justify-content: space-around;
+
+        padding-bottom: 60px;
+        @include SCREEN_1600{
+            padding-bottom: 80px;
+        }
+        @include SCREEN_1280{
+            padding-bottom: 110px;
+        }
+        @include SCREEN_900{
+            padding-bottom: 150px;
+        }
+        @include SCREEN_736{
+            padding-bottom: 85px;
+        }
         
         >div{
-            width: calc(50% - 30px);
+            width: calc(50% - 100px);
             text-align: center;
-            margin: 0 15px;
+            margin: 0 50px;
             margin-bottom: 100px;
             //transition: opacity 0.5s;
-            @include SCREEN_1280{
+            @include SCREEN_1600{
+                width: calc(50% - 200px);
+                &:nth-child(even){
+                    margin-left: 50px;
+                    margin-right: 150px;
+                }
+                &:nth-child(odd){
+                    margin-left: 150px;
+                    margin-right: 50px;
+                }
                 margin-bottom: 80px;
             }
-            @include SCREEN_1024{
+            @include SCREEN_1280{
                 margin-bottom: 50px;
+            }
+            @include SCREEN_900{
+                width: calc(50% - 80px);
+                &:nth-child(even){
+                    margin-left: 30px;
+                    margin-right: 50px;
+                }
+                &:nth-child(odd){
+                    margin-left: 50px;
+                    margin-right: 30px;
+                }
+                margin-bottom: 30px;
             }
             @include SCREEN_736{
                 width: 100%;
-                margin: 0 50px;
-                margin-bottom: 40px;
+                &:nth-child(even){
+                    margin-left: 50px;
+                    margin-right: 50px;
+                }
+                &:nth-child(odd){
+                    margin-left: 50px;
+                    margin-right: 50px;
+                }
+                // margin: 0 50px;
+                margin-bottom: 15px;
             }
             &.long{
                 @include SCREEN_736{
@@ -707,8 +750,8 @@
         }
         .backBtn{
             @include BackBtn;
-            margin-top: 60px;
-            margin-bottom: 160px;
+            margin-top: 54px;
+            margin-bottom: 60px;
             @include SCREEN_1600{
                 margin-top: 50px;
                 margin-bottom: 130px;

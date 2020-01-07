@@ -389,20 +389,18 @@
 .choiceArea{
     width: 100%;
     padding-top: 100px;
-    padding-bottom: 130px;
+    padding-bottom: 160px;
     background-color: #ededed;
     position: relative;
     overflow: hidden;
     @include SCREEN_1366{
         padding-top: 70px;
-        padding-bottom: 100px;
     }
     @include SCREEN_1024{
         padding-top: 50px;
-        padding-bottom: 80px;
     }
     @include SCREEN_736{
-        padding-bottom: 10px;
+        padding-bottom: 100px;
     }
     
     .choiceContainer{

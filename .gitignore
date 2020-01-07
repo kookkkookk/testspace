@@ -7,4 +7,3 @@ app
 /.sass-cache
 other/*
 backup_oldFn/*
-dist/*
