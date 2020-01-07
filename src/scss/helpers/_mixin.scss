@@ -64,79 +64,80 @@
 
 //Back Btn
 @mixin BackBtn{
-	width: 140px;
+	width: 110px;
 	text-align: right;
 	float: right;
 	margin-right: 90px;
 	margin-top: 90px;
-	@include SCREEN_1600{
-		width: 130px;
-		margin-right: 80px;
-		margin-top: 80px;
-	}
-	@include SCREEN_1366{
-		width: 120px;
-	}
-	@include SCREEN_900{
-		width: 110px;
-		margin-right: 60px;
-		margin-top: 60px;
-	}
-	@include SCREEN_736{
-		width: 60px;
-		margin-right: 20px;
-		margin-top: -50px;
-	}
+	// @include SCREEN_1600{
+	// 	width: 130px;
+	// 	margin-right: 80px;
+	// 	margin-top: 80px;
+	// }
+	// @include SCREEN_1366{
+	// 	width: 120px;
+	// }
+	// @include SCREEN_900{
+	// 	width: 110px;
+	// 	margin-right: 60px;
+	// 	margin-top: 60px;
+	// }
+	// @include SCREEN_736{
+	// 	width: 60px;
+	// 	margin-right: 20px;
+	// 	margin-top: -50px;
+	// }
 	&:hover>a{
 		transform: translateX(-10px);
 	}
 	>a{
-		font-size: 26px;
+		font-size: 13px;
 		color: #303030;
 		letter-spacing: 0.2em;
 		transition: transform 0.3s;
 		display: block;
-		@include SCREEN_1600{
-			font-size: 24px;
-		}
-		@include SCREEN_1366{
-			font-size: 22px;
-		}
-		@include SCREEN_900{
-			font-size: 20px;
-		}
+		margin-right: 10px;
+		// @include SCREEN_1600{
+		// 	font-size: 24px;
+		// }
+		// @include SCREEN_1366{
+		// 	font-size: 22px;
+		// }
+		// @include SCREEN_900{
+		// 	font-size: 20px;
+		// }
 		&.backBtnMobile{
 			height: 30px;
 		}
 	}
 	>span{
 		display: block;
-		width: 140px;
+		width: 110px;
 		height: 1px;
 		background-color: #000;
 		margin-top: 10px;
 		position: relative;
-		@include SCREEN_1600{
-			width: 130px;
-		}
-		@include SCREEN_1366{
-			width: 120px;
-		}
-		@include SCREEN_900{
-			width: 110px;
-		}
-		@include SCREEN_736{
-			width: 60px;
-		}
+		// @include SCREEN_1600{
+		// 	width: 130px;
+		// }
+		// @include SCREEN_1366{
+		// 	width: 120px;
+		// }
+		// @include SCREEN_900{
+		// 	width: 110px;
+		// }
+		// @include SCREEN_736{
+		// 	width: 60px;
+		// }
 		&::after{
 			content: "";
 			width: 1px;
-			height: 20px;
+			height: 15px;
 			background-color: #000;
 			display: block;
 			position: absolute;
 			bottom: -2px;
-			left: 7px;
+			left: 5px;
 			transform: rotate(45deg);
 			@include SCREEN_736{
 				height: 15px;
@@ -147,17 +148,58 @@
 	}
 }
 
+//topBtn btn
+.topBtn{
+	width: 50px;
+	height: 100px;
+	cursor: pointer;
+	position: fixed;
+	right: 65px;
+	bottom: 50px;
+	z-index: 3;
+	opacity: 0;
+	transition: all 0.3s;
+	pointer-events: none;
+	@include SCREEN_1366{
+		right: -4px;
+	}
+	&.topBtnShow{
+		opacity: 1;
+		pointer-events: auto;
+	}
+	>span{
+		width: 1px;
+		height: 100px;
+		display: block;
+		margin: 0 auto;
+		background-color: #8c6359;
+		transform: scale(-1, 1);
+		&::after{
+			content: "";
+			width: 15px;
+			height: 1px;
+			display: block;
+			background-color: #8c6359;
+			transform-origin: 0% 50%;
+			transform: rotate(135deg);
+		}
+	}
+}
+.topBtn.up{
+	bottom: 368px;
+}
+
 //topBtn Mobile btn
 .topBtnMobile{
 	width: 50px;
-	height: 50px;
+	height: 60px;
 	cursor: pointer;
 	position: fixed;
 	right: 0;
-	bottom: 75px;
+	bottom: 50px;
 	z-index: 3;
 	opacity: 0;
-	transition: opacity 0.3s;
+	transition: all 0.3s;
 	pointer-events: none;
 	&.topBtnShow{
 		opacity: 1;
@@ -177,9 +219,12 @@
 			display: block;
 			background-color: #000;
 			transform-origin: 0% 50%;
-			transform: rotate(45deg);
+			transform: rotate(135deg);
 		}
 	}
+}
+.topBtnMobile.up{
+	bottom: 170px;
 }
 
 //mobile text size

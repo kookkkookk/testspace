@@ -312,15 +312,14 @@
     .backBtn{
         @include BackBtn;
         position: absolute;
-        top: 140px;
-        right: 20px;
+        top: 210px;
+        right: 5px;
         margin-top: 0px;
         @include SCREEN_1600{
             margin-top: 0px;
         }
         @include SCREEN_1366{
-            top: 125px;
-            right: 0px;
+            // top: 125px;
             margin-right: 20px;
         }
         @include SCREEN_900{
@@ -840,7 +839,7 @@
             @include BackBtn;
             position: absolute;
             top: 55px;
-            right: 55px;
+            right: 5px;
             margin-top: 0px;
             @include SCREEN_1600{
                 margin-top: 0px;
@@ -877,12 +876,12 @@
                         &::after{
                             content: "";
                             display: block;
-                            width: 8px;
-                            height: 8px;
+                            width: 6px;
+                            height: 6px;
                             background-color: #fff;
                             border-radius: 4px;
                             float: left;
-                            margin-top: 7px;
+                            margin-top: 9px;
                             margin-right: 10px;
                         }
                     }
@@ -891,12 +890,12 @@
                         &::before{
                             content: "";
                             display: block;
-                            width: 8px;
-                            height: 8px;
+                            width: 6px;
+                            height: 6px;
                             background-color: #fff;
                             border-radius: 4px;
                             float: right;
-                            margin-top: 7px;
+                            margin-top: 9px;
                             margin-left: 10px;
                         }
                     }
