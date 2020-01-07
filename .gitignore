@@ -7,4 +7,4 @@ app
 /.sass-cache
 other/*
 backup_oldFn/*
-dist_backup20190507/*
+dist/*

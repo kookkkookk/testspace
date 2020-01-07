@@ -16,6 +16,7 @@ export default {
                 <h1><span></span></h1>
                 <h2>德易空間設計有限公司</h2>
                 <a href="mailto:idespacestudio@gmail.com">idespacestudio@gmail.com</a>
+                <p>COPYRIGHT © IDE SPACE STUDIO.　Creative 字造創意行銷　Design 予也創意</p>
             </div>
             <div class="iconArea">
                 <ul>
@@ -25,7 +26,8 @@ export default {
             </div>
         </div>
         <div class="footerMobile" v-else>
-            <h2>COPYRIGHT ©　IDE SPACE STUDIO</h2>
+            <h2>COPYRIGHT © IDE SPACE STUDIO</h2>
+            <p>Creative 字造創意行銷　Design 予也創意</p>
         </div>
     </footer>
 </template>
