@@ -46,7 +46,6 @@ export default {
     },
     watch: {
         getScrollTop(val) {
-            console.log(val)
             if(val>=(this.documentHeight+200)){
                 this.isShowTopBtn = true;
             }else{
@@ -54,7 +53,6 @@ export default {
             }
 
             if(val >= document.getElementById("app").offsetHeight - 100){
-                console.log('UP')
                 this.isTopBtnUp = true;
             }else{
                 this.isTopBtnUp = false;
