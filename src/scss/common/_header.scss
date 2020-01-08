@@ -26,7 +26,9 @@ header{
             left: 103px;
             transition: opacity 0.2s;
             @include SCREEN_900{
-                left: 0px;
+                width: 205px;
+                height: 33px;
+                left: 50px;
                 bottom: 29px;
             }
             @include SCREEN_736{
