@@ -100,7 +100,6 @@ export default {
             }
 
             if(val >= document.getElementById("app").offsetHeight - 100){
-                console.log('UP')
                 this.isTopBtnUp = true;
             }else{
                 this.isTopBtnUp = false;
