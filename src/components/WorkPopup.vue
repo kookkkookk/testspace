@@ -22,6 +22,7 @@ export default {
             },
             popOpenActive: 0,
             isShowTopBtn: false,
+            isTopBtnUp: false,
             isPage5jumpBtnNext: true,
             isPage5jumpBtnPrev: true,
             classification_commercial: [],
@@ -96,6 +97,13 @@ export default {
                 this.isShowTopBtn = true;
             }else{
                 this.isShowTopBtn = false
+            }
+
+            if(val >= document.getElementById("app").offsetHeight - 100){
+                console.log('UP')
+                this.isTopBtnUp = true;
+            }else{
+                this.isTopBtnUp = false;
             }
         },
         
@@ -248,13 +256,15 @@ export default {
 
         <div class="topBtn"
              v-scroll-to="'body'"
-             :class="{topBtnShow:isShowTopBtn}"
-             v-if="!isMobile">TOP</div>
+             :class="{topBtnShow:isShowTopBtn, up:isTopBtnUp}"
+             v-if="!isMobile">
+            <span></span>
+        </div>
 
         <div v-else
              class="topBtnMobile"
              v-scroll-to="'body'"
-             :class="{topBtnShow:isShowTopBtn}">
+             :class="{topBtnShow:isShowTopBtn, up:isTopBtnUp}">
              <span></span>
         </div>
     </div>
@@ -264,4 +274,15 @@ export default {
     @import "scss/helpers/_mixin.scss";
     // @import "scss/helpers/_scrollAnimation.scss";
     @import "scss/pages/_works.scss";
+    .topBtn.up{
+        bottom: 450px;
+    }
+    .topBtnMobile.up{
+        >span{
+            background-color: #fff;
+            &::after{
+                background-color: #fff;
+            }
+        }
+    }
 </style>

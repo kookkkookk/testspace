@@ -6,7 +6,8 @@ export default {
         return {
             isWorkSwitching: null,
             showFirstLoadWork: 0,
-            isShowTopBtn: false
+            isShowTopBtn: false,
+            isTopBtnUp: false
         }
     },
     computed: {
@@ -45,10 +46,18 @@ export default {
     },
     watch: {
         getScrollTop(val) {
+            console.log(val)
             if(val>=(this.documentHeight+200)){
                 this.isShowTopBtn = true;
             }else{
-                this.isShowTopBtn = false
+                this.isShowTopBtn = false;
+            }
+
+            if(val >= document.getElementById("app").offsetHeight - 100){
+                console.log('UP')
+                this.isTopBtnUp = true;
+            }else{
+                this.isTopBtnUp = false;
             }
         }
     },
@@ -138,10 +147,18 @@ export default {
             </div>
         </div>
 
-        <div class="topBtnMobile"
+        <div class="topBtn"
              v-scroll-to="'body'"
-             :class="{topBtnShow:isShowTopBtn}">
-             <span></span>
+             :class="{topBtnShow:isShowTopBtn, up:isTopBtnUp}"
+             v-if="!isMobile">
+            <span></span>
+        </div>
+        
+        <div v-else
+             class="topBtnMobile"
+             v-scroll-to="'body'"
+             :class="{topBtnShow:isShowTopBtn, up:isTopBtnUp}">
+            <span></span>
         </div>
     </div>
 </template>
