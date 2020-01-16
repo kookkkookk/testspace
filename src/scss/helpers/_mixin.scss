@@ -64,7 +64,7 @@
 
 //Back Btn
 @mixin BackBtn{
-	width: 110px;
+	width: 60px;
 	text-align: right;
 	float: right;
 	margin-right: 90px;
@@ -112,7 +112,7 @@
 	}
 	>span{
 		display: block;
-		width: 110px;
+		width: 60px;
 		height: 1px;
 		background-color: #000;
 		margin-top: 10px;
@@ -140,8 +140,8 @@
 			left: 5px;
 			transform: rotate(45deg);
 			@include SCREEN_736{
-				height: 15px;
-				bottom: -2px;
+				height: 12px;
+				bottom: -1px;
 				left: 4px;
 			}
 		}
